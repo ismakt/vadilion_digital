@@ -232,25 +232,30 @@ main{
 
   <div class="panel" id="services">
       <p id="services-text">Optimisation stratégique des décisions business via l'analyse des données, études de marché et la mise en place des outils décisionnels sur mesure (dashboards, applications).</p>
-  </div>
-
-  <div class="panel" id="solutions">
-  <p id="solutions-text"><strong>SMART-IN — Comprendre un territoire en un coup d’œil, investir avec précision.</strong><br><br>
+  </div><div class="panel" id="solutions">
+  <p id="solutions-text">
+    <strong>SMART-IN — Comprendre un territoire en un coup d’œil, investir avec précision.</strong><br><br>
     Dédiée à l’investissement immobilier, notre plateforme fournit l'intelligence géospatiale indispensable
     pour guider investisseurs, entrepreneurs et particuliers à décider où, quand et pourquoi investir,
     sur base des données fiables et objectives, issues de sources sûres.<br><br>
 
+    Nous fournissons les données clés pour vos projets:<br>
 
-Nous fournissons les données clés pour vos projets:<br>
-
-*La pertinence du projet dans son environnement socio-économique; opportunités et risques<br>
-*Identifier clients, concurrents, dynamiques locales et zones publicitaires en vue d'optimisation marketing<br>
-*Suivre prix immobiliers, indicateurs sécurité et performance commerciale<br><br>
+    *La pertinence du projet dans son environnement socio-économique; opportunités et risques<br>
+    *Identifier clients, concurrents, dynamiques locales et zones publicitaires en vue d'optimisation marketing<br>
+    *Suivre prix immobiliers, indicateurs sécurité et performance commerciale<br><br>
 
     Passez de la complexité à une prise de décision claire et rationnelle, au-delà des seules intuitions et émotions.<br>
-Grâce à notre plateforme et son large base de données, nous fournissons des analyses qualitative et fiables en un temps record.
+    Grâce à notre plateforme et son large base de données, nous fournissons des analyses qualitative et fiables en un temps record.
   </p>
+
+  <!-- Bouton Contact à l'intérieur du panel -->
+  <div style="margin-top:20px; text-align:center;">
+    <button id="contactSmartIn" class="btn-send">Contact</button>
   </div>
+</div>
+
+
 
   <div class="panel" id="about">
     <p id="about-text">
@@ -467,6 +472,10 @@ function closeModal(id){
   document.querySelector('main').classList.remove('blur-background');
 }
 
+// Ouvre la modal Contact depuis Smart-In
+document.getElementById('contactSmartIn').addEventListener('click', () => {
+    openModal('contactModal'); // utilise ta fonction existante
+});
 
 
 
@@ -474,4 +483,5 @@ function closeModal(id){
 
 </body>
 </html>
+
 
