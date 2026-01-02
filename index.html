@@ -239,10 +239,10 @@ main{
 
     
     <!-- Conteneur pour les deux boutons côte à côte -->
-    <div class="btn-flex" style="margin-top:20px; display:flex; justify-content:center; gap:12px;">
-      <button id="contactSmartIn" class="btn-send">Contact</button>
-      <button id="presentationSmartIn" class="btn-video">Video</button>
-    </div>
+<div class="btn-flex" style="margin-top:20px; display:flex; justify-content:center; gap:12px;">
+  <button id="contactSmartIn" class="btn-send">Contact</button>
+  <button id="presentationSmartIn" class="btn-video">Video</button>
+</div>
   </div>
 
   <!-- ABOUT PANEL -->
@@ -307,7 +307,7 @@ main{
     <span class="close" onclick="closeModal('videoModal')">✕</span>
     <h4>Presentation Smart-In</h4>
     <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden;">
-      <iframe id="smartInVideo" src="https://www.youtube.com/embed/https://www.youtube.com/watch?v=VqEbCxg2bNI&list=PLREaIrKIjtki6EkpkkH86K3VtRl8sJt-2&index=2" 
+      <iframe id="smartInVideo" src="https://www.youtube.com/embed/VqEbCxg2bNI" 
               frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
               allowfullscreen 
               style="position:absolute; top:0; left:0; width:100%; height:100%;">
@@ -335,9 +335,11 @@ function togglePanel(id){
   currentPanel = id;
 }
 
-// --- Smart-In Buttons ---
+
+  // Smart-In buttons for modals
 document.getElementById('contactSmartIn').addEventListener('click', () => openModal('contactModal'));
 document.getElementById('presentationSmartIn').addEventListener('click', () => openModal('videoModal'));
+
 
 // Language switch
 const frBtn = document.getElementById('fr-btn');
@@ -393,7 +395,7 @@ we provide a tailored report based on the essential factors:</p><br>
         
 <p>- Relevance of the project within its socio-economic environment<p>
 <p>- Identification of clients/competitors, targeting, and marketing campaign optimization<p>
-<p>- Evolution of neighborhoods and real estate/urban projects (recent, ongoing, or future), dynamics/opportunities/risks<p>
+<p>- Evolution of neighborhoods and recent/ongoing/future real estate/urban projects, dynamics/opportunities/risks<p>
 <p>- Tracking property prices, security indicators, and other key data<p><br>
   
 <p>With Smart-In, turn complexity into clear and rational decisions.</p>
@@ -411,6 +413,11 @@ Today, we focus our efforts on developing next-generation decision-making tools 
   document.getElementById('contact-info').placeholder = "Contact info";
   document.getElementById('contact-message').placeholder = "How can we help you?";
   document.getElementById('our-media').textContent = "Our media";
+  
+  document.getElementById('btn-send').textContent = "Send";
+  document.getElementById('btn-video').textContent = "Video";
+  
+
 });
 
 // Initialize VANTA effect
@@ -458,6 +465,7 @@ document.getElementById('presentationSmartIn').addEventListener('click', () => o
 
 </body>
 </html>
+
 
 
 
