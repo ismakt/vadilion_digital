@@ -234,26 +234,35 @@ main{
       <p id="services-text">Optimisation stratégique des décisions business via l'analyse des données, études de marché et la mise en place des outils décisionnels sur mesure (dashboards, applications).</p>
   </div><div class="panel" id="solutions">
   <p id="solutions-text">
-    <strong>SMART-IN — Comprendre un territoire en un coup d’œil, investir avec précision.</strong><br><br>
-    Dédiée à l’investissement immobilier, notre plateforme fournit l'intelligence géospatiale indispensable
-    pour guider investisseurs, entrepreneurs et particuliers à décider où, quand et pourquoi investir,
-    sur base des données fiables et objectives, issues de sources sûres.<br><br>
+<p>
+  <strong>SMART-IN — Comprendre un territoire en un coup d’œil, investir avec précision.</strong><br><br>
+  Face aux défis des investisseurs, entrepreneurs et particuliers, nous avons créé Smart-In, un logiciel qui centralise les données essentielles, issues de sources fiables, pour fournir une information objective, rapide et sans discours commercial.<br><br>
 
-    Nous fournissons les données clés pour vos projets:<br>
+  Notre plateforme délivre l’intelligence géospatiale indispensable pour décider où, quand et pourquoi investir, en se concentrant sur les facteurs réellement importants:<br><br>
 
-    *La pertinence du projet dans son environnement socio-économique; opportunités et risques<br>
-    *Identifier clients, concurrents, dynamiques locales et zones publicitaires en vue d'optimisation marketing<br>
-    *Suivre prix immobiliers, indicateurs sécurité et performance commerciale<br><br>
+  * Pertinence du projet dans son environnement socio-économique, opportunités et risques<br>
+  * Identification des clients, concurrents, dynamiques locales et zones publicitaires pour optimiser votre marketing<br>
+  * Suivi des prix immobiliers, indicateurs de sécurité et performance commerciale<br>
+  * Évolution des quartiers avec les projets immobiliers et urbains récents, en cours et futurs<br><br>
 
-    Passez de la complexité à une prise de décision claire et rationnelle, au-delà des seules intuitions et émotions.<br>
-    Grâce à notre plateforme et son large base de données, nous fournissons des analyses qualitative et fiables en un temps record.
-  </p>
+  Transformez la complexité en décisions claires et rationnelles.<br>
+  Contactez-nous, présentez votre projet et recevez un rapport sur mesure.
+</p>
 
-  <!-- Bouton Contact à l'intérieur du panel -->
-  <div style="margin-top:20px; text-align:center;">
-    <button id="contactSmartIn" class="btn-send">Contact</button>
+
+    <!-- Bouton Contact -->
+    <div style="margin-top:20px; text-align:center;">
+      <button id="contactSmartIn" class="btn-send">Contact</button>
+    </div>
+
+    <!-- Bouton Video -->
+    <div style="margin-top:20px; text-align:center;">
+      <button id="presentationSmartIn" class="btn-send">Voir la vidéo</button>
+    </div>
   </div>
-</div>
+
+
+
 
 
 
@@ -311,9 +320,25 @@ main{
           7 Rue Meyerbeer, Paris (Opéra Garnier)<br><br>
           74 Boulevard d'Italie, Monaco (Monte Carlo)
         </p>
-
   </div>
 </div>
+
+
+  <!-- Video Modal -->
+<div class="modal" id="videoModal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('videoModal')">✕</span>
+    <h4>Présentation Smart-In</h4>
+    <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden;">
+      <iframe id="smartInVideo" src="https://www.youtube.com/embed/VqEbCxg2bNI" 
+              frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen 
+              style="position:absolute; top:0; left:0; width:100%; height:100%;">
+      </iframe>
+    </div>
+  </div>
+</div>
+
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
@@ -477,11 +502,29 @@ document.getElementById('contactSmartIn').addEventListener('click', () => {
     openModal('contactModal'); // utilise ta fonction existante
 });
 
+// Ouvre la modal vidéo depuis le bouton Smart-In
+document.getElementById('presentationSmartIn').addEventListener('click', () => {
+    openModal('videoModal');
+});
+
+function closeModal(id){
+  document.getElementById(id).style.display = 'none';
+  document.body.style.overflow = 'auto';
+  document.querySelector('main').classList.remove('blur-background');
+
+  // Si c'est la modal vidéo, reset l'iframe pour stopper la vidéo
+  if(id === 'videoModal'){
+      const iframe = document.getElementById('smartInVideo');
+      iframe.src = iframe.src;
+  }
+}
+
 
 
 </script>
 
 </body>
 </html>
+
 
 
