@@ -4,7 +4,6 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-
 <style>
 :root{
   --bg:#000000;
@@ -36,7 +35,6 @@ header{
   position:relative;
 }
 
-
 .lang {
   display: inline-flex; align-items: center; justify-content: center;
   height: 28px; border: 1px solid var(--border); padding: 4px 12px;
@@ -56,10 +54,6 @@ main{
   overflow:hidden;
 }
 
-
-
-
-
 /* VANTA BG */
 #vanta-bg{
   position:absolute;
@@ -67,10 +61,9 @@ main{
   z-index:0;
 }
 
-
 .menu, .panel, .modal {
-  position: relative; /* ou absolute selon ta structure */
-  z-index: 10; /* ou plus pour les modals */
+  position: relative;
+  z-index: 10;
 }
 
 /* MENU */
@@ -109,7 +102,6 @@ main{
 }
 .panel h3{ color:var(--gold); margin-bottom:10px; cursor:pointer; }
 .panel p{ font-size:14px; line-height:1.6; color:var(--muted); }
-.sub{display:none;margin-top:10px;}
 
 /* FOOTER */
 .footer-line{ height:1px; background:var(--border); }
@@ -127,7 +119,6 @@ main{
   -webkit-backdrop-filter: blur(1px);
   z-index:9999;
   justify-content:center; align-items:center;
-  background: rgba(0, 0, 0, 0.5); /* plus léger, laisse les dots visibles */
   backdrop-filter: blur(1px);
 }
 .modal-content{
@@ -148,22 +139,20 @@ main{
 .close{ position:absolute; top:8px; right:10px; cursor:pointer; }
 
 /* BUTTONS */
- .btn-linkedin, .btn-instagram, .btn-send {
+.btn-linkedin, .btn-instagram, .btn-send {
   display: inline-block;
-  margin-top: 12px;          /* un peu moins d’espace au-dessus */
-  padding: 8px 16px;          /* réduit la taille du bouton */
+  margin-top: 12px;
+  padding: 8px 16px;
   background-color: #555;
   color: #fff;
   text-decoration: none;
   font-weight: 400;
-  font-size: 12px;            /* texte plus petit */
+  font-size: 12px;
   border-radius: 6px;
   transition: color 0.3s, background 0.3s;
   border: none;
   cursor: pointer;
 }
-
-
 
 /* MOBILE */
 @media(max-width:768px){
@@ -171,41 +160,31 @@ main{
   .panel{ position:static; transform:none; }
 }
 
-
 .blur-background {
   filter: blur(1px);
 }
 
-
-
 .brand {
-  position: relative; /* pour que le logo absolu soit relatif à .brand */
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
-
 .brand h1 {
   color: var(--gold);
   font-size: 15px;
   letter-spacing: 1px;
-  z-index: 1; /* pour être au-dessus si besoin */
+  z-index: 1;
 }
-
 .brand .logo {
-  position: absolute; /* sort du flux */
-  top: 20px; /* ajuste la position verticale */
-  left: 0;    /* ajuste la position horizontale */
-  width: 160px; /* taille du logo */
+  position: absolute;
+  top: 20px;
+  left: 0;
+  width: 160px;
   height: auto;
-  border-radius: 0; /* annule le border-radius global */
-  z-index: 0; /* derrière le texte si tu veux */
+  border-radius: 0;
+  z-index: 0;
 }
-
-
-
-
-
 </style>
 </head>
 
@@ -213,7 +192,7 @@ main{
 
 <header>
   <div class="brand">
-        <img src="images/vadiliondigital_logo.png" alt="Logo Vadilion Digital" class="logo">
+    <img src="images/vadiliondigital_logo.png" alt="Logo Vadilion Digital" class="logo">
   </div>
   <div class="lang">
     <span class="active" id="fr-btn">FR</span>|<span id="en-btn">EN</span>
@@ -221,7 +200,6 @@ main{
 </header>
 
 <main>
-  <!-- VANTA BG -->
   <div id="vanta-bg"></div>
 
   <div class="menu">
@@ -230,25 +208,29 @@ main{
     <button onclick="togglePanel('about')">ABOUT</button>
   </div>
 
+  <!-- SERVICES PANEL -->
   <div class="panel" id="services">
-      <p id="services-text">Optimisation stratégique des décisions business via l'analyse des données, études de marché et la mise en place des outils décisionnels sur mesure (dashboards, applications).</p>
-  </div><div class="panel" id="solutions">
-  <p id="solutions-text">
-<p>
-  <strong>SMART-IN — Comprendre un territoire en un coup d’œil, investir avec précision.</strong><br><br>
-  Face aux défis des investisseurs, entrepreneurs et particuliers, nous avons créé Smart-In, un logiciel qui centralise les données essentielles, issues de sources fiables, pour fournir une information objective, rapide et sans discours commercial.<br><br>
+    <p id="services-text">
+      Optimisation stratégique des décisions business via l'analyse des données, études de marché et la mise en place des outils décisionnels sur mesure (dashboards, applications).
+    </p>
+  </div>
 
-  Notre plateforme délivre l’intelligence géospatiale indispensable pour décider où, quand et pourquoi investir, en se concentrant sur les facteurs réellement importants:<br><br>
+  <!-- SOLUTIONS PANEL -->
+  <div class="panel" id="solutions">
+    <p id="solutions-text">
+      <strong>SMART-IN — Comprendre un territoire en un coup d’œil, investir avec précision.</strong><br><br>
+      Face aux défis des investisseurs, entrepreneurs et particuliers, nous avons créé Smart-In, un logiciel qui centralise les données essentielles, issues de sources fiables, pour fournir une information objective, rapide et sans discours commercial.<br><br>
 
-  * Pertinence du projet dans son environnement socio-économique, opportunités et risques<br>
-  * Identification des clients, concurrents, dynamiques locales et zones publicitaires pour optimiser votre marketing<br>
-  * Suivi des prix immobiliers, indicateurs de sécurité et performance commerciale<br>
-  * Évolution des quartiers avec les projets immobiliers et urbains récents, en cours et futurs<br><br>
+      Notre plateforme délivre l’intelligence géospatiale indispensable pour décider où, quand et pourquoi investir, en se concentrant sur les facteurs réellement importants:<br><br>
 
-  Transformez la complexité en décisions claires et rationnelles.<br>
-  Contactez-nous, présentez votre projet et recevez un rapport sur mesure.
-</p>
+      * Pertinence du projet dans son environnement socio-économique, opportunités et risques<br>
+      * Identification des clients, concurrents, dynamiques locales et zones publicitaires pour optimiser votre marketing<br>
+      * Suivi des prix immobiliers, indicateurs de sécurité et performance commerciale<br>
+      * Évolution des quartiers avec les projets immobiliers et urbains récents, en cours et futurs<br><br>
 
+      Transformez la complexité en décisions claires et rationnelles.<br>
+      Contactez-nous, présentez votre projet et recevez un rapport sur mesure.
+    </p>
 
     <!-- Bouton Contact -->
     <div style="margin-top:20px; text-align:center;">
@@ -261,11 +243,7 @@ main{
     </div>
   </div>
 
-
-
-
-
-
+  <!-- ABOUT PANEL -->
   <div class="panel" id="about">
     <p id="about-text">
       Nous avons une solide expérience dans l’analyse de données et le développement de solutions décisionnelles,
@@ -281,13 +259,15 @@ main{
 <footer>
   <div class="footer-line"></div>
   <div class="footer-content">
-        <span onclick="openModal('officeModal')">Offices: Bruxelles, Paris, Monaco</span>
+    <span onclick="openModal('officeModal')">Offices: Bruxelles, Paris, Monaco</span>
     <span onclick="openModal('contactModal')">Contact</span>
     <span onclick="openModal('mediaModal')">Media</span>
   </div>
 </footer>
 
 <!-- Modals -->
+
+<!-- Contact Modal -->
 <div class="modal" id="contactModal">
   <div class="modal-content">
     <span class="close" onclick="closeModal('contactModal')">✕</span>
@@ -300,6 +280,7 @@ main{
   </div>
 </div>
 
+<!-- Media Modal -->
 <div class="modal" id="mediaModal">
   <div class="modal-content">
     <span class="close" onclick="closeModal('mediaModal')">✕</span>
@@ -309,22 +290,20 @@ main{
   </div>
 </div>
 
-
-
+<!-- Offices Modal -->
 <div class="modal" id="officeModal">
   <div class="modal-content">
     <span class="close" onclick="closeModal('officeModal')">✕</span>
     <h4 id="offices">Offices</h4>
-        <p id="offices-list">
-          21 Avenue du Boulevard, Bruxelles (Financial District)<br><br>
-          7 Rue Meyerbeer, Paris (Opéra Garnier)<br><br>
-          74 Boulevard d'Italie, Monaco (Monte Carlo)
-        </p>
+    <p id="offices-list">
+      21 Avenue du Boulevard, Bruxelles (Financial District)<br><br>
+      7 Rue Meyerbeer, Paris (Opéra Garnier)<br><br>
+      74 Boulevard d'Italie, Monaco (Monte Carlo)
+    </p>
   </div>
 </div>
 
-
-  <!-- Video Modal -->
+<!-- Video Modal -->
 <div class="modal" id="videoModal">
   <div class="modal-content">
     <span class="close" onclick="closeModal('videoModal')">✕</span>
@@ -339,19 +318,13 @@ main{
   </div>
 </div>
 
-
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.dots.min.js"></script>
-
-
-
 
 <script>
 let currentPanel = null;
 
 // Toggle panels
-
 function togglePanel(id){
   document.querySelectorAll('.panel').forEach(p => p.style.display='none');
   if(currentPanel === id){
@@ -362,107 +335,37 @@ function togglePanel(id){
   currentPanel = id;
 }
 
-
-
-
-
-
-// Modals
+// Open / Close modals
 function openModal(id){
   document.getElementById(id).style.display='flex';
   document.body.style.overflow='hidden';
+  document.querySelector('main').classList.add('blur-background');
 }
+
 function closeModal(id){
   document.getElementById(id).style.display='none';
   document.body.style.overflow='auto';
+  document.querySelector('main').classList.remove('blur-background');
+
+  // Stop video when closing video modal
+  if(id === 'videoModal'){
+      const iframe = document.getElementById('smartInVideo');
+      iframe.src = iframe.src;
+  }
 }
 
-// Language switch
-const frBtn = document.getElementById('fr-btn');
-const enBtn = document.getElementById('en-btn');
-
-frBtn.addEventListener('click', () => {
-  frBtn.classList.add('active');
-  enBtn.classList.remove('active');
-
-  document.getElementById('services-text').textContent = `Optimisation stratégique des décisions business via l'analyse des données, études de marché et la mise en place des outils décisionnels sur mesure (dashboards, applications).`;
-
-  document.getElementById('solutions-text').innerHTML = `strong>SMART-IN — Comprendre un territoire en un coup d’œil, investir avec précision.</strong><br><br>
-    Dédiée à l’investissement immobilier, notre plateforme fournit l'intelligence géospatiale indispensable
-    pour guider investisseurs, entrepreneurs et particuliers à décider où, quand et pourquoi investir,
-    sur base des données fiables et objectives, issues de sources sûres.<br><br>
-
-
-Nous fournissons les données clés pour vos projets:<br>
-
-*La pertinence du projet dans son environnement socio-économique; opportunités et risques<br>
-*Identifier clients, concurrents, dynamiques locales et zones publicitaires en vue d'optimisation marketing<br>
-*Suivre prix immobiliers, indicateurs sécurité et performance commerciale<br><br>
-
-    Passez de la complexité à une prise de décision claire et rationnelle, au-delà des seules intuitions et émotions.<br>
-Grâce à notre plateforme et son large base de données, nous fournissons des analyses qualitative et fiables en un temps record.`;
-
-  document.getElementById('about-text').innerHTML = `Nous avons une solide expérience dans l’analyse de données et le développement de solutions décisionnelles, qui a été le cœur de notre activité pendant plusieurs années.<br><br>
-Aujourd’hui, nous concentrons nos efforts sur le développement d’outils décisionnels de nouvelle génération, conçus pour répondre à des besoins concrets, apportant une valeur réelle, et rendant l’accès à des données de qualité plus simple, rapide et efficace.
-Nos bureaux se trouvent à Bruxelles, Paris et Monaco.`;
-
-
-
-
-
-  document.getElementById('contact-text').textContent = "Contactez-nous";
-  document.getElementById('contact-text2').textContent = "Nous écoutons attentivement vos besoins afin de vous proposer une solution précise et adaptée.";
-  document.getElementById('contact-name').placeholder = "Nom";
-  document.getElementById('contact-info').placeholder = "Coordonnées de contact";
-  document.getElementById('contact-message').placeholder = "Comment pouvons-nous vous aider ?";
-  document.getElementById('our-media').textContent = "Nos réseaux";
-  document.getElementById('btn-send').textContent = "Envoyer";
-
+// Smart-In Buttons
+document.getElementById('contactSmartIn').addEventListener('click', () => {
+    openModal('contactModal');
 });
 
-
-
-
-
-enBtn.addEventListener('click', () => {
-  enBtn.classList.add('active');
-  frBtn.classList.remove('active');
-
-  document.getElementById('services-text').textContent = `Strategic optimization of business decisions through data analysis and custom decision-making tools (dashboards, applications).`;
-
-  document.getElementById('solutions-text').innerHTML = `<strong>SMART-IN — Understand a territory at a glance, invest with precision.</strong><br><br>
-Dedicated to real estate investment, our platform provides the geospatial intelligence needed to guide investors, entrepreneurs, and individuals in deciding where, when, and why to invest, based on reliable, objective data from trusted sources.<br><br>
-
-We provide the key insights for your projects:<br>
-
-Assess the relevance of your project within its socio-economic environment; identify opportunities and risks<br>
-
-Identify clients, competitors, local dynamics, and advertising zones to optimize marketing<br>
-
-Track property prices, security indicators, and commercial performance<br><br>
-
-Move from complexity to clear, data-driven decision-making, beyond mere intuition and emotions.<br>
-Thanks to our platform and its extensive database, we deliver high-quality, reliable analyses in record time.`;
-
-  document.getElementById('about-text').innerHTML = `We have extensive experience in data analysis and the development of decision-making solutions, which has been at the core of our business for several years.<br><br>
-Today, we focus our efforts on developing next-generation decision-making tools designed to meet real-world needs, deliver genuine value, and make access to high-quality data simpler, faster, and more efficient. <br><br>Our offices are located in Brussels, Paris, and Monaco.`;
-
-  document.getElementById('contact-text').textContent = "Contact us";
-  document.getElementById('contact-text2').textContent = "We listen carefully to your needs to deliver a precise, tailored solution.";
-  document.getElementById('contact-name').placeholder = "Name";
-  document.getElementById('contact-info').placeholder = "Contact info";
-  document.getElementById('contact-message').placeholder = "How can we help you?";
-  document.getElementById('our-media').textContent = "Our media";
-  document.getElementById('btn-send').textContent = "Send";
+document.getElementById('presentationSmartIn').addEventListener('click', () => {
+    openModal('videoModal');
 });
 
-
-
-
-
-// Initialize VANTA effect
-let vantaEffect = VANTA.DOTS({
-  el: "#vanta-bg",        // ← cible correcte
+// Initialize VANTA
+VANTA.DOTS({
+  el: "#vanta-bg",
   mouseControls: true,
   touchControls: true,
   gyroControls: false,
@@ -477,54 +380,7 @@ let vantaEffect = VANTA.DOTS({
   spacing: 24.0,
   showLines: false
 });
-
-
-
-
-function openModal(id){
-  document.getElementById(id).style.display = 'flex';
-  document.body.style.overflow = 'hidden';
-
-  // Ajout du flou sur le main (arrière-plan)
-  document.querySelector('main').classList.add('blur-background');
-}
-
-function closeModal(id){
-  document.getElementById(id).style.display = 'none';
-  document.body.style.overflow = 'auto';
-
-  // Retirer le flou quand la modal se ferme
-  document.querySelector('main').classList.remove('blur-background');
-}
-
-// Ouvre la modal Contact depuis Smart-In
-document.getElementById('contactSmartIn').addEventListener('click', () => {
-    openModal('contactModal'); // utilise ta fonction existante
-});
-
-// Ouvre la modal vidéo depuis le bouton Smart-In
-document.getElementById('presentationSmartIn').addEventListener('click', () => {
-    openModal('videoModal');
-});
-
-function closeModal(id){
-  document.getElementById(id).style.display = 'none';
-  document.body.style.overflow = 'auto';
-  document.querySelector('main').classList.remove('blur-background');
-
-  // Si c'est la modal vidéo, reset l'iframe pour stopper la vidéo
-  if(id === 'videoModal'){
-      const iframe = document.getElementById('smartInVideo');
-      iframe.src = iframe.src;
-  }
-}
-
-
-
 </script>
 
 </body>
 </html>
-
-
-
