@@ -220,41 +220,35 @@ main{
   <div class="panel" id="solutions">
     <div id="solutions-text">
       <div style="text-align: left;">
-        
-<p><strong>
-  SMART-IN — Comprendre un territoire et investir avec précision. </strong></p> <br>
-      
-    <p> Que vous envisagiez un investissement immobilier, l’ouverture d’un commerce ou tout autre projet, 
-    nous fournissons un rapport sur  mesure basé sur les facteurs essentiels:</p><br>
-        
-    <p>- Pertinence du projet dans son environnement socio-économique<p>
-    <p>- Identification des clients/concurrents, ciblage et optimisation des compagnes marketing<p>
-    <p>- Évolution des quartiers et projets immobiliers/urbains récents/en cours/futurs, dynamiques/opportunités/risques<p>
-    <p>- Suivi des prix immobiliers, indicateurs de sécurité et autres données clés<p><br>
-  
-    <p>Avec Smart-In, transformez la complexité en décisions claires et rationnelles.</p>
+        <p><strong>
+        SMART-IN — Comprendre un territoire et investir avec précision. </strong></p> <br>
+        <p> Que vous envisagiez un investissement immobilier, l’ouverture d’un commerce ou tout autre projet, 
+        nous fournissons un rapport sur mesure basé sur les facteurs essentiels:</p><br>
+        <p>- Pertinence du projet dans son environnement socio-économique<p>
+        <p>- Identification des clients/concurrents, ciblage et optimisation des compagnes marketing<p>
+        <p>- Évolution des quartiers et projets immobiliers/urbains récents/en cours/futurs, dynamiques/opportunités/risques<p>
+        <p>- Suivi des prix immobiliers, indicateurs de sécurité et autres données clés<p><br>
+        <p>Avec Smart-In, transformez la complexité en décisions claires et rationnelles.</p>
+      </div>
+
+      <!-- Conteneur pour les deux boutons côte à côte -->
+      <div class="btn-flex" style="margin-top:20px; display:flex; justify-content:center; gap:12px;">
+        <button id="contactSmartIn" class="btn-send">Contact</button>
+        <button id="presentationSmartIn" class="btn-video">Video</button>
+      </div>
     </div>
-
-
-
-    
-    <!-- Conteneur pour les deux boutons côte à côte -->
-<div class="btn-flex" style="margin-top:20px; display:flex; justify-content:center; gap:12px;">
-  <button id="contactSmartIn" class="btn-send">Contact</button>
-  <button id="presentationSmartIn" class="btn-video">Video</button>
-</div>
   </div>
 
   <!-- ABOUT PANEL -->
   <div class="panel" id="about">
-    <p id="about-text">
+    <div id="about-text" style="text-align: left;">
       Nous avons une solide expérience dans l’analyse de données et le développement de solutions décisionnelles,
       qui a été le cœur de notre activité pendant plusieurs années.<br><br>
       Aujourd’hui, nous concentrons nos efforts sur le développement d’outils décisionnels de nouvelle génération,
       conçus pour répondre à des besoins concrets, apportant une valeur réelle, et rendant l’accès à des données
       de qualité plus simple, rapide et efficace.<br><br>
       Nos bureaux se trouvent à Bruxelles, Paris et Monaco.
-    </p>
+    </div>
   </div>
 </main>
 
@@ -319,8 +313,6 @@ main{
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.dots.min.js"></script>
 
-
-
 <script>
 let currentPanel = null;
 
@@ -335,11 +327,9 @@ function togglePanel(id){
   currentPanel = id;
 }
 
-
-  // Smart-In buttons for modals
+// Smart-In buttons for modals
 document.getElementById('contactSmartIn').addEventListener('click', () => openModal('contactModal'));
 document.getElementById('presentationSmartIn').addEventListener('click', () => openModal('videoModal'));
-
 
 // Language switch
 const frBtn = document.getElementById('fr-btn');
@@ -353,27 +343,25 @@ frBtn.addEventListener('click', () => {
 
   document.getElementById('solutions-text').innerHTML = `<p><strong>
   SMART-IN — Comprendre un territoire et investir avec précision. </strong></p> <br>
-      
-    <p> Que vous envisagiez un investissement immobilier, l’ouverture d’un commerce ou tout autre projet, 
-    nous fournissons un rapport sur  mesure basé sur les facteurs essentiels:</p><br>
-        
-    <p>- Pertinence du projet dans son environnement socio-économique<p>
-    <p>- Identification des clients/concurrents, ciblage et optimisation des compagnes marketing<p>
-    <p>- Évolution des quartiers et projets immobiliers/urbains récents/en cours/futurs, dynamiques/opportunités/risques<p>
-    <p>- Suivi des prix immobiliers, indicateurs de sécurité et autres données clés<p><br>
-  
-    <p>Avec Smart-In, transformez la complexité en décisions claires et rationnelles.</p>
-    </div>
-`;
+  <p> Que vous envisagiez un investissement immobilier, l’ouverture d’un commerce ou tout autre projet, 
+  nous fournissons un rapport sur mesure basé sur les facteurs essentiels:</p><br>
+  <p>- Pertinence du projet dans son environnement socio-économique<p>
+  <p>- Identification des clients/concurrents, ciblage et optimisation des compagnes marketing<p>
+  <p>- Évolution des quartiers et projets immobiliers/urbains récents/en cours/futurs, dynamiques/opportunités/risques<p>
+  <p>- Suivi des prix immobiliers, indicateurs de sécurité et autres données clés<p><br>
+  <p>Avec Smart-In, transformez la complexité en décisions claires et rationnelles.</p>`;
 
-    document.getElementById('contactSmartIn').textContent = "Contact";
+  document.getElementById('about-text').innerHTML = `
+  Nous avons une solide expérience dans l’analyse de données et le développement de solutions décisionnelles,
+  qui a été le cœur de notre activité pendant plusieurs années.<br><br>
+  Aujourd’hui, nous concentrons nos efforts sur le développement d’outils décisionnels de nouvelle génération,
+  conçus pour répondre à des besoins concrets, apportant une valeur réelle, et rendant l’accès à des données
+  de qualité plus simple, rapide et efficace.<br><br>
+  Nos bureaux se trouvent à Bruxelles, Paris et Monaco.
+  `;
+
+  document.getElementById('contactSmartIn').textContent = "Contact";
   document.getElementById('presentationSmartIn').textContent = "Video";
-
-
-  document.getElementById('about-text').innerHTML = `Nous avons une solide expérience dans l’analyse de données et le développement de solutions décisionnelles, qui a été le cœur de notre activité pendant plusieurs années.<br><br>
-Aujourd’hui, nous concentrons nos efforts sur le développement d’outils décisionnels de nouvelle génération, conçus pour répondre à des besoins concrets, apportant une valeur réelle, et rendant l’accès à des données de qualité plus simple, rapide et efficace.<br><br>
-Nos bureaux se trouvent à Bruxelles, Paris et Monaco.`;
-
   document.getElementById('contact-text').textContent = "Contactez-nous";
   document.getElementById('contact-text2').textContent = "Nous écoutons attentivement vos besoins afin de vous proposer une solution précise et adaptée.";
   document.getElementById('contact-name').placeholder = "Nom";
@@ -381,7 +369,6 @@ Nos bureaux se trouvent à Bruxelles, Paris et Monaco.`;
   document.getElementById('contact-message').placeholder = "Comment pouvons-nous vous aider ?";
   document.getElementById('our-media').textContent = "Nos réseaux";
   document.getElementById('btn-send').textContent = "Envoyer";
-  document.getElementById('btn-video').textContent = "Video";
 });
 
 enBtn.addEventListener('click', () => {
@@ -392,50 +379,28 @@ enBtn.addEventListener('click', () => {
 
   document.getElementById('solutions-text').innerHTML = `<p><strong>
   SMART-IN — Understand a territory and invest with precision.</strong></p><br>
-      
-<p>Whether you are considering a real estate investment, opening a business, or any other project, 
-we provide a tailored report based on the essential factors:</p><br>
-        
-<p>- Relevance of the project within its socio-economic environment<p>
-<p>- Identification of clients/competitors, targeting, and marketing campaign optimization<p>
-<p>- Evolution of neighborhoods and recent/ongoing/future real estate/urban projects, dynamics/opportunities/risks<p>
-<p>- Tracking property prices, security indicators, and other key data<p><br>
-  
-<p>With Smart-In, turn complexity into clear and rational decisions.</p>
+  <p>Whether you are considering a real estate investment, opening a business, or any other project, 
+  we provide a tailored report based on the essential factors:</p><br>
+  <p>- Relevance of the project within its socio-economic environment<p>
+  <p>- Identification of clients/competitors, targeting, and marketing campaign optimization<p>
+  <p>- Evolution of neighborhoods and recent/ongoing/future real estate/urban projects, dynamics/opportunities/risks<p>
+  <p>- Tracking property prices, security indicators, and other key data<p><br>
+  <p>With Smart-In, turn complexity into clear and rational decisions.</p>`;
 
-<!-- Buttons EN -->
-<div class="btn-flex" style="margin-top:20px; display:flex; justify-content:center; gap:12px;">
-  <button id="contactSmartIn" class="btn-send">Contact</button>
-  <button id="presentationSmartIn" class="btn-video">Video</button>
-  
-</div>
-`;
+  document.getElementById('about-text').innerHTML = `
+  We have extensive experience in data analysis and the development of decision-making solutions, which has been at the core of our business for several years.<br><br>
+Today, we focus our efforts on developing next-generation decision-making tools designed to meet real-world needs, deliver genuine value, and make access to high-quality data simpler, faster, and more efficient. 
+  `;
 
-
-    // Ré-attacher les events JS aux boutons après avoir recréé le HTML
-  document.getElementById('contactSmartIn').addEventListener('click', () => openModal('contactModal'));
-  document.getElementById('presentationSmartIn').addEventListener('click', () => openModal('videoModal'));
-
-  // Texte des boutons (optionnel, déjà défini ci-dessus)
   document.getElementById('contactSmartIn').textContent = "Contact";
   document.getElementById('presentationSmartIn').textContent = "Video";
-  
-
-
-  document.getElementById('about-text').innerHTML = `We have extensive experience in data analysis and the development of decision-making solutions, which has been at the core of our business for several years.<br><br>
-Today, we focus our efforts on developing next-generation decision-making tools designed to meet real-world needs, deliver genuine value, and make access to high-quality data simpler, faster, and more efficient. <br><br>Our offices are located in Brussels, Paris, and Monaco.`;
-
   document.getElementById('contact-text').textContent = "Contact us";
   document.getElementById('contact-text2').textContent = "We listen carefully to your needs to deliver a precise, tailored solution.";
   document.getElementById('contact-name').placeholder = "Name";
   document.getElementById('contact-info').placeholder = "Contact info";
   document.getElementById('contact-message').placeholder = "How can we help you?";
   document.getElementById('our-media').textContent = "Our media";
-    document.getElementById('btn-send').textContent = "Send";
-
-  
-  
-
+  document.getElementById('btn-send').textContent = "Send";
 });
 
 // Initialize VANTA effect
@@ -474,44 +439,7 @@ function closeModal(id){
       iframe.src = iframe.src;
   }
 }
-
-// Smart-In buttons for modals
-document.getElementById('contactSmartIn').addEventListener('click', () => openModal('contactModal'));
-document.getElementById('presentationSmartIn').addEventListener('click', () => openModal('videoModal'));
-
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
