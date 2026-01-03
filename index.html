@@ -410,6 +410,15 @@ we provide a tailored report based on the essential factors:</p><br>
   
 </div>
 `;
+
+
+    // Ré-attacher les events JS aux boutons après avoir recréé le HTML
+  document.getElementById('contactSmartIn').addEventListener('click', () => openModal('contactModal'));
+  document.getElementById('presentationSmartIn').addEventListener('click', () => openModal('videoModal'));
+
+  // Texte des boutons (optionnel, déjà défini ci-dessus)
+  document.getElementById('contactSmartIn').textContent = "Contact";
+  document.getElementById('presentationSmartIn').textContent = "Video";
   
 
 
@@ -472,6 +481,7 @@ document.getElementById('presentationSmartIn').addEventListener('click', () => o
 
 </body>
 </html>
+
 
 
 
