@@ -3,195 +3,51 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
 <style>
-:root{
-  --bg:#000000;
-  --overlay: rgba(0,0,0,0.85);
-  --panel:#0e0e0e;
-  --panel-2:#151515;
-  --border:#2a2a2a;
-  --gold:#c9a24d;
-  --text:#ffffff;
-  --muted:#b5b5b5;
-}
-
+:root{ --bg:#000000; --overlay: rgba(0,0,0,0.85); --panel:#0e0e0e; --panel-2:#151515; --border:#2a2a2a; --gold:#c9a24d; --text:#ffffff; --muted:#b5b5b5; }
 *{ box-sizing:border-box; border-radius: 16px; margin:0; padding:0; font-family:Arial, Helvetica, sans-serif; }
-
-body{
-  background:var(--bg);
-  color:var(--text);
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-}
-
+body{ background:var(--bg); color:var(--text); min-height:100vh; display:flex; flex-direction:column; }
 /* HEADER */
-header{
-  display:flex;
-  justify-content:space-between;
-  padding:15px;
-  z-index:20;
-  position:relative;
-}
-
-.lang {
-  display: inline-flex; align-items: center; justify-content: center;
-  height: 28px; border: 1px solid var(--border); padding: 4px 12px;
-  border-radius: 4px; font-size: 14px; line-height: 1; background-color: #000;
-}
+header{ display:flex; justify-content:space-between; padding:15px; z-index:20; position:relative; }
+.lang { display: inline-flex; align-items: center; justify-content: center; height: 28px; border: 1px solid var(--border); padding: 4px 12px; border-radius: 4px; font-size: 14px; line-height: 1; background-color: #000; }
 .lang span{ cursor:pointer; margin: 0 4px; }
 .lang .active{ color: var(--gold); }
-
 /* MAIN */
-main{
-  flex:1;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  position:relative;
-  padding:20px;
-  overflow:hidden;
-}
-
+main{ flex:1; display:flex; flex-direction:column; align-items:center; position:relative; padding:20px; overflow:hidden; }
 /* VANTA BG */
-#vanta-bg{
-  position:absolute;
-  top:0; left:0; width:100%; height:100%;
-  z-index:0;
-}
-
-.menu, .panel, .modal {
-  position: relative;
-  z-index: 10;
-}
-
+#vanta-bg{ position:absolute; top:0; left:0; width:100%; height:100%; z-index:0; }
+.menu, .panel, .modal { position: relative; z-index: 10; }
 /* MENU */
-.menu{
-  display:flex;
-  gap:40px;
-  position:absolute;
-  top:23%;
-  left:50%;
-  transform:translateX(-50%);
-  z-index:10;
-}
-.menu button{
-  background:none;
-  border:none;
-  color:var(--text);
-  font-size:18px;
-  cursor:pointer;
-  font-weight: 600;
-}
+.menu{ display:flex; gap:40px; position:absolute; top:23%; left:50%; transform:translateX(-50%); z-index:10; }
+.menu button{ background:none; border:none; color:var(--text); font-size:18px; cursor:pointer; font-weight: 600; }
 .menu button:hover{color:var(--gold);}
-
 /* PANELS */
-.panel{
-  display:none;
-  position:absolute;
-  top:calc(20% + 50px);
-  left:50%;
-  transform:translateX(-50%);
-  background:var(--panel);
-  border:1px solid var(--border);
-  padding:20px;
-  max-width:600px;
-  width:100%;
-  z-index:15;
-}
+.panel{ display:none; position:absolute; top:calc(20% + 50px); left:50%; transform:translateX(-50%); background:var(--panel); border:1px solid var(--border); padding:20px; max-width:600px; width:100%; z-index:15; }
 .panel h3{ color:var(--gold); margin-bottom:10px; cursor:pointer; }
 .panel p{ font-size:14px; line-height:1.6; color:var(--muted); }
 .sub{display:none;margin-top:10px;}
-
 /* FOOTER */
 .footer-line{ height:1px; background:var(--border); }
-.footer-content{
-  display:flex; justify-content:space-around;
-  padding:10px; font-size:13px;
-}
+.footer-content{ display:flex; justify-content:space-around; padding:10px; font-size:13px; }
 .footer-content span{cursor:pointer;}
-
 /* MODAL */
-.modal{
-  display:none;
-  position:fixed; inset:0;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(1px);
-  z-index:9999;
-  justify-content:center; align-items:center;
-}
-.modal-content{
-  background:var(--panel-2);
-  border:1px solid var(--border);
-  padding:20px;
-  max-width:600px; width:100%;
-  position:relative;
-}
+.modal{ display:none; position:fixed; inset:0; background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(1px); z-index:9999; justify-content:center; align-items:center; }
+.modal-content{ background:var(--panel-2); border:1px solid var(--border); padding:20px; max-width:600px; width:100%; position:relative; }
 .modal-content h4{ color:var(--gold); margin-bottom:10px; }
 .modal-content p{ font-size:13px; color:var(--muted); margin-bottom:12px; }
-.modal-content input,
-.modal-content textarea{
-  width:100%; margin-bottom:10px;
-  background:#000; border:1px solid var(--border);
-  color:#fff; padding:8px;
-}
+.modal-content input, .modal-content textarea{ width:100%; margin-bottom:10px; background:#000; border:1px solid var(--border); color:#fff; padding:8px; }
 .close{ position:absolute; top:8px; right:10px; cursor:pointer; }
-
 /* BUTTONS */
-.btn-linkedin, .btn-instagram, .btn-send, .btn-video {
-  display: inline-block;
-  margin-top: 12px;
-  padding: 8px 16px;
-  background-color: #555;
-  color: #fff;
-  text-decoration: none;
-  font-weight: 400;
-  font-size: 12px;
-  border-radius: 6px;
-  transition: color 0.3s, background 0.3s;
-  border: none;
-  cursor: pointer;
-}
-
+.btn-linkedin, .btn-instagram, .btn-send, .btn-video { display: inline-block; margin-top: 12px; padding: 8px 16px; background-color: #555; color: #fff; text-decoration: none; font-weight: 400; font-size: 12px; border-radius: 6px; transition: color 0.3s, background 0.3s; border: none; cursor: pointer; }
 /* MOBILE */
-@media(max-width:768px){
-  .menu{ position:static; transform:none; margin-bottom:20px; }
-  .panel{ position:static; transform:none; }
-}
-
-.blur-background {
-  filter: blur(1px);
-}
-
-.brand {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.brand h1 {
-  color: var(--gold);
-  font-size: 15px;
-  letter-spacing: 1px;
-  z-index: 1;
-}
-
-.brand .logo {
-  position: absolute;
-  top: 20px;
-  left: 0;
-  width: 160px;
-  height: auto;
-  border-radius: 0;
-  z-index: 0;
-}
+@media(max-width:768px){ .menu{ position:static; transform:none; margin-bottom:20px; } .panel{ position:static; transform:none; } }
+.blur-background { filter: blur(1px); }
+.brand { position: relative; display: flex; flex-direction: column; align-items: flex-start; }
+.brand h1 { color: var(--gold); font-size: 15px; letter-spacing: 1px; z-index: 1; }
+.brand .logo { position: absolute; top: 20px; left: 0; width: 160px; height: auto; border-radius: 0; z-index: 0; }
 </style>
 </head>
-
 <body>
-
 <header>
   <div class="brand">
     <img src="images/vadiliondigital_logo.png" alt="Logo Vadilion Digital" class="logo">
@@ -200,58 +56,41 @@ main{
     <span class="active" id="fr-btn">FR</span>|<span id="en-btn">EN</span>
   </div>
 </header>
-
 <main>
-  <!-- VANTA BG -->
   <div id="vanta-bg"></div>
-
   <div class="menu">
     <button onclick="togglePanel('services')">SERVICES</button>
     <button onclick="togglePanel('solutions')">SOLUTIONS</button>
     <button onclick="togglePanel('about')">ABOUT</button>
   </div>
-
-  <!-- SERVICES PANEL -->
   <div class="panel" id="services">
     <p id="services-text">Optimisation stratégique des décisions business via l'analyse des données, études de marché et la mise en place des outils décisionnels sur mesure (dashboards, applications).</p>
   </div>
-
-  <!-- SOLUTIONS PANEL -->
   <div class="panel" id="solutions">
     <div id="solutions-text">
       <div style="text-align: left;">
-        <p><strong>
-        SMART-IN — Comprendre un territoire et investir avec précision. </strong></p> <br>
-        <p> Que vous envisagiez un investissement immobilier, l’ouverture d’un commerce ou tout autre projet, 
-        nous fournissons un rapport sur mesure basé sur les facteurs essentiels:</p><br>
+        <p><strong> SMART-IN — Comprendre un territoire et investir avec précision. </strong></p> <br>
+        <p> Que vous envisagiez un investissement immobilier, l’ouverture d’un commerce ou tout autre projet, nous fournissons un rapport sur mesure basé sur les facteurs essentiels:</p><br>
         <p>- Pertinence du projet dans son environnement socio-économique<p>
         <p>- Identification des clients/concurrents, ciblage et optimisation des compagnes marketing<p>
         <p>- Évolution des quartiers et projets immobiliers/urbains récents/en cours/futurs, dynamiques/opportunités/risques<p>
         <p>- Suivi des prix immobiliers, indicateurs de sécurité et autres données clés<p><br>
         <p>Avec Smart-In, transformez la complexité en décisions claires et rationnelles.</p>
       </div>
-
-      <!-- Conteneur pour les deux boutons côte à côte -->
       <div class="btn-flex" style="margin-top:20px; display:flex; justify-content:center; gap:12px;">
         <button id="contactSmartIn" class="btn-send">Contact</button>
         <button id="presentationSmartIn" class="btn-video">Video</button>
       </div>
     </div>
   </div>
-
-  <!-- ABOUT PANEL -->
   <div class="panel" id="about">
     <div id="about-text" style="text-align: left;">
-      Nous avons une solide expérience dans l’analyse de données et le développement de solutions décisionnelles,
-      qui a été le cœur de notre activité pendant plusieurs années.<br><br>
-      Aujourd’hui, nous concentrons nos efforts sur le développement d’outils décisionnels de nouvelle génération,
-      conçus pour répondre à des besoins concrets, apportant une valeur réelle, et rendant l’accès à des données
-      de qualité plus simple, rapide et efficace.<br><br>
+      Nous avons une solide expérience dans l’analyse de données et le développement de solutions décisionnelles, qui a été le cœur de notre activité pendant plusieurs années.<br><br>
+      Aujourd’hui, nous concentrons nos efforts sur le développement d’outils décisionnels de nouvelle génération, conçus pour répondre à des besoins concrets, apportant une valeur réelle, et rendant l’accès à des données de qualité plus simple, rapide et efficace.<br><br>
       Nos bureaux se trouvent à Bruxelles, Paris et Monaco.
     </div>
   </div>
 </main>
-
 <footer>
   <div class="footer-line"></div>
   <div class="footer-content">
@@ -260,8 +99,6 @@ main{
     <span onclick="openModal('mediaModal')">Media</span>
   </div>
 </footer>
-
-<!-- MODALS -->
 <div class="modal" id="contactModal">
   <div class="modal-content">
     <span class="close" onclick="closeModal('contactModal')">✕</span>
@@ -273,7 +110,6 @@ main{
     <button id="btn-send" class="btn-send">Envoyer</button>
   </div>
 </div>
-
 <div class="modal" id="mediaModal">
   <div class="modal-content">
     <span class="close" onclick="closeModal('mediaModal')">✕</span>
@@ -282,7 +118,6 @@ main{
     <a href="https://www.instagram.com/vadilion.digital" target="_blank" class="btn-instagram">Instagram</a>
   </div>
 </div>
-
 <div class="modal" id="officeModal">
   <div class="modal-content">
     <span class="close" onclick="closeModal('officeModal')">✕</span>
@@ -294,74 +129,48 @@ main{
     </p>
   </div>
 </div>
-
-<!-- MODAL VIDEO SMART-IN -->
 <div class="modal" id="videoModal">
   <div class="modal-content">
     <span class="close" onclick="closeModal('videoModal')">✕</span>
     <h4>Presentation Smart-In</h4>
     <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden;">
-      <iframe id="smartInVideo" src="https://www.youtube.com/embed/VqEbCxg2bNI" 
-              frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-              allowfullscreen 
-              style="position:absolute; top:0; left:0; width:100%; height:100%;">
-      </iframe>
+      <iframe id="smartInVideo" src="https://www.youtube.com/embed/VqEbCxg2bNI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
     </div>
   </div>
 </div>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.dots.min.js"></script>
-
 <script>
 let currentPanel = null;
-
-// Toggle panels
 function togglePanel(id){
   document.querySelectorAll('.panel').forEach(p => p.style.display='none');
-  if(currentPanel === id){
-    currentPanel = null;
-    return;
-  }
+  if(currentPanel === id){ currentPanel = null; return; }
   document.getElementById(id).style.display = 'block';
   currentPanel = id;
 }
-
-// Smart-In buttons for modals
 document.getElementById('contactSmartIn').addEventListener('click', () => openModal('contactModal'));
 document.getElementById('presentationSmartIn').addEventListener('click', () => openModal('videoModal'));
-
-// Language switch
 const frBtn = document.getElementById('fr-btn');
 const enBtn = document.getElementById('en-btn');
-
 frBtn.addEventListener('click', () => {
-  frBtn.classList.add('active');
-  enBtn.classList.remove('active');
-
-  document.getElementById('services-text').textContent = `Optimisation stratégique des décisions business via l'analyse des données, études de marché et la mise en place des outils décisionnels sur mesure (dashboards, applications).`;
-
-  document.getElementById('solutions-text').innerHTML = `<p><strong>
-  SMART-IN — Comprendre un territoire et investir avec précision. </strong></p> <br>
-  <p> Que vous envisagiez un investissement immobilier, l’ouverture d’un commerce ou tout autre projet, 
-  nous fournissons un rapport sur mesure basé sur les facteurs essentiels:</p><br>
-  <p>- Pertinence du projet dans son environnement socio-économique<p>
-  <p>- Identification des clients/concurrents, ciblage et optimisation des compagnes marketing<p>
-  <p>- Évolution des quartiers et projets immobiliers/urbains récents/en cours/futurs, dynamiques/opportunités/risques<p>
-  <p>- Suivi des prix immobiliers, indicateurs de sécurité et autres données clés<p><br>
-  <p>Avec Smart-In, transformez la complexité en décisions claires et rationnelles.</p>`;
-
-  document.getElementById('about-text').innerHTML = `
-  Nous avons une solide expérience dans l’analyse de données et le développement de solutions décisionnelles,
-  qui a été le cœur de notre activité pendant plusieurs années.<br><br>
-  Aujourd’hui, nous concentrons nos efforts sur le développement d’outils décisionnels de nouvelle génération,
-  conçus pour répondre à des besoins concrets, apportant une valeur réelle, et rendant l’accès à des données
-  de qualité plus simple, rapide et efficace.<br><br>
-  Nos bureaux se trouvent à Bruxelles, Paris et Monaco.
-  `;
-
-  document.getElementById('contactSmartIn').textContent = "Contact";
-  document.getElementById('presentationSmartIn').textContent = "Video";
+  frBtn.classList.add('active'); enBtn.classList.remove('active');
+  document.getElementById('services-text').textContent = "Optimisation stratégique des décisions business via l'analyse des données, études de marché et la mise en place des outils décisionnels sur mesure (dashboards, applications).";
+  document.getElementById('solutions-text').innerHTML = `<div style="text-align:left;">
+    <p><strong> SMART-IN — Comprendre un territoire et investir avec précision. </strong></p><br>
+    <p> Que vous envisagiez un investissement immobilier, l’ouverture d’un commerce ou tout autre projet, nous fournissons un rapport sur mesure basé sur les facteurs essentiels:</p><br>
+    <p>- Pertinence du projet dans son environnement socio-économique<p>
+    <p>- Identification des clients/concurrents, ciblage et optimisation des compagnes marketing<p>
+    <p>- Évolution des quartiers et projets immobiliers/urbains récents/en cours/futurs, dynamiques/opportunités/risques<p>
+    <p>- Suivi des prix immobiliers, indicateurs de sécurité et autres données clés<p><br>
+    <p>Avec Smart-In, transformez la complexité en décisions claires et rationnelles.</p>
+    <div class="btn-flex" style="margin-top:20px; display:flex; justify-content:center; gap:12px;">
+      <button id="contactSmartIn" class="btn-send">Contact</button>
+      <button id="presentationSmartIn" class="btn-video">Video</button>
+    </div>
+  </div>`;
+  document.getElementById('about-text').innerHTML = "Nous avons une solide expérience dans l’analyse de données et le développement de solutions décisionnelles, qui a été le cœur de notre activité pendant plusieurs années.<br><br> Aujourd’hui, nous concentrons nos efforts sur le développement d’outils décisionnels de nouvelle génération, conçus pour répondre à des besoins concrets, apportant une valeur réelle, et rendant l’accès à des données de qualité plus simple, rapide et efficace.<br><br> Nos bureaux se trouvent à Bruxelles, Paris et Monaco.";
+  document.getElementById('contactSmartIn').addEventListener('click', () => openModal('contactModal'));
+  document.getElementById('presentationSmartIn').addEventListener('click', () => openModal('videoModal'));
   document.getElementById('contact-text').textContent = "Contactez-nous";
   document.getElementById('contact-text2').textContent = "Nous écoutons attentivement vos besoins afin de vous proposer une solution précise et adaptée.";
   document.getElementById('contact-name').placeholder = "Nom";
@@ -370,30 +179,25 @@ frBtn.addEventListener('click', () => {
   document.getElementById('our-media').textContent = "Nos réseaux";
   document.getElementById('btn-send').textContent = "Envoyer";
 });
-
 enBtn.addEventListener('click', () => {
-  enBtn.classList.add('active');
-  frBtn.classList.remove('active');
-
-  document.getElementById('services-text').textContent = `Strategic optimization of business decisions through data analysis and custom decision-making tools (dashboards, applications).`;
-
-  document.getElementById('solutions-text').innerHTML = `<p><strong>
-  SMART-IN — Understand a territory and invest with precision.</strong></p><br>
-  <p>Whether you are considering a real estate investment, opening a business, or any other project, 
-  we provide a tailored report based on the essential factors:</p><br>
-  <p>- Relevance of the project within its socio-economic environment<p>
-  <p>- Identification of clients/competitors, targeting, and marketing campaign optimization<p>
-  <p>- Evolution of neighborhoods and recent/ongoing/future real estate/urban projects, dynamics/opportunities/risks<p>
-  <p>- Tracking property prices, security indicators, and other key data<p><br>
-  <p>With Smart-In, turn complexity into clear and rational decisions.</p>`;
-
-  document.getElementById('about-text').innerHTML = `
-  We have extensive experience in data analysis and the development of decision-making solutions, which has been at the core of our business for several years.<br><br>
-Today, we focus our efforts on developing next-generation decision-making tools designed to meet real-world needs, deliver genuine value, and make access to high-quality data simpler, faster, and more efficient. 
-  `;
-
-  document.getElementById('contactSmartIn').textContent = "Contact";
-  document.getElementById('presentationSmartIn').textContent = "Video";
+  enBtn.classList.add('active'); frBtn.classList.remove('active');
+  document.getElementById('services-text').textContent = "Strategic optimization of business decisions through data analysis and custom decision-making tools (dashboards, applications).";
+  document.getElementById('solutions-text').innerHTML = `<div style="text-align:left;">
+    <p><strong> SMART-IN — Understand a territory and invest with precision.</strong></p><br>
+    <p>Whether you are considering a real estate investment, opening a business, or any other project, we provide a tailored report based on the essential factors:</p><br>
+    <p>- Relevance of the project within its socio-economic environment<p>
+    <p>- Identification of clients/competitors, targeting, and marketing campaign optimization<p>
+    <p>- Evolution of neighborhoods and recent/ongoing/future real estate/urban projects, dynamics/opportunities/risks<p>
+    <p>- Tracking property prices, security indicators, and other key data<p><br>
+    <p>With Smart-In, turn complexity into clear and rational decisions.</p>
+    <div class="btn-flex" style="margin-top:20px; display:flex; justify-content:center; gap:12px;">
+      <button id="contactSmartIn" class="btn-send">Contact</button>
+      <button id="presentationSmartIn" class="btn-video">Video</button>
+    </div>
+  </div>`;
+  document.getElementById('about-text').innerHTML = "We have extensive experience in data analysis and the development of decision-making solutions, which has been at the core of our business for several years.<br><br> Today, we focus our efforts on developing next-generation decision-making tools designed to meet real-world needs, deliver genuine value, and make access to high-quality data simpler, faster, and more efficient.";
+  document.getElementById('contactSmartIn').addEventListener('click', () => openModal('contactModal'));
+  document.getElementById('presentationSmartIn').addEventListener('click', () => openModal('videoModal'));
   document.getElementById('contact-text').textContent = "Contact us";
   document.getElementById('contact-text2').textContent = "We listen carefully to your needs to deliver a precise, tailored solution.";
   document.getElementById('contact-name').placeholder = "Name";
@@ -402,44 +206,9 @@ Today, we focus our efforts on developing next-generation decision-making tools 
   document.getElementById('our-media').textContent = "Our media";
   document.getElementById('btn-send').textContent = "Send";
 });
-
-// Initialize VANTA effect
-let vantaEffect = VANTA.DOTS({
-  el: "#vanta-bg",
-  mouseControls: true,
-  touchControls: true,
-  gyroControls: false,
-  minHeight: 200.00,
-  minWidth: 200.00,
-  scale: 1.0,
-  scaleMobile: 1.0,
-  color: 0xcffb7,
-  color2: 0x5520ff,
-  backgroundColor: 0x0,
-  size: 3.2,
-  spacing: 24.0,
-  showLines: false
-});
-
-// --- Modals ---
-function openModal(id){
-  document.getElementById(id).style.display = 'flex';
-  document.body.style.overflow = 'hidden';
-  document.querySelector('main').classList.add('blur-background');
-}
-
-function closeModal(id){
-  document.getElementById(id).style.display = 'none';
-  document.body.style.overflow = 'auto';
-  document.querySelector('main').classList.remove('blur-background');
-
-  // Stop video if it's the Smart-In video modal
-  if(id === 'videoModal'){
-      const iframe = document.getElementById('smartInVideo');
-      iframe.src = iframe.src;
-  }
-}
+let vantaEffect = VANTA.DOTS({ el:"#vanta-bg", mouseControls:true, touchControls:true, gyroControls:false, minHeight:200, minWidth:200, scale:1.0, scaleMobile:1.0, color:0xcffb7, color2:0x5520ff, backgroundColor:0x0, size:3.2, spacing:24, showLines:false });
+function openModal(id){ document.getElementById(id).style.display='flex'; document.body.style.overflow='hidden'; document.querySelector('main').classList.add('blur-background'); }
+function closeModal(id){ document.getElementById(id).style.display='none'; document.body.style.overflow='auto'; document.querySelector('main').classList.remove('blur-background'); if(id==='videoModal'){ const iframe=document.getElementById('smartInVideo'); iframe.src=iframe.src; } }
 </script>
-
 </body>
 </html>
