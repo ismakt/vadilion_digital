@@ -95,12 +95,7 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
   </div>
   <div class="panel" id="about">
     <div id="about-text" style="text-align: left;">
-      <p>Nous avons une solide expérience dans l’analyse de données et le développement de solutions décisionnelles, 
-        qui a été le cœur de notre activité pendant plusieurs années.</p>
-<p>Aujourd’hui, nous concentrons nos efforts sur le développement d’outils décisionnels de nouvelle génération, 
-  conçus pour répondre à des besoins concrets, apportant une valeur réelle, et rendant l’accès à des données de qualité plus simple, rapide et efficace.</p>
-<p>Nos bureaux se trouvent à Bruxelles, Paris et Monaco.</p>
-
+<p>Nous développons des outils digitaux à forte valeur ajoutée, conçus à partir de données à haute valeur.</p>
     </div>
   </div>
 </main>
@@ -184,11 +179,7 @@ frBtn.addEventListener('click', () => {
       <button id="presentationSmartIn" class="btn-video">Video</button>
     </div>
   </div>`;
- document.getElementById('about-text').innerHTML = `<p>Nous avons une solide expérience dans l’analyse de données et le développement de solutions décisionnelles, 
-  qui a été le cœur de notre activité pendant plusieurs années.</p>
-<p>Aujourd’hui, nous concentrons nos efforts sur le développement d’outils décisionnels de nouvelle génération, 
-conçus pour répondre à des besoins concrets, apportant une valeur réelle, et rendant l’accès à des données de qualité plus simple, rapide et efficace.</p>
-<p>Nos bureaux se trouvent à Bruxelles, Paris et Monaco.</p>`;
+ document.getElementById('about-text').innerHTML = `<p>Nous développons des outils digitaux à forte valeur ajoutée, conçus à partir de données à haute valeur.</p>`;
   document.getElementById('contactSmartIn').addEventListener('click', () => openModal('contactModal'));
   document.getElementById('presentationSmartIn').addEventListener('click', () => openModal('videoModal'));
   document.getElementById('contact-text').textContent = "Contactez-nous";
@@ -224,14 +215,8 @@ enBtn.addEventListener('click', () => {
       <button id="presentationSmartIn" class="btn-video">Video</button>
     </div>
   </div>`;
-  document.getElementById('about-text').innerHTML = document.getElementById('about-text').innerHTML = `
-<p>
-  We have extensive experience in data analysis and the development of decision-making solutions, which has been at the core of our business for several years.
-</p>
-<p>
-  Today, we focus our efforts on developing next-generation decision-making tools designed to meet real-world needs, deliver genuine value, and make access to high-quality data simpler, faster, and more efficient.
-</p>
-`;
+  document.getElementById('about-text').innerHTML = document.getElementById('about-text').innerHTML = 
+    `<p>We develop high–value digital tools, built on high–value data.</p>`;
 
   document.getElementById('contactSmartIn').addEventListener('click', () => openModal('contactModal'));
   document.getElementById('presentationSmartIn').addEventListener('click', () => openModal('videoModal'));
@@ -249,6 +234,7 @@ function closeModal(id){ document.getElementById(id).style.display='none'; docum
 </script>
 </body>
 </html>
+
 
 
 
