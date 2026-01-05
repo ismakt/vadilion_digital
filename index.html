@@ -38,7 +38,10 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 .modal-content input, .modal-content textarea{ width:100%; margin-bottom:10px; background:#000; border:1px solid var(--border); color:#fff; padding:8px; }
 .close{ position:absolute; top:8px; right:10px; cursor:pointer; }
 /* BUTTONS */
-.btn-linkedin, .btn-instagram, .btn-send, .btn-video { display: inline-block; margin-top: 12px; padding: 8px 16px; background-color: #555; color: #fff; text-decoration: none; font-weight: 400; font-size: 12px; border-radius: 6px; transition: color 0.3s, background 0.3s; border: none; cursor: pointer; }
+.btn-linkedin, .btn-instagram, .btn-send, .btn-video, .btn-locationintelligence
+  { display: inline-block; margin-top: 12px; padding: 8px 16px; background-color: #555; color: #fff; 
+   text-decoration: none; font-weight: 400; font-size: 12px; border-radius: 6px; transition: color 0.3s, background 0.3s; border: none; cursor: pointer; }
+  
 /* MOBILE */
 @media(max-width:768px){ .menu{ position:static; transform:none; margin-bottom:20px; } .panel{ position:static; transform:none; } }
 .blur-background { filter: blur(1px); }
@@ -71,7 +74,7 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
   <div style="text-align: left;">
     
     <!-- Bouton Location Intelligence -->
-    <button id="locationBtn" class="btn-send" style="width:auto; text-align:left; font-weight:500;">LOCATION INTELLIGENCE</button>
+    <button id="locationBtn" class="btn-locationintelligence" style="width:auto; text-align:left; font-weight:500;">LOCATION INTELLIGENCE</button>
 
     <!-- Contenu déroulant caché par défaut -->
     <div id="locationContent" style="display:none; margin-top:12px; border-top:1px solid var(--border); padding-top:12px;">
@@ -177,16 +180,24 @@ frBtn.addEventListener('click', () => {
   frBtn.classList.add('active'); enBtn.classList.remove('active');
   document.getElementById('services-text').textContent = "Optimisation stratégique des décisions business via l'analyse des données, études de marché et la mise en place des outils décisionnels sur mesure (dashboards, applications).";
   document.getElementById('solutions-text').innerHTML = `<div style="text-align:left;">
-    <p><strong> SMART-IN — Comprendre un territoire et investir avec précision. </strong></p><br>
-    <p>Vous investissez dans l’immobilier, ouvrez un commerce ou démarrez un projet: 
-        nous vous fournissons une étude sur mesure pour choisir le bon endroit, pour les raisons qui comptent vraiment pour vous:</p><br>
-    <p>- Pertinence du projet dans son environnement socio-économique<p>
-    <p>- Identifier clients et concurrents, et optimiser le positionnement marketing<p>
-    <p>- Comprendre l'évolution des quartiers: projets immobiliers et urbains; opportunités et risques<p>
-    <p>- Suivre les indicateurs clés: sécurité, prix, attractivité et qualité de vie<p><br>
-    <p>Smart-In, transforme la complexité urbaine en décisions claires et rationnelles.</p><br>
-    <p><strong>Territoires couverts actuellement: Bruxelles.</strong></p>
-    <p><strong>Territoires à venir: Paris, Côte d'Azur, et bien plus encore.</strong></p>
+  
+        <p>Smart-In : Comprendre un territoire. Investir avec précision.</p><br>
+      
+    <p>
+  Nous accompagnons les projets d’investissement immobilier, d’ouverture de commerce ou tout autre projet, 
+  dans la prise de décision claire, fondée sur les facteurs clés de succès, en fournissant, avant tout engagement de capital, 
+  une étude indépendante et impartiale, réalisée grâce à notre plateforme interne spécialement développée à cet effet.</p> <br>
+      
+      <ul>          
+        <li>Pertinence du projet: socioéconomie locale, population, revenus, attractivité 
+        <li>Le Marché: résilience, clients, concurents et performances, zones d’influence</li>
+        <li>Immobilier & Projets urbains: évolution des quartiers, opportunités et risques</li>
+        <li>Indicateurs clés: sécurité, prix, qualité de vie</li>
+      </ul><br>
+
+      <p><strong>Territoires couverts :</strong> Bruxelles</p>
+      <p><strong>Territoires à venir :</strong> Paris, Côte d’Azur, et bien plus</p>
+    
     <div class="btn-flex" style="margin-top:20px; display:flex; justify-content:center; gap:12px;">
       <button id="contactSmartIn" class="btn-send">Contact</button>
       <button id="presentationSmartIn" class="btn-video">Video</button>
@@ -202,30 +213,42 @@ frBtn.addEventListener('click', () => {
   document.getElementById('contact-message').placeholder = "Comment pouvons-nous vous aider ?";
   document.getElementById('our-media').textContent = "Nos réseaux";
   document.getElementById('btn-send').textContent = "Envoyer";
+  document.getElementById('btn-locationintelligence').textContent = "LOCATION INTELLIGENCE";
+  
 });
 enBtn.addEventListener('click', () => {
   enBtn.classList.add('active'); frBtn.classList.remove('active');
   document.getElementById('services-text').textContent = "Strategic optimization of business decisions through data analysis and custom decision-making tools (dashboards, applications).";
   document.getElementById('solutions-text').innerHTML = `
 <div style="text-align: left;">
-  <button id="locationBtn" class="btn-send" style="width:100%; text-align:left; font-weight:600;">Location Intelligence</button>
+  <button id="locationBtn" class="btn-locationintelligence" style="width:auto; text-align:left; font-weight:600;">LOCATION INTELLIGENCE</button>
   <div id="locationContent" style="display:none; margin-top:12px; border-top:1px solid var(--border); padding-top:12px;">
-    <p><strong>LOCATION INTELLIGENCE</strong></p>
-    <p>Smart-In: Understand a location. Invest with precision.</p><br>
-    <p>We help entrepreneurs and investors—whether investing in real estate, opening a business, or launching a project—make informed data-driven decisions through a combination of real estate expertise, business intelligence, and data science.</p>
-    <p>Our mission: provide, prior to any capital commitment, an independent, impartial due diligence study fully aligned with your goals, focused on the factors that truly determine your project’s success.</p><br>
+    
 
-    <p><strong>Our approach — Key pillars:</strong></p>
+
+
+
+
+    
+  
+    
+    <p>Smart-In: Understand a location. Invest with precision.</p><br>
+    
+    <p>We support real estate investments, business openings, and other projects by enabling clear, 
+data-driven decision-making, based on the key factors that determine success. Before any capital commitment,
+we provide an independent and impartial study, carried out using our internally developed platform.</p><br>
+
+    
+    
     <ul>
-      <li>Market Essentials — resilience, attractiveness, and demand dynamics</li>
-      <li>Socioeconomics — project relevance in the local context, population profiles, and incomes</li>
-      <li>Marketing & Positioning — target clients, influence areas, competitors, and performance</li>
-      <li>Real Estate & Urban Projects — understand transformations, identify opportunities and risks</li>
-      <li>Key Indicators — security, prices, quality of life, long-term attractiveness</li>
+      <li>Project Relevance: local socioeconomics, population, income, attractiveness</li>
+      <li>Market: resilience, clients, competitors and their performance, catchment areas</li>
+      <li>Real Estate & Urban Projects: neighborhood evolution, opportunities, and risks</li>
+      <li>Key Indicators: safety, pricing, quality of life</li>
     </ul><br>
 
-    <p><strong>Currently covered territories:</strong> Brussels</p>
-    <p><strong>Upcoming territories:</strong> Paris, French Riviera, and more</p>
+    <p><strong>Current coverage: Brussels</strong></p>
+    <p><strong>Upcoming territories: Paris, the French Riviera, and more</strong></p>
 
     <div class="btn-flex" style="margin-top:20px; display:flex; justify-content:center; gap:12px;">
       <button id="contactSmartIn" class="btn-send">Contact</button>
@@ -297,6 +320,7 @@ function closeModal(id){ document.getElementById(id).style.display='none'; docum
 </script>
 </body>
 </html>
+
 
 
 
