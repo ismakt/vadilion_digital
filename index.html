@@ -67,31 +67,41 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
     <p id="services-text">Optimisation stratégique des décisions business via l'analyse des données, études de marché et la mise en place des outils décisionnels sur mesure (dashboards, applications).</p>
   </div>
   <div class="panel" id="solutions">
-    <div id="solutions-text">
-      <div style="text-align: left;">
-        <p><strong> SMART-IN — Comprendre un territoire et investir avec précision. </strong></p> <br>
-        
-        <p> Vous investissez dans l’immobilier, ouvrez un commerce ou démarrez un projet: 
-          nous vous fournissons une étude sur mesure pour choisir le bon endroit, pour les raisons qui comptent vraiment pour vous:</p><br>
-        
-        <p>- Pertinence du projet dans son environnement socio-économique<p>
-        <p>- Identifier clients et concurrents, et optimiser le positionnement marketing<p>          
-        <p>- Comprendre l'évolution des quartiers: projets immobiliers et urbains; opportunités et risques<p>
-        <p>- Suivre les indicateurs clés: sécurité, prix, attractivité et qualité de vie<p><br>
-        
-        <p>Smart-In, transforme la complexité urbaine en décisions claires et rationnelles.</p><br>
+  <div id="solutions-text">
+  <div style="text-align: left;">
+    
+    <!-- Bouton Location Intelligence -->
+    <button id="locationBtn" class="btn-send" style="width:100%; text-align:left; font-weight:600;">Location Intelligence</button>
 
-        <p><strong>Territoires couverts actuellement: Bruxelles.</strong></p>
-        <p><strong>Territoires à venir: Paris, Côte d'Azur, et bien plus encore.</strong></p>
+    <!-- Contenu déroulant caché par défaut -->
+    <div id="locationContent" style="display:none; margin-top:12px; border-top:1px solid var(--border); padding-top:12px;">
+      <p><strong>INTELLIGENCE TERRITORIALE</strong></p>
+      <p>Smart-In : Comprendre un territoire. Investir avec précision.</p><br>
+      <p>Nous accompagnons les entrepreneurs et investisseurs—que ce soit pour investir dans l’immobilier, ouvrir un commerce ou lancer un projet—pour prendre des décisions éclairées et basées sur les données, grâce à une combinaison d’expertise immobilière, d’intelligence économique et de data science.</p>
+      <p>Notre mission : fournir, avant tout engagement de capital, une étude de due diligence indépendante, impartiale et entièrement alignée avec vos objectifs, centrée sur les facteurs qui déterminent réellement le succès de votre projet.</p><br>
+      
+      <p><strong>Notre approche — Piliers clés :</strong></p>
+      <ul>
+        <li>Essentiels de marché — résilience, attractivité et dynamique de la demande</li>
+        <li>Socioéconomie — pertinence de votre projet dans le contexte local, profils de population et revenus</li>
+        <li>Marketing & Positionnement — clients cibles, zones d’influence, concurrents et leurs performances</li>
+        <li>Immobilier & Projets urbains — comprendre les transformations, identifier opportunités et risques</li>
+        <li>Indicateurs clés — sécurité, prix, qualité de vie et attractivité à long terme</li>
+      </ul><br>
 
+      <p><strong>Territoires actuellement couverts :</strong> Bruxelles</p>
+      <p><strong>Territoires à venir :</strong> Paris, Côte d’Azur, et bien plus</p>
 
-        
-      </div>
       <div class="btn-flex" style="margin-top:20px; display:flex; justify-content:center; gap:12px;">
         <button id="contactSmartIn" class="btn-send">Contact</button>
         <button id="presentationSmartIn" class="btn-video">Video</button>
       </div>
     </div>
+  </div>
+</div>
+
+
+    
   </div>
   <div class="panel" id="about">
     <div id="about-text" style="text-align: left;">
@@ -146,6 +156,7 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
     </div>
   </div>
 </div>
+  
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.dots.min.js"></script>
 <script>
@@ -193,28 +204,54 @@ frBtn.addEventListener('click', () => {
 enBtn.addEventListener('click', () => {
   enBtn.classList.add('active'); frBtn.classList.remove('active');
   document.getElementById('services-text').textContent = "Strategic optimization of business decisions through data analysis and custom decision-making tools (dashboards, applications).";
-  document.getElementById('solutions-text').innerHTML = `<div style="text-align:left;">
-  
-    <p><strong> SMART-IN — Understand a location and invest with precision.</strong></p><br>
-   
-    <p>Whether you are investing in real estate, opening a business, or launching a project, we provide a tailored study to help you choose the right location, 
-    for the reasons that truly matter to you:</p><br>
-    
-    <p>- Relevance of the project within its socio-economic environment<p>
-    <p>- Identifying clients and competitors, and optimizing market positioning<p>
-    <p>- Understanding neighborhood evolution: real estate and urban projects, opportunities and risks<p>
-    <p>- Monitoring key indicators: security, prices, attractiveness, and quality of life<p><br>
-    <p>Smart-In turns urban complexity into clear, rational decisions.</p><br>
-    
-    <p><strong>Currently covered territories: Brussels.<p>
-    <p>Upcoming territories: Paris, the French Riviera, and more to come.<strong><p>
+  document.getElementById('solutions-text').innerHTML = `
+<div style="text-align: left;">
+  <button id="locationBtn" class="btn-send" style="width:100%; text-align:left; font-weight:600;">Location Intelligence</button>
+  <div id="locationContent" style="display:none; margin-top:12px; border-top:1px solid var(--border); padding-top:12px;">
+    <p><strong>LOCATION INTELLIGENCE</strong></p>
+    <p>Smart-In: Understand a location. Invest with precision.</p><br>
+    <p>We help entrepreneurs and investors—whether investing in real estate, opening a business, or launching a project—make informed data-driven decisions through a combination of real estate expertise, business intelligence, and data science.</p>
+    <p>Our mission: provide, prior to any capital commitment, an independent, impartial due diligence study fully aligned with your goals, focused on the factors that truly determine your project’s success.</p><br>
 
-    
+    <p><strong>Our approach — Key pillars:</strong></p>
+    <ul>
+      <li>Market Essentials — resilience, attractiveness, and demand dynamics</li>
+      <li>Socioeconomics — project relevance in the local context, population profiles, and incomes</li>
+      <li>Marketing & Positioning — target clients, influence areas, competitors, and performance</li>
+      <li>Real Estate & Urban Projects — understand transformations, identify opportunities and risks</li>
+      <li>Key Indicators — security, prices, quality of life, long-term attractiveness</li>
+    </ul><br>
+
+    <p><strong>Currently covered territories:</strong> Brussels</p>
+    <p><strong>Upcoming territories:</strong> Paris, French Riviera, and more</p>
+
     <div class="btn-flex" style="margin-top:20px; display:flex; justify-content:center; gap:12px;">
       <button id="contactSmartIn" class="btn-send">Contact</button>
       <button id="presentationSmartIn" class="btn-video">Video</button>
     </div>
-  </div>`;
+  </div>
+</div>
+`;
+
+// Réattacher les event listeners pour ce nouveau sous-menu
+const locationBtnEn = document.getElementById('locationBtn');
+const locationContentEn = document.getElementById('locationContent');
+let locationOpenEn = false;
+locationBtnEn.addEventListener('click', () => {
+  locationOpenEn = !locationOpenEn;
+  locationContentEn.style.display = locationOpenEn ? 'block' : 'none';
+});
+locationBtnEn.addEventListener('mouseenter', () => {
+  locationContentEn.style.display = 'block';
+  locationOpenEn = true;
+});
+
+// Boutons Contact/Video
+document.getElementById('contactSmartIn').addEventListener('click', () => openModal('contactModal'));
+document.getElementById('presentationSmartIn').addEventListener('click', () => openModal('videoModal'));
+
+
+  
   document.getElementById('about-text').innerHTML = document.getElementById('about-text').innerHTML = 
     `<p>We develop high–value digital tools, built on high–value data.</p>`;
 
@@ -228,12 +265,37 @@ enBtn.addEventListener('click', () => {
   document.getElementById('our-media').textContent = "Our media";
   document.getElementById('btn-send').textContent = "Send";
 });
+
+// Gestion du sous-menu Location Intelligence
+const locationBtn = document.getElementById('locationBtn');
+const locationContent = document.getElementById('locationContent');
+let locationOpen = false;
+
+// Fonction pour ouvrir/fermer au clic
+locationBtn.addEventListener('click', () => {
+  locationOpen = !locationOpen;
+  locationContent.style.display = locationOpen ? 'block' : 'none';
+});
+
+// Fonction pour ouvrir au survol
+locationBtn.addEventListener('mouseenter', () => {
+  locationContent.style.display = 'block';
+  locationOpen = true;
+});
+
+// On ne ferme pas au mouseleave, fermeture uniquement au clic sur locationBtn
+
+
+  
 let vantaEffect = VANTA.DOTS({ el:"#vanta-bg", mouseControls:true, touchControls:true, gyroControls:false, minHeight:200, minWidth:200, scale:1.0, scaleMobile:1.0, color:0xcffb7, color2:0x5520ff, backgroundColor:0x0, size:3.2, spacing:24, showLines:false });
 function openModal(id){ document.getElementById(id).style.display='flex'; document.body.style.overflow='hidden'; document.querySelector('main').classList.add('blur-background'); }
 function closeModal(id){ document.getElementById(id).style.display='none'; document.body.style.overflow='auto'; document.querySelector('main').classList.remove('blur-background'); if(id==='videoModal'){ const iframe=document.getElementById('smartInVideo'); iframe.src=iframe.src; } }
+
+
 </script>
 </body>
 </html>
+
 
 
 
