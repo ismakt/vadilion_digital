@@ -62,13 +62,14 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 <main>
   <div id="vanta-bg"></div>
   <div class="menu">
-    <button onclick="togglePanel('services')">SERVICES</button>
-    <button onclick="togglePanel('solutions')">SOLUTIONS</button>
     <button onclick="togglePanel('about')">ABOUT</button>
+    <button onclick="togglePanel('solutions')">SOLUTIONS</button>
   </div>
-  <div class="panel" id="services">
-    <p id="services-text">Optimisation stratégique des décisions business via l'analyse des données, études de marché et la mise en place des outils décisionnels sur mesure (dashboards, applications).</p>
-  </div>
+
+ <div class="panel" id="about">
+    <div id="about-text" style="text-align: left;">
+<p>Nous développons des solutions digitales uniques répondant à des enjeux concrets, sur base des données à forte valeur ajoutée.</p>
+    </div>
   <div class="panel" id="solutions">
   <div id="solutions-text">
   <div style="text-align: left;">
@@ -108,10 +109,7 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 
     
   </div>
-  <div class="panel" id="about">
-    <div id="about-text" style="text-align: left;">
-<p>Nous développons des outils digitaux à forte valeur ajoutée, conçus à partir de données à haute valeur.</p>
-    </div>
+ 
   </div>
 </main>
 <footer>
@@ -178,7 +176,7 @@ const frBtn = document.getElementById('fr-btn');
 const enBtn = document.getElementById('en-btn');
 frBtn.addEventListener('click', () => {
   frBtn.classList.add('active'); enBtn.classList.remove('active');
-  document.getElementById('services-text').textContent = "Optimisation stratégique des décisions business via l'analyse des données, études de marché et la mise en place des outils décisionnels sur mesure (dashboards, applications).";
+   document.getElementById('about-text').innerHTML = `<p>Nous développons des solutions digitales uniques répondant à des enjeux concrets, sur base des données à forte valeur ajoutée.</p>`;
   document.getElementById('solutions-text').innerHTML = `<div style="text-align:left;">
   
         <p>Smart-In : Comprendre un territoire. Investir avec précision.</p><br>
@@ -203,7 +201,6 @@ frBtn.addEventListener('click', () => {
       <button id="presentationSmartIn" class="btn-video">Video</button>
     </div>
   </div>`;
- document.getElementById('about-text').innerHTML = `<p>Nous développons des outils digitaux à forte valeur ajoutée, conçus à partir de données à haute valeur.</p>`;
   document.getElementById('contactSmartIn').addEventListener('click', () => openModal('contactModal'));
   document.getElementById('presentationSmartIn').addEventListener('click', () => openModal('videoModal'));
   document.getElementById('contact-text').textContent = "Contactez-nous";
@@ -218,20 +215,17 @@ frBtn.addEventListener('click', () => {
 });
 enBtn.addEventListener('click', () => {
   enBtn.classList.add('active'); frBtn.classList.remove('active');
-  document.getElementById('services-text').textContent = "Strategic optimization of business decisions through data analysis and custom decision-making tools (dashboards, applications).";
+
+  document.getElementById('about-text').innerHTML = document.getElementById('about-text').innerHTML = 
+    `<p>We develop proprietary digital solutions, solving real challenges with high-value data.</p>`;
+
+  
   document.getElementById('solutions-text').innerHTML = `
 <div style="text-align: left;">
   <button id="locationBtn" class="btn-locationintelligence" style="width:auto; text-align:left; font-weight:600;">LOCATION INTELLIGENCE</button>
   <div id="locationContent" style="display:none; margin-top:12px; border-top:1px solid var(--border); padding-top:12px;">
     
 
-
-
-
-
-    
-  
-    
     <p>Smart-In: Understand a location. Invest with precision.</p><br>
     
     <p>We support real estate investments, business openings, and other projects by enabling clear, 
@@ -277,8 +271,7 @@ document.getElementById('presentationSmartIn').addEventListener('click', () => o
 
 
   
-  document.getElementById('about-text').innerHTML = document.getElementById('about-text').innerHTML = 
-    `<p>We develop high–value digital tools, built on high–value data.</p>`;
+
 
   document.getElementById('contactSmartIn').addEventListener('click', () => openModal('contactModal'));
   document.getElementById('presentationSmartIn').addEventListener('click', () => openModal('videoModal'));
@@ -320,6 +313,7 @@ function closeModal(id){ document.getElementById(id).style.display='none'; docum
 </script>
 </body>
 </html>
+
 
 
 
