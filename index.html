@@ -61,43 +61,24 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 </header>
 <main>
   <div id="vanta-bg"></div>
-  <div class="menu">
-    <button onclick="togglePanel('about')">ABOUT</button>
-    <button onclick="togglePanel('solutions')">SOLUTIONS</button>
-  </div>
-
- <div class="panel" id="about">
-    <div id="about-text" style="text-align: left;">
-<p>Nous développons des solutions digitales uniques répondant à des enjeux concrets, sur base des données à forte valeur ajoutée.</p>
-    </div>
-  <div class="panel" id="solutions">
-  <div id="solutions-text">
-  <div style="text-align: left;">
-    
-    <!-- Bouton Location Intelligence -->
-    <button id="locationBtn" class="btn-locationintelligence" style="width:auto; text-align:left; font-weight:500;">LOCATION INTELLIGENCE</button>
-
-    <!-- Contenu déroulant caché par défaut -->
+<div class="panel" id="solutions">
+  <div id="solutions-text" style="text-align: left;">
+    <button id="locationBtn" class="btn-locationintelligence">LOCATION INTELLIGENCE</button>
     <div id="locationContent" style="display:none; margin-top:12px; border-top:1px solid var(--border); padding-top:12px;">
-      
-      <p>Smart-In : Comprendre un territoire. Investir avec précision.</p><br>
-      
-    <p>
-  Nous accompagnons les projets d’investissement immobilier, d’ouverture de commerce ou tout autre projet, 
-  dans la prise de décision claire, fondée sur les facteurs clés de succès, en fournissant, avant tout engagement de capital, 
-  une étude indépendante et impartiale, réalisée grâce à notre plateforme interne spécialement développée à cet effet.</p> <br>
-
-      
-      <ul>          
-        <li>Pertinence du projet: socioéconomie locale, population, revenus, attractivité 
-        <li>Le Marché: résilience, clients, concurents et performances, zones d’influence</li>
+      <p>Smart-In : Comprendre un territoire. Investir avec précision.</p>
+      <p>
+        Nous accompagnons les projets d’investissement immobilier, d’ouverture de commerce ou tout autre projet, 
+        dans la prise de décision claire, fondée sur les facteurs clés de succès, en fournissant, avant tout engagement de capital, 
+        une étude indépendante et impartiale, réalisée grâce à notre plateforme interne spécialement développée à cet effet.
+      </p>
+      <ul>
+        <li>Pertinence du projet: socioéconomie locale, population, revenus, attractivité</li>
+        <li>Le Marché: résilience, clients, concurrents et performances, zones d’influence</li>
         <li>Immobilier & Projets urbains: évolution des quartiers, opportunités et risques</li>
         <li>Indicateurs clés: sécurité, prix, qualité de vie</li>
-      </ul><br>
-
+      </ul>
       <p><strong>Territoires couverts :</strong> Bruxelles</p>
       <p><strong>Territoires à venir :</strong> Paris, Côte d’Azur, et bien plus</p>
-
       <div class="btn-flex" style="margin-top:20px; display:flex; justify-content:center; gap:12px;">
         <button id="contactSmartIn" class="btn-send">Contact</button>
         <button id="presentationSmartIn" class="btn-video">Video</button>
@@ -106,11 +87,6 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
   </div>
 </div>
 
-
-    
-  </div>
- 
-  </div>
 </main>
 <footer>
   <div class="footer-line"></div>
@@ -313,6 +289,7 @@ function closeModal(id){ document.getElementById(id).style.display='none'; docum
 </script>
 </body>
 </html>
+
 
 
 
