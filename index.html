@@ -68,7 +68,8 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 
 <div class="panel" id="about">
   <div id="about-text" style="text-align: left;">
-    <p>Nous développons des solutions digitales uniques répondant à des enjeux concrets, sur base des données à forte valeur ajoutée.</p>
+    <p>Nous allions business intelligence, programmation et data science pour développer des solutions uniques, à forte valeur ajoutée, 
+      fondées sur des données fiables et répondant à des enjeux concrets.</p>
   </div>
 </div>
 
@@ -77,17 +78,20 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
     <div style="text-align: left;">
 
       <!-- Bouton Location Intelligence -->
-      <button id="locationBtn" class="btn-locationintelligence" style="width:auto; text-align:left; font-weight:500;">LOCATION INTELLIGENCE</button>
+      <button id="locationBtn" class="btn-locationintelligence" style="width:auto; text-align:left; font-weight:500;">SMART-IN</button>
 
       <!-- Contenu déroulant caché par défaut -->
       <div id="locationContent" style="display:none; margin-top:12px; border-top:1px solid var(--border); padding-top:12px;">
-        <p>Smart-In : Comprendre un territoire. Investir avec précision.</p><br>
 
         <p>
-          Nous accompagnons les projets d’investissement immobilier, d’ouverture de commerce ou tout autre projet, 
-          dans la prise de décision claire, fondée sur les facteurs clés de succès, en fournissant, avant tout engagement de capital, 
-          une étude indépendante et impartiale, réalisée grâce à notre plateforme interne spécialement développée à cet effet.
-        </p><br>
+        Face à l’exposition des investisseurs aux discours commerciaux embellis, une volonté forte est née : offrir une alternative crédible : 
+          une application indépendante, développée à partir de données officielles fiables, donnant un accès simple et rapide aux informations cruciales, 
+          pour une prise de décision claire, avant tout engagement de capital.</p><br>
+
+        <p>Qu’il s’agisse d’un investissement immobilier, d’une ouverture commerciale ou de tout autre projet, découvrez notre application : 
+          choisissez votre ville et les informations que vous souhaitez connaître.</p><br>
+
+    <p>Nous analysons notamment :</p>
 
         <ul>
           <li>Pertinence du projet: socioéconomie locale, population, revenus, attractivité</li>
@@ -95,9 +99,6 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
           <li>Immobilier & Projets urbains: évolution des quartiers, opportunités et risques</li>
           <li>Indicateurs clés: sécurité, prix, qualité de vie</li>
         </ul><br>
-
-        <p><strong>Territoires couverts :</strong> Bruxelles</p>
-        <p><strong>Territoires à venir :</strong> Paris, Côte d’Azur, et bien plus</p>
 
         <div class="btn-flex" style="margin-top:20px; display:flex; justify-content:center; gap:12px;">
           <button id="contactSmartIn" class="btn-send">Contact</button>
@@ -175,25 +176,26 @@ const frBtn = document.getElementById('fr-btn');
 const enBtn = document.getElementById('en-btn');
 frBtn.addEventListener('click', () => {
   frBtn.classList.add('active'); enBtn.classList.remove('active');
-   document.getElementById('about-text').innerHTML = `<p>Nous développons des solutions digitales uniques répondant à des enjeux concrets, sur base des données à forte valeur ajoutée.</p>`;
+   document.getElementById('about-text').innerHTML = `<p>Nous allions business intelligence, programmation et data science pour développer des solutions uniques, à forte valeur ajoutée, 
+      fondées sur des données fiables et répondant à des enjeux concrets.</p>`;
   document.getElementById('solutions-text').innerHTML = `<div style="text-align:left;">
   
-        <p>Smart-In : Comprendre un territoire. Investir avec précision.</p><br>
-      
-    <p>
-  Nous accompagnons les projets d’investissement immobilier, d’ouverture de commerce ou tout autre projet, 
-  dans la prise de décision claire, fondée sur les facteurs clés de succès, en fournissant, avant tout engagement de capital, 
-  une étude indépendante et impartiale, réalisée grâce à notre plateforme interne spécialement développée à cet effet.</p> <br>
-      
-      <ul>          
-        <li>Pertinence du projet: socioéconomie locale, population, revenus, attractivité 
-        <li>Le Marché: résilience, clients, concurents et performances, zones d’influence</li>
-        <li>Immobilier & Projets urbains: évolution des quartiers, opportunités et risques</li>
-        <li>Indicateurs clés: sécurité, prix, qualité de vie</li>
-      </ul><br>
+           <p>
+        Face à l’exposition des investisseurs aux discours commerciaux embellis, une volonté forte est née : offrir une alternative crédible : 
+          une application indépendante, développée à partir de données officielles fiables, donnant un accès simple et rapide aux informations cruciales, 
+          pour une prise de décision claire, avant tout engagement de capital.</p><br>
 
-      <p><strong>Territoires couverts :</strong> Bruxelles</p>
-      <p><strong>Territoires à venir :</strong> Paris, Côte d’Azur, et bien plus</p>
+        <p>Qu’il s’agisse d’un investissement immobilier, d’une ouverture commerciale ou de tout autre projet, découvrez notre application : 
+          choisissez votre ville et les informations que vous souhaitez connaître.</p><br>
+
+    <p>Nous analysons notamment :</p>
+
+        <ul>
+          <li>Pertinence du projet: socioéconomie locale, population, revenus, attractivité</li>
+          <li>Le Marché: résilience, clients, concurents et performances, zones d’influence</li>
+          <li>Immobilier & Projets urbains: évolution des quartiers, opportunités et risques</li>
+          <li>Indicateurs clés: sécurité, prix, qualité de vie</li>
+        </ul><br>
     
     <div class="btn-flex" style="margin-top:20px; display:flex; justify-content:center; gap:12px;">
       <button id="contactSmartIn" class="btn-send">Contact</button>
@@ -209,39 +211,33 @@ frBtn.addEventListener('click', () => {
   document.getElementById('contact-message').placeholder = "Comment pouvons-nous vous aider ?";
   document.getElementById('our-media').textContent = "Nos réseaux";
   document.getElementById('btn-send').textContent = "Envoyer";
-  document.getElementById('btn-locationintelligence').textContent = "LOCATION INTELLIGENCE";
+  document.getElementById('btn-locationintelligence').textContent = "SMART-IN";
   
 });
 enBtn.addEventListener('click', () => {
   enBtn.classList.add('active'); frBtn.classList.remove('active');
 
   document.getElementById('about-text').innerHTML = document.getElementById('about-text').innerHTML = 
-    `<p>We develop proprietary digital solutions, solving real challenges with high-value data.</p>`;
+    `<p>We combine business intelligence, programming, and data science to develop unique, high-value solutions built on reliable data and designed to address concrete business challenges.</p>`;
 
   
   document.getElementById('solutions-text').innerHTML = `
 <div style="text-align: left;">
-  <button id="locationBtn" class="btn-locationintelligence" style="width:auto; text-align:left; font-weight:600;">LOCATION INTELLIGENCE</button>
+  <button id="locationBtn" class="btn-locationintelligence" style="width:auto; text-align:left; font-weight:600;">SMART-IN</button>
   <div id="locationContent" style="display:none; margin-top:12px; border-top:1px solid var(--border); padding-top:12px;">
     
 
-    <p>Smart-In: Understand a location. Invest with precision.</p><br>
-    
-    <p>We support real estate investments, business openings, and other projects by enabling clear, 
-data-driven decision-making, based on the key factors that determine success. Before any capital commitment,
-we provide an independent and impartial study, carried out using our internally developed platform.</p><br>
+<p> Faced with investors being exposed to embellished commercial pitches, a strong desire has emerged: to offer a credible alternative – 
+an independent application, developed from reliable official data, providing quick and easy access to crucial information for clear decision-making, 
+before any capital commitment. </p><br> <p> Whether for a real estate investment, the opening of a business, or any other strategic project, discover 
+our application: choose your city and the information you wish to access. </p><br> <p>We analyze, among others:</p>
 
-    
-    
     <ul>
       <li>Project Relevance: local socioeconomics, population, income, attractiveness</li>
       <li>Market: resilience, clients, competitors performance, catchment areas</li>
       <li>Real Estate & Urban Projects: neighborhood evolution, opportunities, and risks</li>
       <li>Key Indicators: safety, pricing, quality of life</li>
     </ul><br>
-
-    <p><strong>Current coverage:</strong>Brussels</p>
-    <p><strong>Upcoming territories:</strong>Paris, the French Riviera, and more</p>
 
     <div class="btn-flex" style="margin-top:20px; display:flex; justify-content:center; gap:12px;">
       <button id="contactSmartIn" class="btn-send">Contact</button>
@@ -312,6 +308,7 @@ function closeModal(id){ document.getElementById(id).style.display='none'; docum
 </script>
 </body>
 </html>
+
 
 
 
