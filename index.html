@@ -204,11 +204,14 @@ frBtn.addEventListener('click', () => {
           <li>Indicateurs clés: sécurité, prix, pollution</li>
         </ul><br>
     
-    <div class="btn-flex" style="margin-top:20px; display:flex; justify-content:center; gap:12px;">
-      <button id="contactSmartIn" class="btn-send">Contact</button>
-      <button id="presentationSmartIn" class="btn-video">Video</button>
-    </div>
-  </div>`;
+      </ul><br>
+  </div>
+</div>`;
+
+
+
+
+  
 document.getElementById('discoverSmartIn').textContent = "Discover Smart-In";
 document.getElementById('discoverSmartIn').addEventListener('click', () => {
     window.location.href = 'https://vadiliondigital.be';
@@ -254,13 +257,12 @@ enBtn.addEventListener('click', () => {
 </ul><br>
 
 
-    <div class="btn-flex" style="margin-top:20px; display:flex; justify-content:center; gap:12px;">
-      <button id="contactSmartIn" class="btn-send">Contact</button>
-      <button id="presentationSmartIn" class="btn-video">Video</button>
-    </div>
+    </ul><br>
   </div>
-</div>
-`;
+</div>`;
+
+
+
 
 // Réattacher les event listeners pour ce nouveau sous-menu
 const locationBtnEn = document.getElementById('locationBtn');
@@ -277,13 +279,18 @@ locationBtnEn.addEventListener('mouseenter', () => {
 
 // Boutons Discover Smart-In et Présentation Video
   
-document.getElementById('discoverSmartIn').textContent = "Discover Smart-In";
-document.getElementById('discoverSmartIn').addEventListener('click', () => {
+
+
+  document.getElementById('discoverSmartIn').addEventListener('click', () => {
     window.location.href = 'https://vadiliondigital.be';
 });
+
   
 document.getElementById('presentationSmartIn').addEventListener('click', () => openModal('videoModal'));
 
+document.getElementById('discoverSmartIn').addEventListener('click', () => {
+    window.location.href = 'https://vadiliondigital.be';
+});
 
   
 
@@ -332,6 +339,7 @@ function closeModal(id){ document.getElementById(id).style.display='none'; docum
 </script>
 </body>
 </html>
+
 
 
 
