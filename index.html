@@ -38,7 +38,7 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 .modal-content input, .modal-content textarea{ width:100%; margin-bottom:10px; background:#000; border:1px solid var(--border); color:#fff; padding:8px; }
 .close{ position:absolute; top:8px; right:10px; cursor:pointer; }
 /* BUTTONS */
-.btn-linkedin, .btn-instagram, .btn-send, .btn-video, .btn-locationintelligence
+.btn-linkedin, .btn-instagram, .btn-send, .btn-video, .btn-smartin
   { display: inline-block; margin-top: 12px; padding: 8px 16px; background-color: #555; color: #fff; 
    text-decoration: none; font-weight: 400; font-size: 12px; border-radius: 6px; transition: color 0.3s, background 0.3s; border: none; cursor: pointer; }
   
@@ -78,7 +78,7 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
     <div style="text-align: left;">
 
       <!-- Bouton Location Intelligence -->
-      <button id="locationBtn" class="btn-locationintelligence" style="width:auto; text-align:left; font-weight:500;">SMART-IN</button>
+      <button id="locationBtn" class="btn-smartin" style="width:auto; text-align:left; font-weight:500;">SMART-IN</button>
 
       <!-- Contenu déroulant caché par défaut -->
       <div id="locationContent" style="display:none; margin-top:12px; border-top:1px solid var(--border); padding-top:12px;">
@@ -100,7 +100,7 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
         </ul><br>
 
         <div class="btn-flex" style="margin-top:20px; display:flex; justify-content:center; gap:12px;">
-          <button id="contactSmartIn" class="btn-send">Contact</button>
+          <button id="discoverSmartIn" class="btn-send">Discover Smart-In</button>
           <button id="presentationSmartIn" class="btn-video">Video</button>
         </div>
       </div>
@@ -169,7 +169,15 @@ function togglePanel(id){
   document.getElementById(id).style.display = 'block';
   currentPanel = id;
 }
-document.getElementById('contactSmartIn').addEventListener('click', () => openModal('contactModal'));
+  
+
+document.getElementById('discoverSmartIn').textContent = "Discover Smart-In";
+document.getElementById('discoverSmartIn').addEventListener('click', () => {
+    window.location.href = 'https://vadiliondigital.be';
+});
+
+
+  
 document.getElementById('presentationSmartIn').addEventListener('click', () => openModal('videoModal'));
 const frBtn = document.getElementById('fr-btn');
 const enBtn = document.getElementById('en-btn');
@@ -201,7 +209,10 @@ frBtn.addEventListener('click', () => {
       <button id="presentationSmartIn" class="btn-video">Video</button>
     </div>
   </div>`;
-  document.getElementById('contactSmartIn').addEventListener('click', () => openModal('contactModal'));
+document.getElementById('discoverSmartIn').textContent = "Discover Smart-In";
+document.getElementById('discoverSmartIn').addEventListener('click', () => {
+    window.location.href = 'https://vadiliondigital.be';
+});
   document.getElementById('presentationSmartIn').addEventListener('click', () => openModal('videoModal'));
   document.getElementById('contact-text').textContent = "Contactez-nous";
   document.getElementById('contact-text2').textContent = "Nous écoutons attentivement vos besoins afin de vous proposer une solution précise et adaptée.";
@@ -210,7 +221,7 @@ frBtn.addEventListener('click', () => {
   document.getElementById('contact-message').placeholder = "Comment pouvons-nous vous aider ?";
   document.getElementById('our-media').textContent = "Nos réseaux";
   document.getElementById('btn-send').textContent = "Envoyer";
-  document.getElementById('btn-locationintelligence').textContent = "SMART-IN";
+  document.getElementById('btn-smartin').textContent = "SMART-IN";
   
 });
 enBtn.addEventListener('click', () => {
@@ -222,7 +233,7 @@ enBtn.addEventListener('click', () => {
   
   document.getElementById('solutions-text').innerHTML = `
 <div style="text-align: left;">
-  <button id="locationBtn" class="btn-locationintelligence" style="width:auto; text-align:left; font-weight:600;">SMART-IN</button>
+  <button id="locationBtn" class="btn-smartin" style="width:auto; text-align:left; font-weight:600;">SMART-IN</button>
   <div id="locationContent" style="display:none; margin-top:12px; border-top:1px solid var(--border); padding-top:12px;">
     
 
@@ -264,15 +275,24 @@ locationBtnEn.addEventListener('mouseenter', () => {
   locationOpenEn = true;
 });
 
-// Boutons Contact/Video
-document.getElementById('contactSmartIn').addEventListener('click', () => openModal('contactModal'));
+// Boutons Discover Smart-In et Présentation Video
+  
+document.getElementById('discovermartIn').textContent = "Discover Smart-In";
+document.getElementById('discoverSmartIn').addEventListener('click', () => {
+    window.location.href = 'https://vadiliondigital.be';
+});
+  
 document.getElementById('presentationSmartIn').addEventListener('click', () => openModal('videoModal'));
 
 
   
 
 
-  document.getElementById('contactSmartIn').addEventListener('click', () => openModal('contactModal'));
+document.getElementById('discoverSmartIn').textContent = "Discover Smart-In";
+document.getElementById('discoverSmartIn').addEventListener('click', () => {
+    window.location.href = 'https://vadiliondigital.be';
+});
+  
   document.getElementById('presentationSmartIn').addEventListener('click', () => openModal('videoModal'));
   document.getElementById('contact-text').textContent = "Contact us";
   document.getElementById('contact-text2').textContent = "We listen carefully to your needs to deliver a precise, tailored solution.";
@@ -312,6 +332,7 @@ function closeModal(id){ document.getElementById(id).style.display='none'; docum
 </script>
 </body>
 </html>
+
 
 
 
