@@ -100,7 +100,7 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
         </ul><br>
 
         <div class="btn-flex" style="margin-top:20px; display:flex; justify-content:center; gap:12px;">
-          <button id="contactSmartIn" class="btn-send">Contact</button>
+          <button id="contactSmartIn" class="btn-send">Smart-In</button>
           <button id="presentationSmartIn" class="btn-video">Video</button>
         </div>
       </div>
@@ -168,8 +168,9 @@ function togglePanel(id){
   if(currentPanel === id){ currentPanel = null; return; }
   document.getElementById(id).style.display = 'block';
   currentPanel = id;
-}
-document.getElementById('contactSmartIn').addEventListener('click', () => openModal('contactModal'));
+  
+}document.getElementById('contactSmartIn').addEventListener('click', () => { window.location.href = 'https://vadiliondigital.be'; }); // url smart in
+
 document.getElementById('presentationSmartIn').addEventListener('click', () => openModal('videoModal'));
 const frBtn = document.getElementById('fr-btn');
 const enBtn = document.getElementById('en-btn');
@@ -312,6 +313,7 @@ function closeModal(id){ document.getElementById(id).style.display='none'; docum
 </script>
 </body>
 </html>
+
 
 
 
