@@ -194,11 +194,13 @@ frBtn.addEventListener('click', () => {
         </ul><br>
     
     <div class="btn-flex" style="margin-top:20px; display:flex; justify-content:center; gap:12px;">
-      <button id="contactSmartIn" class="btn-send">Contact</button>
+      <button id="contactSmartIn" class="btn-send">Smart-In</button>
       <button id="presentationSmartIn" class="btn-video">Video</button>
     </div>
   </div>`;
-  document.getElementById('contactSmartIn').addEventListener('click', () => openModal('contactModal'));
+document.getElementById('contactSmartIn').addEventListener('click', () => {
+    window.location.href = 'vadiliondigital.be'; // Remplace par ton URL
+});
   document.getElementById('presentationSmartIn').addEventListener('click', () => openModal('videoModal'));
   document.getElementById('contact-text').textContent = "Contactez-nous";
   document.getElementById('contact-text2').textContent = "Nous écoutons attentivement vos besoins afin de vous proposer une solution précise et adaptée.";
@@ -260,7 +262,9 @@ locationBtnEn.addEventListener('mouseenter', () => {
 });
 
 // Boutons Contact/Video
-document.getElementById('contactSmartIn').addEventListener('click', () => openModal('contactModal'));
+document.getElementById('contactSmartIn').addEventListener('click', () => {
+    window.location.href = 'vadiliondigital.be'; // Remplace par ton URL
+});
 document.getElementById('presentationSmartIn').addEventListener('click', () => openModal('videoModal'));
 
 
