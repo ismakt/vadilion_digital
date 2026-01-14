@@ -47,7 +47,7 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 .blur-background { filter: blur(1px); }
 .brand { position: relative; display: flex; flex-direction: column; align-items: flex-start; }
 .brand h1 { color: var(--gold); font-size: 15px; letter-spacing: 1px; z-index: 1; }
-.brand .logo { position: absolute; top: 20px; left: 0; width: 170px; height: auto; border-radius: 0; z-index: 0; }
+.brand .logo { position: absolute; top: 20px; left: 0; width: 160px; height: auto; border-radius: 0; z-index: 0; }
 </style>
 </head>
 <body>
@@ -86,9 +86,11 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
         <p>
           Constatant la difficulté pour les investisseurs et entrepreneurs à obtenir une information transparente sur le marché, 
           et contraints de discerner entre embellissements et réalités, une volonté forte est née : offrir une alternative.
-          Smart-IN est une application indépendante, offrant un accès transparent aux données cruciales pour tout projet immobilier ou commercial.</p><br>
+          Smart-IN est une application indépendante, offrant un accès transparent aux données cruciales pour tout projet immobilier ou commercial. 
+          Découvrez-la : choisissez votre ville et les paramètres qui vous intéressent.</p><br>
          
         <p>Nos études sont développées autour des principaux piliers :</p>
+
         
         <ul>
           <li>Le marché : résilience, étude des concurrents et client potentiels</li>
@@ -98,7 +100,7 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
         </ul><br>
 
         <div class="btn-flex" style="margin-top:20px; display:flex; justify-content:center; gap:12px;">
-          <button id="contactSmartIn" class="btn-send">Smart-In</button>
+          <button id="contactSmartIn" class="btn-send">Contact</button>
           <button id="presentationSmartIn" class="btn-video">Video</button>
         </div>
       </div>
@@ -166,9 +168,8 @@ function togglePanel(id){
   if(currentPanel === id){ currentPanel = null; return; }
   document.getElementById(id).style.display = 'block';
   currentPanel = id;
-  
-}document.getElementById('contactSmartIn').addEventListener('click', () => { window.location.href = 'https://vadiliondigital.be'; }); // url smart in
-
+}
+document.getElementById('contactSmartIn').addEventListener('click', () => openModal('contactModal'));
 document.getElementById('presentationSmartIn').addEventListener('click', () => openModal('videoModal'));
 const frBtn = document.getElementById('fr-btn');
 const enBtn = document.getElementById('en-btn');
@@ -182,9 +183,11 @@ frBtn.addEventListener('click', () => {
         <p>
           Constatant la difficulté pour les investisseurs et entrepreneurs à obtenir une information transparente sur le marché, 
           et contraints de discerner entre embellissements et réalités, une volonté forte est née : offrir une alternative.
-          Smart-In est une application indépendante, offrant un accès transparent aux données cruciales pour tout projet immobilier ou commercial.</p><br>
+          Smart-In est une application indépendante, offrant un accès transparent aux données cruciales pour tout projet immobilier ou commercial. 
+          Découvrez-la : choisissez votre ville et les paramètres qui vous intéressent.</p><br>
          
         <p>Nos études sont développées autour des principaux piliers :</p>
+
         
         <ul>
           <li>Le marché : résilience, étude des concurrents et client potentiels</li>
@@ -194,13 +197,11 @@ frBtn.addEventListener('click', () => {
         </ul><br>
     
     <div class="btn-flex" style="margin-top:20px; display:flex; justify-content:center; gap:12px;">
-      <button id="contactSmartIn" class="btn-send">Smart-In</button>
+      <button id="contactSmartIn" class="btn-send">Contact</button>
       <button id="presentationSmartIn" class="btn-video">Video</button>
     </div>
   </div>`;
-document.getElementById('contactSmartIn').addEventListener('click', () => {
-    window.location.href = 'vadiliondigital.be'; // Remplace par ton URL
-});
+  document.getElementById('contactSmartIn').addEventListener('click', () => openModal('contactModal'));
   document.getElementById('presentationSmartIn').addEventListener('click', () => openModal('videoModal'));
   document.getElementById('contact-text').textContent = "Contactez-nous";
   document.getElementById('contact-text2').textContent = "Nous écoutons attentivement vos besoins afin de vous proposer une solution précise et adaptée.";
@@ -228,7 +229,9 @@ enBtn.addEventListener('click', () => {
 <p>
     Noting the difficulty investors and entrepreneurs face in obtaining transparent market information, 
     and often forced to distinguish between embellishments and reality, a strong desire has emerged: to offer an alternative. 
-    Smart-In is an independent application, providing transparent access to crucial data for any real estate or commercial project.</p><br>
+    Smart-In is an independent application, providing transparent access to crucial data for any real estate or commercial project. 
+    Discover it: choose your city and the parameters that interest you.
+</p><br>
 
 <p>Our studies are built around the following key pillars:</p>
 
@@ -262,18 +265,14 @@ locationBtnEn.addEventListener('mouseenter', () => {
 });
 
 // Boutons Contact/Video
-document.getElementById('contactSmartIn').addEventListener('click', () => {
-    window.location.href = 'vadiliondigital.be'; // Remplace par ton URL
-});
+document.getElementById('contactSmartIn').addEventListener('click', () => openModal('contactModal'));
 document.getElementById('presentationSmartIn').addEventListener('click', () => openModal('videoModal'));
 
 
   
 
 
-document.getElementById('contactSmartIn').addEventListener('click', () => {
-    window.location.href = 'vadiliondigital.be'; }); // Remplace par ton URL 
-  
+  document.getElementById('contactSmartIn').addEventListener('click', () => openModal('contactModal'));
   document.getElementById('presentationSmartIn').addEventListener('click', () => openModal('videoModal'));
   document.getElementById('contact-text').textContent = "Contact us";
   document.getElementById('contact-text2').textContent = "We listen carefully to your needs to deliver a precise, tailored solution.";
@@ -313,11 +312,6 @@ function closeModal(id){ document.getElementById(id).style.display='none'; docum
 </script>
 </body>
 </html>
-
-
-
-
-
 
 
 
