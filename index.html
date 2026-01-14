@@ -234,12 +234,11 @@ enBtn.addEventListener('click', () => {
     `<p>We combine business intelligence and data science to develop unique, high-value solutions built on reliable data and designed to address concrete business challenges.</p>`;
 
   
-  document.getElementById('solutions-text').innerHTML = `
+document.getElementById('solutions-text').innerHTML = `
 <div style="text-align: left;">
   <button id="locationBtn" class="btn-smartin" style="width:auto; text-align:left; font-weight:600;">SMART-IN</button>
   <div id="locationContent" style="display:none; margin-top:12px; border-top:1px solid var(--border); padding-top:12px;">
     
-
 <p>
     Noting the difficulty investors and entrepreneurs face in obtaining transparent market information, 
     and often forced to distinguish between embellishments and reality, a strong desire has emerged: to offer an alternative. 
@@ -256,8 +255,11 @@ enBtn.addEventListener('click', () => {
     <li>Key Indicators: safety, prices, pollution</li>
 </ul><br>
 
+<div class="btn-flex" style="margin-top:20px; display:flex; justify-content:center; gap:12px;">
+  <button id="discoverSmartIn" class="btn-send">Discover Smart-In</button>
+  <button id="presentationSmartIn" class="btn-video">Video</button>
+</div>
 
-    </ul><br>
   </div>
 </div>`;
 
@@ -339,6 +341,7 @@ function closeModal(id){ document.getElementById(id).style.display='none'; docum
 </script>
 </body>
 </html>
+
 
 
 
