@@ -673,7 +673,7 @@ function drawPreMap() {
   var height = container.offsetHeight;
 
   if (width === 0 || height === 0) {
-    height = 250; // fallback au cas où le conteneur n’a pas encore rendu
+    height = 150; // fallback au cas où le conteneur n’a pas encore rendu
   }
 
   var svgNS = "http://www.w3.org/2000/svg";
@@ -739,7 +739,7 @@ function drawPreMap() {
   bruxellesInterior.forEach(function(c) {
     var x = scaleX(c[1]);
     var y = scaleY(c[0]);
-    var size = 9;
+    var size = 3;
     var contourColor = '#ccbb5a';
 
     var diamond = document.createElementNS(svgNS, 'polygon');
@@ -773,6 +773,7 @@ function drawPreMap() {
 </script>
 </body>
 </html>
+
 
 
 
