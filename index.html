@@ -100,6 +100,9 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 
 }
 
+
+  
+
 .map-mock{
   height:180px;
   border:1px solid var(--border);
@@ -120,16 +123,13 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 
 
 .mapPreview {
-  height: 250px;       /* Hauteur fixe pour que la carte soit visible */
-  border: 1px solid var(--border);
+  flex:1;          /* prend tout l’espace restant dans left */
+  min-height: 300px;  border: 1px solid var(--border);
   margin-top: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
-
-
 
 
 
@@ -663,6 +663,9 @@ function sendSmartIn(){
 }
 
 
+  
+ 
+
 
 
 function drawPreMap() {
@@ -678,8 +681,8 @@ function drawPreMap() {
 
   var svgNS = "http://www.w3.org/2000/svg";
   var svg = document.createElementNS(svgNS, 'svg');
-  svg.setAttribute('width', width);
-  svg.setAttribute('height', height);
+   svg.setAttribute('width', '100%');
+svg.setAttribute('height', '100%');
   container.appendChild(svg);
   
   // Normalisation
@@ -773,6 +776,7 @@ function drawPreMap() {
 </script>
 </body>
 </html>
+
 
 
 
