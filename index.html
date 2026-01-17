@@ -43,7 +43,22 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
    text-decoration: none; font-weight: 400; font-size: 12px; border-radius: 6px; transition: color 0.3s, background 0.3s; border: none; cursor: pointer; }
   
 /* MOBILE */
-@media(max-width:768px){ .{ position:static; transform:none; margin-bottom:20px; } .panel{ position:static; transform:none; } }
+
+@media (max-width:768px) {
+  .menu {
+    position: static;
+    transform: none;
+    margin-bottom: 20px;
+  }
+  
+  .panel {
+    position: static;
+    transform: none;
+  }
+}
+
+
+  
 .blur-background { filter: blur(1px); }
 .brand { position: relative; display: flex; flex-direction: column; align-items: flex-start; }
 .brand h1 { color: var(--gold); font-size: 15px; letter-spacing: 1px; z-index: 1; }
@@ -411,7 +426,6 @@ document.getElementById('discoverSmartIn').addEventListener('click', () => {
 
 
   
-document.getElementById('presentationSmartIn').addEventListener('click', () => openModal('videoModal'));
 const frBtn = document.getElementById('fr-btn');
 const enBtn = document.getElementById('en-btn');
 frBtn.addEventListener('click', () => {
@@ -447,7 +461,6 @@ frBtn.addEventListener('click', () => {
   
 
 });
-  document.getElementById('presentationSmartIn').addEventListener('click', () => openModal('videoModal'));
   document.getElementById('contact-text').textContent = "Contactez-nous";
   document.getElementById('contact-text2').textContent = "Nous écoutons attentivement vos besoins afin de vous proposer une solution précise et adaptée.";
   document.getElementById('contact-name').placeholder = "Nom";
@@ -457,7 +470,8 @@ frBtn.addEventListener('click', () => {
   document.getElementById('btn-send').textContent = "Envoyer";
   document.getElementById('btn-smartin').textContent = "SMART-IN";
   
-);
+});
+  
 enBtn.addEventListener('click', () => {
   enBtn.classList.add('active'); frBtn.classList.remove('active');
 
@@ -525,7 +539,6 @@ document.getElementById('presentationSmartIn').addEventListener('click', () => o
 
 });
   
-  document.getElementById('presentationSmartIn').addEventListener('click', () => openModal('videoModal'));
   document.getElementById('contact-text').textContent = "Contact us";
   document.getElementById('contact-text2').textContent = "We listen carefully to your needs to deliver a precise, tailored solution.";
   document.getElementById('contact-name').placeholder = "Name";
