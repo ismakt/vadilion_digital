@@ -681,9 +681,15 @@ function drawPreMap() {
 
   var svgNS = "http://www.w3.org/2000/svg";
   var svg = document.createElementNS(svgNS, 'svg');
-   svg.setAttribute('width', '100%');
-svg.setAttribute('height', '100%');
+  svg.setAttribute('width', width * 0.7);
+svg.setAttribute('height', height * 0.7);;
   container.appendChild(svg);
+
+
+
+
+
+
   
   // Normalisation
   var lons = bruxellesContour.map(c => c[1]);
@@ -776,6 +782,7 @@ svg.setAttribute('height', '100%');
 </script>
 </body>
 </html>
+
 
 
 
