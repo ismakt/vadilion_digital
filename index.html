@@ -48,6 +48,84 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 .brand { position: relative; display: flex; flex-direction: column; align-items: flex-start; }
 .brand h1 { color: var(--gold); font-size: 15px; letter-spacing: 1px; z-index: 1; }
 .brand .logo { position: absolute; top: 20px; left: 0; width: 160px; height: auto; border-radius: 0; z-index: 0; }
+
+
+
+
+
+
+
+
+
+
+
+
+.modal-smartin-content{
+  width:95%;
+  max-width:1200px;
+  height:90vh;
+  display:flex;
+  flex-direction:column;
+}
+
+.smartin-layout{
+  display:flex;
+  gap:20px;
+  flex:1;
+  overflow:hidden;
+}
+
+.smartin-left, .smartin-right{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  overflow-y:auto;
+}
+
+.map-mock{
+  height:180px;
+  border:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--muted);
+}
+
+.summary-box{
+  border:1px solid var(--border);
+  padding:12px;
+  margin-top:10px;
+  flex:1;
+  overflow-y:auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
 </style>
 </head>
 <body>
@@ -158,10 +236,143 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
     </div>
   </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="modal modal-smartin" id="smartInModal">
+  <div class="modal-content modal-smartin-content">
+
+    <span class="close" onclick="closeModal('smartInModal')">✕</span>
+
+    <h3 style="color:var(--gold); margin-bottom:12px;">Smart-In – Project Overview</h3>
+
+    <div class="smartin-layout">
+
+      <!-- LEFT -->
+      <div class="smartin-left">
+
+        <label>Contact info</label>
+        <input id="contactInfoSmartIn" placeholder="Email or phone">
+
+        <label>Select city</label>
+        <select id="citySelect">
+          <option value="">Select a city</option>
+          <option value="Brussels">Brussels</option>
+        </select>
+
+        <div id="mapPreview">
+          <!-- Placeholder carte -->
+          <div class="map-mock">RBC Map Preview</div>
+        </div>
+
+        <label>Enter address (max 3, separated by commas)</label>
+        <input id="addressInput" placeholder="Street 1, Street 2, Street 3">
+
+        <label>Select themes</label>
+        <div class="themes">
+          <label><input type="checkbox" id="selectAllThemes"> Select all</label>
+          <label><input type="checkbox" class="theme"> Market</label>
+          <label><input type="checkbox" class="theme"> Socioeconomics</label>
+          <label><input type="checkbox" class="theme"> Real Estate</label>
+          <label><input type="checkbox" class="theme"> Security</label>
+          <label><input type="checkbox" class="theme"> Pollution</label>
+        </div>
+
+      </div>
+
+      <!-- RIGHT -->
+      <div class="smartin-right">
+
+        <label>About your project</label>
+        <textarea id="projectDetails" rows="30"
+          placeholder="Describe your project, goals, constraints..."></textarea>
+
+        <div class="summary-box">
+          <h4>Summary</h4>
+          <div id="summaryContent">No data yet</div>
+        </div>
+
+        <button class="btn-send" onclick="sendSmartIn()">Send</button>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
   
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.dots.min.js"></script>
 <script>
+
+
+
+const citySelect = document.getElementById('citySelect');
+const addressInput = document.getElementById('addressInput');
+const projectDetails = document.getElementById('projectDetails');
+const contactInfoSmartIn = document.getElementById('contactInfoSmartIn');
+const summaryContent = document.getElementById('summaryContent');
+
+
+
+
+
+  
 let currentPanel = null;
 function togglePanel(id){
   document.querySelectorAll('.panel').forEach(p => p.style.display='none');
@@ -173,8 +384,30 @@ function togglePanel(id){
 
 document.getElementById('discoverSmartIn').textContent = "Discover Smart-In";
 document.getElementById('discoverSmartIn').addEventListener('click', () => {
-    window.location.href = 'https://vadiliondigital.be';
+  openModal('smartInModal');
 });
+
+  document.getElementById('selectAllThemes').addEventListener('change', e => {
+  document.querySelectorAll('.theme').forEach(cb => cb.checked = e.target.checked);
+  updateSummary();
+});
+
+  function updateSummary(){
+  const city = citySelect.value;
+  const addresses = addressInput.value;
+  const themes = [...document.querySelectorAll('.theme:checked')]
+    .map(t => t.parentElement.textContent.trim());
+
+  summaryContent.innerHTML = `
+    <b>City:</b> ${city || '-'}<br>
+    <b>Addresses:</b> ${addresses || '-'}<br>
+    <b>Themes:</b> ${themes.join(', ') || '-'}
+  `;
+}
+
+['citySelect','addressInput','projectDetails','contactInfoSmartIn']
+.forEach(id => document.getElementById(id).addEventListener('input', updateSummary));
+
 
 
   
@@ -212,9 +445,7 @@ frBtn.addEventListener('click', () => {
 
 
   
-document.getElementById('discoverSmartIn').textContent = "Discover Smart-In";
-document.getElementById('discoverSmartIn').addEventListener('click', () => {
-    window.location.href = 'https://vadiliondigital.be';
+
 });
   document.getElementById('presentationSmartIn').addEventListener('click', () => openModal('videoModal'));
   document.getElementById('contact-text').textContent = "Contactez-nous";
@@ -283,23 +514,15 @@ locationBtnEn.addEventListener('mouseenter', () => {
   
 
 
-  document.getElementById('discoverSmartIn').addEventListener('click', () => {
-    window.location.href = 'https://vadiliondigital.be';
-});
 
   
 document.getElementById('presentationSmartIn').addEventListener('click', () => openModal('videoModal'));
 
-document.getElementById('discoverSmartIn').addEventListener('click', () => {
-    window.location.href = 'https://vadiliondigital.be';
-});
+
 
   
 
 
-document.getElementById('discoverSmartIn').textContent = "Discover Smart-In";
-document.getElementById('discoverSmartIn').addEventListener('click', () => {
-    window.location.href = 'https://vadiliondigital.be';
 });
   
   document.getElementById('presentationSmartIn').addEventListener('click', () => openModal('videoModal'));
@@ -338,9 +561,21 @@ function openModal(id){ document.getElementById(id).style.display='flex'; docume
 function closeModal(id){ document.getElementById(id).style.display='none'; document.body.style.overflow='auto'; document.querySelector('main').classList.remove('blur-background'); if(id==='videoModal'){ const iframe=document.getElementById('smartInVideo'); iframe.src=iframe.src; } }
 
 
+
+
+
+
+function sendSmartIn(){
+  alert("Smart-In request sent (mock)");
+}
+
+
+
+  
 </script>
 </body>
 </html>
+
 
 
 
