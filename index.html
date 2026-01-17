@@ -289,16 +289,13 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
         <label>Contact info</label>
         <input id="contactInfoSmartIn" placeholder="Email or phone">
 
-        <label>Select city</label>
-        <select id="citySelect">
-          <option value="">Select a city</option>
-          <option value="Brussels">Brussels</option>
-        </select>
-
-<div id="mapPreview" class="mapPreview"></div>
 
         <label>Enter address (max 3, separated by commas)</label>
         <input id="addressInput" placeholder="Street 1, Street 2, Street 3">
+
+         <label>About your project</label>
+        <textarea id="projectDetails" rows="10"
+          placeholder="Describe your project, goals, constraints..."></textarea>
 
         <label>Select themes</label>
         <div class="themes">
@@ -315,9 +312,19 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
       <!-- RIGHT -->
       <div class="smartin-right">
 
-        <label>About your project</label>
-        <textarea id="projectDetails" rows="10"
-          placeholder="Describe your project, goals, constraints..."></textarea>
+
+
+      <label>Select city</label>
+        <select id="citySelect">
+          <option value="">Select a city</option>
+          <option value="Brussels">Brussels</option>
+        </select>
+
+<div id="mapPreview" class="mapPreview"></div>
+
+        
+
+       
 
         <div class="summary-box">
           <h4>Summary</h4>
@@ -782,6 +789,7 @@ svg.setAttribute('height', height * 0.7);;
 </script>
 </body>
 </html>
+
 
 
 
