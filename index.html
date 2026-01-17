@@ -119,6 +119,14 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 
 
 
+.mapPreview {
+  height: 250px;       /* Hauteur fixe pour que la carte soit visible */
+  border: 1px solid var(--border);
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 
 
@@ -287,7 +295,7 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
           <option value="Brussels">Brussels</option>
         </select>
 
-        <div id="mapPreview"></div>
+<div id="mapPreview" class="mapPreview"></div>
 
         <label>Enter address (max 3, separated by commas)</label>
         <input id="addressInput" placeholder="Street 1, Street 2, Street 3">
@@ -581,19 +589,25 @@ function sendSmartIn(){
 }
 
 
+
+
 function drawPreMap() {
-  var container = document.getElementById('mapPreview'); // <-- ici
-  container.innerHTML = ''; // vide le conteneur
+  var container = document.getElementById('mapPreview');
+  container.innerHTML = ''; // supprime le placeholder
 
   var width = container.offsetWidth;
   var height = container.offsetHeight;
-  var svgNS = "http://www.w3.org/2000/svg";
 
+  if (width === 0 || height === 0) {
+    height = 250; // fallback au cas où le conteneur n’a pas encore rendu
+  }
+
+  var svgNS = "http://www.w3.org/2000/svg";
   var svg = document.createElementNS(svgNS, 'svg');
   svg.setAttribute('width', width);
   svg.setAttribute('height', height);
   container.appendChild(svg);
-
+  
   // Normalisation
   var lons = bruxellesContour.map(c => c[1]);
   var lats = bruxellesContour.map(c => c[0]);
@@ -676,10 +690,16 @@ function drawPreMap() {
   }
 });
 
-  
+  citySelect.addEventListener('change', () => {
+  if(document.getElementById('smartInModal').style.display === 'flex') {
+    drawPreMap();
+  }
+});
+
 </script>
 </body>
 </html>
+
 
 
 
