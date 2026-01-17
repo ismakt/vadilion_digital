@@ -96,6 +96,8 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
   flex-direction:column;
   gap:10px;
   overflow-y:auto;
+  padding: 10px; /* <-- ajoute de l'espace pour ne pas coller aux bords */
+
 }
 
 .map-mock{
@@ -269,7 +271,7 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 
     <span class="close" onclick="closeModal('smartInModal')">✕</span>
 
-    <h3 style="color:var(--gold); margin-bottom:12px;">Smart-In – Project Overview</h3>
+    <h3 style="color:var(--gold); margin-bottom:12px;">Smart-In Contact</h3>
 
     <div class="smartin-layout">
 
@@ -285,10 +287,7 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
           <option value="Brussels">Brussels</option>
         </select>
 
-        <div id="mapPreview">
-          <!-- Placeholder carte -->
-          <div class="map-mock">RBC Map Preview</div>
-        </div>
+        <div id="mapPreview"></div>
 
         <label>Enter address (max 3, separated by commas)</label>
         <input id="addressInput" placeholder="Street 1, Street 2, Street 3">
@@ -309,7 +308,7 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
       <div class="smartin-right">
 
         <label>About your project</label>
-        <textarea id="projectDetails" rows="30"
+        <textarea id="projectDetails" rows="10"
           placeholder="Describe your project, goals, constraints..."></textarea>
 
         <div class="summary-box">
@@ -582,11 +581,106 @@ function sendSmartIn(){
 }
 
 
+function drawPreMap() {
+  var container = document.getElementById('mapPreview'); // <-- ici
+  container.innerHTML = ''; // vide le conteneur
+
+  var width = container.offsetWidth;
+  var height = container.offsetHeight;
+  var svgNS = "http://www.w3.org/2000/svg";
+
+  var svg = document.createElementNS(svgNS, 'svg');
+  svg.setAttribute('width', width);
+  svg.setAttribute('height', height);
+  container.appendChild(svg);
+
+  // Normalisation
+  var lons = bruxellesContour.map(c => c[1]);
+  var lats = bruxellesContour.map(c => c[0]);
+
+  var lonMin = Math.min(...lons);
+  var lonMax = Math.max(...lons);
+  var latMin = Math.min(...lats);
+  var latMax = Math.max(...lats);
+
+  function scaleX(lon) {
+    return ((lon - lonMin) / (lonMax - lonMin)) * width;
+  }
+
+  function scaleY(lat) {
+    return height - ((lat - latMin) / (latMax - latMin)) * height;
+  }
+
+  // --- Relief progressif ---
+  var layers = 3;
+  var offsetStep = 1.2;
+  var contourColor = '#969695';
+
+  for (let i = layers; i > 0; i--) {
+    var layer = document.createElementNS(svgNS, 'polygon');
+    layer.setAttribute('fill', 'none');
+    layer.setAttribute('stroke', contourColor);
+    layer.setAttribute('stroke-width', 0.9);
+    layer.setAttribute('stroke-linejoin', 'round');
+    layer.setAttribute('stroke-opacity', 0.15 * i);
+    layer.setAttribute(
+      'points',
+      bruxellesContour.map(c =>
+        (scaleX(c[1]) + i * offsetStep) + ',' +
+        (scaleY(c[0]) + i * offsetStep)
+      ).join(' ')
+    );
+    layer.setAttribute('vector-effect', 'non-scaling-stroke');
+    svg.appendChild(layer);
+  }
+
+  // --- Contour principal ---
+  var polygon = document.createElementNS(svgNS, 'polygon');
+  polygon.setAttribute('fill', 'none');
+  polygon.setAttribute('stroke', contourColor);
+  polygon.setAttribute('stroke-width', '0.6');
+  polygon.setAttribute('stroke-linejoin', 'round');
+  polygon.setAttribute('vector-effect', 'non-scaling-stroke');
+  polygon.setAttribute(
+    'points',
+    bruxellesContour.map(c => scaleX(c[1]) + ',' + scaleY(c[0])).join(' ')
+  );
+  svg.appendChild(polygon);
+
+  // --- Points intérieurs ---
+  bruxellesInterior.forEach(function(c) {
+    var x = scaleX(c[1]);
+    var y = scaleY(c[0]);
+    var size = 9;
+    var contourColor = '#ccbb5a';
+
+    var diamond = document.createElementNS(svgNS, 'polygon');
+    diamond.setAttribute('points', `
+      ${x},${y-size}
+      ${x+size},${y}
+      ${x},${y+size}
+      ${x-size},${y}
+    `);
+    diamond.setAttribute('fill', 'none');
+    diamond.setAttribute('stroke', contourColor);
+    diamond.setAttribute('stroke-width', '1');
+    diamond.setAttribute('stroke-linejoin', 'round');
+    svg.appendChild(diamond);
+  });
+}
+
+  document.getElementById('citySelect').addEventListener('change', function() {
+  var city = this.value;
+  if(city === 'Brussels') {
+    drawPreMap();
+  }
+});
 
   
 </script>
 </body>
 </html>
+
 
 
 
