@@ -664,14 +664,13 @@ let vantaEffect = VANTA.DOTS({ el:"#vanta-bg", mouseControls:true, touchControls
   document.body.style.overflow = 'hidden';
   document.querySelector('main').classList.add('blur-background');
 
-  // --- Dessiner la carte uniquement si c'est le modal Smart-In ---
-  if(id === 'smartInModal'){
-    // Petit délai pour que le container ait ses dimensions
-    setTimeout(() => {
-      drawPreMap();
-    }, 50); // 50ms suffisent
-  }
+if(id === 'smartInModal' && citySelect.value === "Brussels"){
+  setTimeout(() => {
+    drawPreMap();
+  }, 50);
 }
+
+
 
   
   function closeModal(id){ document.getElementById(id).style.display='none'; document.body.style.overflow='auto'; document.querySelector('main').classList.remove('blur-background'); if(id==='videoModal'){ const iframe=document.getElementById('smartInVideo'); iframe.src=iframe.src; } }
@@ -780,6 +779,7 @@ function drawPreMap() {
 </script>
 </body>
 </html>
+
 
 
 
