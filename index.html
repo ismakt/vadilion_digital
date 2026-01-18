@@ -101,6 +101,14 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 }
 
 
+
+  .smartin-left {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;  /* espace entre chaque champ, y compris le textarea et les thèmes */
+}
+
+
   
 
 .map-mock{
@@ -132,6 +140,15 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
   padding: 7px;     /* <-- espace autour du SVG */
   box-sizing: content-box; /* padding ajouté autour du contenu */
 }
+
+
+  
+.projectDetails {
+  min-height: 180px;  /* hauteur minimum */
+  resize: vertical;   /* permet à l'utilisateur de redimensionner verticalement si besoin */
+}
+
+
 
 
 
@@ -975,6 +992,7 @@ function drawPreMap() {
 </script>
 </body>
 </html>
+
 
 
 
