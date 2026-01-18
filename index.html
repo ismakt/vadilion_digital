@@ -665,52 +665,43 @@ function sendSmartIn(){
 
 
 function drawPreMap() {
-  var container = document.getElementById('mapPreview');
+  const container = document.getElementById('mapPreview');
   container.innerHTML = ''; // supprime le placeholder
 
-  var width = container.offsetWidth;
-  var height = container.offsetHeight;
+  const width = container.offsetWidth;
+  const height = container.offsetHeight;
 
-  if (width === 0 || height === 0) {
-    height = 150; // fallback au cas où le conteneur n’a pas encore rendu
-  }
+  const padding = 15; // espace autour de la carte
 
-  var svgNS = "http://www.w3.org/2000/svg";
-  var svg = document.createElementNS(svgNS, 'svg');
-svg.setAttribute('width', '95%');
-svg.setAttribute('height', '95%');
+  const svgNS = "http://www.w3.org/2000/svg";
+  const svg = document.createElementNS(svgNS, 'svg');
+  svg.setAttribute('width', '100%');
+  svg.setAttribute('height', '100%');
   container.appendChild(svg);
 
-
-
-
-
-
-  
   // Normalisation
-  var lons = bruxellesContour.map(c => c[1]);
-  var lats = bruxellesContour.map(c => c[0]);
-
-  var lonMin = Math.min(...lons);
-  var lonMax = Math.max(...lons);
-  var latMin = Math.min(...lats);
-  var latMax = Math.max(...lats);
+  const lons = bruxellesContour.map(c => c[1]);
+  const lats = bruxellesContour.map(c => c[0]);
+  const lonMin = Math.min(...lons);
+  const lonMax = Math.max(...lons);
+  const latMin = Math.min(...lats);
+  const latMax = Math.max(...lats);
 
   function scaleX(lon) {
-    return ((lon - lonMin) / (lonMax - lonMin)) * width;
+    return padding + ((lon - lonMin) / (lonMax - lonMin)) * (width - 2 * padding);
   }
-
   function scaleY(lat) {
-    return height - ((lat - latMin) / (latMax - latMin)) * height;
+    // inversion Y pour que le nord soit en haut
+    return padding + (height - 2 * padding) - ((lat - latMin) / (latMax - latMin)) * (height - 2 * padding);
   }
 
   // --- Relief progressif ---
-  var layers = 3;
-  var offsetStep = 1.2;
-  var contourColor = '#969695';
+  const layers = 3;
+  const offsetStep = 1.2;
+  const contourColor = '#969695';
 
   for (let i = layers; i > 0; i--) {
-    var layer = document.createElementNS(svgNS, 'polygon');
+    const layer = document.createElementNS(svgNS, 'polygon');
     layer.setAttribute('fill', 'none');
     layer.setAttribute('stroke', contourColor);
     layer.setAttribute('stroke-width', 0.9);
@@ -719,8 +710,7 @@ svg.setAttribute('height', '95%');
     layer.setAttribute(
       'points',
       bruxellesContour.map(c =>
-        (scaleX(c[1]) + i * offsetStep) + ',' +
-        (scaleY(c[0]) + i * offsetStep)
+        (scaleX(c[1]) + i * offsetStep) + ',' + (scaleY(c[0]) + i * offsetStep)
       ).join(' ')
     );
     layer.setAttribute('vector-effect', 'non-scaling-stroke');
@@ -728,7 +718,7 @@ svg.setAttribute('height', '95%');
   }
 
   // --- Contour principal ---
-  var polygon = document.createElementNS(svgNS, 'polygon');
+  const polygon = document.createElementNS(svgNS, 'polygon');
   polygon.setAttribute('fill', 'none');
   polygon.setAttribute('stroke', contourColor);
   polygon.setAttribute('stroke-width', '0.6');
@@ -741,13 +731,11 @@ svg.setAttribute('height', '95%');
   svg.appendChild(polygon);
 
   // --- Points intérieurs ---
-  bruxellesInterior.forEach(function(c) {
-    var x = scaleX(c[1]);
-    var y = scaleY(c[0]);
-    var size = 3;
-    var contourColor = '#ccbb5a';
-
-    var diamond = document.createElementNS(svgNS, 'polygon');
+  bruxellesInterior.forEach(c => {
+    const x = scaleX(c[1]);
+    const y = scaleY(c[0]);
+    const size = 3;
+    const diamond = document.createElementNS(svgNS, 'polygon');
     diamond.setAttribute('points', `
       ${x},${y-size}
       ${x+size},${y}
@@ -755,29 +743,17 @@ svg.setAttribute('height', '95%');
       ${x-size},${y}
     `);
     diamond.setAttribute('fill', 'none');
-    diamond.setAttribute('stroke', contourColor);
+    diamond.setAttribute('stroke', '#ccbb5a');
     diamond.setAttribute('stroke-width', '1');
     diamond.setAttribute('stroke-linejoin', 'round');
     svg.appendChild(diamond);
   });
 }
 
-  document.getElementById('citySelect').addEventListener('change', function() {
-  var city = this.value;
-  if(city === 'Brussels') {
-    drawPreMap();
-  }
-});
-
-  citySelect.addEventListener('change', () => {
-  if(document.getElementById('smartInModal').style.display === 'flex') {
-    drawPreMap();
-  }
-});
-
 </script>
 </body>
 </html>
+
 
 
 
