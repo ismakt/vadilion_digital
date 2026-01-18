@@ -472,6 +472,17 @@ function togglePanel(id){
   document.getElementById(id).style.display = 'block';
   currentPanel = id;
 }
+
+
+
+
+
+
+
+
+
+
+
   
 
 document.getElementById('discoverSmartIn').textContent = "Discover Smart-In";
@@ -646,8 +657,24 @@ locationBtn.addEventListener('mouseenter', () => {
 
   
 let vantaEffect = VANTA.DOTS({ el:"#vanta-bg", mouseControls:true, touchControls:true, gyroControls:false, minHeight:200, minWidth:200, scale:1.0, scaleMobile:1.0, color:0xcffb7, color2:0x5520ff, backgroundColor:0x0, size:3.2, spacing:24, showLines:false });
-function openModal(id){ document.getElementById(id).style.display='flex'; document.body.style.overflow='hidden'; document.querySelector('main').classList.add('blur-background'); }
-function closeModal(id){ document.getElementById(id).style.display='none'; document.body.style.overflow='auto'; document.querySelector('main').classList.remove('blur-background'); if(id==='videoModal'){ const iframe=document.getElementById('smartInVideo'); iframe.src=iframe.src; } }
+
+  function openModal(id){
+  const modal = document.getElementById(id);
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+  document.querySelector('main').classList.add('blur-background');
+
+  // --- Dessiner la carte uniquement si c'est le modal Smart-In ---
+  if(id === 'smartInModal'){
+    // Petit délai pour que le container ait ses dimensions
+    setTimeout(() => {
+      drawPreMap();
+    }, 50); // 50ms suffisent
+  }
+}
+
+  
+  function closeModal(id){ document.getElementById(id).style.display='none'; document.body.style.overflow='auto'; document.querySelector('main').classList.remove('blur-background'); if(id==='videoModal'){ const iframe=document.getElementById('smartInVideo'); iframe.src=iframe.src; } }
 
 
 
@@ -753,6 +780,7 @@ function drawPreMap() {
 </script>
 </body>
 </html>
+
 
 
 
