@@ -663,13 +663,24 @@ function openModal(id){
   modal.style.display = 'flex';
   document.body.style.overflow = 'hidden';
   document.querySelector('main').classList.add('blur-background');
-
-  if(id ===  citySelect.value === "Brussels"){
-    setTimeout(() => {
-      drawPreMap();
-    }, 50);
+  
+  // supprime l’ancienne carte à chaque ouverture
+  if(id === 'smartInModal'){
+    const container = document.getElementById('mapPreview');
+    container.innerHTML = '';
   }
 }
+
+  citySelect.addEventListener('change', () => {
+  const container = document.getElementById('mapPreview');
+  container.innerHTML = ''; // supprime l’ancienne carte ou placeholder
+
+  // si la ville sélectionnée est Brussels ET que le modal est ouvert
+  if(citySelect.value === "Brussels" && document.getElementById('smartInModal').style.display === 'flex'){
+    requestAnimationFrame(drawPreMap); // dessine la carte
+  }
+});
+
 
 // Fonction closeModal à l’extérieur
 function closeModal(id){
@@ -791,6 +802,7 @@ function drawPreMap() {
 </script>
 </body>
 </html>
+
 
 
 
