@@ -573,10 +573,13 @@ document.getElementById('discoverSmartIn').addEventListener('click', () => {
   openModal('smartInModal');
 });
 
-  document.getElementById('selectAllThemes').addEventListener('change', e => {
+// Event listener pour "Select All"
+document.getElementById('selectAllThemes').addEventListener('change', e => {
   document.querySelectorAll('.theme').forEach(cb => cb.checked = e.target.checked);
-
+  updateSummary();   // <-- appelle la fonction après avoir mis à jour les checkboxes
+});
     
+// Fonction pour mettre à jour le summary
 function updateSummary(){
   const city = citySelect.value;
   const addresses = addressInput.value;
@@ -599,6 +602,7 @@ function updateSummary(){
     <b>Themes:</b> ${themes.join(', ') || '-'}
   `;
 }
+
 
 
   
@@ -890,6 +894,7 @@ function drawPreMap() {
 </script>
 </body>
 </html>
+
 
 
 
