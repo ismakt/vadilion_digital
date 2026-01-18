@@ -575,14 +575,23 @@ document.getElementById('discoverSmartIn').addEventListener('click', () => {
 
   document.getElementById('selectAllThemes').addEventListener('change', e => {
   document.querySelectorAll('.theme').forEach(cb => cb.checked = e.target.checked);
-  updateSummary();
-});
 
-  function updateSummary(){
+    
+function updateSummary(){
   const city = citySelect.value;
   const addresses = addressInput.value;
-  const themes = [...document.querySelectorAll('.theme:checked')]
-    .map(t => t.parentElement.textContent.trim());
+
+  const selectAll = document.getElementById('selectAllThemes').checked;
+
+  let themes = [];
+
+  if(selectAll){
+    themes = ['All themes'];
+  } else {
+    themes = [...document.querySelectorAll('.theme:checked')]
+      .filter(cb => cb.id !== 'selectAllThemes')   // ignore le Select All
+      .map(cb => cb.parentElement.textContent.trim());
+  }
 
   summaryContent.innerHTML = `
     <b>City:</b> ${city || '-'}<br>
@@ -590,10 +599,6 @@ document.getElementById('discoverSmartIn').addEventListener('click', () => {
     <b>Themes:</b> ${themes.join(', ') || '-'}
   `;
 }
-
-['citySelect','addressInput','projectDetails','contactInfoSmartIn']
-.forEach(id => document.getElementById(id).addEventListener('input', updateSummary));
-
 
 
   
@@ -885,6 +890,7 @@ function drawPreMap() {
 </script>
 </body>
 </html>
+
 
 
 
