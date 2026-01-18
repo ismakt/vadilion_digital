@@ -103,12 +103,6 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 
 
 
-  .smartin-left {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;  /* espace entre chaque champ, y compris le textarea et les thèmes */
-}
-
 
   
 
@@ -143,17 +137,28 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 }
 
 
-  
-.projectDetails {
-  min-height: 180px;  /* hauteur minimum */
-  resize: vertical;   /* permet à l'utilisateur de redimensionner verticalement si besoin */
-    flex: 1;             /* prend tout l'espace restant de la colonne */
 
+
+
+
+
+.smartin-left {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 10px;
+  flex: 1;
+  min-height: 300px;      /* hauteur minimum de la colonne */
+  overflow-y: auto;        /* scroll si trop de contenu */
 }
 
-
-
-
+#projectDetails {
+  flex: 1;                 /* prend tout l’espace restant de la colonne */
+  min-height: 180px;       /* hauteur minimum */
+  resize: vertical;        /* permet d’agrandir verticalement */
+  width: 100%;
+  box-sizing: border-box;
+}
 
 
 
@@ -303,7 +308,8 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
         <label>Enter address (max 3, separated by commas)</label>
         <input id="addressInput" placeholder="Street 1, Street 2, Street 3">
         
-<label>About your project</label> <textarea class="projectDetails" rows="10" placeholder="Describe your project, goals, constraints..."></textarea>
+<label>About your project</label>
+<textarea id="projectDetails" rows="10" placeholder="Describe your project, goals, constraints..."></textarea>
 
         <label>Select themes</label>
         <div class="themes">
@@ -904,6 +910,7 @@ function drawPreMap() {
 </script>
 </body>
 </html>
+
 
 
 
