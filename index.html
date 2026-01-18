@@ -121,16 +121,18 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 }
 
 
-
 .mapPreview {
-  flex:1;          /* prend tout l’espace restant dans left */
-  min-height: 230px;  border: 1px solid var(--border);
-  width: 230px;   /* largeur fixe */
-  margin-top: 12px;
+  width: 500px;      /* largeur du SVG (carte) */
+  height: 250px;     /* hauteur du SVG */
+  border: 1px solid var(--border);
+  margin: 12px auto; /* centre le conteneur */
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 20px;     /* <-- espace autour du SVG */
+  box-sizing: content-box; /* padding ajouté autour du contenu */
 }
+
 
 
 
@@ -777,6 +779,7 @@ svg.setAttribute('height', '100%');
 </script>
 </body>
 </html>
+
 
 
 
