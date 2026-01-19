@@ -355,72 +355,84 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 <label>About your project</label>
 <textarea id="projectDetails" rows="10" placeholder="Describe your project, goals, constraints..."></textarea>
 
-        <label>Select themes</label>
-        <div class="themes">
-          
-<label><input type="checkbox" class="theme" id="selectAllThemes"> Select all</label>
+      <label>Select themes</label>
+<div class="themes">
 
+  <label>
+    <input type="checkbox" class="theme" id="selectAllThemes">
+    Select all
+  </label>
 
-           <div class="theme-group">
+  <!-- Real Estate -->
+  <div class="theme-group">
     <div class="theme-subtitle">Real Estate</div>
-<label><input type="checkbox" class="theme" value="Real Estate Sales">Real Estate Sales</label>
-<label><input type="checkbox" class="theme" value="Vols"> Vols</label>
 
-<!-- Coups et drogues -->
-<label><input type="checkbox" class="theme" value="coups_blessures"> Coups / Blessures</label>
-<label><input type="checkbox" class="theme" value="drogues"> Drogues</label>
-<label><input type="checkbox" class="theme" value="alcool"> Alcool</label>
-<label><input type="checkbox" class="theme" value="armes"> Armes</label>
+    <label>
+      <input type="checkbox" class="theme" value="Real Estate Sales">
+      Real Estate Sales
+    </label>
 
-<!-- Sécurité publique -->
-<label><input type="checkbox" class="theme" value="secu_publiq_2024"> Atteinte Sécurité Publique</label>
+    <label>
+      <input type="checkbox" class="theme" value="Vols">
+      Vols
+    </label>
+  </div> <!-- ✅ FERMETURE MANQUANTE -->
 
-<!-- Dégradations et cambriolages -->
-<label><input type="checkbox" class="theme" value="degradat_prop"> Dégradations de propriété</label>
-<label><input type="checkbox" class="theme" value="Cambriolages"> Cambriolages</label>
+  <!-- Coups et drogues -->
+  <label><input type="checkbox" class="theme" value="coups_blessures"> Coups / Blessures</label>
+  <label><input type="checkbox" class="theme" value="drogues"> Drogues</label>
+  <label><input type="checkbox" class="theme" value="alcool"> Alcool</label>
+  <label><input type="checkbox" class="theme" value="armes"> Armes</label>
 
-<!-- Population -->
-<label><input type="checkbox" class="theme" value="Densité de Population"> Densité de Population</label>
-<label><input type="checkbox" class="theme" value="% Population agée de 18 à 64 ans">% Population âgée de 18 à 64 ans</label>
-<label><input type="checkbox" class="theme" value="Solde migratoire"> Solde migratoire</label>
-<label><input type="checkbox" class="theme" value="Population Croissance Annuelle"> Croissance annuelle population</label>
+  <!-- Sécurité publique -->
+  <label><input type="checkbox" class="theme" value="secu_publiq_2024"> Atteinte Sécurité Publique</label>
 
-<!-- Immigration -->
-<label><input type="checkbox" class="theme" value="% Population immigrée">% Population immigrée</label>
+  <!-- Dégradations et cambriolages -->
+  <label><input type="checkbox" class="theme" value="degradat_prop"> Dégradations de propriété</label>
+  <label><input type="checkbox" class="theme" value="Cambriolages"> Cambriolages</label>
 
-<!-- Revenus et emploi -->
-<label><input type="checkbox" class="theme" value="Taux natalité"> Taux natalité</label>
-<label><input type="checkbox" class="theme" value="Revenu Médian"> Revenu médian</label>
-<label><input type="checkbox" class="theme" value="Taux emploi"> Taux emploi</label>
-<label><input type="checkbox" class="theme" value="Taux par type d'occupation"> Taux par type d'occupation</label>
-<label><input type="checkbox" class="theme" value="Taux chomage"> Taux chômage</label>
-<label><input type="checkbox" class="theme" value="Taux GRAPA 65+"> Taux GRAPA 65+</label>
-<label><input type="checkbox" class="theme" value="Taux naissances sans revenu de travail"> Naissances sans revenu de travail</label>
-<label><input type="checkbox" class="theme" value="Taux naissances meres etrangeres"> Naissances mères étrangères</label>
-<label><input type="checkbox" class="theme" value="Taux retard scolaire"> Taux retard scolaire</label>
+  <!-- Population -->
+  <label><input type="checkbox" class="theme" value="Densité de Population"> Densité de Population</label>
+  <label><input type="checkbox" class="theme" value="% Population agée de 18 à 64 ans">% Population âgée de 18 à 64 ans</label>
+  <label><input type="checkbox" class="theme" value="Solde migratoire"> Solde migratoire</label>
+  <label><input type="checkbox" class="theme" value="Population Croissance Annuelle"> Croissance annuelle population</label>
 
-<!-- Logements et immobilier -->
-<label><input type="checkbox" class="theme" value="Sieges sociaux & Etablissements"> Sièges sociaux & Établissements</label>
-<label><input type="checkbox" class="theme" value="Solde migration entreprises"> Solde migration entreprises</label>
-<label><input type="checkbox" class="theme" value="Espace verts"> Espaces verts</label>
-<label><input type="checkbox" class="theme" value="Parc Immobilier"> Parc immobilier (social, résidentiel)</label>
-<label><input type="checkbox" class="theme" value="Loyer moyen"> Loyer moyen</label>
-<label><input type="checkbox" class="theme" value="Nb Appartements"> Nombre d'appartements vendus</label>
-<label><input type="checkbox" class="theme" value="Nombre de maisons vendus"> Nombre de maisons vendues</label>
-<label><input type="checkbox" class="theme" value="Prix median appartements"> Prix médian appartements</label>
-<label><input type="checkbox" class="theme" value="Prix median maisons"> Prix médian maisons</label>
-<label><input type="checkbox" class="theme" value="Secteurs economiques majeures"> Secteurs économiques majeurs</label>
-<label><input type="checkbox" class="theme" value="Gentrification"> Gentrification</label>
+  <!-- Immigration -->
+  <label><input type="checkbox" class="theme" value="% Population immigrée">% Population immigrée</label>
 
-<!-- Nationalités -->
-<label><input type="checkbox" class="theme" value="Cultural Composition"> Cultural Composition</label>
+  <!-- Revenus et emploi -->
+  <label><input type="checkbox" class="theme" value="Taux natalité"> Taux natalité</label>
+  <label><input type="checkbox" class="theme" value="Revenu Médian"> Revenu médian</label>
+  <label><input type="checkbox" class="theme" value="Taux emploi"> Taux emploi</label>
+  <label><input type="checkbox" class="theme" value="Taux par type d'occupation"> Taux par type d'occupation</label>
+  <label><input type="checkbox" class="theme" value="Taux chomage"> Taux chômage</label>
+  <label><input type="checkbox" class="theme" value="Taux GRAPA 65+"> Taux GRAPA 65+</label>
+  <label><input type="checkbox" class="theme" value="Taux naissances sans revenu de travail"> Naissances sans revenu de travail</label>
+  <label><input type="checkbox" class="theme" value="Taux naissances meres etrangeres"> Naissances mères étrangères</label>
+  <label><input type="checkbox" class="theme" value="Taux retard scolaire"> Taux retard scolaire</label>
 
-<!-- Projets et pollutions -->
-<label><input type="checkbox" class="theme" value="Urban & Real Estate projects">Urban & Real Estate projects</label>
-<label><input type="checkbox" class="theme" value="M2 price///"> M2 price</label>
-<label><input type="checkbox" class="theme" value="Pollution (air, noise)"> Pollution (air, noise)</label>
+  <!-- Logements et immobilier -->
+  <label><input type="checkbox" class="theme" value="Sieges sociaux & Etablissements"> Sièges sociaux & Établissements</label>
+  <label><input type="checkbox" class="theme" value="Solde migration entreprises"> Solde migration entreprises</label>
+  <label><input type="checkbox" class="theme" value="Espace verts"> Espaces verts</label>
+  <label><input type="checkbox" class="theme" value="Parc Immobilier"> Parc immobilier</label>
+  <label><input type="checkbox" class="theme" value="Loyer moyen"> Loyer moyen</label>
+  <label><input type="checkbox" class="theme" value="Nb Appartements"> Nombre d'appartements vendus</label>
+  <label><input type="checkbox" class="theme" value="Nombre de maisons vendus"> Nombre de maisons vendues</label>
+  <label><input type="checkbox" class="theme" value="Prix median appartements"> Prix médian appartements</label>
+  <label><input type="checkbox" class="theme" value="Prix median maisons"> Prix médian maisons</label>
+  <label><input type="checkbox" class="theme" value="Secteurs economiques majeures"> Secteurs économiques majeurs</label>
+  <label><input type="checkbox" class="theme" value="Gentrification"> Gentrification</label>
 
+  <!-- Nationalités -->
+  <label><input type="checkbox" class="theme" value="Cultural Composition"> Cultural Composition</label>
 
+  <!-- Projets et pollutions -->
+  <label><input type="checkbox" class="theme" value="Urban & Real Estate projects"> Urban & Real Estate projects</label>
+  <label><input type="checkbox" class="theme" value="M2 price"> M2 price</label>
+  <label><input type="checkbox" class="theme" value="Pollution (air, noise)"> Pollution (air, noise)</label>
+
+</div>
 
           
         </div>
@@ -930,6 +942,7 @@ function drawPreMap() {
 </script>
 </body>
 </html>
+
 
 
 
