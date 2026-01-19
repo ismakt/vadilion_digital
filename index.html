@@ -816,9 +816,16 @@ const summaryContent = document.getElementById('summaryContent');
 
 
 document.getElementById('discoverSmartIn').textContent = "Discover Smart-In";
-document.getElementById('discoverSmartIn').addEventListener('click', () => {
-  openModal('smartInModal');
+
+const smartInBtn = document.getElementById('discoverSmartIn');
+const smartInPanel = document.getElementById('locationContent');
+
+// Hover → ouvre le panel Smart-In
+smartInBtn.addEventListener('mouseenter', () => {
+  smartInPanel.style.display = 'block';
 });
+;
+  
 
   document.getElementById('selectAllThemes').addEventListener('change', e => {
   document.querySelectorAll('.theme').forEach(cb => cb.checked = e.target.checked);
@@ -1178,6 +1185,7 @@ smartInBtn.addEventListener('mouseenter', () => {
 </script>
 </body>
 </html>
+
 
 
 
