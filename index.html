@@ -160,6 +160,15 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
   box-sizing: border-box;
 }
 
+.theme-subtitle {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #444;
+  margin-top: 10px;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
 
 
 
@@ -311,12 +320,17 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 <label>About your project</label>
 <textarea id="projectDetails" rows="10" placeholder="Describe your project, goals, constraints..."></textarea>
 
+
+
+        
         <label>Select themes</label>
         <div class="themes">
 
 <label><input type="checkbox" class="theme" id="selectAllThemes"> Select all</label>
 
 <!-- Données de vente -->
+          <!-- Sous-titre visuel -->
+<div class="theme-subtitle">Données de vente</div>
 <label><input type="checkbox" class="theme" value="Total sales 2013-2024"> Total Sales (2013-2024)</label>
 <label><input type="checkbox" class="theme" value="ZP"> ZP</label>
 <label><input type="checkbox" class="theme" value="Vols"> Vols</label>
@@ -886,6 +900,7 @@ function drawPreMap() {
 </script>
 </body>
 </html>
+
 
 
 
