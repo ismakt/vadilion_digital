@@ -179,12 +179,10 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 
 
 
-/* Tout le label reste flex vertical/espacé */
-.selectgoal {
+.selectgoals {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  cursor: pointer;
 }
 
 
@@ -345,38 +343,38 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 <textarea id="projectDetails" rows="10" placeholder="Describe your project, goals, constraints..."></textarea>
 
 
-
-
-
-
-
         
 <label>Select your main goal</label>
-<div class="selectgoal">
-<label><input type="checkbox" class="selectgoal" id="selectAllGoals">Select all</label>
 
-  
+<div class="selectgoals">
+
   <label>
-    <input type="checkbox" class="selectgoal" id="selectmaingoal1">
+    <input type="checkbox" id="selectAllGoals">
+    Select all
+  </label>
+
+  <label>
+    <input type="checkbox" class="goal" id="selectmaingoal">
     Analyse de la cohérence du projet dans son milieu socioéconomique
   </label>
 
   <label>
-    <input type="checkbox" class="selectgoal" id="selectmaingoal2">
+    <input type="checkbox" class="goal" id="selectmaingoa2">
     Étude des concurrents
   </label>
 
   <label>
-    <input type="checkbox" class="selectgoal" id="selectmaingoal3">
+    <input type="checkbox" class="goal" id="selectmaingoa3">
     Étude des clients potentiels
   </label>
 
   <label>
-    <input type="checkbox" class="selectgoal" id="selectmaingoal4">
+    <input type="checkbox" class="goal" id="selectmaingoa4">
     Connaitre les essentiels du marché immobilier
   </label>
 
 </div>
+
 
         
         <label>Select themes</label>
@@ -994,10 +992,30 @@ menuButtons.forEach(btn => {
 // document.addEventListener('mousemove', ...);
 
 
+  const selectAllGoals = document.getElementById('selectAllGoals');
+
+selectAllGoals.addEventListener('change', e => {
+  document.querySelectorAll('.goal').forEach(cb => {
+    cb.checked = e.target.checked;
+  });
+
+  updateSummary(); // si tu veux qu’ils apparaissent dans le summary
+});
+
+  document.querySelectorAll('.goal').forEach(cb => {
+  cb.addEventListener('change', () => {
+    const goals = document.querySelectorAll('.goal');
+    selectAllGoals.checked = [...goals].every(g => g.checked);
+    updateSummary();
+  });
+});
+
+
   
 </script>
 </body>
 </html>
+
 
 
 
