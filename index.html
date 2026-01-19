@@ -165,6 +165,50 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 
 
 
+
+
+
+
+  .themes {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.theme-group {
+  margin-top: 10px;
+}
+
+.theme-subtitle {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #444;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.themes label {
+  display: block;
+  margin-left: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
   
 </style>
 </head>
@@ -305,8 +349,8 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
         <input id="contactInfoSmartIn" placeholder="Email or phone">
 
 
-        <label>Enter address (max 3, separated by commas)</label>
-        <input id="addressInput" placeholder="Street 1, Street 2, Street 3">
+        <label>Address(es) (max 3, separated by commas)</label>
+        <input id="addressInput" placeholder="Addresses you want to analyze">
         
 <label>About your project</label>
 <textarea id="projectDetails" rows="10" placeholder="Describe your project, goals, constraints..."></textarea>
@@ -316,9 +360,10 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
           
 <label><input type="checkbox" class="theme" id="selectAllThemes"> Select all</label>
 
-<!-- Données de vente -->
-<label><input type="checkbox" class="theme" value="Total sales 2013-2024"> Total Sales (2013-2024)</label>
-<label><input type="checkbox" class="theme" value="ZP"> ZP</label>
+
+           <div class="theme-group">
+    <div class="theme-subtitle">Real Estate</div>
+<label><input type="checkbox" class="theme" value="Real Estate Sales">Real Estate Sales</label>
 <label><input type="checkbox" class="theme" value="Vols"> Vols</label>
 
 <!-- Coups et drogues -->
@@ -885,6 +930,7 @@ function drawPreMap() {
 </script>
 </body>
 </html>
+
 
 
 
