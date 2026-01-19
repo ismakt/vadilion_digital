@@ -237,6 +237,174 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 
 
 
+  .lang { display: inline-flex; align-items: center; justify-content: center; height: 28px; border: 1px solid var(--border); padding: 4px 12px; border-radius: 4px; font-size: 14px; line-height: 1; background-color: #000; }
+.lang span{ cursor:pointer; margin: 0 4px; }
+.lang .active{ color: var(--gold); }
+/* MAIN */
+main{ flex:1; display:flex; flex-direction:column; align-items:center; position:relative; padding:20px; overflow:hidden; }
+/* VANTA BG */
+#vanta-bg{ position:absolute; top:0; left:0; width:100%; height:100%; z-index:0; }
+.menu, .panel, .modal { position: relative; z-index: 10; }
+/* MENU */
+.menu{ display:flex; gap:40px; position:absolute; top:23%; left:50%; transform:translateX(-50%); z-index:10; }
+.menu button{ background:none; border:none; color:var(--text); font-size:18px; cursor:pointer; font-weight: 600; }
+.menu button:hover{color:var(--gold);}
+/* PANELS */
+.panel{ display:none; position:absolute; top:calc(20% + 50px); left:50%; transform:translateX(-50%); background:var(--panel); border:1px solid var(--border); padding:20px; max-width:600px; width:100%; z-index:15;  color: #ffffff;  }
+.panel h3{ color:var(--gold); margin-bottom:10px; cursor:pointer; }
+.panel p{ font-size:14px; line-height:1.6;  }
+.sub{display:none;margin-top:10px;}
+/* FOOTER */
+.footer-line{ height:1px; background:var(--border); }
+.footer-content{ display:flex; justify-content:space-around; padding:10px; font-size:13px; }
+.footer-content span{cursor:pointer;}
+/* MODAL */
+.modal{ display:none; position:fixed; inset:0; background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(1px); z-index:9999; justify-content:center; align-items:center; }
+.modal-content{ background:var(--panel-2); border:1px solid var(--border); padding:20px; max-width:600px; width:100%; position:relative; }
+.modal-content h4{ color:var(--gold); margin-bottom:10px; }
+.modal-content p{ font-size:13px; color:var(--muted); margin-bottom:12px; }
+.modal-content input, .modal-content textarea{ width:100%; margin-bottom:10px; background:#000; border:1px solid var(--border); color:#fff; padding:8px; }
+.close{ position:absolute; top:8px; right:10px; cursor:pointer; }
+/* BUTTONS */
+.btn-linkedin, .btn-instagram, .btn-send, .btn-video, .btn-smartin
+  { display: inline-block; margin-top: 12px; padding: 8px 16px; background-color: #555; color: #fff; 
+   text-decoration: none; font-weight: 400; font-size: 12px; border-radius: 6px; transition: color 0.3s, background 0.3s; border: none; cursor: pointer; }
+.blur-background { filter: blur(1px); }
+.brand { position: relative; display: flex; flex-direction: column; align-items: flex-start; }
+.brand h1 { color: var(--gold); font-size: 15px; letter-spacing: 1px; z-index: 1; }
+.brand .logo { position: absolute; top: 10px; left: 0; width: 60px; height: auto; border-radius: 0; z-index: 0; }
+
+
+  
+
+.modal-smartin-content{
+  width:95%;
+  max-width:1200px;
+  height:90vh;
+  display:flex;
+  flex-direction:column;
+}
+
+.smartin-layout{
+  display:flex;
+  gap:20px;
+  flex:1;
+  overflow:hidden;
+}
+
+.smartin-left, .smartin-right{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  overflow-y:auto;
+  padding: 10px; /* <-- ajoute de l'espace pour ne pas coller aux bords */
+
+
+}
+
+
+.map-mock{
+  height:180px;
+  border:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--muted);
+}
+
+.summary-box{
+  border:1px solid var(--border);
+  padding:12px;
+  margin-top:10px;
+  flex:1;
+  overflow-y:auto;
+}
+
+
+.mapPreview {
+  width: 220px;      /* largeur du SVG (carte) */
+  height: 220px;     /* hauteur du SVG */
+  border: none ;
+  margin: 12px auto; /* centre le conteneur */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px;     /* <-- espace autour du SVG */
+  box-sizing: content-box; /* padding ajouté autour du contenu */
+}
+
+
+.smartin-left {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 10px;
+  flex: 1;
+  min-height: 300px;      /* hauteur minimum de la colonne */
+  overflow-y: auto;        /* scroll si trop de contenu */
+}
+
+#projectDetails {
+  flex: 1;                 /* prend tout l’espace restant de la colonne */
+  min-height: 100px;       /* hauteur minimum */
+  resize: vertical;        /* permet d’agrandir verticalement */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
+
+
+  
+
+/* Tout le label reste flex vertical/espacé */
+.themes {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  cursor: pointer;
+}
+
+
+
+.theme-subtitle {
+  font-weight: 400;
+  font-size: 0.95rem;
+  color: #ffffff;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+
+  
+/* Chaque label : alignement horizontal checkbox + texte */
+.themes label {
+  display: flex;
+  align-items: center;   /* centre checkbox et texte verticalement */
+  gap: 8px;              /* espace entre la checkbox et le texte */
+}
+
+/* Cibler uniquement les checkboxes */
+.themes input[type="checkbox"] {
+  width: 18px;      /* largeur de la checkbox */
+  height: 18px;     /* hauteur de la checkbox */
+  accent-color: var(--gold); /* couleur de la coche si navigateur le supporte */
+  flex-shrink: 0;   /* ne pas rétrécir */
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1013,6 +1181,7 @@ document.addEventListener('mousemove', e => {
 </script>
 </body>
 </html>
+
 
 
 
