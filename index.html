@@ -272,7 +272,7 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 .blur-background { filter: blur(1px); }
 .brand { position: relative; display: flex; flex-direction: column; align-items: flex-start; }
 .brand h1 { color: var(--gold); font-size: 15px; letter-spacing: 1px; z-index: 1; }
-.brand .logo { position: absolute; top: 10px; left: 0; width: 100px; height: auto; border-radius: 0; z-index: 0; }
+.brand .logo { position: absolute; top: 10px; left: 0; width: 60px; height: auto; border-radius: 0; z-index: 0; }
 
 
   
@@ -815,22 +815,10 @@ const summaryContent = document.getElementById('summaryContent');
 
 
 
-// Récupère le bouton et le panel
-const smartInBtn = document.getElementById('discoverSmartIn');
-const smartInPanel = document.getElementById('locationContent');
-
-// Supprime tout listener click existant
-smartInBtn.replaceWith(smartInBtn.cloneNode(true)); 
-const newSmartInBtn = document.getElementById('discoverSmartIn');
-
-// Hover → ouvre le panel Smart-In
-newSmartInBtn.addEventListener('mouseenter', () => {
-  smartInPanel.style.display = 'block';
+document.getElementById('discoverSmartIn').textContent = "Discover Smart-In";
+document.getElementById('discoverSmartIn').addEventListener('click', () => {
+  openModal('smartInModal');
 });
-
-// Ne ferme pas le panel au mouseleave
-// La fermeture se fera seulement si tu passes sur un autre bouton du menu About/Solutions
-
 
   document.getElementById('selectAllThemes').addEventListener('change', e => {
   document.querySelectorAll('.theme').forEach(cb => cb.checked = e.target.checked);
@@ -959,7 +947,11 @@ locationBtnEn.addEventListener('mouseenter', () => {
 });
 
 // Boutons Discover Smart-In et Présentation Video
-document.getElementById('discoverSmartIn').textContent = "Discover Smart-In"; 
+
+
+
+
+
 document.getElementById('presentationSmartIn').addEventListener('click', () => openModal('videoModal'));
 
 
@@ -1174,26 +1166,9 @@ menuButtons.forEach(btn => {
 // **Plus besoin de ce listener, on le supprime**
 // document.addEventListener('mousemove', ...);
 
-const smartInBtn = document.getElementById('discoverSmartIn');
-const smartInPanel = document.getElementById('locationContent');
-
-// Hover → ouvre le panel Smart-In
-smartInBtn.addEventListener('mouseenter', () => {
-  smartInPanel.style.display = 'block';
-});
 
   
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
 
