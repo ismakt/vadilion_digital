@@ -1166,11 +1166,19 @@ menuButtons.forEach(btn => {
 // **Plus besoin de ce listener, on le supprime**
 // document.addEventListener('mousemove', ...);
 
+const smartInBtn = document.getElementById('discoverSmartIn');
+const smartInPanel = document.getElementById('locationContent');
+
+// Hover → ouvre le panel Smart-In
+smartInBtn.addEventListener('mouseenter', () => {
+  smartInPanel.style.display = 'block';
+});
 
   
 </script>
 </body>
 </html>
+
 
 
 
