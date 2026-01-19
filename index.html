@@ -626,10 +626,7 @@ const projectDetails = document.getElementById('projectDetails');
 const contactInfoSmartIn = document.getElementById('contactInfoSmartIn');
 const summaryContent = document.getElementById('summaryContent');
 
-
-
-
-
+  
 
 let currentPanel = null;
 function togglePanel(id){
@@ -664,12 +661,16 @@ document.getElementById('discoverSmartIn').addEventListener('click', () => {
   function updateSummary(){
   const city = citySelect.value;
   const addresses = addressInput.value;
+  const contact = contactInfoSmartIn.value;
+  const project = projectDetails.value;
   const themes = [...document.querySelectorAll('.theme:checked')]
     .map(t => t.parentElement.textContent.trim());
 
   summaryContent.innerHTML = `
     <b>City:</b> ${city || '-'}<br>
     <b>Addresses:</b> ${addresses || '-'}<br>
+    <b>Contact info:</b> ${contact || '-'}<br>
+    <b>About your project:</b> ${project || '-'}<br>
     <b>Themes:</b> ${themes.join(', ') || '-'}
   `;
 }
@@ -976,5 +977,6 @@ document.querySelectorAll('.themes .theme').forEach(cb => {
 </script>
 </body>
 </html>
+
 
 
