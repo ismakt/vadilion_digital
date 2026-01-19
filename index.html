@@ -1141,7 +1141,7 @@ document.querySelectorAll('.themes .theme').forEach(cb => {
 });
 
 
-  // --- Menu hover / click logic (About & Solutions) ---
+// --- Menu hover / click logic (About & Solutions) ---
 const menuButtons = document.querySelectorAll('.menu button');
 const panels = document.querySelectorAll('.panel');
 
@@ -1153,34 +1153,25 @@ menuButtons.forEach(btn => {
 
   // Hover : ouvre le panel et ferme les autres
   btn.addEventListener('mouseenter', () => {
-    panels.forEach(p => p.style.display = 'none'); // fermer tous
+    panels.forEach(p => { if(p !== panel) p.style.display = 'none'; });
     panel.style.display = 'block';
   });
 
-  // Click : toggle pour verrouiller ou fermer
+  // Click : toggle uniquement ce panel
   btn.addEventListener('click', () => {
-    if(panel.style.display === 'block'){
-      panel.style.display = 'none';
-    } else {
-      panels.forEach(p => p.style.display = 'none');
-      panel.style.display = 'block';
-    }
+    panel.style.display = (panel.style.display === 'block') ? 'none' : 'block';
   });
 });
 
-// Fermer les panels si on sort complètement du menu ou panels
-document.addEventListener('mousemove', e => {
-  const menu = document.querySelector('.menu');
-  const overMenuOrPanel = menu.contains(e.target) || [...panels].some(p => p.contains(e.target));
-  if(!overMenuOrPanel){
-    panels.forEach(p => p.style.display = 'none');
-  }
-});
+// **Plus besoin de ce listener, on le supprime**
+// document.addEventListener('mousemove', ...);
+
 
   
 </script>
 </body>
 </html>
+
 
 
 
