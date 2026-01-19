@@ -172,6 +172,10 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 
 
 
+#discoverSmartIn:hover {
+  background-color: var(--gold);
+  color: #000;
+}
 
 
 
@@ -585,13 +589,25 @@ const summaryContent = document.getElementById('summaryContent');
 
 
 
+const discoverBtn = document.getElementById('discoverSmartIn');
 
+let smartInHoverTimeout = null;
 
+discoverBtn.addEventListener('mouseenter', () => {
+  // Ne rien faire si le modal est déjà ouvert
+  if (document.getElementById('smartInModal').style.display === 'flex') return;
 
-document.getElementById('discoverSmartIn').textContent = "Discover Smart-In";
-document.getElementById('discoverSmartIn').addEventListener('click', () => {
-  openModal('smartInModal');
+  // Délai pour éviter les ouvertures accidentelles
+  smartInHoverTimeout = setTimeout(() => {
+    openModal('smartInModal');
+  }, 250);
 });
+
+discoverBtn.addEventListener('mouseleave', () => {
+  clearTimeout(smartInHoverTimeout);
+});
+
+
 
   document.getElementById('selectAllThemes').addEventListener('change', e => {
   document.querySelectorAll('.theme').forEach(cb => cb.checked = e.target.checked);
@@ -944,5 +960,6 @@ menuButtons.forEach(btn => {
 </script>
 </body>
 </html>
+
 
 
