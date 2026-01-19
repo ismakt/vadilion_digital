@@ -965,82 +965,16 @@ function drawPreMap() {
   });
 }
 
+  // Pour toutes les checkboxes de thèmes (hors selectAll)
+document.querySelectorAll('.themes .theme').forEach(cb => {
+  if(cb.id !== 'selectAllThemes'){ // ne pas réappliquer à selectAll
+    cb.addEventListener('change', updateSummary);
+  }
+});
+
+  
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
