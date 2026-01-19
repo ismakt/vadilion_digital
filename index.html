@@ -815,17 +815,22 @@ const summaryContent = document.getElementById('summaryContent');
 
 
 
-document.getElementById('discoverSmartIn').textContent = "Discover Smart-In";
-
+// Récupère le bouton et le panel
 const smartInBtn = document.getElementById('discoverSmartIn');
 const smartInPanel = document.getElementById('locationContent');
 
+// Supprime tout listener click existant
+smartInBtn.replaceWith(smartInBtn.cloneNode(true)); 
+const newSmartInBtn = document.getElementById('discoverSmartIn');
+
 // Hover → ouvre le panel Smart-In
-smartInBtn.addEventListener('mouseenter', () => {
+newSmartInBtn.addEventListener('mouseenter', () => {
   smartInPanel.style.display = 'block';
 });
-;
-  
+
+// Ne ferme pas le panel au mouseleave
+// La fermeture se fera seulement si tu passes sur un autre bouton du menu About/Solutions
+
 
   document.getElementById('selectAllThemes').addEventListener('change', e => {
   document.querySelectorAll('.theme').forEach(cb => cb.checked = e.target.checked);
@@ -1185,6 +1190,7 @@ smartInBtn.addEventListener('mouseenter', () => {
 </script>
 </body>
 </html>
+
 
 
 
