@@ -41,7 +41,7 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 .btn-linkedin, .btn-instagram, .btn-send, .btn-video, .btn-smartin
   { display: inline-block; margin-top: 12px; padding: 8px 16px; background-color: #555; color: #fff; 
    text-decoration: none; font-weight: 400; font-size: 12px; border-radius: 6px; transition: color 0.3s, background 0.3s; border: none; cursor: pointer; }
-  
+
 /* MOBILE */
 
 @media (max-width:768px) {
@@ -50,7 +50,7 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
     transform: none;
     margin-bottom: 20px;
   }
-  
+
   .panel {
     position: static;
     transform: none;
@@ -58,7 +58,7 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 }
 
 
-  
+
 .blur-background { filter: blur(1px); }
 .brand { position: relative; display: flex; flex-direction: column; align-items: flex-start; }
 .brand h1 { color: var(--gold); font-size: 15px; letter-spacing: 1px; z-index: 1; }
@@ -104,7 +104,7 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 
 
 
-  
+
 
 .map-mock{
   height:180px;
@@ -166,50 +166,6 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 
 
 
-
-
-
-  .themes {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.theme-group {
-  margin-top: 10px;
-}
-
-.theme-subtitle {
-  font-weight: 600;
-  font-size: 0.95rem;
-  color: #444;
-  margin-bottom: 4px;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-}
-
-.themes label {
-  display: block;
-  margin-left: 10px;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-  
 </style>
 </head>
 <body>
@@ -250,10 +206,10 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
           et contraints de discerner entre embellissements et réalités, une volonté forte est née : offrir une alternative.
           Smart-IN est une application indépendante, offrant un accès transparent aux données cruciales pour tout projet immobilier ou commercial. 
           Découvrez-la : choisissez votre ville et les paramètres qui vous intéressent.</p><br>
-         
+
         <p>Nos études sont développées autour des principaux piliers :</p>
 
-        
+
         <ul>
           <li>Le marché : résilience, étude des concurrents et client potentiels</li>
           <li>Socioéconomie : population (âge, cultures), revenus, attractivité</li>
@@ -349,92 +305,80 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
         <input id="contactInfoSmartIn" placeholder="Email or phone">
 
 
-        <label>Address(es) (max 3, separated by commas)</label>
-        <input id="addressInput" placeholder="Addresses you want to analyze">
-        
+        <label>Enter address (max 3, separated by commas)</label>
+        <input id="addressInput" placeholder="Street 1, Street 2, Street 3">
+
 <label>About your project</label>
 <textarea id="projectDetails" rows="10" placeholder="Describe your project, goals, constraints..."></textarea>
 
-      <label>Select themes</label>
-<div class="themes">
+        <label>Select themes</label>
+        <div class="themes">
 
-  <label>
-    <input type="checkbox" class="theme" id="selectAllThemes">
-    Select all
-  </label>
+<label><input type="checkbox" class="theme" id="selectAllThemes"> Select all</label>
 
-  <!-- Real Estate -->
-  <div class="theme-group">
-    <div class="theme-subtitle">Real Estate</div>
+<!-- Données de vente -->
+<label><input type="checkbox" class="theme" value="Total sales 2013-2024"> Total Sales (2013-2024)</label>
+<label><input type="checkbox" class="theme" value="ZP"> ZP</label>
+<label><input type="checkbox" class="theme" value="Vols"> Vols</label>
 
-    <label>
-      <input type="checkbox" class="theme" value="Real Estate Sales">
-      Real Estate Sales
-    </label>
+<!-- Coups et drogues -->
+<label><input type="checkbox" class="theme" value="coups_blessures"> Coups / Blessures</label>
+<label><input type="checkbox" class="theme" value="drogues"> Drogues</label>
+<label><input type="checkbox" class="theme" value="alcool"> Alcool</label>
+<label><input type="checkbox" class="theme" value="armes"> Armes</label>
 
-    <label>
-      <input type="checkbox" class="theme" value="Vols">
-      Vols
-    </label>
-  </div> <!-- ✅ FERMETURE MANQUANTE -->
+<!-- Sécurité publique -->
+<label><input type="checkbox" class="theme" value="secu_publiq_2024"> Atteinte Sécurité Publique</label>
 
-  <!-- Coups et drogues -->
-  <label><input type="checkbox" class="theme" value="coups_blessures"> Coups / Blessures</label>
-  <label><input type="checkbox" class="theme" value="drogues"> Drogues</label>
-  <label><input type="checkbox" class="theme" value="alcool"> Alcool</label>
-  <label><input type="checkbox" class="theme" value="armes"> Armes</label>
+<!-- Dégradations et cambriolages -->
+<label><input type="checkbox" class="theme" value="degradat_prop"> Dégradations de propriété</label>
+<label><input type="checkbox" class="theme" value="Cambriolages"> Cambriolages</label>
 
-  <!-- Sécurité publique -->
-  <label><input type="checkbox" class="theme" value="secu_publiq_2024"> Atteinte Sécurité Publique</label>
+<!-- Population -->
+<label><input type="checkbox" class="theme" value="Densité de Population"> Densité de Population</label>
+<label><input type="checkbox" class="theme" value="% Population agée de 18 à 64 ans">% Population âgée de 18 à 64 ans</label>
+<label><input type="checkbox" class="theme" value="Solde migratoire"> Solde migratoire</label>
+<label><input type="checkbox" class="theme" value="Population Croissance Annuelle"> Croissance annuelle population</label>
 
-  <!-- Dégradations et cambriolages -->
-  <label><input type="checkbox" class="theme" value="degradat_prop"> Dégradations de propriété</label>
-  <label><input type="checkbox" class="theme" value="Cambriolages"> Cambriolages</label>
+<!-- Immigration -->
+<label><input type="checkbox" class="theme" value="% Population immigrée">% Population immigrée</label>
 
-  <!-- Population -->
-  <label><input type="checkbox" class="theme" value="Densité de Population"> Densité de Population</label>
-  <label><input type="checkbox" class="theme" value="% Population agée de 18 à 64 ans">% Population âgée de 18 à 64 ans</label>
-  <label><input type="checkbox" class="theme" value="Solde migratoire"> Solde migratoire</label>
-  <label><input type="checkbox" class="theme" value="Population Croissance Annuelle"> Croissance annuelle population</label>
+<!-- Revenus et emploi -->
+<label><input type="checkbox" class="theme" value="Taux natalité"> Taux natalité</label>
+<label><input type="checkbox" class="theme" value="Revenu Médian"> Revenu médian</label>
+<label><input type="checkbox" class="theme" value="Taux emploi"> Taux emploi</label>
+<label><input type="checkbox" class="theme" value="Taux par type d'occupation"> Taux par type d'occupation</label>
+<label><input type="checkbox" class="theme" value="Taux chomage"> Taux chômage</label>
+<label><input type="checkbox" class="theme" value="Taux GRAPA 65+"> Taux GRAPA 65+</label>
+<label><input type="checkbox" class="theme" value="Taux naissances sans revenu de travail"> Naissances sans revenu de travail</label>
+<label><input type="checkbox" class="theme" value="Taux naissances meres etrangeres"> Naissances mères étrangères</label>
+<label><input type="checkbox" class="theme" value="Taux retard scolaire"> Taux retard scolaire</label>
 
-  <!-- Immigration -->
-  <label><input type="checkbox" class="theme" value="% Population immigrée">% Population immigrée</label>
+<!-- Logements et immobilier -->
+<label><input type="checkbox" class="theme" value="Sieges sociaux & Etablissements"> Sièges sociaux & Établissements</label>
+<label><input type="checkbox" class="theme" value="Solde migration entreprises"> Solde migration entreprises</label>
+<label><input type="checkbox" class="theme" value="Espace verts"> Espaces verts</label>
+<label><input type="checkbox" class="theme" value="Parc Immobilier"> Parc immobilier (social, résidentiel)</label>
+<label><input type="checkbox" class="theme" value="Loyer moyen"> Loyer moyen</label>
+<label><input type="checkbox" class="theme" value="Nb Appartements"> Nombre d'appartements vendus</label>
+<label><input type="checkbox" class="theme" value="Nombre de maisons vendus"> Nombre de maisons vendues</label>
+<label><input type="checkbox" class="theme" value="Prix median appartements"> Prix médian appartements</label>
+<label><input type="checkbox" class="theme" value="Prix median maisons"> Prix médian maisons</label>
+<label><input type="checkbox" class="theme" value="Secteurs economiques majeures"> Secteurs économiques majeurs</label>
+<label><input type="checkbox" class="theme" value="Gentrification"> Gentrification</label>
 
-  <!-- Revenus et emploi -->
-  <label><input type="checkbox" class="theme" value="Taux natalité"> Taux natalité</label>
-  <label><input type="checkbox" class="theme" value="Revenu Médian"> Revenu médian</label>
-  <label><input type="checkbox" class="theme" value="Taux emploi"> Taux emploi</label>
-  <label><input type="checkbox" class="theme" value="Taux par type d'occupation"> Taux par type d'occupation</label>
-  <label><input type="checkbox" class="theme" value="Taux chomage"> Taux chômage</label>
-  <label><input type="checkbox" class="theme" value="Taux GRAPA 65+"> Taux GRAPA 65+</label>
-  <label><input type="checkbox" class="theme" value="Taux naissances sans revenu de travail"> Naissances sans revenu de travail</label>
-  <label><input type="checkbox" class="theme" value="Taux naissances meres etrangeres"> Naissances mères étrangères</label>
-  <label><input type="checkbox" class="theme" value="Taux retard scolaire"> Taux retard scolaire</label>
+<!-- Nationalités -->
+<label><input type="checkbox" class="theme" value="Cultural Composition"> Cultural Composition</label>
 
-  <!-- Logements et immobilier -->
-  <label><input type="checkbox" class="theme" value="Sieges sociaux & Etablissements"> Sièges sociaux & Établissements</label>
-  <label><input type="checkbox" class="theme" value="Solde migration entreprises"> Solde migration entreprises</label>
-  <label><input type="checkbox" class="theme" value="Espace verts"> Espaces verts</label>
-  <label><input type="checkbox" class="theme" value="Parc Immobilier"> Parc immobilier</label>
-  <label><input type="checkbox" class="theme" value="Loyer moyen"> Loyer moyen</label>
-  <label><input type="checkbox" class="theme" value="Nb Appartements"> Nombre d'appartements vendus</label>
-  <label><input type="checkbox" class="theme" value="Nombre de maisons vendus"> Nombre de maisons vendues</label>
-  <label><input type="checkbox" class="theme" value="Prix median appartements"> Prix médian appartements</label>
-  <label><input type="checkbox" class="theme" value="Prix median maisons"> Prix médian maisons</label>
-  <label><input type="checkbox" class="theme" value="Secteurs economiques majeures"> Secteurs économiques majeurs</label>
-  <label><input type="checkbox" class="theme" value="Gentrification"> Gentrification</label>
+<!-- Projets et pollutions -->
+<label><input type="checkbox" class="theme" value="Urban & Real Estate projects (recent, current, future)"> Urban & Real Estate projects (recent, current, future)</label>
+<label><input type="checkbox" class="theme" value="Urban & Real Estate projects">Urban & Real Estate projects</label>
+<label><input type="checkbox" class="theme" value="M2 price///"> M2 price</label>
+<label><input type="checkbox" class="theme" value="Pollution (air, noise)"> Pollution (air, noise)</label>
 
-  <!-- Nationalités -->
-  <label><input type="checkbox" class="theme" value="Cultural Composition"> Cultural Composition</label>
 
-  <!-- Projets et pollutions -->
-  <label><input type="checkbox" class="theme" value="Urban & Real Estate projects"> Urban & Real Estate projects</label>
-  <label><input type="checkbox" class="theme" value="M2 price"> M2 price</label>
-  <label><input type="checkbox" class="theme" value="Pollution (air, noise)"> Pollution (air, noise)</label>
 
-</div>
 
-          
         </div>
 
       </div>
@@ -458,7 +402,7 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 <div id="mapPreview" class="mapPreview"></div>
 
 
-        
+
 
         <button class="btn-send" onclick="sendSmartIn()">Send</button>
 
@@ -495,7 +439,6 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 
 
 
-  
 
 
 
@@ -506,14 +449,15 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 
 
 
-  
 
 
 
 
 
 
-  
+
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.dots.min.js"></script>
 <script>
@@ -604,7 +548,7 @@ const summaryContent = document.getElementById('summaryContent');
 
 
 
-  
+
 let currentPanel = null;
 function togglePanel(id){
   document.querySelectorAll('.panel').forEach(p => p.style.display='none');
@@ -623,7 +567,7 @@ function togglePanel(id){
 
 
 
-  
+
 
 document.getElementById('discoverSmartIn').textContent = "Discover Smart-In";
 document.getElementById('discoverSmartIn').addEventListener('click', () => {
@@ -653,7 +597,7 @@ document.getElementById('discoverSmartIn').addEventListener('click', () => {
 
 
 
-  
+
 const frBtn = document.getElementById('fr-btn');
 const enBtn = document.getElementById('en-btn');
 frBtn.addEventListener('click', () => {
@@ -686,7 +630,7 @@ frBtn.addEventListener('click', () => {
 
 
 
-  
+
 
 
   document.getElementById('contact-text').textContent = "Contactez-nous";
@@ -697,16 +641,16 @@ frBtn.addEventListener('click', () => {
   document.getElementById('our-media').textContent = "Nos réseaux";
   document.getElementById('btn-send').textContent = "Envoyer";
   document.getElementById('btn-smartin').textContent = "SMART-IN";
-  
+
 });
-  
+
 enBtn.addEventListener('click', () => {
   enBtn.classList.add('active'); frBtn.classList.remove('active');
 
   document.getElementById('about-text').innerHTML = document.getElementById('about-text').innerHTML = 
     `<p>We combine business intelligence and data science to develop unique, high-value solutions built on reliable data and designed to address concrete business challenges.</p>`;
 
-  
+
 document.getElementById('solutions-text').innerHTML = `
 <div style="text-align: left;">
   <button id="locationBtn" class="btn-smartin" style="width:auto; text-align:left; font-weight:600;">SMART-IN</button>
@@ -753,19 +697,19 @@ locationBtnEn.addEventListener('mouseenter', () => {
 });
 
 // Boutons Discover Smart-In et Présentation Video
-  
 
 
 
-  
+
+
 document.getElementById('presentationSmartIn').addEventListener('click', () => openModal('videoModal'));
 
 
 
-  
 
 
-  
+
+
   document.getElementById('contact-text').textContent = "Contact us";
   document.getElementById('contact-text2').textContent = "We listen carefully to your needs to deliver a precise, tailored solution.";
   document.getElementById('contact-name').placeholder = "Name";
@@ -795,7 +739,7 @@ locationBtn.addEventListener('mouseenter', () => {
 // On ne ferme pas au mouseleave, fermeture uniquement au clic sur locationBtn
 
 
-  
+
 let vantaEffect = VANTA.DOTS({ el:"#vanta-bg", mouseControls:true, touchControls:true, gyroControls:false, minHeight:200, minWidth:200, scale:1.0, scaleMobile:1.0, color:0xcffb7, color2:0x5520ff, backgroundColor:0x0, size:3.2, spacing:24, showLines:false });
 
 function openModal(id){
@@ -803,7 +747,7 @@ function openModal(id){
   modal.style.display = 'flex';
   document.body.style.overflow = 'hidden';
   document.querySelector('main').classList.add('blur-background');
-  
+
   // supprime l’ancienne carte à chaque ouverture
   if(id === 'smartInModal'){
     const container = document.getElementById('mapPreview');
@@ -848,8 +792,8 @@ function sendSmartIn(){
 }
 
 
-  
- 
+
+
 
 
 
@@ -942,12 +886,6 @@ function drawPreMap() {
 </script>
 </body>
 </html>
-
-
-
-
-
-
 
 
 
