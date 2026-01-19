@@ -260,6 +260,12 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
   <button onclick="togglePanel('solutions')">SOLUTIONS</button>
 </div>
 
+
+
+
+
+  
+
 <div class="panel" id="about">
   <div id="about-text" style="text-align: left;">
     <p>Nous allions business intelligence et data science pour développer des solutions uniques, à forte valeur ajoutée, 
@@ -628,13 +634,6 @@ const summaryContent = document.getElementById('summaryContent');
 
   
 
-let currentPanel = null;
-function togglePanel(id){
-  document.querySelectorAll('.panel').forEach(p => p.style.display='none');
-  if(currentPanel === id){ currentPanel = null; return; }
-  document.getElementById(id).style.display = 'block';
-  currentPanel = id;
-}
 
 
 
@@ -973,10 +972,48 @@ document.querySelectorAll('.themes .theme').forEach(cb => {
   }
 });
 
+
+  // --- Menu hover / click logic (About & Solutions) ---
+const menuButtons = document.querySelectorAll('.menu button');
+const panels = document.querySelectorAll('.panel');
+
+menuButtons.forEach(btn => {
+  // Récupérer l'ID du panel à partir de l'attribut onclick existant
+  const panelIdMatch = btn.getAttribute('onclick')?.match(/'(\w+)'/);
+  if(!panelIdMatch) return;
+  const panel = document.getElementById(panelIdMatch[1]);
+
+  // Hover : ouvre le panel et ferme les autres
+  btn.addEventListener('mouseenter', () => {
+    panels.forEach(p => p.style.display = 'none'); // fermer tous
+    panel.style.display = 'block';
+  });
+
+  // Click : toggle pour verrouiller ou fermer
+  btn.addEventListener('click', () => {
+    if(panel.style.display === 'block'){
+      panel.style.display = 'none';
+    } else {
+      panels.forEach(p => p.style.display = 'none');
+      panel.style.display = 'block';
+    }
+  });
+});
+
+// Fermer les panels si on sort complètement du menu ou panels
+document.addEventListener('mousemove', e => {
+  const menu = document.querySelector('.menu');
+  const overMenuOrPanel = menu.contains(e.target) || [...panels].some(p => p.contains(e.target));
+  if(!overMenuOrPanel){
+    panels.forEach(p => p.style.display = 'none');
+  }
+});
+
   
 </script>
 </body>
 </html>
+
 
 
 
