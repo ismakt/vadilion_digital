@@ -228,421 +228,323 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 </header>
 <main>
   <div id="vanta-bg"></div>
-  
-<!-- MENU -->
-  <div class="menu">
-  <button data-panel="about" data-i18n="menu.about">ABOUT</button>
-  <button data-panel="solutions" data-i18n="menu.solutions">SOLUTIONS</button>
+<div class="menu">
+  <button onclick="togglePanel('about')">ABOUT</button>
+  <button onclick="togglePanel('solutions')">SOLUTIONS</button>
 </div>
 
 
 
 
-<!-- ABOUT PANEL -->
+
+  
+
 <div class="panel" id="about">
-  <div id="about-text" style="text-align: left;" data-i18n="about.text">
-    Nous allions business intelligence et data science pour développer des solutions uniques, à forte valeur ajoutée, 
-    fondées sur des données fiables et répondant à des enjeux concrets.
+  <div id="about-text" style="text-align: left;">
+    <p>Nous allions business intelligence et data science pour développer des solutions uniques, à forte valeur ajoutée, 
+      fondées sur des données fiables et répondant à des enjeux concrets.</p>
   </div>
 </div>
 
-  
-<!-- SOLUTIONS PANEL -->
-  
 <div class="panel" id="solutions">
-  <div id="solutions-text" data-i18n="solutions.text">
+  <div id="solutions-text">
     <div style="text-align: left;">
 
       <!-- Bouton Location Intelligence -->
-           <button id="locationBtn" class="btn-smartin" data-i18n="solutions.smartin.btn" style="width:auto; text-align:left; font-weight:500;">SMART-IN</button>
+      <button id="locationBtn" class="btn-smartin" style="width:auto; text-align:left; font-weight:500;">SMART-IN</button>
 
-      <!-- Contenu déroulant -->
+      <!-- Contenu déroulant caché par défaut -->
       <div id="locationContent" style="display:none; margin-top:12px; border-top:1px solid var(--border); padding-top:12px;">
 
-    
-    <p data-i18n="solutions.smartin.description">
+        <p>
           Constatant la difficulté pour les investisseurs et entrepreneurs à obtenir une information transparente sur le marché, 
           et contraints de discerner entre embellissements et réalités, une volonté forte est née : offrir une alternative.
           Smart-IN est une application indépendante, offrant un accès transparent aux données cruciales pour tout projet immobilier ou commercial. 
-          Découvrez-la : choisissez votre ville et les paramètres qui vous intéressent.
-        </p><br>
+          Découvrez-la : choisissez votre ville et les paramètres qui vous intéressent.</p><br>
 
-        <p data-i18n="solutions.smartin.pillars.title">Nos études sont développées autour des principaux piliers :</p>
+        <p>Nos études sont développées autour des principaux piliers :</p>
+
 
         <ul>
-          <li data-i18n="solutions.smartin.pillars.market">Le marché : résilience, étude des concurrents et client potentiels</li>
-          <li data-i18n="solutions.smartin.pillars.socio">Socioéconomie : population (âge, cultures), revenus, attractivité</li>
-          <li data-i18n="solutions.smartin.pillars.realestate">Immobilier & Projets urbains: impact et évolution des quartiers</li>
-          <li data-i18n="solutions.smartin.pillars.indicators">Indicateurs clés: sécurité, prix, pollution</li>
+          <li>Le marché : résilience, étude des concurrents et client potentiels</li>
+          <li>Socioéconomie : population (âge, cultures), revenus, attractivité</li>
+          <li>Immobilier & Projets urbains: impact et évolution des quartiers</li>
+          <li>Indicateurs clés: sécurité, prix, pollution</li>
         </ul><br>
 
-      <div class="btn-flex" style="margin-top:20px; display:flex; justify-content:center; gap:12px;">
-          <button id="discoverSmartIn" class="btn-send" data-i18n="solutions.smartin.discover">Discover Smart-In</button>
-          <button id="presentationSmartIn" class="btn-video" data-i18n="solutions.smartin.video">Video</button>
+        <div class="btn-flex" style="margin-top:20px; display:flex; justify-content:center; gap:12px;">
+          <button id="discoverSmartIn" class="btn-send">Discover Smart-In</button>
+          <button id="presentationSmartIn" class="btn-video">Video</button>
         </div>
       </div>
+
     </div>
   </div>
 </div>
 
-  <!-- CONTACT MODAL -->
+
+</main>
+<footer>
+  <div class="footer-line"></div>
+  <div class="footer-content">
+    <span onclick="openModal('officeModal')">Offices: Bruxelles, Paris, Monaco</span>
+    <span onclick="openModal('contactModal')">Contact</span>
+    <span onclick="openModal('mediaModal')">Media</span>
+  </div>
+</footer>
 <div class="modal" id="contactModal">
   <div class="modal-content">
     <span class="close" onclick="closeModal('contactModal')">✕</span>
-    <h4 id="contact-text" data-i18n="contact.title">Contactez-nous</h4>
-    <p id="contact-text2" data-i18n="contact.subtitle">Nous écoutons attentivement vos besoins afin de vous proposer une solution précise et adaptée.</p>
-    <input id="contact-name" placeholder="Nom" data-i18n-placeholder="contact.name" required>
-    <input id="contact-info" placeholder="Coordonnées de contact" data-i18n-placeholder="contact.info" required>
-    <textarea id="contact-message" placeholder="Comment pouvons nous vous aider?" data-i18n-placeholder="contact.message" maxlength="999" required></textarea>
-    <button id="btn-send" class="btn-send" data-i18n="contact.send">Envoyer</button>
+    <h4 id="contact-text">Contactez-nous</h4>
+    <p id="contact-text2">Nous écoutons attentivement vos besoins afin de vous proposer une solution précise et adaptée.</p>
+    <input id="contact-name" placeholder="Nom" required>
+    <input id="contact-info" placeholder="Coordonnées de contact" required>
+    <textarea id="contact-message" placeholder="Comment pouvons nous vous aider?" maxlength="999" required></textarea>
+    <button id="btn-send" class="btn-send">Envoyer</button>
   </div>
 </div>
-
-
-<!-- MEDIA MODAL -->
 <div class="modal" id="mediaModal">
   <div class="modal-content">
     <span class="close" onclick="closeModal('mediaModal')">✕</span>
-    <h4 id="our-media" data-i18n="media.title">Nos réseaux</h4>
-    <a href="https://www.linkedin.com/company/vadiliondigital" target="_blank" class="btn-linkedin" data-i18n="media.linkedin">LinkedIn</a>
-    <a href="https://www.instagram.com/vadilion.digital" target="_blank" class="btn-instagram" data-i18n="media.instagram">Instagram</a>
+    <h4 id="our-media">Nos réseaux</h4>
+    <a href="https://www.linkedin.com/company/vadiliondigital" target="_blank" class="btn-linkedin">LinkedIn</a>
+    <a href="https://www.instagram.com/vadilion.digital" target="_blank" class="btn-instagram">Instagram</a>
   </div>
 </div>
-
-
-<!-- OFFICES MODAL -->
 <div class="modal" id="officeModal">
   <div class="modal-content">
     <span class="close" onclick="closeModal('officeModal')">✕</span>
-    <h4 id="offices" data-i18n="office.title">Offices</h4>
-    <p id="offices-list" data-i18n="office.list">
+    <h4 id="offices">Offices</h4>
+    <p id="offices-list">
       21 Avenue du Boulevard, Bruxelles (Financial District)<br><br>
       7 Rue Meyerbeer, Paris (Opéra Garnier)<br><br>
       74 Boulevard d'Italie, Monaco (Monte Carlo)
     </p>
   </div>
 </div>
-  
+<div class="modal" id="videoModal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('videoModal')">✕</span>
+    <h4>Presentation Smart-In</h4>
+    <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden;">
+      <iframe id="smartInVideo" src="https://www.youtube.com/embed/VqEbCxg2bNI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
+    </div>
+  </div>
+</div>
 
-<!-- SMART-IN MODAL -->
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="modal modal-smartin" id="smartInModal">
   <div class="modal-content modal-smartin-content">
 
     <span class="close" onclick="closeModal('smartInModal')">✕</span>
 
-    <h3 data-i18n="smartin.contact_title" style="color:var(--gold); margin-bottom:12px;">Smart-In Contact</h3>
+    <h3 style="color:var(--gold); margin-bottom:12px;">Smart-In Contact</h3>
 
     <div class="smartin-layout">
 
-
-
-<!-- LEFT -->
+      <!-- LEFT -->
       <div class="smartin-left">
 
-        <label data-i18n="smartin.contact_info_label">Contact info</label>
-        <input id="contactInfoSmartIn" placeholder="Email or phone" data-i18n-placeholder="smartin.contact_info_placeholder">
-
-        <label data-i18n="smartin.address_label">Enter address (max 3, separated by commas)</label>
-        <input id="addressInput" placeholder="Street 1, Street 2, Street 3" data-i18n-placeholder="smartin.address_placeholder">
-
-        <label data-i18n="smartin.project_label">About your project</label>
-        <textarea id="projectDetails" rows="10" placeholder="Describe your project, goals, constraints..." data-i18n-placeholder="smartin.project_placeholder"></textarea>
-
-        <label data-i18n="smartin.main_goal_label">Select your main goal</label>
-
-        <div class="selectgoals">
-
-          <label>
-            <input type="checkbox" id="selectAllGoals" data-i18n="smartin.select_all"> Select all
-          </label>
-
-          <label>
-            <input type="checkbox" class="goal" id="selectmaingoal">
-            Analyse de la cohérence du projet dans son milieu socioéconomique
-          </label>
-
-          <label>
-            <input type="checkbox" class="goal" id="selectmaingoa2">
-            Étude des concurrents
-          </label>
-
-          <label>
-            <input type="checkbox" class="goal" id="selectmaingoa3">
-            Étude des clients potentiels
-          </label>
-
-          <label>
-            <input type="checkbox" class="goal" id="selectmaingoa4">
-            Connaitre les essentiels du marché immobilier
-          </label>
-
-        </div>
+        <label>Contact info</label>
+        <input id="contactInfoSmartIn" placeholder="Email or phone">
 
 
-        <label data-i18n="smartin.themes_label">Select themes</label>
+        <label>Enter address (max 3, separated by commas)</label>
+        <input id="addressInput" placeholder="Street 1, Street 2, Street 3">
+
+<label>About your project</label>
+<textarea id="projectDetails" rows="10" placeholder="Describe your project, goals, constraints..."></textarea>
+
+
         
-<div class="themes">
+<label>Select your main goal</label>
 
-  <!-- Select all -->
-  <label data-i18n="themes.select_all">
-    <input type="checkbox" class="theme" id="selectAllThemes">
+<div class="selectgoals">
+
+  <label>
+    <input type="checkbox" id="selectAllGoals">
     Select all
   </label>
 
-  <!-- ================= REAL ESTATE ================= -->
-  <div class="theme-subtitle" data-i18n="themes.subtitle.real_estate">
-    Real Estate Essentials
-  </div>
-
-  <label data-i18n="themes.realestate.global_sales">
-    <input type="checkbox" class="theme" value="Global Real Estate Sales">
-    Global Real Estate Sales
+  <label>
+    <input type="checkbox" class="goal" id="selectmaingoal">
+    Analyse de la cohérence du projet dans son milieu socioéconomique
   </label>
 
-  <label data-i18n="themes.realestate.housing_stock">
-    <input type="checkbox" class="theme" value="Parc Immobilier">
-    Parc immobilier (social, résidentiel)
+  <label>
+    <input type="checkbox" class="goal" id="selectmaingoa2">
+    Étude des concurrents
   </label>
 
-  <label data-i18n="themes.realestate.avg_rent">
-    <input type="checkbox" class="theme" value="Loyer moyen">
-    Loyer moyen
+  <label>
+    <input type="checkbox" class="goal" id="selectmaingoa3">
+    Étude des clients potentiels
   </label>
 
-  <label data-i18n="themes.realestate.apartments_sold">
-    <input type="checkbox" class="theme" value="Nb Appartements">
-    Nombre d'appartements vendus
-  </label>
-
-  <label data-i18n="themes.realestate.houses_sold">
-    <input type="checkbox" class="theme" value="Nombre de maisons vendus">
-    Nombre de maisons vendues
-  </label>
-
-  <label data-i18n="themes.realestate.median_price_apartments">
-    <input type="checkbox" class="theme" value="Prix median appartements">
-    Prix médian appartements
-  </label>
-
-  <label data-i18n="themes.realestate.median_price_houses">
-    <input type="checkbox" class="theme" value="Prix median maisons">
-    Prix médian maisons
-  </label>
-
-  <label data-i18n="themes.realestate.urban_projects">
-    <input type="checkbox" class="theme" value="Urban & Real Estate projects">
-    Urban & Real Estate projects
-  </label>
-
-  <label data-i18n="themes.realestate.m2_price">
-    <input type="checkbox" class="theme" value="M2 price">
-    M2 price
-  </label>
-
-  <label data-i18n="themes.realestate.gentrification">
-    <input type="checkbox" class="theme" value="Gentrification">
-    Gentrification
-  </label>
-
-  <!-- ================= SECURITY ================= -->
-  <div class="theme-subtitle" data-i18n="themes.subtitle.security">
-    Security Statistics
-  </div>
-
-  <label data-i18n="themes.security.thefts">
-    <input type="checkbox" class="theme" value="Vols">
-    Vols
-  </label>
-
-  <label data-i18n="themes.security.assaults">
-    <input type="checkbox" class="theme" value="coups_blessures">
-    Coups / Blessures
-  </label>
-
-  <label data-i18n="themes.security.drugs">
-    <input type="checkbox" class="theme" value="drogues">
-    Drogues
-  </label>
-
-  <label data-i18n="themes.security.alcohol">
-    <input type="checkbox" class="theme" value="alcool">
-    Alcool
-  </label>
-
-  <label data-i18n="themes.security.weapons">
-    <input type="checkbox" class="theme" value="armes">
-    Armes
-  </label>
-
-  <label data-i18n="themes.security.public_safety">
-    <input type="checkbox" class="theme" value="secu_publiq_2024">
-    Atteinte à la sécurité publique
-  </label>
-
-  <label data-i18n="themes.security.vandalism">
-    <input type="checkbox" class="theme" value="degradat_prop">
-    Dégradations de propriété
-  </label>
-
-  <label data-i18n="themes.security.burglaries">
-    <input type="checkbox" class="theme" value="Cambriolages">
-    Cambriolages
-  </label>
-
-  <!-- ================= SOCIOECONOMICS ================= -->
-  <div class="theme-subtitle" data-i18n="themes.subtitle.socioeconomics">
-    Socioeconomics
-  </div>
-
-  <label data-i18n="themes.socio.population_density">
-    <input type="checkbox" class="theme" value="Densité de Population">
-    Densité de population
-  </label>
-
-  <label data-i18n="themes.socio.age_18_64">
-    <input type="checkbox" class="theme" value="% 18-64 ans">
-    % 18–64 ans
-  </label>
-
-  <label data-i18n="themes.socio.migration_balance">
-    <input type="checkbox" class="theme" value="Solde migratoire">
-    Solde migratoire
-  </label>
-
-  <label data-i18n="themes.socio.annual_growth">
-    <input type="checkbox" class="theme" value="Croissance annuelle">
-    Croissance annuelle
-  </label>
-
-  <label data-i18n="themes.socio.immigrant_population">
-    <input type="checkbox" class="theme" value="% Population immigrée">
-    % Population immigrée
-  </label>
-
-  <label data-i18n="themes.socio.birth_rate">
-    <input type="checkbox" class="theme" value="Taux natalité">
-    Taux de natalité
-  </label>
-
-  <label data-i18n="themes.socio.cultural_composition">
-    <input type="checkbox" class="theme" value="Cultural Composition">
-    Cultural Composition
-  </label>
-
-  <!-- ================= ECONOMICS ================= -->
-  <div class="theme-subtitle" data-i18n="themes.subtitle.economics">
-    Economics
-  </div>
-
-  <label data-i18n="themes.economics.median_income">
-    <input type="checkbox" class="theme" value="Revenu Médian">
-    Revenu médian
-  </label>
-
-  <label data-i18n="themes.economics.employment_rate">
-    <input type="checkbox" class="theme" value="Taux emploi">
-    Taux d’emploi
-  </label>
-
-  <label data-i18n="themes.economics.unemployment_rate">
-    <input type="checkbox" class="theme" value="Taux chomage">
-    Taux de chômage
-  </label>
-
-  <label data-i18n="themes.economics.company_headquarters">
-    <input type="checkbox" class="theme" value="Sieges sociaux">
-    Sièges sociaux
-  </label>
-
-  <label data-i18n="themes.economics.business_sectors">
-    <input type="checkbox" class="theme" value="Secteurs economiques majeures">
-    Secteurs économiques majeurs
-  </label>
-
-  <!-- ================= QUALITY OF LIFE ================= -->
-  <div class="theme-subtitle" data-i18n="themes.subtitle.quality_of_life">
-    Quality of Life
-  </div>
-
-  <label data-i18n="themes.qol.green_spaces">
-    <input type="checkbox" class="theme" value="Espace verts">
-    Espaces verts
-  </label>
-
-  <label data-i18n="themes.qol.pollution">
-    <input type="checkbox" class="theme" value="Pollution (air, noise)">
-    Pollution (air, bruit)
+  <label>
+    <input type="checkbox" class="goal" id="selectmaingoa4">
+    Connaitre les essentiels du marché immobilier
   </label>
 
 </div>
 
 
+        
+        <label>Select themes</label>
+        <div class="themes">
 
+<label><input type="checkbox" class="theme" id="selectAllThemes"> Select all</label>
+
+
+        
+<div class="theme-subtitle">Real Estate Essentials</div>
+          
+<label><input type="checkbox" class="theme" value="Global Real Estate Sales">Global Real Estate Sales</label>
+<label><input type="checkbox" class="theme" value="Parc Immobilier"> Parc immobilier (social, résidentiel)</label>
+<label><input type="checkbox" class="theme" value="Loyer moyen"> Loyer moyen</label>
+<label><input type="checkbox" class="theme" value="Nb Appartements"> Nombre d'appartements vendus</label>
+<label><input type="checkbox" class="theme" value="Nombre de maisons vendus"> Nombre de maisons vendues</label>
+<label><input type="checkbox" class="theme" value="Prix median appartements"> Prix médian appartements</label>
+<label><input type="checkbox" class="theme" value="Prix median maisons"> Prix médian maisons</label>
+<label><input type="checkbox" class="theme" value="Urban & Real Estate projects">Urban & Real Estate projects</label>
+<label><input type="checkbox" class="theme" value="M2 price///"> M2 price</label>
+<label><input type="checkbox" class="theme" value="Gentrification">Gentrification</label>
+
+
+          
+<div class="theme-subtitle">Security Statistics</div>
+          
+<label><input type="checkbox" class="theme" value="Vols"> Vols</label>
+<label><input type="checkbox" class="theme" value="coups_blessures"> Coups/Blessures</label>
+<label><input type="checkbox" class="theme" value="drogues"> Drogues</label>
+<label><input type="checkbox" class="theme" value="alcool"> Alcool</label>
+<label><input type="checkbox" class="theme" value="armes"> Armes</label>
+<label><input type="checkbox" class="theme" value="secu_publiq_2024"> Atteinte Sécurité Publique</label>
+<label><input type="checkbox" class="theme" value="degradat_prop"> Dégradations de propriété</label>
+<label><input type="checkbox" class="theme" value="Cambriolages"> Cambriolages</label>
+
+<div class="theme-subtitle">SocioEconomics</div>
+          
+<div class="theme-subtitle">Socio</div>
+<label><input type="checkbox" class="theme" value="Densité de Population"> Densité</label>
+<label><input type="checkbox" class="theme" value="% 18-64 ans">% 18-64 ans</label>
+<label><input type="checkbox" class="theme" value="Solde migratoire"> Solde migratoire</label>
+<label><input type="checkbox" class="theme" value="Croissance annuelle">Croissance annuelle</label>
+<label><input type="checkbox" class="theme" value="% Population immigrée">% Population immigrée</label>
+<label><input type="checkbox" class="theme" value="Taux natalité"> Taux natalité</label>
+<label><input type="checkbox" class="theme" value="Cultural Composition"> Cultural Composition</label>
+
+<div class="theme-subtitle">Economics</div>
+<label><input type="checkbox" class="theme" value="Revenu Médian"> Revenu médian</label>
+<label><input type="checkbox" class="theme" value="Taux emploi"> Taux emploi</label>
+<label><input type="checkbox" class="theme" value="Taux par type d'occupation"> Taux par type d'occupation</label>
+<label><input type="checkbox" class="theme" value="Taux chomage"> Taux chômage</label>
+<label><input type="checkbox" class="theme" value="Taux GRAPA 65+"> Taux GRAPA 65+</label>
+<label><input type="checkbox" class="theme" value="Taux naissances sans revenu de travail"> Naissances sans revenu de travail</label>
+<label><input type="checkbox" class="theme" value="Taux naissances meres etrangeres"> Naissances mères étrangères</label>
+<label><input type="checkbox" class="theme" value="Taux retard scolaire"> Taux retard scolaire</label>
+
+          
+<div class="theme-subtitle">Economy</div>
+
+<label><input type="checkbox" class="theme" value="Sieges sociaux">Sièges sociaux</label>
+<label><input type="checkbox" class="theme" value="Établissements">Établissements</label>
+<label><input type="checkbox" class="theme" value="Solde migration entreprises"> Solde migration entreprises</label>
+<label><input type="checkbox" class="theme" value="Secteurs economiques majeures"> Secteurs économiques majeurs</label>
+
+
+<div class="theme-subtitle">Quality of Life</div>
+
+<label><input type="checkbox" class="theme" value="Espace verts">Espaces verts</label>
+<label><input type="checkbox" class="theme" value="Pollution (air, noise)"> Pollution (air, noise)</label>
+
+
+
+
+        </div>
+
+      </div>
 
       <!-- RIGHT -->
       <div class="smartin-right">
+
+
         <div class="summary-box">
-          <h4 data-i18n="smartin.summary_title">Summary</h4>
-          <div id="summaryContent" data-i18n="smartin.summary_content">No data yet</div>
+          <h4>Summary</h4>
+          <div id="summaryContent">No data yet</div>
         </div>
 
-        <label data-i18n="smartin.select_city_label">Select city</label>
+
+              <label>Select city</label>
         <select id="citySelect">
-          <option value="" data-i18n="smartin.select_city_option">Select a city</option>
-          <option value="Brussels" data-i18n="smartin.select_city_brussels">Brussels</option>
+          <option value="">Select a city</option>
+          <option value="Brussels">Brussels</option>
         </select>
 
-        <div id="mapPreview" class="mapPreview"></div>
+<div id="mapPreview" class="mapPreview"></div>
 
 
-       <button class="btn-send" onclick="sendSmartIn()" data-i18n="smartin.send_btn">Send</button>
+
+
+        <button class="btn-send" onclick="sendSmartIn()">Send</button>
+
       </div>
+
     </div>
   </div>
 </div>
-          
 
-</main>
-  
-<footer>
-  <div class="footer-line"></div>
-  <div class="footer-content">
-    <span onclick="openModal('officeModal')" data-i18n="footer.offices">
-      Offices: Bruxelles, Paris, Monaco
-    </span>
-    <span onclick="openModal('contactModal')" data-i18n="footer.contact">
-      Contact
-    </span>
-    <span onclick="openModal('mediaModal')" data-i18n="footer.media">
-      Media
-    </span>
-  </div>
-</footer>
 
-  
-<!-- VIDEO MODAL -->
-<div class="modal" id="videoModal">
-  <div class="modal-content">
 
-    <span class="close" onclick="closeModal('videoModal')">✕</span>
 
-    <h4 data-i18n="video.smartin.title">
-      Presentation Smart-In
-    </h4>
 
-    <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden;">
-      <iframe
-        id="smartInVideo"
-        src="https://www.youtube.com/embed/VqEbCxg2bNI"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen
-        style="position:absolute; top:0; left:0; width:100%; height:100%;">
-      </iframe>
-    </div>
 
-  </div>
-</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -802,34 +704,157 @@ discoverBtn.addEventListener('mouseleave', () => {
 
 
 
+const frBtn = document.getElementById('fr-btn');
+const enBtn = document.getElementById('en-btn');
+frBtn.addEventListener('click', () => {
+  frBtn.classList.add('active'); enBtn.classList.remove('active');
+   document.getElementById('about-text').innerHTML = `<p>Nous allions business intelligence et data science pour développer des solutions uniques, à forte valeur ajoutée, 
+      fondées sur des données fiables et répondant à des enjeux concrets.</p>`;
+  document.getElementById('solutions-text').innerHTML = `<div style="text-align:left;">
+  
+       
+        <p>
+          Constatant la difficulté pour les investisseurs et entrepreneurs à obtenir une information transparente sur le marché, 
+          et contraints de discerner entre embellissements et réalités, une volonté forte est née : offrir une alternative.
+          Smart-In est une application indépendante, offrant un accès transparent aux données cruciales pour tout projet immobilier ou commercial. 
+          Découvrez-la : choisissez votre ville et les paramètres qui vous intéressent.</p><br>
+         
+        <p>Nos études sont développées autour des principaux piliers :</p>
+
+        
+        <ul>
+          <li>Le marché : résilience, étude des concurrents et client potentiels</li>
+          <li>Socioéconomie : population (âge, cultures), revenus, attractivité</li>
+          <li>Immobilier & Projets urbains: impact et évolution des quartiers</li>
+          <li>Indicateurs clés: sécurité, prix, pollution</li>
+        </ul><br>
+    
+      </ul><br>
+  </div>
+</div>`;
+
+
+
+
+
+
+
+  document.getElementById('contact-text').textContent = "Contactez-nous";
+  document.getElementById('contact-text2').textContent = "Nous écoutons attentivement vos besoins afin de vous proposer une solution précise et adaptée.";
+  document.getElementById('contact-name').placeholder = "Nom";
+  document.getElementById('contact-info').placeholder = "Coordonnées de contact";
+  document.getElementById('contact-message').placeholder = "Comment pouvons-nous vous aider ?";
+  document.getElementById('our-media').textContent = "Nos réseaux";
+  document.getElementById('btn-send').textContent = "Envoyer";
+  document.getElementById('btn-smartin').textContent = "SMART-IN";
+
+});
+
+enBtn.addEventListener('click', () => {
+  enBtn.classList.add('active'); frBtn.classList.remove('active');
+
+  document.getElementById('about-text').innerHTML = document.getElementById('about-text').innerHTML = 
+    `<p>We combine business intelligence and data science to develop unique, high-value solutions built on reliable data and designed to address concrete business challenges.</p>`;
+
+
+document.getElementById('solutions-text').innerHTML = `
+<div style="text-align: left;">
+  <button id="locationBtn" class="btn-smartin" style="width:auto; text-align:left; font-weight:600;">SMART-IN</button>
+  <div id="locationContent" style="display:none; margin-top:12px; border-top:1px solid var(--border); padding-top:12px;">
+    
+<p>
+    Noting the difficulty investors and entrepreneurs face in obtaining transparent market information, 
+    and often forced to distinguish between embellishments and reality, a strong desire has emerged: to offer an alternative. 
+    Smart-In is an independent application, providing transparent access to crucial data for any real estate or commercial project. 
+    Discover it: choose your city and the parameters that interest you.
+</p><br>
+
+<p>Our studies are built around the following key pillars:</p>
+
+<ul>
+    <li>Market: resilience, competitor analysis, and potential customers</li>
+    <li>Socioeconomics: population (age, cultures), income, attractiveness</li>
+    <li>Real Estate & Urban Projects: impact and evolution of neighborhoods</li>
+    <li>Key Indicators: safety, prices, pollution</li>
+</ul><br>
+
+<div class="btn-flex" style="margin-top:20px; display:flex; justify-content:center; gap:12px;">
+  <button id="discoverSmartIn" class="btn-send">Discover Smart-In</button>
+  <button id="presentationSmartIn" class="btn-video">Video</button>
+</div>
+
+  </div>
+</div>`;
+
+
+
+
+// Réattacher les event listeners pour ce nouveau sous-menu
+const locationBtnEn = document.getElementById('locationBtn');
+const locationContentEn = document.getElementById('locationContent');
+let locationOpenEn = false;
+locationBtnEn.addEventListener('click', () => {
+  locationOpenEn = !locationOpenEn;
+  locationContentEn.style.display = locationOpenEn ? 'block' : 'none';
+});
+locationBtnEn.addEventListener('mouseenter', () => {
+  locationContentEn.style.display = 'block';
+  locationOpenEn = true;
+});
+
+
+
+
+
+
+
+
+
+
 
 
   
-
-
-
-
-
-const locationBtn = document.getElementById('locationBtn');
-const locationContent = document.getElementById('locationContent');
-let locationOpen = false;
-
-locationBtn.addEventListener('click', () => {
-  locationOpen = !locationOpen;
-  locationContent.style.display = locationOpen ? 'block' : 'none';
-});
-
-locationBtn.addEventListener('mouseenter', () => {
-  locationContent.style.display = 'block';
-  locationOpen = true;
-});
- 
 // Boutons Discover Smart-In et Présentation Video
+
+
+
+
+
 document.getElementById('presentationSmartIn').addEventListener('click', () => openModal('videoModal'));
 
 
 
 
+
+
+
+  document.getElementById('contact-text').textContent = "Contact us";
+  document.getElementById('contact-text2').textContent = "We listen carefully to your needs to deliver a precise, tailored solution.";
+  document.getElementById('contact-name').placeholder = "Name";
+  document.getElementById('contact-info').placeholder = "Contact info";
+  document.getElementById('contact-message').placeholder = "How can we help you?";
+  document.getElementById('our-media').textContent = "Our media";
+  document.getElementById('btn-send').textContent = "Send";
+});
+
+// Gestion du sous-menu Location Intelligence
+const locationBtn = document.getElementById('locationBtn');
+const locationContent = document.getElementById('locationContent');
+let locationOpen = false;
+
+// Fonction pour ouvrir/fermer au clic
+locationBtn.addEventListener('click', () => {
+  locationOpen = !locationOpen;
+  locationContent.style.display = locationOpen ? 'block' : 'none';
+});
+
+// Fonction pour ouvrir au survol
+locationBtn.addEventListener('mouseenter', () => {
+  locationContent.style.display = 'block';
+  locationOpen = true;
+});
+
+// On ne ferme pas au mouseleave, fermeture uniquement au clic sur locationBtn
 
 
 
@@ -989,9 +1014,10 @@ const menuButtons = document.querySelectorAll('.menu button');
 const panels = document.querySelectorAll('.panel');
 
 menuButtons.forEach(btn => {
-  const panelId = btn.dataset.panel; // ← ici
-  const panel = document.getElementById(panelId);
-  if(!panel) return;
+  // Récupérer l'ID du panel à partir de l'attribut onclick existant
+  const panelIdMatch = btn.getAttribute('onclick')?.match(/'(\w+)'/);
+  if(!panelIdMatch) return;
+  const panel = document.getElementById(panelIdMatch[1]);
 
   // Hover : ouvre le panel et ferme les autres
   btn.addEventListener('mouseenter', () => {
@@ -1004,7 +1030,6 @@ menuButtons.forEach(btn => {
     panel.style.display = (panel.style.display === 'block') ? 'none' : 'block';
   });
 });
-
 
 // **Plus besoin de ce listener, on le supprime**
 // document.addEventListener('mousemove', ...);
@@ -1029,67 +1054,10 @@ selectAllGoals.addEventListener('change', e => {
 });
 
 
-  const frBtn = document.getElementById('fr-btn');
-const enBtn = document.getElementById('en-btn');
-
-let currentLang = 'fr';
-
-function setLanguage(lang){
-  currentLang = lang;
-
-  // UI boutons
-  frBtn.classList.toggle('active', lang === 'fr');
-  enBtn.classList.toggle('active', lang === 'en');
-
-  // --- ABOUT ---
-  const aboutText = document.querySelector('#about-text p');
-  if(aboutText){
-    aboutText.textContent =
-      lang === 'fr'
-        ? "Nous allions business intelligence et data science pour développer des solutions uniques, à forte valeur ajoutée, fondées sur des données fiables et répondant à des enjeux concrets."
-        : "We combine business intelligence and data science to develop unique, high-value solutions built on reliable data and designed to address concrete business challenges.";
-  }
-
-  // --- CONTACT MODAL ---
-  document.getElementById('contact-text').textContent =
-    lang === 'fr' ? "Contactez-nous" : "Contact us";
-
-  document.getElementById('contact-text2').textContent =
-    lang === 'fr'
-      ? "Nous écoutons attentivement vos besoins afin de vous proposer une solution précise et adaptée."
-      : "We listen carefully to your needs to deliver a precise, tailored solution.";
-
-  document.getElementById('contact-name').placeholder =
-    lang === 'fr' ? "Nom" : "Name";
-
-  document.getElementById('contact-info').placeholder =
-    lang === 'fr' ? "Coordonnées de contact" : "Contact info";
-
-  document.getElementById('contact-message').placeholder =
-    lang === 'fr'
-      ? "Comment pouvons-nous vous aider ?"
-      : "How can we help you?";
-
-  document.getElementById('btn-send').textContent =
-    lang === 'fr' ? "Envoyer" : "Send";
-
-  document.getElementById('our-media').textContent =
-    lang === 'fr' ? "Nos réseaux" : "Our media";
-}
-
-  frBtn.addEventListener('click', () => setLanguage('fr'));
-enBtn.addEventListener('click', () => setLanguage('en'));
-
-  setLanguage('fr');
-
+  
 </script>
 </body>
 </html>
-
-
-
-
-
 
 
 
