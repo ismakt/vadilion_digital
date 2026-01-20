@@ -229,8 +229,8 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 <main>
   <div id="vanta-bg"></div>
 <div class="menu">
-  <button onclick="togglePanel('about')">ABOUT</button>
-  <button onclick="togglePanel('solutions')">SOLUTIONS</button>
+  <button>ABOUT</button>
+  <button>SOLUTIONS</button>
 </div>
 
 
@@ -712,18 +712,20 @@ discoverBtn.addEventListener('mouseleave', () => {
 
 
 
-// Réattacher les event listeners pour ce nouveau sous-menu
-const locationBtnEn = document.getElementById('locationBtn');
-const locationContentEn = document.getElementById('locationContent');
-let locationOpenEn = false;
-locationBtnEn.addEventListener('click', () => {
-  locationOpenEn = !locationOpenEn;
-  locationContentEn.style.display = locationOpenEn ? 'block' : 'none';
+const locationBtn = document.getElementById('locationBtn');
+const locationContent = document.getElementById('locationContent');
+let locationOpen = false;
+
+locationBtn.addEventListener('click', () => {
+  locationOpen = !locationOpen;
+  locationContent.style.display = locationOpen ? 'block' : 'none';
 });
-locationBtnEn.addEventListener('mouseenter', () => {
-  locationContentEn.style.display = 'block';
-  locationOpenEn = true;
+
+locationBtn.addEventListener('mouseenter', () => {
+  locationContent.style.display = 'block';
+  locationOpen = true;
 });
+
 
 
 
@@ -1025,6 +1027,7 @@ enBtn.addEventListener('click', () => setLanguage('en'));
 </script>
 </body>
 </html>
+
 
 
 
