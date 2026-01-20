@@ -127,9 +127,6 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 
 
 
-
-  
-
 /* Tout le label reste flex vertical/espacé */
 .themes {
   display: flex;
@@ -166,9 +163,6 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
   accent-color: var(--gold); /* couleur de la coche si navigateur le supporte */
   flex-shrink: 0;   /* ne pas rétrécir */
 }
-
-
-
 
 
 
@@ -234,10 +228,6 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 </div>
 
 
-
-
-
-  
 
 <div class="panel" id="about">
   <div id="about-text" style="text-align: left;">
@@ -331,16 +321,6 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
     </div>
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -511,48 +491,9 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.dots.min.js"></script>
+  
 <script>
 
   // --- Coordonnées du contour de Bruxelles ---
@@ -735,10 +676,6 @@ frBtn.addEventListener('click', () => {
 
 
 
-
-
-
-
   document.getElementById('contact-text').textContent = "Contactez-nous";
   document.getElementById('contact-text2').textContent = "Nous écoutons attentivement vos besoins afin de vous proposer une solution précise et adaptée.";
   document.getElementById('contact-name').placeholder = "Nom";
@@ -803,30 +740,10 @@ locationBtnEn.addEventListener('mouseenter', () => {
 });
 
 
-
-
-
-
-
-
-
-
-
-
-  
 // Boutons Discover Smart-In et Présentation Video
 
 
-
-
-
 document.getElementById('presentationSmartIn').addEventListener('click', () => openModal('videoModal'));
-
-
-
-
-
-
 
   document.getElementById('contact-text').textContent = "Contact us";
   document.getElementById('contact-text2').textContent = "We listen carefully to your needs to deliver a precise, tailored solution.";
@@ -900,19 +817,9 @@ function closeModal(id){
 
 
 
-
-
-
-
-
 function sendSmartIn(){
   alert("Smart-In request sent (mock)");
 }
-
-
-
-
-
 
 
 function drawPreMap() {
@@ -1058,13 +965,5 @@ selectAllGoals.addEventListener('change', e => {
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
 
 
