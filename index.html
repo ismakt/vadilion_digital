@@ -704,87 +704,10 @@ discoverBtn.addEventListener('mouseleave', () => {
 
 
 
-const frBtn = document.getElementById('fr-btn');
-const enBtn = document.getElementById('en-btn');
-frBtn.addEventListener('click', () => {
-  frBtn.classList.add('active'); enBtn.classList.remove('active');
-   document.getElementById('about-text').innerHTML = `<p>Nous allions business intelligence et data science pour développer des solutions uniques, à forte valeur ajoutée, 
-      fondées sur des données fiables et répondant à des enjeux concrets.</p>`;
-  document.getElementById('solutions-text').innerHTML = `<div style="text-align:left;">
+
+
   
-       
-        <p>
-          Constatant la difficulté pour les investisseurs et entrepreneurs à obtenir une information transparente sur le marché, 
-          et contraints de discerner entre embellissements et réalités, une volonté forte est née : offrir une alternative.
-          Smart-In est une application indépendante, offrant un accès transparent aux données cruciales pour tout projet immobilier ou commercial. 
-          Découvrez-la : choisissez votre ville et les paramètres qui vous intéressent.</p><br>
-         
-        <p>Nos études sont développées autour des principaux piliers :</p>
 
-        
-        <ul>
-          <li>Le marché : résilience, étude des concurrents et client potentiels</li>
-          <li>Socioéconomie : population (âge, cultures), revenus, attractivité</li>
-          <li>Immobilier & Projets urbains: impact et évolution des quartiers</li>
-          <li>Indicateurs clés: sécurité, prix, pollution</li>
-        </ul><br>
-    
-      </ul><br>
-  </div>
-</div>`;
-
-
-
-
-
-
-
-  document.getElementById('contact-text').textContent = "Contactez-nous";
-  document.getElementById('contact-text2').textContent = "Nous écoutons attentivement vos besoins afin de vous proposer une solution précise et adaptée.";
-  document.getElementById('contact-name').placeholder = "Nom";
-  document.getElementById('contact-info').placeholder = "Coordonnées de contact";
-  document.getElementById('contact-message').placeholder = "Comment pouvons-nous vous aider ?";
-  document.getElementById('our-media').textContent = "Nos réseaux";
-  document.getElementById('btn-send').textContent = "Envoyer";
-  document.getElementById('btn-smartin').textContent = "SMART-IN";
-
-});
-
-enBtn.addEventListener('click', () => {
-  enBtn.classList.add('active'); frBtn.classList.remove('active');
-
-  document.getElementById('about-text').innerHTML = document.getElementById('about-text').innerHTML = 
-    `<p>We combine business intelligence and data science to develop unique, high-value solutions built on reliable data and designed to address concrete business challenges.</p>`;
-
-
-document.getElementById('solutions-text').innerHTML = `
-<div style="text-align: left;">
-  <button id="locationBtn" class="btn-smartin" style="width:auto; text-align:left; font-weight:600;">SMART-IN</button>
-  <div id="locationContent" style="display:none; margin-top:12px; border-top:1px solid var(--border); padding-top:12px;">
-    
-<p>
-    Noting the difficulty investors and entrepreneurs face in obtaining transparent market information, 
-    and often forced to distinguish between embellishments and reality, a strong desire has emerged: to offer an alternative. 
-    Smart-In is an independent application, providing transparent access to crucial data for any real estate or commercial project. 
-    Discover it: choose your city and the parameters that interest you.
-</p><br>
-
-<p>Our studies are built around the following key pillars:</p>
-
-<ul>
-    <li>Market: resilience, competitor analysis, and potential customers</li>
-    <li>Socioeconomics: population (age, cultures), income, attractiveness</li>
-    <li>Real Estate & Urban Projects: impact and evolution of neighborhoods</li>
-    <li>Key Indicators: safety, prices, pollution</li>
-</ul><br>
-
-<div class="btn-flex" style="margin-top:20px; display:flex; justify-content:center; gap:12px;">
-  <button id="discoverSmartIn" class="btn-send">Discover Smart-In</button>
-  <button id="presentationSmartIn" class="btn-video">Video</button>
-</div>
-
-  </div>
-</div>`;
 
 
 
@@ -1054,11 +977,62 @@ selectAllGoals.addEventListener('change', e => {
 });
 
 
-  
+  const frBtn = document.getElementById('fr-btn');
+const enBtn = document.getElementById('en-btn');
+
+let currentLang = 'fr';
+
+function setLanguage(lang){
+  currentLang = lang;
+
+  // UI boutons
+  frBtn.classList.toggle('active', lang === 'fr');
+  enBtn.classList.toggle('active', lang === 'en');
+
+  // --- ABOUT ---
+  const aboutText = document.querySelector('#about-text p');
+  if(aboutText){
+    aboutText.textContent =
+      lang === 'fr'
+        ? "Nous allions business intelligence et data science pour développer des solutions uniques, à forte valeur ajoutée, fondées sur des données fiables et répondant à des enjeux concrets."
+        : "We combine business intelligence and data science to develop unique, high-value solutions built on reliable data and designed to address concrete business challenges.";
+  }
+
+  // --- CONTACT MODAL ---
+  document.getElementById('contact-text').textContent =
+    lang === 'fr' ? "Contactez-nous" : "Contact us";
+
+  document.getElementById('contact-text2').textContent =
+    lang === 'fr'
+      ? "Nous écoutons attentivement vos besoins afin de vous proposer une solution précise et adaptée."
+      : "We listen carefully to your needs to deliver a precise, tailored solution.";
+
+  document.getElementById('contact-name').placeholder =
+    lang === 'fr' ? "Nom" : "Name";
+
+  document.getElementById('contact-info').placeholder =
+    lang === 'fr' ? "Coordonnées de contact" : "Contact info";
+
+  document.getElementById('contact-message').placeholder =
+    lang === 'fr'
+      ? "Comment pouvons-nous vous aider ?"
+      : "How can we help you?";
+
+  document.getElementById('btn-send').textContent =
+    lang === 'fr' ? "Envoyer" : "Send";
+
+  document.getElementById('our-media').textContent =
+    lang === 'fr' ? "Nos réseaux" : "Our media";
+}
+
+  frBtn.addEventListener('click', () => setLanguage('fr'));
+enBtn.addEventListener('click', () => setLanguage('en'));
+
+  setLanguage('fr');
+
 </script>
 </body>
 </html>
-
 
 
 
