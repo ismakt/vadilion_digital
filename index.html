@@ -230,10 +230,11 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
   <div id="vanta-bg"></div>
   
 <!-- MENU -->
-<div class="menu">
-  <button data-i18n="menu.about">ABOUT</button>
-  <button data-i18n="menu.solutions">SOLUTIONS</button>
+  <div class="menu">
+  <button data-panel="about" data-i18n="menu.about">ABOUT</button>
+  <button data-panel="solutions" data-i18n="menu.solutions">SOLUTIONS</button>
 </div>
+
 
 
 
@@ -988,10 +989,9 @@ const menuButtons = document.querySelectorAll('.menu button');
 const panels = document.querySelectorAll('.panel');
 
 menuButtons.forEach(btn => {
-  // Récupérer l'ID du panel à partir de l'attribut onclick existant
-  const panelIdMatch = btn.getAttribute('onclick')?.match(/'(\w+)'/);
-  if(!panelIdMatch) return;
-  const panel = document.getElementById(panelIdMatch[1]);
+  const panelId = btn.dataset.panel; // ← ici
+  const panel = document.getElementById(panelId);
+  if(!panel) return;
 
   // Hover : ouvre le panel et ferme les autres
   btn.addEventListener('mouseenter', () => {
@@ -1004,6 +1004,7 @@ menuButtons.forEach(btn => {
     panel.style.display = (panel.style.display === 'block') ? 'none' : 'block';
   });
 });
+
 
 // **Plus besoin de ce listener, on le supprime**
 // document.addEventListener('mousemove', ...);
@@ -1084,6 +1085,7 @@ enBtn.addEventListener('click', () => setLanguage('en'));
 </script>
 </body>
 </html>
+
 
 
 
