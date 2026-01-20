@@ -822,53 +822,13 @@ locationBtn.addEventListener('mouseenter', () => {
   locationContent.style.display = 'block';
   locationOpen = true;
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
+ 
 // Boutons Discover Smart-In et Présentation Video
-
-
-
-
-
 document.getElementById('presentationSmartIn').addEventListener('click', () => openModal('videoModal'));
 
 
 
 
-
-
-
-
-// Gestion du sous-menu Location Intelligence
-const locationBtn = document.getElementById('locationBtn');
-const locationContent = document.getElementById('locationContent');
-let locationOpen = false;
-
-// Fonction pour ouvrir/fermer au clic
-locationBtn.addEventListener('click', () => {
-  locationOpen = !locationOpen;
-  locationContent.style.display = locationOpen ? 'block' : 'none';
-});
-
-// Fonction pour ouvrir au survol
-locationBtn.addEventListener('mouseenter', () => {
-  locationContent.style.display = 'block';
-  locationOpen = true;
-});
-
-// On ne ferme pas au mouseleave, fermeture uniquement au clic sur locationBtn
 
 
 
@@ -1124,6 +1084,7 @@ enBtn.addEventListener('click', () => setLanguage('en'));
 </script>
 </body>
 </html>
+
 
 
 
