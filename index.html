@@ -47,8 +47,6 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 .brand .logo { position: absolute; top: 20px; left: 0; width: 160px; height: auto; border-radius: 0; z-index: 0; }
 
 
-  
-
 .modal-smartin-content{
   width:95%;
   max-width:1200px;
@@ -71,8 +69,6 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
   gap:10px;
   overflow-y:auto;
   padding: 10px; /* <-- ajoute de l'espace pour ne pas coller aux bords */
-
-
 }
 
 
@@ -220,51 +216,57 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
     <span class="active" id="fr-btn">FR</span>|<span id="en-btn">EN</span>
   </div>
 </header>
+  
 <main>
+  
   <div id="vanta-bg"></div>
+  
 <div class="menu">
-  <button onclick="togglePanel('about')">ABOUT</button>
-  <button onclick="togglePanel('solutions')">SOLUTIONS</button>
+  <button class="menu-btn" id="menu-about-button">À PROPOS</button>
+  <button class="menu-btn">SOLUTIONS</button>
 </div>
-
 
 
 <div class="panel" id="about">
   <div id="about-text" style="text-align: left;">
-    <p>Nous allions business intelligence et data science pour développer des solutions uniques, à forte valeur ajoutée, 
-      fondées sur des données fiables et répondant à des enjeux concrets.</p>
+    <p>Nous développons des solutions digitales uniques à forte valeur ajoutée, fondées sur des données fiables et répondant à des enjeux concrets.</p>
   </div>
 </div>
 
 <div class="panel" id="solutions">
-  <div id="solutions-text">
+  <div id="solution-smart-in-btn">
     <div style="text-align: left;">
 
-      <!-- Bouton Location Intelligence -->
-      <button id="locationBtn" class="btn-smartin" style="width:auto; text-align:left; font-weight:500;">SMART-IN</button>
+      <!-- Bouton Smart-In -->
+      <button id="solution-smart-in-btn" class="btn-smartin" style="width:auto; text-align:left; font-weight:500;">SMART-IN</button>
 
-      <!-- Contenu déroulant caché par défaut -->
-      <div id="locationContent" style="display:none; margin-top:12px; border-top:1px solid var(--border); padding-top:12px;">
+      <!-- Contenu déroulant -->
+      <div id="smart-in-text" style="display:none; margin-top:12px; border-top:1px solid var(--border); padding-top:12px;">
 
         <p>
-          Constatant la difficulté pour les investisseurs et entrepreneurs à obtenir une information transparente sur le marché, 
-          et contraints de discerner entre embellissements et réalités, une volonté forte est née : offrir une alternative.
-          Smart-IN est une application indépendante, offrant un accès transparent aux données cruciales pour tout projet immobilier ou commercial. 
-          Découvrez-la : choisissez votre ville et les paramètres qui vous intéressent.</p><br>
+  Nous accompagnons entrepreneurs et investisseurs dans leurs projets commerciaux et d’investissement.
+  Constatant les difficultés d’accès à une information qualitative, fiable et rapidement exploitable,
+  sans embellissements commerciaux, nous avons développé 
+          
+  <br>Smart-IN : une application indépendante offrant
+  un accès clair et objectif aux données essentielles à tout projet immobilier ou commercial.
+  Choisissez la ville qui vous intéresse ainsi que les thématiques que vous souhaitez analyser, et recevez
+  un rapport qualitatif regroupant les éléments clés de votre réussite.
+</p>
 
-        <p>Nos études sont développées autour des principaux piliers :</p>
+<p>Nos études sont développées autour des principaux piliers :</p>
 
+<ul>
+  <li>Cohérence du projet avec son environnement socio-économique</li>
+  <li>Étude des concurrents : positionnement et dynamique de marché</li>
+  <li>Analyse des clients potentiels : optimisation marketing et ciblage</li>
+  <li>Analyse du marché immobilier : résilience, tendances et évolutions</li>
+</ul><br>
 
-        <ul>
-          <li>Le marché : résilience, étude des concurrents et client potentiels</li>
-          <li>Socioéconomie : population (âge, cultures), revenus, attractivité</li>
-          <li>Immobilier & Projets urbains: impact et évolution des quartiers</li>
-          <li>Indicateurs clés: sécurité, prix, pollution</li>
-        </ul><br>
 
         <div class="btn-flex" style="margin-top:20px; display:flex; justify-content:center; gap:12px;">
-          <button id="discoverSmartIn" class="btn-send">Discover Smart-In</button>
-          <button id="presentationSmartIn" class="btn-video">Video</button>
+          <button id="discover-smart-in-btn" class="btn-send">Découvrir</button>
+          <button id="video-smart-in" class="btn-video">Vidéo</button>
         </div>
       </div>
 
@@ -274,6 +276,8 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 
 
 </main>
+
+  
 <footer>
   <div class="footer-line"></div>
   <div class="footer-content">
@@ -282,17 +286,20 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
     <span onclick="openModal('mediaModal')">Media</span>
   </div>
 </footer>
+
+
 <div class="modal" id="contactModal">
   <div class="modal-content">
     <span class="close" onclick="closeModal('contactModal')">✕</span>
-    <h4 id="contact-text">Contactez-nous</h4>
-    <p id="contact-text2">Nous écoutons attentivement vos besoins afin de vous proposer une solution précise et adaptée.</p>
-    <input id="contact-name" placeholder="Nom" required>
-    <input id="contact-info" placeholder="Coordonnées de contact" required>
-    <textarea id="contact-message" placeholder="Comment pouvons nous vous aider?" maxlength="999" required></textarea>
+    <h4 id="contact-us">Contactez-nous</h4>
+    <p id="contact-slogan">Nous écoutons attentivement vos besoins afin de vous proposer une solution précise et adaptée.</p>
+    <input id="contact-client-name" placeholder="Nom" required>
+    <input id="contact-client-info" placeholder="Coordonnées de contact" required>
+    <textarea id="contact-message-area" placeholder="Comment pouvons nous vous aider?" maxlength="999" required></textarea>
     <button id="btn-send" class="btn-send">Envoyer</button>
   </div>
 </div>
+  
 <div class="modal" id="mediaModal">
   <div class="modal-content">
     <span class="close" onclick="closeModal('mediaModal')">✕</span>
@@ -301,10 +308,11 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
     <a href="https://www.instagram.com/vadilion.digital" target="_blank" class="btn-instagram">Instagram</a>
   </div>
 </div>
+  
 <div class="modal" id="officeModal">
   <div class="modal-content">
     <span class="close" onclick="closeModal('officeModal')">✕</span>
-    <h4 id="offices">Offices</h4>
+    <h4 id="offices">Bureaux</h4>
     <p id="offices-list">
       21 Avenue du Boulevard, Bruxelles (Financial District)<br><br>
       7 Rue Meyerbeer, Paris (Opéra Garnier)<br><br>
@@ -312,12 +320,15 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
     </p>
   </div>
 </div>
+  
 <div class="modal" id="videoModal">
   <div class="modal-content">
     <span class="close" onclick="closeModal('videoModal')">✕</span>
-    <h4>Presentation Smart-In</h4>
+<h4 id="smart-in-video-title">Présentation Smart-In</h4>
     <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden;">
-      <iframe id="smartInVideo" src="https://www.youtube.com/embed/VqEbCxg2bNI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
+      <iframe id="smartInVideo" src="https://www.youtube.com/embed/VqEbCxg2bNI" frameborder="0" allow="accelerometer; autoplay; 
+        clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute; top:0; left:0; width:100%; 
+        height:100%;"></iframe>
     </div>
   </div>
 </div>
@@ -333,6 +344,7 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 
     <div class="smartin-layout">
 
+      
       <!-- LEFT -->
       <div class="smartin-left">
 
@@ -580,16 +592,6 @@ const summaryContent = document.getElementById('summaryContent');
 
   
 
-
-
-
-
-
-
-
-
-
-
 const discoverBtn = document.getElementById('discoverSmartIn');
 
 let smartInHoverTimeout = null;
@@ -645,48 +647,77 @@ discoverBtn.addEventListener('mouseleave', () => {
 
 
 
+  
+  // Traductions
+
+
 const frBtn = document.getElementById('fr-btn');
 const enBtn = document.getElementById('en-btn');
 frBtn.addEventListener('click', () => {
   frBtn.classList.add('active'); enBtn.classList.remove('active');
-   document.getElementById('about-text').innerHTML = `<p>Nous allions business intelligence et data science pour développer des solutions uniques, à forte valeur ajoutée, 
-      fondées sur des données fiables et répondant à des enjeux concrets.</p>`;
-  document.getElementById('solutions-text').innerHTML = `<div style="text-align:left;">
-  
-       
-        <p>
-          Constatant la difficulté pour les investisseurs et entrepreneurs à obtenir une information transparente sur le marché, 
-          et contraints de discerner entre embellissements et réalités, une volonté forte est née : offrir une alternative.
-          Smart-In est une application indépendante, offrant un accès transparent aux données cruciales pour tout projet immobilier ou commercial. 
-          Découvrez-la : choisissez votre ville et les paramètres qui vous intéressent.</p><br>
-         
-        <p>Nos études sont développées autour des principaux piliers :</p>
 
-        
-        <ul>
-          <li>Le marché : résilience, étude des concurrents et client potentiels</li>
-          <li>Socioéconomie : population (âge, cultures), revenus, attractivité</li>
-          <li>Immobilier & Projets urbains: impact et évolution des quartiers</li>
-          <li>Indicateurs clés: sécurité, prix, pollution</li>
-        </ul><br>
+  // Francais
+
+  document.getElementById('menu-about-button').innerHTML =
+     `<p>À PROPOS</p>`;
+  
+   document.getElementById('about-text').innerHTML =
+     `<p>Nous développons des solutions digitales uniques à forte valeur ajoutée, fondées sur des données fiables et répondant à des enjeux concrets.</p>`;
+  
+  document.getElementById('smart-in-text').innerHTML = `<div style="text-align:left;">
+<p>
+  Nous accompagnons entrepreneurs et investisseurs dans leurs projets commerciaux et d’investissement.
+  Constatant les difficultés d’accès à une information qualitative, fiable et rapidement exploitable,
+  sans embellissements commerciaux, nous avons développé 
+          
+  <br>Smart-IN : une application indépendante offrant
+  un accès clair et objectif aux données essentielles à tout projet immobilier ou commercial.
+  Choisissez la ville qui vous intéresse ainsi que les thématiques que vous souhaitez analyser, et recevez
+  un rapport qualitatif regroupant les éléments clés de votre réussite.
+</p>
+
+<p>Nos études sont développées autour des principaux piliers :</p>
+
+<ul>
+  <li>Cohérence du projet avec son environnement socio-économique</li>
+  <li>Étude des concurrents : positionnement et dynamique de marché</li>
+  <li>Analyse des clients potentiels : optimisation marketing et ciblage</li>
+  <li>Analyse du marché immobilier : résilience, tendances et évolutions</li>
+</ul><br>
     
       </ul><br>
   </div>
 </div>`;
 
 
-
-  document.getElementById('contact-text').textContent = "Contactez-nous";
-  document.getElementById('contact-text2').textContent = "Nous écoutons attentivement vos besoins afin de vous proposer une solution précise et adaptée.";
-  document.getElementById('contact-name').placeholder = "Nom";
-  document.getElementById('contact-info').placeholder = "Coordonnées de contact";
-  document.getElementById('contact-message').placeholder = "Comment pouvons-nous vous aider ?";
-  document.getElementById('our-media').textContent = "Nos réseaux";
-  document.getElementById('btn-send').textContent = "Envoyer";
   document.getElementById('btn-smartin').textContent = "SMART-IN";
+  document.getElementById('discover-smart-in-btn').textContent = "Découvrir";
+  document.getElementById('video-smart-in').textContent = "Vidéo";
+
+  document.getElementById('contact-us').textContent = "Contactez-nous";
+  document.getElementById('contact-slogan').textContent = "Nous écoutons attentivement vos besoins afin de vous proposer une solution précise et adaptée.";
+  document.getElementById('contact-client-name').placeholder = "Nom";
+  document.getElementById('contact-client-info').placeholder = "Coordonnées de contact";
+  document.getElementById('contact-message-area').placeholder = "Comment pouvons-nous vous aider ?";
+  document.getElementById('btn-send').textContent = "Envoyer";
+
+  document.getElementById('our-media').textContent = "Nos réseaux";
+  document.getElementById('offices').textContent = "Bureaux";
+document.getElementById('offices-list').innerHTML = 
+    "21 Avenue du Boulevard, Bruxelles (Financial District)<br><br>" +
+    "7 Rue Meyerbeer, Paris (Opéra Garnier)<br><br>" +
+    "74 Boulevard d'Italie, Monaco (Monte Carlo)";
+
+  document.getElementById('smart-in-video-title').textContent = "Présentation Smart-In";
+
+
+  
 
 });
 
+
+  // English
+  
 enBtn.addEventListener('click', () => {
   enBtn.classList.add('active'); frBtn.classList.remove('active');
 
@@ -965,5 +996,6 @@ selectAllGoals.addEventListener('change', e => {
 </script>
 </body>
 </html>
+
 
 
