@@ -229,15 +229,14 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 <main>
   <div id="vanta-bg"></div>
 <div class="menu">
-  <button onclick="togglePanel('about')">ABOUT</button>
+
+
+
+  <button onclick="togglePanel('about')"><span id="about-menu-btn">À PROPOS</span></button>
   <button onclick="togglePanel('solutions')">SOLUTIONS</button>
 </div>
 
 
-
-
-
-  
 
 <div class="panel" id="about">
   <div id="about-text" style="text-align: left;">
@@ -507,50 +506,6 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.dots.min.js"></script>
 <script>
@@ -639,16 +594,6 @@ const summaryContent = document.getElementById('summaryContent');
 
   
 
-
-
-
-
-
-
-
-
-
-
 const discoverBtn = document.getElementById('discoverSmartIn');
 
 let smartInHoverTimeout = null;
@@ -702,12 +647,22 @@ discoverBtn.addEventListener('mouseleave', () => {
 .forEach(id => document.getElementById(id).addEventListener('input', updateSummary));
 
 
+  // TRADUCTION
 
 
 const frBtn = document.getElementById('fr-btn');
 const enBtn = document.getElementById('en-btn');
+
+
+  // FRANCAIS
+
 frBtn.addEventListener('click', () => {
   frBtn.classList.add('active'); enBtn.classList.remove('active');
+
+document.getElementById('about-menu-btn').innerHTML = `À PROPOS`;
+
+  
+  
    document.getElementById('about-text').innerHTML = `<p>Nous allions business intelligence et data science pour développer des solutions uniques, à forte valeur ajoutée, 
       fondées sur des données fiables et répondant à des enjeux concrets.</p>`;
   document.getElementById('solutions-text').innerHTML = `<div style="text-align:left;">
@@ -750,8 +705,15 @@ frBtn.addEventListener('click', () => {
 
 });
 
+
+
+  // ENGLISH
+
+
 enBtn.addEventListener('click', () => {
   enBtn.classList.add('active'); frBtn.classList.remove('active');
+
+  document.getElementById('about-menu-btn').innerHTML = `ABOUT`;
 
   document.getElementById('about-text').innerHTML = document.getElementById('about-text').innerHTML = 
     `<p>We combine business intelligence and data science to develop unique, high-value solutions built on reliable data and designed to address concrete business challenges.</p>`;
@@ -1058,6 +1020,7 @@ selectAllGoals.addEventListener('change', e => {
 </script>
 </body>
 </html>
+
 
 
 
