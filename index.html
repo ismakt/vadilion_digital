@@ -531,6 +531,122 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.dots.min.js"></script>
 <script>
 
+
+
+
+// --- Traductions FR / EN pour tous les textes ---
+const translations = {
+  // Header
+  "menu-about": { fr: "À propos", en: "ABOUT" },
+
+  // Boutons principaux
+  "discoverSmartIn": { fr: "Découvrir Smart-In", en: "Discover Smart-In" },
+  "presentationSmartIn": { fr: "Vidéo", en: "Video" },
+
+  // Modals
+  "contact-text": { fr: "Contactez-nous", en: "Contact us" },
+  "contact-text2": { fr: "Nous écoutons attentivement vos besoins afin de vous proposer une solution précise et adaptée.", en: "We listen carefully to your needs to offer a precise and tailored solution." },
+  "btn-send": { fr: "Envoyer", en: "Send" },
+  "our-media": { fr: "Nos réseaux", en: "Our media" },
+  "offices": { fr: "Bureaux", en: "Offices" },
+
+  // SmartIn contact form
+  "label-contactInfo": { fr: "Informations de contact", en: "Contact info" },
+  "label-address": { fr: "Saisir l'adresse (max 3, séparées par des virgules)", en: "Enter address (max 3, separated by commas)" },
+  "label-project": { fr: "À propos de votre projet", en: "About your project" },
+  "label-mainGoal": { fr: "Sélectionnez votre objectif principal", en: "Select your main goal" },
+  "goal-selectAll": { fr: "Tout sélectionner", en: "Select all" },
+  "goal-coherence": { fr: "Analyse de la cohérence du projet dans son milieu socioéconomique", en: "Analyze project coherence in its socioeconomic environment" },
+  "goal-competitors": { fr: "Étude des concurrents", en: "Competitor analysis" },
+  "goal-potentialClients": { fr: "Étude des clients potentiels", en: "Potential client analysis" },
+  "goal-marketEssentials": { fr: "Connaître les essentiels du marché immobilier", en: "Know the essentials of the real estate market" },
+
+  // Labels
+  "label-selectThemes": { fr: "Sélectionnez les thèmes", en: "Select themes" },
+  "subtitle-realEstate": { fr: "Essentiels de l'immobilier", en: "Real Estate Essentials" },
+  "theme-globalSales": { fr: "Ventes mondiales d'immobilier", en: "Global Real Estate Sales" },
+  "theme-parcImmobilier": { fr: "Parc immobilier (social, résidentiel)", en: "Real estate stock (social, residential)" },
+  "theme-loyerMoyen": { fr: "Loyer moyen", en: "Average rent" },
+  "theme-nbAppartements": { fr: "Nombre d'appartements vendus", en: "Number of apartments sold" },
+  "theme-nbMaisons": { fr: "Nombre de maisons vendues", en: "Number of houses sold" },
+  "theme-prixMedianApparts": { fr: "Prix médian appartements", en: "Median apartment price" },
+  "theme-prixMedianMaisons": { fr: "Prix médian maisons", en: "Median house price" },
+  "theme-urbanProjects": { fr: "Projets urbains & immobiliers", en: "Urban & Real Estate projects" },
+  "theme-m2Price": { fr: "Prix/m²", en: "M2 price" },
+  "theme-gentrification": { fr: "Gentrification", en: "Gentrification" },
+
+  "subtitle-security": { fr: "Statistiques de sécurité", en: "Security Statistics" },
+  "theme-vols": { fr: "Vols", en: "Thefts" },
+  "theme-coupsBlessures": { fr: "Coups/Blessures", en: "Assaults/Injuries" },
+  "theme-drogues": { fr: "Drogues", en: "Drugs" },
+  "theme-alcool": { fr: "Alcool", en: "Alcohol" },
+  "theme-armes": { fr: "Armes", en: "Weapons" },
+  "theme-secuPublique": { fr: "Atteinte Sécurité Publique", en: "Public security offenses" },
+  "theme-degradations": { fr: "Dégradations de propriété", en: "Property damage" },
+  "theme-cambriolages": { fr: "Cambriolages", en: "Burglaries" },
+
+  "subtitle-socioEconomics": { fr: "Socioéconomie", en: "SocioEconomics" },
+  "subtitle-socio": { fr: "Socio", en: "Socio" },
+  "theme-densite": { fr: "Densité", en: "Density" },
+  "theme-age18_64": { fr: "% 18-64 ans", en: "% 18-64 yrs" },
+  "theme-soldeMigratoire": { fr: "Solde migratoire", en: "Migration balance" },
+  "theme-croissanceAnnuelle": { fr: "Croissance annuelle", en: "Annual growth" },
+  "theme-popImmigree": { fr: "% Population immigrée", en: "% Immigrant population" },
+  "theme-tauxNatalite": { fr: "Taux natalité", en: "Birth rate" },
+  "theme-culturalComposition": { fr: "Composition culturelle", en: "Cultural composition" },
+
+  "subtitle-economics": { fr: "Économie", en: "Economics" },
+  "theme-revenuMedian": { fr: "Revenu médian", en: "Median income" },
+  "theme-tauxEmploi": { fr: "Taux emploi", en: "Employment rate" },
+  "theme-tauxOccupation": { fr: "Taux par type d'occupation", en: "Occupation type rate" },
+  "theme-tauxChomage": { fr: "Taux chômage", en: "Unemployment rate" },
+  "theme-tauxGRAPA": { fr: "Taux GRAPA 65+", en: "GRAPA 65+ rate" },
+  "theme-naissancesSansTravail": { fr: "Naissances sans revenu de travail", en: "Births without work income" },
+  "theme-naissancesEtrangeres": { fr: "Naissances mères étrangères", en: "Births from foreign mothers" },
+  "theme-retardScolaire": { fr: "Taux retard scolaire", en: "School delay rate" },
+
+  "subtitle-economy": { fr: "Économie", en: "Economy" },
+  "theme-siegesSociaux": { fr: "Sièges sociaux", en: "Head offices" },
+  "theme-etablissements": { fr: "Établissements", en: "Establishments" },
+  "theme-soldeMigrationEnt": { fr: "Solde migration entreprises", en: "Company migration balance" },
+  "theme-secteursMajeurs": { fr: "Secteurs économiques majeurs", en: "Major economic sectors" },
+
+  "subtitle-qualityLife": { fr: "Qualité de vie", en: "Quality of Life" },
+  "theme-espacesVerts": { fr: "Espaces verts", en: "Green areas" },
+  "theme-pollution": { fr: "Pollution (air, noise)", en: "Pollution (air, noise)" },
+
+  // Summary / city / send
+  "summary-title": { fr: "Résumé", en: "Summary" },
+  "label-selectCity": { fr: "Sélectionnez une ville", en: "Select city" },
+  "sendSmartInBtn": { fr: "Envoyer", en: "Send" }
+};
+
+// --- Fonction pour appliquer la langue ---
+function setLanguage(lang) {
+  for (const id in translations) {
+    const el = document.getElementById(id);
+    if (!el) continue;
+
+    // Si c'est un <input> ou <textarea>, on change placeholder
+    if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") {
+      el.placeholder = translations[id][lang];
+    } else {
+      el.textContent = translations[id][lang];
+    }
+  }
+}
+
+// --- Gestion clic langue ---
+document.getElementById("fr-btn").addEventListener("click", () => setLanguage("fr"));
+document.getElementById("en-btn").addEventListener("click", () => setLanguage("en"));
+
+
+
+
+
+
+
+  
   // --- Coordonnées du contour de Bruxelles ---
 const bruxellesContour = [
   [50.897838, 4.377298],
@@ -680,87 +796,6 @@ discoverBtn.addEventListener('mouseleave', () => {
 
 
 
-const frBtn = document.getElementById('fr-btn');
-const enBtn = document.getElementById('en-btn');
-frBtn.addEventListener('click', () => {
-  frBtn.classList.add('active'); enBtn.classList.remove('active');
-   document.getElementById('about-text').innerHTML = `<p>Nous allions business intelligence et data science pour développer des solutions uniques, à forte valeur ajoutée, 
-      fondées sur des données fiables et répondant à des enjeux concrets.</p>`;
-  document.getElementById('solutions-text').innerHTML = `<div style="text-align:left;">
-  
-       
-        <p>
-          Constatant la difficulté pour les investisseurs et entrepreneurs à obtenir une information transparente sur le marché, 
-          et contraints de discerner entre embellissements et réalités, une volonté forte est née : offrir une alternative.
-          Smart-In est une application indépendante, offrant un accès transparent aux données cruciales pour tout projet immobilier ou commercial. 
-          Découvrez-la : choisissez votre ville et les paramètres qui vous intéressent.</p><br>
-         
-        <p>Nos études sont développées autour des principaux piliers :</p>
-
-        
-        <ul>
-          <li>Le marché : résilience, étude des concurrents et client potentiels</li>
-          <li>Socioéconomie : population (âge, cultures), revenus, attractivité</li>
-          <li>Immobilier & Projets urbains: impact et évolution des quartiers</li>
-          <li>Indicateurs clés: sécurité, prix, pollution</li>
-        </ul><br>
-    
-      </ul><br>
-  </div>
-</div>`;
-
-
-
-
-
-
-
-  document.getElementById('contact-text').textContent = "Contactez-nous";
-  document.getElementById('contact-text2').textContent = "Nous écoutons attentivement vos besoins afin de vous proposer une solution précise et adaptée.";
-  document.getElementById('contact-name').placeholder = "Nom";
-  document.getElementById('contact-info').placeholder = "Coordonnées de contact";
-  document.getElementById('contact-message').placeholder = "Comment pouvons-nous vous aider ?";
-  document.getElementById('our-media').textContent = "Nos réseaux";
-  document.getElementById('btn-send').textContent = "Envoyer";
-  document.getElementById('btn-smartin').textContent = "SMART-IN";
-
-});
-
-enBtn.addEventListener('click', () => {
-  enBtn.classList.add('active'); frBtn.classList.remove('active');
-
-  document.getElementById('about-text').innerHTML = document.getElementById('about-text').innerHTML = 
-    `<p>We combine business intelligence and data science to develop unique, high-value solutions built on reliable data and designed to address concrete business challenges.</p>`;
-
-
-document.getElementById('solutions-text').innerHTML = `
-<div style="text-align: left;">
-  <button id="locationBtn" class="btn-smartin" style="width:auto; text-align:left; font-weight:600;">SMART-IN</button>
-  <div id="locationContent" style="display:none; margin-top:12px; border-top:1px solid var(--border); padding-top:12px;">
-    
-<p>
-    Noting the difficulty investors and entrepreneurs face in obtaining transparent market information, 
-    and often forced to distinguish between embellishments and reality, a strong desire has emerged: to offer an alternative. 
-    Smart-In is an independent application, providing transparent access to crucial data for any real estate or commercial project. 
-    Discover it: choose your city and the parameters that interest you.
-</p><br>
-
-<p>Our studies are built around the following key pillars:</p>
-
-<ul>
-    <li>Market: resilience, competitor analysis, and potential customers</li>
-    <li>Socioeconomics: population (age, cultures), income, attractiveness</li>
-    <li>Real Estate & Urban Projects: impact and evolution of neighborhoods</li>
-    <li>Key Indicators: safety, prices, pollution</li>
-</ul><br>
-
-<div class="btn-flex" style="margin-top:20px; display:flex; justify-content:center; gap:12px;">
-  <button id="discoverSmartIn" class="btn-send">Discover Smart-In</button>
-  <button id="presentationSmartIn" class="btn-video">Video</button>
-</div>
-
-  </div>
-</div>`;
 
 
 
@@ -799,19 +834,6 @@ locationBtnEn.addEventListener('mouseenter', () => {
 document.getElementById('presentationSmartIn').addEventListener('click', () => openModal('videoModal'));
 
 
-
-
-
-
-
-  document.getElementById('contact-text').textContent = "Contact us";
-  document.getElementById('contact-text2').textContent = "We listen carefully to your needs to deliver a precise, tailored solution.";
-  document.getElementById('contact-name').placeholder = "Name";
-  document.getElementById('contact-info').placeholder = "Contact info";
-  document.getElementById('contact-message').placeholder = "How can we help you?";
-  document.getElementById('our-media').textContent = "Our media";
-  document.getElementById('btn-send').textContent = "Send";
-});
 
 // Gestion du sous-menu Location Intelligence
 const locationBtn = document.getElementById('locationBtn');
@@ -1034,6 +1056,7 @@ selectAllGoals.addEventListener('change', e => {
 </script>
 </body>
 </html>
+
 
 
 
