@@ -1015,12 +1015,19 @@ if (document.getElementById('video-smart-in')) {
 
   document.getElementById('label-main-goal-smart-in').textContent = "Sélectionnez l'objectif principal de l'étude (choix multiple possible)";
 
-  // ✅ Checkboxes : on modifie les labels
-  document.querySelector("label[for='goal-select-all']").textContent = "Tout séléctionner";
-  document.querySelector("label[for='goal-1']").textContent = "Analyser la cohérence du projet dans son milieu socio-économique";
-  document.querySelector("label[for='goal-2']").textContent = "Étude des concurrents: positionnement";
-  document.querySelector("label[for='goal-3']").textContent = "Étude des clients potentiels: marketing et ciblage";
-  document.querySelector("label[for='goal-4']").textContent = "Connaître les essentiels du marché immobilier";
+  // ✅ Checkboxes : on modifie les labels en toute sécurité
+const goalLabels = [
+  {id: 'goal-select-all', text: "Tout séléctionner"},
+  {id: 'goal-1', text: "Analyser la cohérence du projet dans son milieu socio-économique"},
+  {id: 'goal-2', text: "Étude des concurrents: positionnement"},
+  {id: 'goal-3', text: "Étude des clients potentiels: marketing et ciblage"},
+  {id: 'goal-4', text: "Connaître les essentiels du marché immobilier"}
+];
+
+goalLabels.forEach(item => {
+  const el = document.querySelector(`label[for='${item.id}']`);
+  if (el) el.textContent = item.text;
+});
 
   document.getElementById('label-select-themes-smart-in').textContent = "Sélectionnez les thèmes que vous aimeriez connaitre";
   document.querySelector("label[for='theme-select-all']").textContent = "Séléctionner tout";
@@ -1132,14 +1139,20 @@ document.getElementById('label-project-description-smart-in').textContent = "Des
 document.getElementById('textarea-project-details-smart-in').placeholder =
   "Provide as much relevant information as possible so we can come back to you with the best possible solution";
 
-// Objectifs principaux – checkbox labels
-document.getElementById('label-main-goal-smart-in').textContent =
-  "Select the main objective of the study (multiple choices possible)";
-document.getElementById('goal-select-all').parentElement.textContent = "Select all";
-document.getElementById('goal-1').parentElement.textContent = "Analyze the coherence of the project within its socio-economic environment";
-document.getElementById('goal-2').parentElement.textContent = "Competitor analysis: positioning";
-document.getElementById('goal-3').parentElement.textContent = "Potential customer analysis: marketing and targeting";
-document.getElementById('goal-4').parentElement.textContent = "Understand real estate market essentials";
+// ✅ Checkboxes : on modifie les labels EN en toute sécurité
+const goalLabelsEN = [
+  {id: 'goal-select-all', text: "Select all"},
+  {id: 'goal-1', text: "Analyze the coherence of the project within its socio-economic environment"},
+  {id: 'goal-2', text: "Competitor analysis: positioning"},
+  {id: 'goal-3', text: "Potential customer analysis: marketing and targeting"},
+  {id: 'goal-4', text: "Understand real estate market essentials"}
+];
+
+goalLabelsEN.forEach(item => {
+  const el = document.querySelector(`label[for='${item.id}']`);
+  if (el) el.textContent = item.text;
+});
+
 
 // Thèmes – checkbox labels
 document.getElementById('label-select-themes-smart-in').textContent = "Select the themes you would like to explore";
@@ -1205,6 +1218,7 @@ document.getElementById('text-btn-send').textContent = "Send";
 </script>
 </body>
 </html>
+
 
 
 
