@@ -4,1060 +4,136 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <style>
-:root{ --bg:#000000; --overlay: rgba(0,0,0,0.85); --panel:#0e0e0e; --panel-2:#151515; --border:#2a2a2a; --gold:#c9a24d; --text:#ffffff; --muted:#b5b5b5; }
-*{ box-sizing:border-box; border-radius: 16px; margin:0; padding:0; font-family:Arial, Helvetica, sans-serif; }
-body{ background:var(--bg); color:var(--text); min-height:100vh; display:flex; flex-direction:column; }
-/* HEADER */
-header{ display:flex; justify-content:space-between; padding:15px; z-index:20; position:relative; }
-.lang { display: inline-flex; align-items: center; justify-content: center; height: 28px; border: 1px solid var(--border); padding: 4px 12px; border-radius: 4px; font-size: 14px; line-height: 1; background-color: #000; }
-.lang span{ cursor:pointer; margin: 0 4px; }
-.lang .active{ color: var(--gold); }
-/* MAIN */
-main{ flex:1; display:flex; flex-direction:column; align-items:center; position:relative; padding:20px; overflow:hidden; }
-/* VANTA BG */
-#vanta-bg{ position:absolute; top:0; left:0; width:100%; height:100%; z-index:0; }
-.menu, .panel, .modal { position: relative; z-index: 10; }
-/* MENU */
-.menu{ display:flex; gap:40px; position:absolute; top:23%; left:50%; transform:translateX(-50%); z-index:10; }
-.menu button{ background:none; border:none; color:var(--text); font-size:18px; cursor:pointer; font-weight: 600; }
-.menu button:hover{color:var(--gold);}
-/* PANELS */
-.panel{ display:none; position:absolute; top:calc(20% + 50px); left:50%; transform:translateX(-50%); background:var(--panel); border:1px solid var(--border); padding:20px; max-width:600px; width:100%; z-index:15;  color: #ffffff;  }
-.panel h3{ color:var(--gold); margin-bottom:10px; cursor:pointer; }
-.panel p{ font-size:14px; line-height:1.6;  }
-.sub{display:none;margin-top:10px;}
-/* FOOTER */
-.footer-line{ height:1px; background:var(--border); }
-.footer-content{ display:flex; justify-content:space-around; padding:10px; font-size:13px; }
-.footer-content span{cursor:pointer;}
-/* MODAL */
-.modal{ display:none; position:fixed; inset:0; background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(1px); z-index:9999; justify-content:center; align-items:center; }
-.modal-content{ background:var(--panel-2); border:1px solid var(--border); padding:20px; max-width:600px; width:100%; position:relative; }
-.modal-content h4{ color:var(--gold); margin-bottom:10px; }
-.modal-content p{ font-size:13px; color:var(--muted); margin-bottom:12px; }
-.modal-content input, .modal-content textarea{ width:100%; margin-bottom:10px; background:#000; border:1px solid var(--border); color:#fff; padding:8px; }
-.close{ position:absolute; top:8px; right:10px; cursor:pointer; }
-/* BUTTONS */
-.btn-linkedin, .btn-instagram, .btn-send, .btn-video, .btn-smartin
-  { display: inline-block; margin-top: 12px; padding: 8px 16px; background-color: #555; color: #fff; 
-   text-decoration: none; font-weight: 400; font-size: 12px; border-radius: 6px; transition: color 0.3s, background 0.3s; border: none; cursor: pointer; }
-.blur-background { filter: blur(1px); }
-.brand { position: relative; display: flex; flex-direction: column; align-items: flex-start; }
-.brand h1 { color: var(--gold); font-size: 15px; letter-spacing: 1px; z-index: 1; }
-.brand .logo { position: absolute; top: 20px; left: 0; width: 160px; height: auto; border-radius: 0; z-index: 0; }
-
-
-  
-
-.modal-smartin-content{
-  width:95%;
-  max-width:1200px;
-  height:90vh;
-  display:flex;
-  flex-direction:column;
-}
-
-.smartin-layout{
-  display:flex;
-  gap:20px;
-  flex:1;
-  overflow:hidden;
-}
-
-.smartin-left, .smartin-right{
-  flex:1;
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-  overflow-y:auto;
-  padding: 10px; /* <-- ajoute de l'espace pour ne pas coller aux bords */
-
-
-}
-
-
-.map-mock{
-  height:180px;
-  border:1px solid var(--border);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:var(--muted);
-}
-
-.summary-box{
-  border:1px solid var(--border);
-  padding:12px;
-  margin-top:10px;
-  flex:1;
-  overflow-y:auto;
-}
-
-
-.mapPreview {
-  width: 220px;      /* largeur du SVG (carte) */
-  height: 220px;     /* hauteur du SVG */
-  border: none ;
-  margin: 12px auto; /* centre le conteneur */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 7px;     /* <-- espace autour du SVG */
-  box-sizing: content-box; /* padding ajouté autour du contenu */
-}
-
-
-.smartin-left {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: 10px;
-  flex: 1;
-  min-height: 300px;      /* hauteur minimum de la colonne */
-  overflow-y: auto;        /* scroll si trop de contenu */
-}
-
-#projectDetails {
-  flex: 1;                 /* prend tout l’espace restant de la colonne */
-  min-height: 100px;       /* hauteur minimum */
-  resize: vertical;        /* permet d’agrandir verticalement */
-  width: 100%;
-  box-sizing: border-box;
-}
-
-
-
-
-  
-
-/* Tout le label reste flex vertical/espacé */
-.themes {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  cursor: pointer;
-}
-
-
-
-.theme-subtitle {
-  font-weight: 400;
-  font-size: 0.95rem;
-  color: #ffffff;
-  margin-top: 20px;
-  margin-bottom: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-}
-
-
-  
-/* Chaque label : alignement horizontal checkbox + texte */
-.themes label {
-  display: flex;
-  align-items: center;   /* centre checkbox et texte verticalement */
-  gap: 8px;              /* espace entre la checkbox et le texte */
-}
-
-/* Cibler uniquement les checkboxes */
-.themes input[type="checkbox"] {
-  width: 18px;      /* largeur de la checkbox */
-  height: 18px;     /* hauteur de la checkbox */
-  accent-color: var(--gold); /* couleur de la coche si navigateur le supporte */
-  flex-shrink: 0;   /* ne pas rétrécir */
-}
-
-
-
-
-
-
-#discoverSmartIn:hover {
-  background-color: var(--gold);
-  color: #000;
-}
-
-
-
-/* Harmonisation Goals / Themes */
-.selectgoals {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.selectgoals label {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.selectgoals input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
-  accent-color: var(--gold);
-  flex-shrink: 0;
-}
-
-  .selectgoals {
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--border);
-  margin-bottom: 12px;
-}
-
-
-/* SMART-IN active / hover state */
-#locationBtn:hover{
-  background-color: var(--gold);
-  color: #000
-}
-
-
- 
-  
+:root{--bg:#000;--panel:#0e0e0e;--panel2:#151515;--border:#2a2a2a;--gold:#c9a24d;--text:#fff;--muted:#b5b5b5;}
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,Helvetica,sans-serif;border-radius:16px}
+body{background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column}
+header{display:flex;justify-content:space-between;padding:15px}
+.lang{border:1px solid var(--border);padding:4px 12px;font-size:14px}
+.lang span{cursor:pointer;margin:0 4px}
+.lang .active{color:var(--gold)}
+.menu{display:flex;gap:40px;position:absolute;top:23%;left:50%;transform:translateX(-50%)}
+.menu button{background:none;border:none;color:#fff;font-size:18px;cursor:pointer;font-weight:600}
+.menu button:hover{color:var(--gold)}
+.panel{display:none;position:absolute;top:calc(20% + 50px);left:50%;transform:translateX(-50%);background:var(--panel);border:1px solid var(--border);padding:20px;max-width:600px;width:100%}
+.panel p{font-size:14px;line-height:1.6}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);justify-content:center;align-items:center;z-index:9999}
+.modal-content{background:var(--panel2);border:1px solid var(--border);padding:20px;max-width:600px;width:100%;position:relative}
+.modal-content h4{color:var(--gold);margin-bottom:10px}
+.modal-content p{font-size:13px;color:var(--muted);margin-bottom:12px}
+.modal-content input,.modal-content textarea{width:100%;background:#000;border:1px solid var(--border);color:#fff;padding:8px;margin-bottom:10px}
+.close{position:absolute;top:8px;right:10px;cursor:pointer}
+.btn{padding:8px 16px;background:#555;color:#fff;border:none;border-radius:6px;font-size:12px;cursor:pointer}
+footer{margin-top:auto}
+.footer-content{display:flex;justify-content:space-around;padding:10px;font-size:13px}
+.footer-content span{cursor:pointer}
 </style>
 </head>
+
 <body>
 <header>
-  <div class="brand">
-    <img src="images/vadiliondigital_logo.png" alt="Logo Vadilion Digital" class="logo">
-  </div>
+  <img src="images/vadiliondigital_logo.png" width="160">
   <div class="lang">
-    <span class="active" id="fr-btn">FR</span>|<span id="en-btn">EN</span>
+    <span id="frBtn" class="active">FR</span>|<span id="enBtn">EN</span>
   </div>
 </header>
+
 <main>
-  <div id="vanta-bg"></div>
-<div class="menu">
-
-
-
-  <button onclick="togglePanel('about')"><span id="about-menu-btn">À PROPOS</span></button>
-  <button onclick="togglePanel('solutions')">SOLUTIONS</button>
-</div>
-
-
-
-<div class="panel" id="about">
-  <div id="about-text" style="text-align: left;">
-    <p>Nous développons des solutions digitales uniques et sur mesure, fondées sur des données à forte valeur ajoutée, pour répondre efficacement à des enjeux concrets.</p>
+  <div class="menu">
+    <button data-i18n="menu.about"></button>
+    <button data-i18n="menu.solutions"></button>
   </div>
-</div>
 
-<div class="panel" id="solutions">
-  <div id="solutions-text">
-    <div style="text-align: left;">
+  <div class="panel" id="aboutPanel">
+    <p data-i18n="about.text"></p>
+  </div>
 
-      <!-- Bouton SMART-IN -->
-      <button id="locationBtn" class="btn-smartin" style="width:auto; text-align:left; font-weight:500;">SMART-IN</button>
-
-      <!-- Contenu déroulant caché par défaut -->
-      <div id="locationContent" style="display:none; margin-top:12px; border-top:1px solid var(--border); padding-top:12px;">
-
-        <p>
-          Nous accompagnons entrepreneurs et investisseurs dans leurs projets commerciaux et d’investissement. 
-          Constatant les difficultés d’accès à une information qualitative, fiable et rapidement exploitable, sans embellissements commerciaux, 
-          nous avons développé 
-          <br>Smart-IN : une application indépendante offrant un accès clair et objectif aux données essentielles à tout 
-          projet immobilier ou commercial. Choisissez la ville qui vous intéresse ainsi que les thématiques que vous souhaitez analyser, et recevez 
-          un rapport qualitatif regroupant les éléments clés de votre réussite. </p><br>
-
-        <p>Nos études sont développées autour des principaux piliers :</p>
-
-
-<ul> <li>Cohérence du projet avec son environnement socio-économique</li> 
-  <li>Étude des concurrents : positionnement et dynamique de marché</li> 
-  <li>Analyse des clients potentiels : optimisation marketing et ciblage</li> 
-  <li>Analyse du marché immobilier : résilience, tendances et évolutions</li> </ul><br> 
-
-
-        <div class="btn-flex" style="margin-top:20px; display:flex; justify-content:center; gap:12px;">
-          <button id="discoverSmartIn" class="btn-send"><span id="discover-text">Decouvrir</span></button>
-          <button id="presentationSmartIn" class="btn-video"><span id="video-text">Vidéo</span></button>
-        </div>
+  <div class="panel" id="solutionsPanel">
+    <button id="smartinBtn" class="btn" data-i18n="solutions.smartin"></button>
+    <div id="smartinContent" style="display:none;margin-top:12px;border-top:1px solid var(--border);padding-top:12px">
+      <p data-i18n="solutions.description"></p>
+      <p data-i18n="solutions.pillarsTitle"></p>
+      <ul>
+        <li data-i18n="solutions.p1"></li>
+        <li data-i18n="solutions.p2"></li>
+        <li data-i18n="solutions.p3"></li>
+        <li data-i18n="solutions.p4"></li>
+      </ul>
+      <div style="margin-top:20px;display:flex;gap:12px">
+        <button class="btn" data-i18n="solutions.discover"></button>
+        <button class="btn" data-i18n="solutions.video"></button>
       </div>
-
     </div>
   </div>
-</div>
-
-
 </main>
+
 <footer>
-  <div class="footer-line"></div>
   <div class="footer-content">
-    <span onclick="openModal('officeModal')">Offices: Bruxelles, Paris, Monaco</span>
-    <span onclick="openModal('contactModal')">Contact</span>
-    <span onclick="openModal('mediaModal')">Media</span>
+    <span data-i18n="footer.offices"></span>
+    <span data-i18n="footer.contact"></span>
+    <span data-i18n="footer.media"></span>
   </div>
 </footer>
-<div class="modal" id="contactModal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal('contactModal')">✕</span>
-    <h4 id="contact-text">Contactez-nous</h4>
-    <p id="contact-text2">Nous écoutons attentivement vos besoins afin de vous proposer une solution précise et adaptée.</p>
-    <input id="contact-name" placeholder="Nom" required>
-    <input id="contact-info" placeholder="Coordonnées de contact" required>
-    <textarea id="contact-message" placeholder="Comment pouvons nous vous aider?" maxlength="999" required></textarea>
-    <button id="btn-send" class="btn-send">Envoyer</button>
-  </div>
-</div>
-<div class="modal" id="mediaModal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal('mediaModal')">✕</span>
-    <h4 id="our-media">Nos réseaux</h4>
-    <a href="https://www.linkedin.com/company/vadiliondigital" target="_blank" class="btn-linkedin">LinkedIn</a>
-    <a href="https://www.instagram.com/vadilion.digital" target="_blank" class="btn-instagram">Instagram</a>
-  </div>
-</div>
-<div class="modal" id="officeModal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal('officeModal')">✕</span>
-    <h4 id="offices">Offices</h4>
-    <p id="offices-list">
-      21 Avenue du Boulevard, Bruxelles (Financial District)<br><br>
-      7 Rue Meyerbeer, Paris (Opéra Garnier)<br><br>
-      74 Boulevard d'Italie, Monaco (Monte Carlo)
-    </p>
-  </div>
-</div>
-<div class="modal" id="videoModal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal('videoModal')">✕</span>
-    <h4>Presentation Smart-In</h4>
-    <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden;">
-      <iframe id="smartInVideo" src="https://www.youtube.com/embed/VqEbCxg2bNI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
-    </div>
-  </div>
-</div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="modal modal-smartin" id="smartInModal">
-  <div class="modal-content modal-smartin-content">
-
-    <span class="close" onclick="closeModal('smartInModal')">✕</span>
-
-    <h3 style="color:var(--gold); margin-bottom:12px;">Smart-In Contact</h3>
-
-    <div class="smartin-layout">
-
-      <!-- LEFT -->
-      <div class="smartin-left">
-
-        <label>Contact info</label>
-        <input id="contactInfoSmartIn" placeholder="Email or phone">
-
-
-        <label>Enter address (max 3, separated by commas)</label>
-        <input id="addressInput" placeholder="Street 1, Street 2, Street 3">
-
-<label>About your project</label>
-<textarea id="projectDetails" rows="10" placeholder="Describe your project, goals, constraints..."></textarea>
-
-
-        
-<label>Select your main goal</label>
-
-<div class="selectgoals">
-
-  <label>
-    <input type="checkbox" id="selectAllGoals">
-    Select all
-  </label>
-
-  <label>
-    <input type="checkbox" class="goal" id="selectmaingoal">
-    Analyse de la cohérence du projet dans son milieu socioéconomique
-  </label>
-
-  <label>
-    <input type="checkbox" class="goal" id="selectmaingoa2">
-    Étude des concurrents
-  </label>
-
-  <label>
-    <input type="checkbox" class="goal" id="selectmaingoa3">
-    Étude des clients potentiels
-  </label>
-
-  <label>
-    <input type="checkbox" class="goal" id="selectmaingoa4">
-    Connaitre les essentiels du marché immobilier
-  </label>
-
-</div>
-
-
-        
-        <label>Select themes</label>
-        <div class="themes">
-
-<label><input type="checkbox" class="theme" id="selectAllThemes"> Select all</label>
-
-
-        
-<div class="theme-subtitle">Real Estate Essentials</div>
-          
-<label><input type="checkbox" class="theme" value="Global Real Estate Sales">Global Real Estate Sales</label>
-<label><input type="checkbox" class="theme" value="Parc Immobilier"> Parc immobilier (social, résidentiel)</label>
-<label><input type="checkbox" class="theme" value="Loyer moyen"> Loyer moyen</label>
-<label><input type="checkbox" class="theme" value="Nb Appartements"> Nombre d'appartements vendus</label>
-<label><input type="checkbox" class="theme" value="Nombre de maisons vendus"> Nombre de maisons vendues</label>
-<label><input type="checkbox" class="theme" value="Prix median appartements"> Prix médian appartements</label>
-<label><input type="checkbox" class="theme" value="Prix median maisons"> Prix médian maisons</label>
-<label><input type="checkbox" class="theme" value="Urban & Real Estate projects">Urban & Real Estate projects</label>
-<label><input type="checkbox" class="theme" value="M2 price///"> M2 price</label>
-<label><input type="checkbox" class="theme" value="Gentrification">Gentrification</label>
-
-
-          
-<div class="theme-subtitle">Security Statistics</div>
-          
-<label><input type="checkbox" class="theme" value="Vols"> Vols</label>
-<label><input type="checkbox" class="theme" value="coups_blessures"> Coups/Blessures</label>
-<label><input type="checkbox" class="theme" value="drogues"> Drogues</label>
-<label><input type="checkbox" class="theme" value="alcool"> Alcool</label>
-<label><input type="checkbox" class="theme" value="armes"> Armes</label>
-<label><input type="checkbox" class="theme" value="secu_publiq_2024"> Atteinte Sécurité Publique</label>
-<label><input type="checkbox" class="theme" value="degradat_prop"> Dégradations de propriété</label>
-<label><input type="checkbox" class="theme" value="Cambriolages"> Cambriolages</label>
-
-<div class="theme-subtitle">SocioEconomics</div>
-          
-<div class="theme-subtitle">Socio</div>
-<label><input type="checkbox" class="theme" value="Densité de Population"> Densité</label>
-<label><input type="checkbox" class="theme" value="% 18-64 ans">% 18-64 ans</label>
-<label><input type="checkbox" class="theme" value="Solde migratoire"> Solde migratoire</label>
-<label><input type="checkbox" class="theme" value="Croissance annuelle">Croissance annuelle</label>
-<label><input type="checkbox" class="theme" value="% Population immigrée">% Population immigrée</label>
-<label><input type="checkbox" class="theme" value="Taux natalité"> Taux natalité</label>
-<label><input type="checkbox" class="theme" value="Cultural Composition"> Cultural Composition</label>
-
-<div class="theme-subtitle">Economics</div>
-<label><input type="checkbox" class="theme" value="Revenu Médian"> Revenu médian</label>
-<label><input type="checkbox" class="theme" value="Taux emploi"> Taux emploi</label>
-<label><input type="checkbox" class="theme" value="Taux par type d'occupation"> Taux par type d'occupation</label>
-<label><input type="checkbox" class="theme" value="Taux chomage"> Taux chômage</label>
-<label><input type="checkbox" class="theme" value="Taux GRAPA 65+"> Taux GRAPA 65+</label>
-<label><input type="checkbox" class="theme" value="Taux naissances sans revenu de travail"> Naissances sans revenu de travail</label>
-<label><input type="checkbox" class="theme" value="Taux naissances meres etrangeres"> Naissances mères étrangères</label>
-<label><input type="checkbox" class="theme" value="Taux retard scolaire"> Taux retard scolaire</label>
-
-          
-<div class="theme-subtitle">Economy</div>
-
-<label><input type="checkbox" class="theme" value="Sieges sociaux">Sièges sociaux</label>
-<label><input type="checkbox" class="theme" value="Établissements">Établissements</label>
-<label><input type="checkbox" class="theme" value="Solde migration entreprises"> Solde migration entreprises</label>
-<label><input type="checkbox" class="theme" value="Secteurs economiques majeures"> Secteurs économiques majeurs</label>
-
-
-<div class="theme-subtitle">Quality of Life</div>
-
-<label><input type="checkbox" class="theme" value="Espace verts">Espaces verts</label>
-<label><input type="checkbox" class="theme" value="Pollution (air, noise)"> Pollution (air, noise)</label>
-
-
-
-
-        </div>
-
-      </div>
-
-      <!-- RIGHT -->
-      <div class="smartin-right">
-
-
-        <div class="summary-box">
-          <h4>Summary</h4>
-          <div id="summaryContent">No data yet</div>
-        </div>
-
-
-              <label>Select city</label>
-        <select id="citySelect">
-          <option value="">Select a city</option>
-          <option value="Brussels">Brussels</option>
-        </select>
-
-<div id="mapPreview" class="mapPreview"></div>
-
-
-
-
-        <button class="btn-send" onclick="sendSmartIn()">Send</button>
-
-      </div>
-
-    </div>
-  </div>
-</div>
-
-
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.dots.min.js"></script>
 <script>
+const i18n={
+fr:{
+"menu.about":"À PROPOS",
+"menu.solutions":"SOLUTIONS",
+"about.text":"Nous développons des solutions digitales uniques et sur mesure, fondées sur des données à forte valeur ajoutée, pour répondre efficacement à des enjeux concrets.",
+"solutions.smartin":"SMART-IN",
+"solutions.description":"Nous accompagnons entrepreneurs et investisseurs dans leurs projets commerciaux et d’investissement. Constatant les difficultés d’accès à une information qualitative, fiable et rapidement exploitable, sans embellissements commerciaux, nous avons développé Smart-IN : une application indépendante offrant un accès clair et objectif aux données essentielles à tout projet immobilier ou commercial. Choisissez la ville qui vous intéresse ainsi que les thématiques que vous souhaitez analyser, et recevez un rapport qualitatif regroupant les éléments clés de votre réussite.",
+"solutions.pillarsTitle":"Nos études sont développées autour des principaux piliers :",
+"solutions.p1":"Cohérence du projet avec son environnement socio-économique",
+"solutions.p2":"Étude des concurrents : positionnement et dynamique de marché",
+"solutions.p3":"Analyse des clients potentiels : optimisation marketing et ciblage",
+"solutions.p4":"Analyse du marché immobilier : résilience, tendances et évolutions",
+"solutions.discover":"Découvrir",
+"solutions.video":"Vidéo",
+"footer.offices":"Offices : Bruxelles, Paris, Monaco",
+"footer.contact":"Contact",
+"footer.media":"Media"
+},
+en:{
+"menu.about":"ABOUT",
+"menu.solutions":"SOLUTIONS",
+"about.text":"We develop unique, tailor-made digital solutions based on high-value data to effectively address real-world challenges.",
+"solutions.smartin":"SMART-IN",
+"solutions.description":"We support entrepreneurs and investors in their commercial and investment projects. Observing the difficulty of accessing qualitative, reliable and quickly actionable information without commercial embellishment, we developed Smart-IN: an independent application offering clear and objective access to the essential data for any real estate or commercial project. Choose the city you are interested in and the topics you want to analyze, and receive a qualitative report bringing together the key elements of your success.",
+"solutions.pillarsTitle":"Our studies are built around the following main pillars:",
+"solutions.p1":"Project alignment with its socio-economic environment",
+"solutions.p2":"Competitor analysis: positioning and market dynamics",
+"solutions.p3":"Potential customer analysis: marketing optimization and targeting",
+"solutions.p4":"Real estate market analysis: resilience, trends and developments",
+"solutions.discover":"Discover",
+"solutions.video":"Video",
+"footer.offices":"Offices: Brussels, Paris, Monaco",
+"footer.contact":"Contact",
+"footer.media":"Media"
+}
+};
 
-  // --- Coordonnées du contour de Bruxelles ---
-const bruxellesContour = [
-  [50.897838, 4.377298],
-  [50.902392, 4.344199],
-  [50.900750, 4.327877],
-  [50.893973, 4.312415],
-  [50.889656, 4.293477],
-  [50.880728, 4.297330],
-  [50.870691, 4.284429],
-  [50.866247, 4.278776],
-  [50.860285, 4.281114],
-  [50.855783, 4.289664],
-  [50.854185, 4.283001],
-  [50.837543, 4.281821],
-  [50.835917, 4.258190],
-  [50.825902, 4.253997],
-  [50.819764, 4.243681],
-  [50.817496, 4.245000],
-  [50.817085, 4.256735],
-  [50.811082, 4.261090],
-  [50.812229, 4.273701],
-  [50.808397, 4.276143],
-  [50.812222, 4.299704],
-  [50.812324, 4.305595],
-  [50.803639, 4.301175],
-  [50.799089, 4.305103],
-  [50.795488, 4.317261],
-  [50.775451, 4.330906],
-  [50.773641, 4.340649],
-  [50.775478, 4.345166],
-  [50.768587, 4.382710],
-  [50.763681, 4.383142],
-  [50.793553, 4.482248],
-  [50.808672, 4.447815],
-  [50.818897, 4.459151],
-  [50.820568, 4.476968],
-  [50.835620, 4.465399],
-  [50.837835, 4.468433],
-  [50.852329, 4.461708],
-  [50.863419, 4.426335],
-  [50.868019, 4.421486],
-  [50.877840, 4.428538],
-  [50.878911, 4.436795],
-  [50.891065, 4.427108],
-  [50.894867, 4.432491],
-  [50.907473, 4.413091],
-  [50.911571, 4.414397],
-  [50.914253, 4.403035],
-  [50.910627, 4.393672],
-  [50.909910, 4.387689],
-  [50.897407, 4.378014]
-];
-
-const bruxellesInterior = [
-  [50.847886, 4.351187],
-  [50.882791, 4.327702],
-  [50.875713, 4.304439],
-  [50.865721, 4.291617],
-  [50.863093, 4.329683],
-  [50.856711, 4.309934],
-  [50.830774, 4.302340],
-  [50.818363, 4.328158],
-  [50.827020, 4.344418],
-  [50.824415, 4.373052],
-  [50.796912, 4.364271],
-  [50.802678, 4.412690],
-  [50.832807, 4.391470],
-  [50.830684, 4.431618],
-  [50.847373, 4.434946],
-  [50.872396, 4.405943],
-  [50.860920, 4.380985],
-  [50.851763, 4.372782]
-];
-
-
-
-const citySelect = document.getElementById('citySelect');
-const addressInput = document.getElementById('addressInput');
-const projectDetails = document.getElementById('projectDetails');
-const contactInfoSmartIn = document.getElementById('contactInfoSmartIn');
-const summaryContent = document.getElementById('summaryContent');
-
-  
-
-const discoverBtn = document.getElementById('discoverSmartIn');
-
-let smartInHoverTimeout = null;
-
-discoverBtn.addEventListener('mouseenter', () => {
-  // Ne rien faire si le modal est déjà ouvert
-  if (document.getElementById('smartInModal').style.display === 'flex') return;
-
-  // Délai pour éviter les ouvertures accidentelles
-  smartInHoverTimeout = setTimeout(() => {
-    openModal('smartInModal');
-  }, 250);
+function setLang(lang){
+document.querySelectorAll("[data-i18n]").forEach(el=>{
+el.textContent=i18n[lang][el.dataset.i18n];
 });
-
-discoverBtn.addEventListener('mouseleave', () => {
-  clearTimeout(smartInHoverTimeout);
-});
-
-
-
-  document.getElementById('selectAllThemes').addEventListener('change', e => {
-  document.querySelectorAll('.theme').forEach(cb => cb.checked = e.target.checked);
-  updateSummary();
-});
-
-  function updateSummary(){
-  const city = citySelect.value;
-  const addresses = addressInput.value;
-  const contact = contactInfoSmartIn.value;
-  const project = projectDetails.value;
-
-  const goals = [...document.querySelectorAll('.goal:checked')]
-    .map(g => g.parentElement.textContent.trim());
-
-  const themes = [...document.querySelectorAll('.theme:checked')]
-    .filter(t => t.id !== 'selectAllThemes')
-    .map(t => t.parentElement.textContent.trim());
-
-  summaryContent.innerHTML = `
-    <b>City:</b> ${city || '-'}<br>
-    <b>Addresses:</b> ${addresses || '-'}<br>
-    <b>Contact info:</b> ${contact || '-'}<br>
-    <b>About your project:</b> ${project || '-'}<br>
-    <b>Main goals:</b> ${goals.join(', ') || '-'}<br>
-    <b>Themes:</b> ${themes.join(', ') || '-'}
-  `;
+frBtn.classList.toggle("active",lang==="fr");
+enBtn.classList.toggle("active",lang==="en");
 }
 
-
-['citySelect','addressInput','projectDetails','contactInfoSmartIn']
-.forEach(id => document.getElementById(id).addEventListener('input', updateSummary));
-
-
-  // TRADUCTION
-
-
-const frBtn = document.getElementById('fr-btn');
-const enBtn = document.getElementById('en-btn');
-
-
-  // FRANCAIS
-
-frBtn.addEventListener('click', () => {
-  frBtn.classList.add('active'); enBtn.classList.remove('active');
-
-document.getElementById('about-menu-btn').innerHTML = `À PROPOS`;
-
-  
-  
-   document.getElementById('about-text').innerHTML = 
-     `<p>Nous développons des solutions digitales uniques et sur mesure, fondées sur des données à forte valeur ajoutée, 
-     pour répondre efficacement à des enjeux concrets.</p>`;
-  
-  document.getElementById('solutions-text').innerHTML = `<div style="text-align:left;">
-  
-       
-           <p>
-          Nous accompagnons entrepreneurs et investisseurs dans leurs projets commerciaux et d’investissement. 
-          Constatant les difficultés d’accès à une information qualitative, fiable et rapidement exploitable, sans embellissements commerciaux, 
-          nous avons développé 
-          <br>Smart-IN : une application indépendante offrant un accès clair et objectif aux données essentielles à tout 
-          projet immobilier ou commercial. Choisissez la ville qui vous intéresse ainsi que les thématiques que vous souhaitez analyser, et recevez 
-          un rapport qualitatif regroupant les éléments clés de votre réussite. </p><br>
-
-        <p>Nos études sont développées autour des principaux piliers :</p>
-
-
-<ul> <li>Cohérence du projet avec son environnement socio-économique</li> 
-  <li>Étude des concurrents : positionnement et dynamique de marché</li> 
-  <li>Analyse des clients potentiels : optimisation marketing et ciblage</li> 
-  <li>Analyse du marché immobilier : résilience, tendances et évolutions</li> </ul><br> 
-  
-  </div>
-</div>`;
-
-
-document.getElementById('discover-text').innerHTML = 'Découvrir';
-document.getElementById('video-text').innerHTML = 'Vidéo';
-
-
-
-
-
-
-  document.getElementById('contact-text').textContent = "Contactez-nous";
-  document.getElementById('contact-text2').textContent = "Nous écoutons attentivement vos besoins afin de vous proposer une solution précise et adaptée.";
-  document.getElementById('contact-name').placeholder = "Nom";
-  document.getElementById('contact-info').placeholder = "Coordonnées de contact";
-  document.getElementById('contact-message').placeholder = "Comment pouvons-nous vous aider ?";
-  document.getElementById('our-media').textContent = "Nos réseaux";
-  document.getElementById('btn-send').textContent = "Envoyer";
-  document.getElementById('btn-smartin').textContent = "SMART-IN";
-
-});
-
-
-
-  // ENGLISH
-
-
-enBtn.addEventListener('click', () => {
-  enBtn.classList.add('active'); frBtn.classList.remove('active');
-
-  document.getElementById('about-menu-btn').innerHTML = `ABOUT`;
-
-  document.getElementById('about-text').innerHTML = document.getElementById('about-text').innerHTML = 
-    `<p>We create proprietary digital solutions that leverage high-value data to solve real-world challenges.</p>`;
-
-
-document.getElementById('solutions-text').innerHTML = `
-<div style="text-align: left;">
-  <button id="locationBtn" class="btn-smartin" style="width:auto; text-align:left; font-weight:600;">SMART-IN</button>
-  <div id="locationContent" style="display:none; margin-top:12px; border-top:1px solid var(--border); padding-top:12px;">
-    
-<p>
-  We support entrepreneurs and investors in their commercial and investment projects.  
-  Observing the difficulties in accessing qualitative, reliable, and quickly actionable information, without commercial embellishments,  
-  we developed <br><strong>Smart-IN</strong>: an independent application providing clear and objective access to the essential data for any  
-  real estate or commercial project. Choose the city you are interested in as well as the topics you want to analyze, and receive  
-  a comprehensive report summarizing the key elements for your success.
-</p><br>
-
-<p>Our studies are developed around the following main pillars:</p>
-
-<ul>
-  <li>Project alignment with its socio-economic environment</li>
-  <li>Competitor analysis: positioning and market dynamics</li>
-  <li>Potential client analysis: marketing optimization and targeting</li>
-  <li>Real estate market analysis: resilience, trends, and developments</li>
-</ul><br>
-
-<div class="btn-flex" style="margin-top:20px; display:flex; justify-content:center; gap:12px;">
-  <button id="discoverSmartIn" class="btn-send">Discover Smart-In</button>
-  <button id="presentationSmartIn" class="btn-video">Video</button>
-</div>
-
-  </div>
-</div>`;
-
-document.getElementById('discover-text').innerHTML = 'Discover';
-document.getElementById('video-text').innerHTML = 'Video';
-
-
-// Réattacher les event listeners pour ce nouveau sous-menu
-const locationBtnEn = document.getElementById('locationBtn');
-const locationContentEn = document.getElementById('locationContent');
-let locationOpenEn = false;
-locationBtnEn.addEventListener('click', () => {
-  locationOpenEn = !locationOpenEn;
-  locationContentEn.style.display = locationOpenEn ? 'block' : 'none';
-});
-locationBtnEn.addEventListener('mouseenter', () => {
-  locationContentEn.style.display = 'block';
-  locationOpenEn = true;
-});
-
-
-
-
-
-
-
-
-
-
-
-
-  
-// Boutons Discover Smart-In et Présentation Video
-
-
-
-
-
-document.getElementById('presentationSmartIn').addEventListener('click', () => openModal('videoModal'));
-
-
-
-
-
-
-
-  document.getElementById('contact-text').textContent = "Contact us";
-  document.getElementById('contact-text2').textContent = "We listen carefully to your needs to deliver a precise, tailored solution.";
-  document.getElementById('contact-name').placeholder = "Name";
-  document.getElementById('contact-info').placeholder = "Contact info";
-  document.getElementById('contact-message').placeholder = "How can we help you?";
-  document.getElementById('our-media').textContent = "Our media";
-  document.getElementById('btn-send').textContent = "Send";
-});
-
-// Gestion du sous-menu Location Intelligence
-const locationBtn = document.getElementById('locationBtn');
-const locationContent = document.getElementById('locationContent');
-let locationOpen = false;
-
-// Fonction pour ouvrir/fermer au clic
-locationBtn.addEventListener('click', () => {
-  locationOpen = !locationOpen;
-  locationContent.style.display = locationOpen ? 'block' : 'none';
-});
-
-// Fonction pour ouvrir au survol
-locationBtn.addEventListener('mouseenter', () => {
-  locationContent.style.display = 'block';
-  locationOpen = true;
-});
-
-// On ne ferme pas au mouseleave, fermeture uniquement au clic sur locationBtn
-
-
-
-let vantaEffect = VANTA.DOTS({ el:"#vanta-bg", mouseControls:true, touchControls:true, gyroControls:false, minHeight:200, minWidth:200, scale:1.0, scaleMobile:1.0, color:0xcffb7, color2:0x5520ff, backgroundColor:0x0, size:3.2, spacing:24, showLines:false });
-
-function openModal(id){
-  const modal = document.getElementById(id);
-  modal.style.display = 'flex';
-  document.body.style.overflow = 'hidden';
-  document.querySelector('main').classList.add('blur-background');
-
-  // supprime l’ancienne carte à chaque ouverture
-  if(id === 'smartInModal'){
-    const container = document.getElementById('mapPreview');
-    container.innerHTML = '';
-  }
-}
-
-  citySelect.addEventListener('change', () => {
-  const container = document.getElementById('mapPreview');
-  container.innerHTML = ''; // supprime l’ancienne carte ou placeholder
-
-  // si la ville sélectionnée est Brussels ET que le modal est ouvert
-  if(citySelect.value === "Brussels" && document.getElementById('smartInModal').style.display === 'flex'){
-    requestAnimationFrame(drawPreMap); // dessine la carte
-  }
-});
-
-
-// Fonction closeModal à l’extérieur
-function closeModal(id){
-  const modal = document.getElementById(id);
-  modal.style.display = 'none';
-  document.body.style.overflow = 'auto';
-  document.querySelector('main').classList.remove('blur-background');
-
-  if(id==='videoModal'){
-    const iframe = document.getElementById('smartInVideo');
-    iframe.src = iframe.src;
-  }
-}
-
-
-
-
-
-
-
-
-
-function sendSmartIn(){
-  alert("Smart-In request sent (mock)");
-}
-
-
-
-
-
-
-
-function drawPreMap() {
-  const container = document.getElementById('mapPreview');
-  container.innerHTML = ''; // supprime le placeholder
-
-  const width = container.offsetWidth;
-  const height = container.offsetHeight;
-
-  const padding = 15; // espace autour de la carte
-
-  const svgNS = "http://www.w3.org/2000/svg";
-  const svg = document.createElementNS(svgNS, 'svg');
-  svg.setAttribute('width', '100%');
-  svg.setAttribute('height', '100%');
-  container.appendChild(svg);
-
-  // Normalisation
-  const lons = bruxellesContour.map(c => c[1]);
-  const lats = bruxellesContour.map(c => c[0]);
-  const lonMin = Math.min(...lons);
-  const lonMax = Math.max(...lons);
-  const latMin = Math.min(...lats);
-  const latMax = Math.max(...lats);
-
-  function scaleX(lon) {
-    return padding + ((lon - lonMin) / (lonMax - lonMin)) * (width - 2 * padding);
-  }
-  function scaleY(lat) {
-    // inversion Y pour que le nord soit en haut
-    return padding + (height - 2 * padding) - ((lat - latMin) / (latMax - latMin)) * (height - 2 * padding);
-  }
-
-  // --- Relief progressif ---
-  const layers = 3;
-  const offsetStep = 1.2;
-  const contourColor = '#969695';
-
-  for (let i = layers; i > 0; i--) {
-    const layer = document.createElementNS(svgNS, 'polygon');
-    layer.setAttribute('fill', 'none');
-    layer.setAttribute('stroke', contourColor);
-    layer.setAttribute('stroke-width', 0.9);
-    layer.setAttribute('stroke-linejoin', 'round');
-    layer.setAttribute('stroke-opacity', 0.15 * i);
-    layer.setAttribute(
-      'points',
-      bruxellesContour.map(c =>
-        (scaleX(c[1]) + i * offsetStep) + ',' + (scaleY(c[0]) + i * offsetStep)
-      ).join(' ')
-    );
-    layer.setAttribute('vector-effect', 'non-scaling-stroke');
-    svg.appendChild(layer);
-  }
-
-  // --- Contour principal ---
-  const polygon = document.createElementNS(svgNS, 'polygon');
-  polygon.setAttribute('fill', 'none');
-  polygon.setAttribute('stroke', contourColor);
-  polygon.setAttribute('stroke-width', '0.6');
-  polygon.setAttribute('stroke-linejoin', 'round');
-  polygon.setAttribute('vector-effect', 'non-scaling-stroke');
-  polygon.setAttribute(
-    'points',
-    bruxellesContour.map(c => scaleX(c[1]) + ',' + scaleY(c[0])).join(' ')
-  );
-  svg.appendChild(polygon);
-
-  // --- Points intérieurs ---
-  bruxellesInterior.forEach(c => {
-    const x = scaleX(c[1]);
-    const y = scaleY(c[0]);
-    const size = 3;
-    const diamond = document.createElementNS(svgNS, 'polygon');
-    diamond.setAttribute('points', `
-      ${x},${y-size}
-      ${x+size},${y}
-      ${x},${y+size}
-      ${x-size},${y}
-    `);
-    diamond.setAttribute('fill', 'none');
-    diamond.setAttribute('stroke', '#ccbb5a');
-    diamond.setAttribute('stroke-width', '1');
-    diamond.setAttribute('stroke-linejoin', 'round');
-    svg.appendChild(diamond);
-  });
-}
-
-  // Pour toutes les checkboxes de thèmes (hors selectAll)
-document.querySelectorAll('.themes .theme').forEach(cb => {
-  if(cb.id !== 'selectAllThemes'){ // ne pas réappliquer à selectAll
-    cb.addEventListener('change', updateSummary);
-  }
-});
-
-
-// --- Menu hover / click logic (About & Solutions) ---
-const menuButtons = document.querySelectorAll('.menu button');
-const panels = document.querySelectorAll('.panel');
-
-menuButtons.forEach(btn => {
-  // Récupérer l'ID du panel à partir de l'attribut onclick existant
-  const panelIdMatch = btn.getAttribute('onclick')?.match(/'(\w+)'/);
-  if(!panelIdMatch) return;
-  const panel = document.getElementById(panelIdMatch[1]);
-
-  // Hover : ouvre le panel et ferme les autres
-  btn.addEventListener('mouseenter', () => {
-    panels.forEach(p => { if(p !== panel) p.style.display = 'none'; });
-    panel.style.display = 'block';
-  });
-
-  // Click : toggle uniquement ce panel
-  btn.addEventListener('click', () => {
-    panel.style.display = (panel.style.display === 'block') ? 'none' : 'block';
-  });
-});
-
-// **Plus besoin de ce listener, on le supprime**
-// document.addEventListener('mousemove', ...);
-
-
-  const selectAllGoals = document.getElementById('selectAllGoals');
-
-selectAllGoals.addEventListener('change', e => {
-  document.querySelectorAll('.goal').forEach(cb => {
-    cb.checked = e.target.checked;
-  });
-
-  updateSummary(); // si tu veux qu’ils apparaissent dans le summary
-});
-
-  document.querySelectorAll('.goal').forEach(cb => {
-  cb.addEventListener('change', () => {
-    const goals = document.querySelectorAll('.goal');
-    selectAllGoals.checked = [...goals].every(g => g.checked);
-    updateSummary();
-  });
-});
-
-
-  
+frBtn.onclick=()=>setLang("fr");
+enBtn.onclick=()=>setLang("en");
+setLang("fr");
+
+// Panels
+const aboutPanel=document.getElementById("aboutPanel");
+const solutionsPanel=document.getElementById("solutionsPanel");
+const menuBtns=document.querySelectorAll(".menu button");
+
+menuBtns[0].onmouseenter=()=>{aboutPanel.style.display="block";solutionsPanel.style.display="none"}
+menuBtns[1].onmouseenter=()=>{solutionsPanel.style.display="block";aboutPanel.style.display="none"}
+
+smartinBtn.onclick=()=>smartinContent.style.display=
+smartinContent.style.display==="block"?"none":"block";
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
