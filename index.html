@@ -240,8 +240,7 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 
 <div class="panel" id="about">
   <div id="about-text" style="text-align: left;">
-    <p>Nous allions business intelligence et data science pour développer des solutions uniques, à forte valeur ajoutée, 
-      fondées sur des données fiables et répondant à des enjeux concrets.</p>
+    <p>Nous développons des solutions digitales uniques et sur mesure, fondées sur des données à forte valeur ajoutée, pour répondre efficacement à des enjeux concrets.</p>
   </div>
 </div>
 
@@ -663,8 +662,10 @@ document.getElementById('about-menu-btn').innerHTML = `À PROPOS`;
 
   
   
-   document.getElementById('about-text').innerHTML = `<p>Nous allions business intelligence et data science pour développer des solutions uniques, à forte valeur ajoutée, 
-      fondées sur des données fiables et répondant à des enjeux concrets.</p>`;
+   document.getElementById('about-text').innerHTML = 
+     `<p>Nous développons des solutions digitales uniques et sur mesure, fondées sur des données à forte valeur ajoutée, 
+     pour répondre efficacement à des enjeux concrets.</p>`;
+  
   document.getElementById('solutions-text').innerHTML = `<div style="text-align:left;">
   
        
@@ -716,7 +717,7 @@ enBtn.addEventListener('click', () => {
   document.getElementById('about-menu-btn').innerHTML = `ABOUT`;
 
   document.getElementById('about-text').innerHTML = document.getElementById('about-text').innerHTML = 
-    `<p>We combine business intelligence and data science to develop unique, high-value solutions built on reliable data and designed to address concrete business challenges.</p>`;
+    `<p>We create proprietary digital solutions that leverage high-value data to solve real-world challenges.</p>`;
 
 
 document.getElementById('solutions-text').innerHTML = `
@@ -1020,6 +1021,7 @@ selectAllGoals.addEventListener('change', e => {
 </script>
 </body>
 </html>
+
 
 
 
