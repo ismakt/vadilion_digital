@@ -583,9 +583,7 @@ frBtn.addEventListener('click', () => {
   frBtn.classList.add('active'); enBtn.classList.remove('active');
 
  // FRANÇAIS
-frBtn.addEventListener('click', () => {
-  frBtn.classList.add('active'); 
-  enBtn.classList.remove('active');
+
 
   document.getElementById('menu-about-button').innerHTML = `<p>À PROPOS</p>`;
   document.getElementById('about-text').innerHTML =
@@ -1156,15 +1154,31 @@ menuButtons.forEach(btn => {
   });
 });
 
-// **Plus besoin de ce listener, on le supprime**
-// document.addEventListener('mousemove', ...);
 
 
 
+  const selectAllGoals = document.getElementById('goal-select-all');
+
+selectAllGoals.addEventListener('change', e => {
+  document.querySelectorAll('.goal').forEach(cb => {
+    cb.checked = e.target.checked;
+  });
+
+  updateSummary(); // si tu veux qu’ils apparaissent dans le summary
+});
+
+  document.querySelectorAll('.goal').forEach(cb => {
+    cb.addEventListener('change', () => {
+      const goals = document.querySelectorAll('.goal');
+      selectAllGoals.checked = [...goals].every(g => g.checked);
+      updateSummary();
+    });
+  });
   
 </script>
 </body>
 </html>
+
 
 
 
