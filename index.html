@@ -1251,16 +1251,16 @@ selectAllGoals.addEventListener('change', e => {
 });
 
   document.querySelectorAll('.goal').forEach(cb => {
-  cb.addEventListener('change', () => {
-    const goals = document.querySelectorAll('.goal');
-    selectAllGoals.checked = [...goals].every(g => g.checked);
-    updateSummary();
+    cb.addEventListener('change', () => {
+      const goals = document.querySelectorAll('.goal');
+      selectAllGoals.checked = [...goals].every(g => g.checked);
+      updateSummary();
+    });
   });
-});
- 
 </script>
 </body>
 </html>
+
 
 
 
