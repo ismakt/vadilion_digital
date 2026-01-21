@@ -340,7 +340,7 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 
     <span class="close" onclick="closeModal('smartInModal')">✕</span>
 
-    <h3 style="color:var(--gold); margin-bottom:12px;">Smart-In Contact</h3>
+    <h3 style="color:var(--gold); margin-bottom:12px;">Smart-In</h3>
 
     <div class="smartin-layout">
 
@@ -348,49 +348,49 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
       <!-- LEFT -->
       <div class="smartin-left">
 
-        <label>Contact info</label>
-        <input id="contactInfoSmartIn" placeholder="Email or phone">
+        <label id="label-contact-info-smart-in">Vos coordonnées</label>
+<input id="input-contact-info-smart-in"placeholder="nom + email / mobile">
 
 
-        <label>Enter address (max 3, separated by commas)</label>
-        <input id="addressInput" placeholder="Street 1, Street 2, Street 3">
+<label id="label-address-smart-in"> Adresse à analyser</label>
+<input id="input-address-smart-in"placeholder="Si plusieurs (max. 3), séparez par ','")>
 
-<label>About your project</label>
-<textarea id="projectDetails" rows="10" placeholder="Describe your project, goals, constraints..."></textarea>
+<label id="label-project-description-smart-in">Décrivez votre projet</label>
+<textarea id="textarea-project-details-smart-in" rows="10" placeholder=
+  "Donnez nous un maximum d'information qui vous semblent importantes pour que nous puissions revenir vers vous avec la meilleure solution possible">
+</textarea>
+
 
 
         
-<label>Select your main goal</label>
 
-<div class="selectgoals">
 
-  <label>
-    <input type="checkbox" id="selectAllGoals">
-    Select all
-  </label>
+<label id="label-main-goal-smart-in">Séléctionnez l'objectif principal de l'étude (choix multiple possible)</label>
 
-  <label>
-    <input type="checkbox" class="goal" id="selectmaingoal">
-    Analyse de la cohérence du projet dans son milieu socioéconomique
-  </label>
+<div class="selectgoals" id="selectgoals-smart-in">
+<label id="label-goal-select-all"> <input type="checkbox" id="goal-select-all">Tout séléctionner</label>
 
-  <label>
-    <input type="checkbox" class="goal" id="selectmaingoa2">
-    Étude des concurrents
-  </label>
+  <label id="label-goal-1">
+    <input type="checkbox" class="goal" id="goal-1">Analyser la cohérence du projet dans son milieu socio-économique</label>
 
-  <label>
-    <input type="checkbox" class="goal" id="selectmaingoa3">
-    Étude des clients potentiels
-  </label>
+  <label id="label-goal-2">
+    <input type="checkbox" class="goal" id="goal-2">Étude des concurrents: positionnement</label>
 
-  <label>
-    <input type="checkbox" class="goal" id="selectmaingoa4">
-    Connaitre les essentiels du marché immobilier
-  </label>
+  <label id="label-goal-3">
+    <input type="checkbox" class="goal" id="goal-3">Étude des clients potentiels: marketing et ciblage</label>
+
+  <label id="label-goal-4">
+    <input type="checkbox" class="goal" id="goal-4">Connaître les essentiels du marché immobilier</label>
 
 </div>
 
+
+
+
+
+
+
+     ------------------   
 
         
         <label>Select themes</label>
@@ -710,7 +710,35 @@ document.getElementById('offices-list').innerHTML =
 
   document.getElementById('smart-in-video-title').textContent = "Présentation Smart-In";
 
+  document.getElementById('label-contact-info-smart-in').textContent = "Vos coordonnées";
+  document.getElementById('input-contact-info-smart-in').textContent = "nom + email / mobile";
 
+
+  document.getElementById('label-address-smart-in').textContent = "Adresse à analyser";
+  document.getElementById('input-address-smart-in').textContent = "Si plusieurs (max. 3), séparez par ','";
+  document.getElementById('label-project-description-smart-in').textContent = "Décrivez votre projet";
+  document.getElementById('textarea-project-details-smart-in').textContent = 
+    "Donnez nous un maximum d'information qui vous semblent importantes pour que nous puissions revenir vers vous avec la meilleure solution possible";
+
+
+
+
+ document.getElementById('label-main-goal-smart-in').textContent = "Séléctionnez l'objectif principal de l'étude (choix multiple possible)";
+document.getElementById('goal-select-all').textContent = "Tout séléctionner";
+document.getElementById('goal-1').textContent = "Analyser la cohérence du projet dans son milieu socio-économique";
+document.getElementById('goal-2').textContent = "Étude des concurrents: positionnement";
+document.getElementById('goal-3').textContent = "Étude des clients potentiels: marketing et ciblage";
+document.getElementById('goal-4').textContent = "Connaître les essentiels du marché immobilier";
+
+
+
+
+
+
+
+
+
+  
   
 
 });
@@ -996,6 +1024,7 @@ selectAllGoals.addEventListener('change', e => {
 </script>
 </body>
 </html>
+
 
 
 
