@@ -980,8 +980,15 @@ frBtn.addEventListener('click', () => {
 </div>`;
 
   
-document.getElementById('solution-smart-in-btn').textContent = "SMART-IN"; document.getElementById('discover-smart-in-btn').textContent = "Découvrir"; document.getElementById('video-smart-in').textContent = "Vidéo"
-
+if (document.getElementById('solution-smart-in-btn')) {
+    document.getElementById('solution-smart-in-btn').textContent = "SMART-IN";
+}
+if (document.getElementById('discover-smart-in-btn')) {
+    document.getElementById('discover-smart-in-btn').textContent = "Découvrir";
+}
+if (document.getElementById('video-smart-in')) {
+    document.getElementById('video-smart-in').textContent = "Vidéo";
+}
 
   document.getElementById('contact-us').textContent = "Contactez-nous";
   document.getElementById('contact-slogan').textContent = "Nous écoutons attentivement vos besoins afin de vous proposer une solution précise et adaptée.";
@@ -1088,8 +1095,15 @@ document.getElementById('menu-about-button').textContent = "ABOUT";
 document.getElementById('about-text').innerHTML =
   `<p>We develop unique high–value digital solutions based on reliable data and designed to address real-world challenges.</p>`;
 
-document.getElementById('solution-smart-in-btn').textContent = "SMART-IN"; document.getElementById('discover-smart-in-btn').textContent = "Discover"; document.getElementById('video-smart-in').textContent = "Video"
-
+if (document.getElementById('solution-smart-in-btn')) {
+    document.getElementById('solution-smart-in-btn').textContent = "SMART-IN";
+}
+if (document.getElementById('discover-smart-in-btn')) {
+    document.getElementById('discover-smart-in-btn').textContent = "Discover";
+}
+if (document.getElementById('video-smart-in')) {
+    document.getElementById('video-smart-in').textContent = "Video";
+}
 
 document.getElementById('contact-us').textContent = "Contact us";
 document.getElementById('contact-slogan').textContent =
@@ -1191,6 +1205,7 @@ document.getElementById('text-btn-send').textContent = "Send";
 </script>
 </body>
 </html>
+
 
 
 
