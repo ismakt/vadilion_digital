@@ -623,17 +623,49 @@ const translations = {
 
 // --- Fonction pour appliquer la langue ---
 function setLanguage(lang) {
+  // Définit la langue dans <html>
+  document.documentElement.setAttribute('lang', lang);
+
+  // Parcourt toutes les traductions
   for (const id in translations) {
     const el = document.getElementById(id);
     if (!el) continue;
 
-    // Si c'est un <input> ou <textarea>, on change placeholder
+    const text = translations[id][lang];
+
+    // Pour les inputs / textarea -> placeholder
     if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") {
-      el.placeholder = translations[id][lang];
-    } else {
-      el.textContent = translations[id][lang];
+      el.placeholder = text;
+    } 
+    // Pour les boutons, labels, spans, div -> textContent
+    else {
+      el.textContent = text;
     }
   }
+
+  // Traduction des options <select> si tu as des options dynamiques
+  if(citySelect) {
+    [...citySelect.options].forEach(opt => {
+      // Option.value reste inchangé, mais texte affiché traduit si tu as défini translations pour ces options
+      if(translations[opt.value]) {
+        opt.textContent = translations[opt.value][lang];
+      }
+    });
+  }
+
+  // Traduction des checkboxes pour objectifs et thèmes
+  document.querySelectorAll('.goal, .theme').forEach(cb => {
+    const id = cb.id;
+    if(translations[id]) {
+      const label = cb.parentElement;
+      if(label) label.childNodes.forEach(n => {
+        if(n.nodeType === Node.TEXT_NODE) n.textContent = translations[id][lang];
+      });
+    }
+  });
+
+  // Mettre à jour le résumé après changement de langue
+  updateSummary();
 }
 
 // --- Gestion clic langue ---
@@ -763,29 +795,47 @@ discoverBtn.addEventListener('mouseleave', () => {
 
   document.getElementById('selectAllThemes').addEventListener('change', e => {
   document.querySelectorAll('.theme').forEach(cb => cb.checked = e.target.checked);
-  updateSummary();
-});
-
   function updateSummary(){
+  // Récupère la langue actuelle (définie dans <html lang="fr/en">)
+  const lang = document.documentElement.getAttribute('lang') || 'en';
+
+  // Labels dynamiques selon la langue
+  const cityLabel = lang === 'fr' ? 'Ville' : 'City';
+  const addressesLabel = lang === 'fr' ? 'Adresses' : 'Addresses';
+  const contactLabel = lang === 'fr' ? 'Informations' : 'Contact info';
+  const projectLabel = lang === 'fr' ? 'À propos du projet' : 'About your project';
+  const goalsLabel = lang === 'fr' ? 'Objectifs principaux' : 'Main goals';
+  const themesLabel = lang === 'fr' ? 'Thèmes' : 'Themes';
+
+  // Récupération des valeurs saisies
   const city = citySelect.value;
   const addresses = addressInput.value;
   const contact = contactInfoSmartIn.value;
   const project = projectDetails.value;
 
+  // Récupération des objectifs sélectionnés
   const goals = [...document.querySelectorAll('.goal:checked')]
-    .map(g => g.parentElement.textContent.trim());
+    .map(g => {
+      const id = g.id;
+      return translations[id] ? translations[id][lang] : g.parentElement.textContent.trim();
+    });
 
+  // Récupération des thèmes sélectionnés (hors "select all")
   const themes = [...document.querySelectorAll('.theme:checked')]
     .filter(t => t.id !== 'selectAllThemes')
-    .map(t => t.parentElement.textContent.trim());
+    .map(t => {
+      const id = t.id;
+      return translations[id] ? translations[id][lang] : t.parentElement.textContent.trim();
+    });
 
+  // Mise à jour du résumé
   summaryContent.innerHTML = `
-    <b>City:</b> ${city || '-'}<br>
-    <b>Addresses:</b> ${addresses || '-'}<br>
-    <b>Contact info:</b> ${contact || '-'}<br>
-    <b>About your project:</b> ${project || '-'}<br>
-    <b>Main goals:</b> ${goals.join(', ') || '-'}<br>
-    <b>Themes:</b> ${themes.join(', ') || '-'}
+    <b>${cityLabel}:</b> ${city || '-'}<br>
+    <b>${addressesLabel}:</b> ${addresses || '-'}<br>
+    <b>${contactLabel}:</b> ${contact || '-'}<br>
+    <b>${projectLabel}:</b> ${project || '-'}<br>
+    <b>${goalsLabel}:</b> ${goals.join(', ') || '-'}<br>
+    <b>${themesLabel}:</b> ${themes.join(', ') || '-'}
   `;
 }
 
@@ -1056,6 +1106,7 @@ selectAllGoals.addEventListener('change', e => {
 </script>
 </body>
 </html>
+
 
 
 
