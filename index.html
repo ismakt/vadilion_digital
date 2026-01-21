@@ -887,7 +887,7 @@ function drawPreMap() {
 
   // Pour toutes les checkboxes de thèmes (hors selectAll)
 document.querySelectorAll('.themes .theme').forEach(cb => {
-  if(cb.id !== 'selectAllThemes'){ // ne pas réappliquer à selectAll
+  if(cb.id !== 'theme-select-all'){ // ne pas réappliquer à selectAll
     cb.addEventListener('change', updateSummary);
   }
 });
@@ -980,20 +980,7 @@ frBtn.addEventListener('click', () => {
 </div>`;
 
   
-const smartInBtn = document.getElementById('solution-smart-in-btn');
-if (smartInBtn) {
-  smartInBtn.textContent = "SMART-IN";
-}
-
-const discoverBtn = document.getElementById('discover-smart-in-btn');
-if (discoverBtn) {
-  discoverBtn.textContent = "Découvrir";
-}
-
-const videoBtn = document.getElementById('video-smart-in');
-if (videoBtn) {
-  videoBtn.textContent = "Vidéo";
-}
+document.getElementById('solution-smart-in-btn').textContent = "SMART-IN"; document.getElementById('discover-smart-in-btn').textContent = "Découvrir"; document.getElementById('video-smart-in').textContent = "Vidéo"
 
 
   document.getElementById('contact-us').textContent = "Contactez-nous";
@@ -1101,21 +1088,7 @@ document.getElementById('menu-about-button').textContent = "ABOUT";
 document.getElementById('about-text').innerHTML =
   `<p>We develop unique high–value digital solutions based on reliable data and designed to address real-world challenges.</p>`;
 
-const smartInBtn = document.getElementById('solution-smart-in-btn');
-if (smartInBtn) {
-  smartInBtn.textContent = "SMART-IN";
-}
-
-const discoverBtn = document.getElementById('discover-smart-in-btn');
-if (discoverBtn) {
-  discoverBtn.textContent = "Discover";
-}
-
-const videoBtn = document.getElementById('video-smart-in');
-if (videoBtn) {
-  videoBtn.textContent = "Video";
-}
-
+document.getElementById('solution-smart-in-btn').textContent = "SMART-IN"; document.getElementById('discover-smart-in-btn').textContent = "Discover"; document.getElementById('video-smart-in').textContent = "Video"
 
 
 document.getElementById('contact-us').textContent = "Contact us";
