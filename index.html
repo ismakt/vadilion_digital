@@ -725,24 +725,29 @@ discoverBtn.addEventListener('mouseleave', () => {
 
 
 
-// Gestion du sous-menu "Location Intelligence"
-const locationBtn = document.getElementById('locationBtn');
-const locationContent = document.getElementById('locationContent');
-let locationOpen = false;
+// Gestion du sous-menu "SMART-IN"
+const smartInBtnParent = document.getElementById('solution-smart-in-btn-parent');
+const smartInBtn = document.getElementById('solution-smart-in-btn');
+const smartInContent = document.getElementById('smart-in-text');
+let smartInOpen = false;
 
-// Fonction pour ouvrir/fermer au clic
-locationBtn.addEventListener('click', () => {
-  locationOpen = !locationOpen;
-  locationContent.style.display = locationOpen ? 'block' : 'none';
-});
+// Vérifie que les éléments existent avant d'ajouter les listeners
+if (smartInBtnParent && smartInBtn && smartInContent) {
 
-// Fonction pour ouvrir au survol
-locationBtn.addEventListener('mouseenter', () => {
-  locationContent.style.display = 'block';
-  locationOpen = true;
-});
+  // Ouvrir/fermer au clic
+  smartInBtnParent.addEventListener('click', () => {
+    smartInOpen = !smartInOpen;
+    smartInContent.style.display = smartInOpen ? 'block' : 'none';
+  });
 
-// On ne ferme pas au mouseleave, fermeture uniquement au clic
+  // Ouvrir au survol
+  smartInBtn.addEventListener('mouseenter', () => {
+    smartInContent.style.display = 'block';
+    smartInOpen = true;
+  });
+
+  // On ne ferme pas au mouseleave, fermeture uniquement au clic
+}
 
 
 
@@ -1186,6 +1191,7 @@ document.getElementById('text-btn-send').textContent = "Send";
 </script>
 </body>
 </html>
+
 
 
 
