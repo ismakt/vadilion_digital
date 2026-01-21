@@ -236,10 +236,12 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 </header>
 <main>
   <div id="vanta-bg"></div>
-<div class="menu">
-  <button onclick="togglePanel('about')">ABOUT</button>
-  <button onclick="togglePanel('solutions')">SOLUTIONS</button>
-</div>
+
+  
+<button id="menu-about" onclick="togglePanel('about')">ABOUT</button>
+<button id="discoverSmartIn" class="btn-send">Discover Smart-In</button>
+<button id="presentationSmartIn" class="btn-video">Video</button>
+
 
 
 
@@ -329,22 +331,12 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 <div class="modal" id="videoModal">
   <div class="modal-content">
     <span class="close" onclick="closeModal('videoModal')">✕</span>
-    <h4>Presentation Smart-In</h4>
+    <h4>Smart-In</h4>
     <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden;">
       <iframe id="smartInVideo" src="https://www.youtube.com/embed/VqEbCxg2bNI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
     </div>
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -358,122 +350,108 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
     <div class="smartin-layout">
 
       <!-- LEFT -->
-      <div class="smartin-left">
+      <label id="label-contactInfo">Contact info</label>
+<input id="contactInfoSmartIn" placeholder="Email or phone">
 
-        <label>Contact info</label>
-        <input id="contactInfoSmartIn" placeholder="Email or phone">
+<label id="label-address">Enter address (max 3, separated by commas)</label>
+<input id="addressInput" placeholder="Street 1, Street 2, Street 3">
 
+<label id="label-project">About your project</label>
+<textarea id="projectDetails" placeholder="Describe your project, goals, constraints..."></textarea>
 
-        <label>Enter address (max 3, separated by commas)</label>
-        <input id="addressInput" placeholder="Street 1, Street 2, Street 3">
+<label id="label-mainGoal">Select your main goal</label>
 
-<label>About your project</label>
-<textarea id="projectDetails" rows="10" placeholder="Describe your project, goals, constraints..."></textarea>
-
-
-        
-<label>Select your main goal</label>
 
 <div class="selectgoals">
 
   <label>
-    <input type="checkbox" id="selectAllGoals">
-    Select all
-  </label>
+  <input type="checkbox" id="selectAllGoals"> <span id="goal-selectAll">Select all</span>
+</label>
+<label>
+  <input type="checkbox" class="goal" id="selectmaingoal"> 
+  <span id="goal-coherence">Analyse de la cohérence du projet dans son milieu socioéconomique</span>
+</label>
+<label>
+  <input type="checkbox" class="goal" id="selectmaingoa2">
+  <span id="goal-competitors">Étude des concurrents</span>
+</label>
+<label>
+  <input type="checkbox" class="goal" id="selectmaingoa3">
+  <span id="goal-potentialClients">Étude des clients potentiels</span>
+</label>
+<label>
+  <input type="checkbox" class="goal" id="selectmaingoa4">
+  <span id="goal-marketEssentials">Connaitre les essentiels du marché immobilier</span>
+</label>
 
-  <label>
-    <input type="checkbox" class="goal" id="selectmaingoal">
-    Analyse de la cohérence du projet dans son milieu socioéconomique
-  </label>
-
-  <label>
-    <input type="checkbox" class="goal" id="selectmaingoa2">
-    Étude des concurrents
-  </label>
-
-  <label>
-    <input type="checkbox" class="goal" id="selectmaingoa3">
-    Étude des clients potentiels
-  </label>
-
-  <label>
-    <input type="checkbox" class="goal" id="selectmaingoa4">
-    Connaitre les essentiels du marché immobilier
-  </label>
 
 </div>
 
 
         
-        <label>Select themes</label>
+<label id="label-selectThemes">Select themes</label>
         <div class="themes">
 
 <label><input type="checkbox" class="theme" id="selectAllThemes"> Select all</label>
 
+<!-- Real Estate Essentials -->
+<div class="theme-subtitle" id="subtitle-realEstate">Real Estate Essentials</div>
 
-        
-<div class="theme-subtitle">Real Estate Essentials</div>
-          
-<label><input type="checkbox" class="theme" value="Global Real Estate Sales">Global Real Estate Sales</label>
-<label><input type="checkbox" class="theme" value="Parc Immobilier"> Parc immobilier (social, résidentiel)</label>
-<label><input type="checkbox" class="theme" value="Loyer moyen"> Loyer moyen</label>
-<label><input type="checkbox" class="theme" value="Nb Appartements"> Nombre d'appartements vendus</label>
-<label><input type="checkbox" class="theme" value="Nombre de maisons vendus"> Nombre de maisons vendues</label>
-<label><input type="checkbox" class="theme" value="Prix median appartements"> Prix médian appartements</label>
-<label><input type="checkbox" class="theme" value="Prix median maisons"> Prix médian maisons</label>
-<label><input type="checkbox" class="theme" value="Urban & Real Estate projects">Urban & Real Estate projects</label>
-<label><input type="checkbox" class="theme" value="M2 price///"> M2 price</label>
-<label><input type="checkbox" class="theme" value="Gentrification">Gentrification</label>
+<label><input type="checkbox" class="theme" value="Global Real Estate Sales"> <span id="theme-globalSales">Global Real Estate Sales</span></label>
+<label><input type="checkbox" class="theme" value="Parc Immobilier"> <span id="theme-parcImmobilier">Parc immobilier (social, résidentiel)</span></label>
+<label><input type="checkbox" class="theme" value="Loyer moyen"> <span id="theme-loyerMoyen">Loyer moyen</span></label>
+<label><input type="checkbox" class="theme" value="Nb Appartements"> <span id="theme-nbAppartements">Nombre d'appartements vendus</span></label>
+<label><input type="checkbox" class="theme" value="Nombre de maisons vendus"> <span id="theme-nbMaisons">Nombre de maisons vendues</span></label>
+<label><input type="checkbox" class="theme" value="Prix median appartements"> <span id="theme-prixMedianApparts">Prix médian appartements</span></label>
+<label><input type="checkbox" class="theme" value="Prix median maisons"> <span id="theme-prixMedianMaisons">Prix médian maisons</span></label>
+<label><input type="checkbox" class="theme" value="Urban & Real Estate projects"> <span id="theme-urbanProjects">Urban & Real Estate projects</span></label>
+<label><input type="checkbox" class="theme" value="M2 price///"> <span id="theme-m2Price">M2 price</span></label>
+<label><input type="checkbox" class="theme" value="Gentrification"> <span id="theme-gentrification">Gentrification</span></label>
 
+<!-- Security Statistics -->
+<div class="theme-subtitle" id="subtitle-security">Security Statistics</div>
+<label><input type="checkbox" class="theme" value="Vols"> <span id="theme-vols">Vols</span></label>
+<label><input type="checkbox" class="theme" value="coups_blessures"> <span id="theme-coupsBlessures">Coups/Blessures</span></label>
+<label><input type="checkbox" class="theme" value="drogues"> <span id="theme-drogues">Drogues</span></label>
+<label><input type="checkbox" class="theme" value="alcool"> <span id="theme-alcool">Alcool</span></label>
+<label><input type="checkbox" class="theme" value="armes"> <span id="theme-armes">Armes</span></label>
+<label><input type="checkbox" class="theme" value="secu_publiq_2024"> <span id="theme-secuPublique">Atteinte Sécurité Publique</span></label>
+<label><input type="checkbox" class="theme" value="degradat_prop"> <span id="theme-degradations">Dégradations de propriété</span></label>
+<label><input type="checkbox" class="theme" value="Cambriolages"> <span id="theme-cambriolages">Cambriolages</span></label>
 
-          
-<div class="theme-subtitle">Security Statistics</div>
-          
-<label><input type="checkbox" class="theme" value="Vols"> Vols</label>
-<label><input type="checkbox" class="theme" value="coups_blessures"> Coups/Blessures</label>
-<label><input type="checkbox" class="theme" value="drogues"> Drogues</label>
-<label><input type="checkbox" class="theme" value="alcool"> Alcool</label>
-<label><input type="checkbox" class="theme" value="armes"> Armes</label>
-<label><input type="checkbox" class="theme" value="secu_publiq_2024"> Atteinte Sécurité Publique</label>
-<label><input type="checkbox" class="theme" value="degradat_prop"> Dégradations de propriété</label>
-<label><input type="checkbox" class="theme" value="Cambriolages"> Cambriolages</label>
+<!-- SocioEconomics / Socio -->
+<div class="theme-subtitle" id="subtitle-socioEconomics">SocioEconomics</div>
+<div class="theme-subtitle" id="subtitle-socio">Socio</div>
+<label><input type="checkbox" class="theme" value="Densité de Population"> <span id="theme-densite">Densité</span></label>
+<label><input type="checkbox" class="theme" value="% 18-64 ans"> <span id="theme-age18_64">% 18-64 ans</span></label>
+<label><input type="checkbox" class="theme" value="Solde migratoire"> <span id="theme-soldeMigratoire">Solde migratoire</span></label>
+<label><input type="checkbox" class="theme" value="Croissance annuelle"> <span id="theme-croissanceAnnuelle">Croissance annuelle</span></label>
+<label><input type="checkbox" class="theme" value="% Population immigrée"> <span id="theme-popImmigree">% Population immigrée</span></label>
+<label><input type="checkbox" class="theme" value="Taux natalité"> <span id="theme-tauxNatalite">Taux natalité</span></label>
+<label><input type="checkbox" class="theme" value="Cultural Composition"> <span id="theme-culturalComposition">Cultural Composition</span></label>
 
-<div class="theme-subtitle">SocioEconomics</div>
-          
-<div class="theme-subtitle">Socio</div>
-<label><input type="checkbox" class="theme" value="Densité de Population"> Densité</label>
-<label><input type="checkbox" class="theme" value="% 18-64 ans">% 18-64 ans</label>
-<label><input type="checkbox" class="theme" value="Solde migratoire"> Solde migratoire</label>
-<label><input type="checkbox" class="theme" value="Croissance annuelle">Croissance annuelle</label>
-<label><input type="checkbox" class="theme" value="% Population immigrée">% Population immigrée</label>
-<label><input type="checkbox" class="theme" value="Taux natalité"> Taux natalité</label>
-<label><input type="checkbox" class="theme" value="Cultural Composition"> Cultural Composition</label>
+<!-- Economics -->
+<div class="theme-subtitle" id="subtitle-economics">Economics</div>
+<label><input type="checkbox" class="theme" value="Revenu Médian"> <span id="theme-revenuMedian">Revenu médian</span></label>
+<label><input type="checkbox" class="theme" value="Taux emploi"> <span id="theme-tauxEmploi">Taux emploi</span></label>
+<label><input type="checkbox" class="theme" value="Taux par type d'occupation"> <span id="theme-tauxOccupation">Taux par type d'occupation</span></label>
+<label><input type="checkbox" class="theme" value="Taux chomage"> <span id="theme-tauxChomage">Taux chômage</span></label>
+<label><input type="checkbox" class="theme" value="Taux GRAPA 65+"> <span id="theme-tauxGRAPA">Taux GRAPA 65+</span></label>
+<label><input type="checkbox" class="theme" value="Taux naissances sans revenu de travail"> <span id="theme-naissancesSansTravail">Naissances sans revenu de travail</span></label>
+<label><input type="checkbox" class="theme" value="Taux naissances meres etrangeres"> <span id="theme-naissancesEtrangeres">Naissances mères étrangères</span></label>
+<label><input type="checkbox" class="theme" value="Taux retard scolaire"> <span id="theme-retardScolaire">Taux retard scolaire</span></label>
 
-<div class="theme-subtitle">Economics</div>
-<label><input type="checkbox" class="theme" value="Revenu Médian"> Revenu médian</label>
-<label><input type="checkbox" class="theme" value="Taux emploi"> Taux emploi</label>
-<label><input type="checkbox" class="theme" value="Taux par type d'occupation"> Taux par type d'occupation</label>
-<label><input type="checkbox" class="theme" value="Taux chomage"> Taux chômage</label>
-<label><input type="checkbox" class="theme" value="Taux GRAPA 65+"> Taux GRAPA 65+</label>
-<label><input type="checkbox" class="theme" value="Taux naissances sans revenu de travail"> Naissances sans revenu de travail</label>
-<label><input type="checkbox" class="theme" value="Taux naissances meres etrangeres"> Naissances mères étrangères</label>
-<label><input type="checkbox" class="theme" value="Taux retard scolaire"> Taux retard scolaire</label>
+<!-- Economy -->
+<div class="theme-subtitle" id="subtitle-economy">Economy</div>
+<label><input type="checkbox" class="theme" value="Sieges sociaux"> <span id="theme-siegesSociaux">Sièges sociaux</span></label>
+<label><input type="checkbox" class="theme" value="Établissements"> <span id="theme-etablissements">Établissements</span></label>
+<label><input type="checkbox" class="theme" value="Solde migration entreprises"> <span id="theme-soldeMigrationEnt">Solde migration entreprises</span></label>
+<label><input type="checkbox" class="theme" value="Secteurs economiques majeures"> <span id="theme-secteursMajeurs">Secteurs économiques majeurs</span></label>
 
-          
-<div class="theme-subtitle">Economy</div>
-
-<label><input type="checkbox" class="theme" value="Sieges sociaux">Sièges sociaux</label>
-<label><input type="checkbox" class="theme" value="Établissements">Établissements</label>
-<label><input type="checkbox" class="theme" value="Solde migration entreprises"> Solde migration entreprises</label>
-<label><input type="checkbox" class="theme" value="Secteurs economiques majeures"> Secteurs économiques majeurs</label>
-
-
-<div class="theme-subtitle">Quality of Life</div>
-
-<label><input type="checkbox" class="theme" value="Espace verts">Espaces verts</label>
-<label><input type="checkbox" class="theme" value="Pollution (air, noise)"> Pollution (air, noise)</label>
-
-
+<!-- Quality of Life -->
+<div class="theme-subtitle" id="subtitle-qualityLife">Quality of Life</div>
+<label><input type="checkbox" class="theme" value="Espace verts"> <span id="theme-espacesVerts">Espaces verts</span></label>
+<label><input type="checkbox" class="theme" value="Pollution (air, noise)"> <span id="theme-pollution">Pollution (air, noise)</span></label>
 
 
         </div>
@@ -485,23 +463,17 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 
 
         <div class="summary-box">
-          <h4>Summary</h4>
-          <div id="summaryContent">No data yet</div>
-        </div>
+<h4 id="summary-title">Summary</h4>
+<div id="summaryContent">No data yet</div>
 
+<label id="label-selectCity">Select city</label>
+<select id="citySelect">
+  <option value="">Select a city</option>
+  <option value="Brussels">Brussels</option>
+</select>
 
-              <label>Select city</label>
-        <select id="citySelect">
-          <option value="">Select a city</option>
-          <option value="Brussels">Brussels</option>
-        </select>
+<button id="sendSmartInBtn" class="btn-send" onclick="sendSmartIn()">Send</button>
 
-<div id="mapPreview" class="mapPreview"></div>
-
-
-
-
-        <button class="btn-send" onclick="sendSmartIn()">Send</button>
 
       </div>
 
@@ -1062,6 +1034,7 @@ selectAllGoals.addEventListener('change', e => {
 </script>
 </body>
 </html>
+
 
 
 
