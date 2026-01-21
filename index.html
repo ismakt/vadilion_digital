@@ -966,10 +966,60 @@ selectAllGoals.addEventListener('change', e => {
 });
 
 
-  
+  // --- Dictionnaire de traductions ---
+const translations = {
+  fr: {
+    "about-text": "Nous allions business intelligence et data science pour développer des solutions uniques, à forte valeur ajoutée, fondées sur des données fiables et répondant à des enjeux concrets.",
+    "locationBtn": "SMART-IN",
+    "discoverSmartIn": "Découvrir Smart-In",
+    "presentationSmartIn": "Vidéo",
+    "contact-text": "Contactez-nous",
+    "contact-text2": "Nous écoutons attentivement vos besoins afin de vous proposer une solution précise et adaptée.",
+    "btn-send": "Envoyer",
+    "our-media": "Nos réseaux",
+    "offices": "Bureaux"
+  },
+  en: {
+    "about-text": "We combine business intelligence and data science to develop unique solutions with high added value, based on reliable data and addressing concrete challenges.",
+    "locationBtn": "SMART-IN",
+    "discoverSmartIn": "Discover Smart-In",
+    "presentationSmartIn": "Video",
+    "contact-text": "Contact Us",
+    "contact-text2": "We carefully listen to your needs to provide you with a precise and adapted solution.",
+    "btn-send": "Send",
+    "our-media": "Our Media",
+    "offices": "Offices"
+  }
+};
+
+// --- Fonction pour changer la langue ---
+function setLanguage(lang) {
+  const dict = translations[lang];
+  for (const id in dict) {
+    const el = document.getElementById(id);
+    if (el) {
+      el.textContent = dict[id];
+    }
+  }
+}
+
+// --- Event listeners sur les boutons FR / EN ---
+document.getElementById('fr-btn').addEventListener('click', () => {
+  setLanguage('fr');
+  document.getElementById('fr-btn').classList.add('active');
+  document.getElementById('en-btn').classList.remove('active');
+});
+
+document.getElementById('en-btn').addEventListener('click', () => {
+  setLanguage('en');
+  document.getElementById('en-btn').classList.add('active');
+  document.getElementById('fr-btn').classList.remove('active');
+});
+
 </script>
 </body>
 </html>
+
 
 
 
