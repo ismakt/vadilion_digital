@@ -582,14 +582,15 @@ const enBtn = document.getElementById('en-btn');
 frBtn.addEventListener('click', () => {
   frBtn.classList.add('active'); enBtn.classList.remove('active');
 
-  // Francais
+ // FRANÇAIS
+frBtn.addEventListener('click', () => {
+  frBtn.classList.add('active'); 
+  enBtn.classList.remove('active');
 
-  document.getElementById('menu-about-button').innerHTML =
-     `<p>À PROPOS</p>`;
-  
-   document.getElementById('about-text').innerHTML =
-     `<p>Nous développons des solutions digitales uniques à forte valeur ajoutée, fondées sur des données fiables et répondant à des enjeux concrets.</p>`;
-  
+  document.getElementById('menu-about-button').innerHTML = `<p>À PROPOS</p>`;
+  document.getElementById('about-text').innerHTML =
+    `<p>Nous développons des solutions digitales uniques à forte valeur ajoutée, fondées sur des données fiables et répondant à des enjeux concrets.</p>`;
+
   document.getElementById('smart-in-text').innerHTML = `<div style="text-align:left;">
 <p>
   Nous accompagnons entrepreneurs et investisseurs dans leurs projets commerciaux et d’investissement.
@@ -610,11 +611,7 @@ frBtn.addEventListener('click', () => {
   <li>Analyse des clients potentiels : optimisation marketing et ciblage</li>
   <li>Analyse du marché immobilier : résilience, tendances et évolutions</li>
 </ul><br>
-    
-      </ul><br>
-  </div>
 </div>`;
-
 
   document.getElementById('btn-smartin').textContent = "SMART-IN";
   document.getElementById('discover-smart-in-btn').textContent = "Découvrir";
@@ -629,7 +626,7 @@ frBtn.addEventListener('click', () => {
 
   document.getElementById('our-media').textContent = "Nos réseaux";
   document.getElementById('offices').textContent = "Bureaux";
-document.getElementById('offices-list').innerHTML = 
+  document.getElementById('offices-list').innerHTML = 
     "21 Avenue du Boulevard, Bruxelles (Financial District)<br><br>" +
     "7 Rue Meyerbeer, Paris (Opéra Garnier)<br><br>" +
     "74 Boulevard d'Italie, Monaco (Monte Carlo)";
@@ -638,77 +635,71 @@ document.getElementById('offices-list').innerHTML =
 
   document.getElementById('label-contact-info-smart-in').textContent = "Vos coordonnées";
   document.getElementById('input-contact-info-smart-in').placeholder = "nom + email / mobile";
-
-
   document.getElementById('label-address-smart-in').textContent = "Adresse à analyser";
   document.getElementById('input-address-smart-in').placeholder = "Si plusieurs (max. 3), séparez par ','";
   document.getElementById('label-project-description-smart-in').textContent = "Décrivez votre projet";
-  document.getElementById('textarea-project-details-smart-in').placeholder = 
-    "Donnez nous un maximum d'information qui vous semblent importantes pour que nous puissions revenir vers vous avec la meilleure solution possible";
+  document.getElementById('textarea-project-details-smart-in').placeholder = "Donnez-nous un maximum d'information qui vous semblent importantes pour que nous puissions revenir vers vous avec la meilleure solution possible";
+
+  document.getElementById('label-main-goal-smart-in').textContent = "Sélectionnez l'objectif principal de l'étude (choix multiple possible)";
+
+  // ✅ Checkboxes : on modifie les labels
+  document.querySelector("label[for='goal-select-all']").textContent = "Tout séléctionner";
+  document.querySelector("label[for='goal-1']").textContent = "Analyser la cohérence du projet dans son milieu socio-économique";
+  document.querySelector("label[for='goal-2']").textContent = "Étude des concurrents: positionnement";
+  document.querySelector("label[for='goal-3']").textContent = "Étude des clients potentiels: marketing et ciblage";
+  document.querySelector("label[for='goal-4']").textContent = "Connaître les essentiels du marché immobilier";
+
+  document.getElementById('label-select-themes-smart-in').textContent = "Sélectionnez les thèmes que vous aimeriez connaitre";
+  document.querySelector("label[for='theme-select-all']").textContent = "Séléctionner tout";
+
+  document.querySelector("label[for='theme-re-sales']").textContent = "Statistiques de ventes";
+  document.querySelector("label[for='theme-re-m2-price']").textContent = "Prix m2";
+  document.querySelector("label[for='theme-re-prop-sold']").textContent = "Nombre de biens vendus par type de biens";
+  document.querySelector("label[for='theme-re-prop-prices']").textContent = "Prix de vente par type de bien";
+  document.querySelector("label[for='theme-re-rent']").textContent = "Loyers";
+  document.querySelector("label[for='theme-re-stock']").textContent = "Composition du parc immobilier";
+  document.querySelector("label[for='theme-re-projects']").textContent = "Projets immobiliers et urbains";
+  document.querySelector("label[for='theme-re-gentrification']").textContent = "Gentrification";
+
+  document.querySelector("label[for='theme-sec-theft']").textContent = "Vols";
+  document.querySelector("label[for='theme-sec-burglary']").textContent = "Cambriolages";
+  document.querySelector("label[for='theme-sec-damage']").textContent = "Dégradations de propriété";
+  document.querySelector("label[for='theme-sec-assault']").textContent = "Coups / Blessures";
+  document.querySelector("label[for='theme-sec-drugs']").textContent = "Drogues";
+  document.querySelector("label[for='theme-sec-alcohol']").textContent = "Alcool";
+  document.querySelector("label[for='theme-sec-weapons']").textContent = "Armes";
+  document.querySelector("label[for='theme-sec-public']").textContent = "Sécurité publique";
+
+  document.querySelector("label[for='theme-socio-growth']").textContent = "Croissance annuelle";
+  document.querySelector("label[for='theme-socio-birth']").textContent = "Taux de natalité";
+  document.querySelector("label[for='theme-socio-solmig']").textContent = "Solde migratoire";
+  document.querySelector("label[for='theme-socio-age']").textContent = "Population âgée de 18 à 64 ans";
+  document.querySelector("label[for='theme-socio-perctimmig']").textContent = "Population immigrée: % et cultures";
+  document.querySelector("label[for='theme-eco-birth-foreign']").textContent = "Naissances de mères étrangères";
+  document.querySelector("label[for='theme-socio-density']").textContent = "Densité de population";
+  document.querySelector("label[for='theme-sociio-school-delay']").textContent = "Retard scolaire";
 
 
-
-
- document.getElementById('label-main-goal-smart-in').textContent = "Sélectionnez l'objectif principal de l'étude (choix multiple possible)";
-document.getElementById('goal-select-all').textContent = "Tout séléctionner";
-document.getElementById('goal-1').textContent = "Analyser la cohérence du projet dans son milieu socio-économique";
-document.getElementById('goal-2').textContent = "Étude des concurrents: positionnement";
-document.getElementById('goal-3').textContent = "Étude des clients potentiels: marketing et ciblage";
-document.getElementById('goal-4').textContent = "Connaître les essentiels du marché immobilier";
-
-
-document.getElementById('label-select-themes-smart-in').textContent = "Sélectionnez les thèmes que vous aimeriez connaitre";
-document.getElementById('theme-select-all').textContent = "Séléctionner tout";
-document.getElementById('subtitle-theme-real-estate').textContent = "Les essentiels du marché immobilier";
-document.getElementById('theme-re-sales').textContent = "Statistiques de ventes";
-document.getElementById('theme-re-m2-price').textContent = "Prix m2";
-document.getElementById('theme-re-prop-sold').textContent = "Nombre de biens vendus par type de biens";
-document.getElementById('theme-re-prop-prices').textContent = "Prix de vente par type de bien";
-document.getElementById('theme-re-rent').textContent = "Loyers";
-document.getElementById('theme-re-stock').textContent = "Composition du parc immobilier";
-document.getElementById('theme-re-projects').textContent = "Projets immobiliers et urbains";
-document.getElementById('theme-re-gentrification').textContent = "Gentrification";
-
-
-document.getElementById('subtitle-theme-security').textContent = "Criminalité";
-  document.getElementById('theme-sec-theft').textContent = "Vols";
-  document.getElementById('theme-sec-burglary').textContent = "Cambriolages";
-  document.getElementById('theme-sec-damage').textContent = "Dégradations de propriété";
-  document.getElementById('theme-sec-assault').textContent = "Coups / Blessures";
-  document.getElementById('theme-sec-drugs').textContent = "Drogues";
-  document.getElementById('theme-sec-alcohol').textContent = "Alcool";
-  document.getElementById('theme-sec-weapons').textContent = "Armes";
-  document.getElementById('theme-sec-public').textContent = "Sécurité publique";
-
-document.getElementById('subtitle-theme-socio').textContent = "Société";
-document.getElementById('theme-socio-growth').textContent = "Croissance annuelle";
-document.getElementById('theme-socio-birth').textContent = "Taux de natalité";
-document.getElementById('theme-socio-solmig').textContent = "Solde migratoire";
-document.getElementById('theme-socio-age').textContent = "Population âgée de 18 à 64 ans";
-document.getElementById('theme-socio-perctimmig').textContent = "Population immigrée: % et cultures";
-document.getElementById('theme-eco-birth-foreign').textContent = "Naissances de mères étrangères";
-document.getElementById('theme-socio-density').textContent = "Densité de population";
-document.getElementById('theme-socio-school-delay').textContent = "Retard scolaire";
-
-
+// Titre des sections
 document.getElementById('subtitle-theme-socio-eco').textContent = "Socio-Économie";
-document.getElementById('theme-socio-eco-income').textContent = "Niveau de revenus";
-document.getElementById('theme-socio-eco-employment-and-typeof').textContent = "Taux d’emploi & type d'occupatiion";
-document.getElementById('theme-socio-eco-unemployment').textContent = "Taux de chômage";
-document.getElementById('theme-socio-eco-grapa').textContent = "Personnes âgées en difficulté financière (GRAPA 65+)";
-document.getElementById('theme-socio-eco-birth-no-income').textContent = "Naissances dans ménage sans revenu de travail";
-
 document.getElementById('subtitle-theme-eco').textContent = "Économie";
-document.getElementById('theme-eco-hq-etab').textContent = "Sièges sociaux & Établissements";
-document.getElementById('theme-eco-soldmig-business').textContent = "Solde migratoire des entreprises";
-document.getElementById('theme-eco-sectors').textContent = "Secteurs économiques";
-
-
 document.getElementById('subtitle-theme-qol').textContent = "Quality of Life";
-document.getElementById('theme-qol-green').textContent = "Espaces verts";
-document.getElementById('theme-qol-pollution').textContent = "Pollution (air, bruit)";
 
+// Checkboxes – utiliser parentElement pour changer le texte du label
+document.getElementById('theme-socio-eco-income').parentElement.textContent = "Niveau de revenus";
+document.getElementById('theme-socio-eco-employment-and-typeof').parentElement.textContent = "Taux d’emploi & type d'occupation";
+document.getElementById('theme-socio-eco-unemployment').parentElement.textContent = "Taux de chômage";
+document.getElementById('theme-socio-eco-grapa').parentElement.textContent = "Personnes âgées en difficulté financière (GRAPA 65+)";
+document.getElementById('theme-socio-eco-birth-no-income').parentElement.textContent = "Naissances dans ménage sans revenu de travail";
 
+document.getElementById('theme-eco-hq-etab').parentElement.textContent = "Sièges sociaux & Établissements";
+document.getElementById('theme-eco-soldmig-business').parentElement.textContent = "Solde migratoire des entreprises";
+document.getElementById('theme-eco-sectors').parentElement.textContent = "Secteurs économiques";
+
+document.getElementById('theme-qol-green').parentElement.textContent = "Espaces verts";
+document.getElementById('theme-qol-pollution').parentElement.textContent = "Pollution (air, bruit)";
+
+// Reste des textes classiques
 document.getElementById('text-summary-title').textContent = "Résumé";
 document.getElementById('summaryContent').textContent = "En attente...";
 document.getElementById('text-label-select-city').textContent = "Sélectionnez une ville";
@@ -726,9 +717,8 @@ enBtn.addEventListener('click', () => {
   enBtn.classList.add('active'); frBtn.classList.remove('active');
 
 
-document.getElementById('menu-about-button').textContent =
-  "ABOUT";
-
+// Sections principales
+document.getElementById('menu-about-button').textContent = "ABOUT";
 document.getElementById('about-text').innerHTML =
   `<p>We develop unique high–value digital solutions based on reliable data and designed to address real-world challenges.</p>`;
 
@@ -741,8 +731,7 @@ document.getElementById('contact-slogan').textContent =
   "We carefully listen to your needs in order to offer a precise and tailored solution.";
 document.getElementById('contact-client-name').placeholder = "Name";
 document.getElementById('contact-client-info').placeholder = "Contact details";
-document.getElementById('contact-message-area').placeholder =
-  "How can we help you?";
+document.getElementById('contact-message-area').placeholder = "How can we help you?";
 document.getElementById('btn-send').textContent = "Send";
 
 document.getElementById('our-media').textContent = "Our networks";
@@ -752,140 +741,85 @@ document.getElementById('offices-list').innerHTML =
   "7 Rue Meyerbeer, Paris (Opéra Garnier)<br><br>" +
   "74 Boulevard d'Italie, Monaco (Monte Carlo)";
 
-document.getElementById('smart-in-video-title').textContent =
-  "Smart-In Presentation";
+document.getElementById('smart-in-video-title').textContent = "Smart-In Presentation";
 
-document.getElementById('label-contact-info-smart-in').textContent =
-  "Your contact details";
-document.getElementById('input-contact-info-smart-in').placeholder =
-  "name + email / mobile";
+document.getElementById('label-contact-info-smart-in').textContent = "Your contact details";
+document.getElementById('input-contact-info-smart-in').placeholder = "name + email / mobile";
 
-document.getElementById('label-address-smart-in').textContent =
-  "Address to analyze";
-document.getElementById('input-address-smart-in').placeholder =
-  "If several (max. 3), separate with ','";
+document.getElementById('label-address-smart-in').textContent = "Address to analyze";
+document.getElementById('input-address-smart-in').placeholder = "If several (max. 3), separate with ','";
 
-document.getElementById('label-project-description-smart-in').textContent =
-  "Describe your project";
+document.getElementById('label-project-description-smart-in').textContent = "Describe your project";
 document.getElementById('textarea-project-details-smart-in').placeholder =
   "Provide as much relevant information as possible so we can come back to you with the best possible solution";
 
+// Objectifs principaux – checkbox labels
 document.getElementById('label-main-goal-smart-in').textContent =
   "Select the main objective of the study (multiple choices possible)";
-document.getElementById('goal-select-all').textContent =
-  "Select all";
-document.getElementById('goal-1').textContent =
-  "Analyze the coherence of the project within its socio-economic environment";
-document.getElementById('goal-2').textContent =
-  "Competitor analysis: positioning";
-document.getElementById('goal-3').textContent =
-  "Potential customer analysis: marketing and targeting";
-document.getElementById('goal-4').textContent =
-  "Understand real estate market essentials";
+document.getElementById('goal-select-all').parentElement.textContent = "Select all";
+document.getElementById('goal-1').parentElement.textContent = "Analyze the coherence of the project within its socio-economic environment";
+document.getElementById('goal-2').parentElement.textContent = "Competitor analysis: positioning";
+document.getElementById('goal-3').parentElement.textContent = "Potential customer analysis: marketing and targeting";
+document.getElementById('goal-4').parentElement.textContent = "Understand real estate market essentials";
 
-document.getElementById('label-select-themes-smart-in').textContent =
-  "Select the themes you would like to explore";
-document.getElementById('theme-select-all').textContent =
-  "Select all";
+// Thèmes – checkbox labels
+document.getElementById('label-select-themes-smart-in').textContent = "Select the themes you would like to explore";
+document.getElementById('theme-select-all').parentElement.textContent = "Select all";
 
-document.getElementById('subtitle-theme-real-estate').textContent =
-  "Real estate market essentials";
-document.getElementById('theme-re-sales').textContent =
-  "Sales statistics";
-document.getElementById('theme-re-m2-price').textContent =
-  "Price per m²";
-document.getElementById('theme-re-prop-sold').textContent =
-  "Number of properties sold by property type";
-document.getElementById('theme-re-prop-prices').textContent =
-  "Sale prices by property type";
-document.getElementById('theme-re-rent').textContent =
-  "Rents";
-document.getElementById('theme-re-stock').textContent =
-  "Housing stock composition";
-document.getElementById('theme-re-projects').textContent =
-  "Real estate and urban development projects";
-document.getElementById('theme-re-gentrification').textContent =
-  "Gentrification";
+document.getElementById('subtitle-theme-real-estate').textContent = "Real estate market essentials";
+document.getElementById('theme-re-sales').parentElement.textContent = "Sales statistics";
+document.getElementById('theme-re-m2-price').parentElement.textContent = "Price per m²";
+document.getElementById('theme-re-prop-sold').parentElement.textContent = "Number of properties sold by property type";
+document.getElementById('theme-re-prop-prices').parentElement.textContent = "Sale prices by property type";
+document.getElementById('theme-re-rent').parentElement.textContent = "Rents";
+document.getElementById('theme-re-stock').parentElement.textContent = "Housing stock composition";
+document.getElementById('theme-re-projects').parentElement.textContent = "Real estate and urban development projects";
+document.getElementById('theme-re-gentrification').parentElement.textContent = "Gentrification";
 
-document.getElementById('subtitle-theme-security').textContent =
-  "Crime";
-document.getElementById('theme-sec-theft').textContent =
-  "Thefts";
-document.getElementById('theme-sec-burglary').textContent =
-  "Burglaries";
-document.getElementById('theme-sec-damage').textContent =
-  "Property damage";
-document.getElementById('theme-sec-assault').textContent =
-  "Assaults / Injuries";
-document.getElementById('theme-sec-drugs').textContent =
-  "Drugs";
-document.getElementById('theme-sec-alcohol').textContent =
-  "Alcohol";
-document.getElementById('theme-sec-weapons').textContent =
-  "Weapons";
-document.getElementById('theme-sec-public').textContent =
-  "Public safety";
+document.getElementById('subtitle-theme-security').textContent = "Crime";
+document.getElementById('theme-sec-theft').parentElement.textContent = "Thefts";
+document.getElementById('theme-sec-burglary').parentElement.textContent = "Burglaries";
+document.getElementById('theme-sec-damage').parentElement.textContent = "Property damage";
+document.getElementById('theme-sec-assault').parentElement.textContent = "Assaults / Injuries";
+document.getElementById('theme-sec-drugs').parentElement.textContent = "Drugs";
+document.getElementById('theme-sec-alcohol').parentElement.textContent = "Alcohol";
+document.getElementById('theme-sec-weapons').parentElement.textContent = "Weapons";
+document.getElementById('theme-sec-public').parentElement.textContent = "Public safety";
 
-document.getElementById('subtitle-theme-socio').textContent =
-  "Society";
-document.getElementById('theme-socio-growth').textContent =
-  "Annual population growth";
-document.getElementById('theme-socio-birth').textContent =
-  "Birth rate";
-document.getElementById('theme-socio-solmig').textContent =
-  "Migration balance";
-document.getElementById('theme-socio-age').textContent =
-  "Population aged 18 to 64";
-document.getElementById('theme-socio-perctimmig').textContent =
-  "Immigrant population: % and origins";
-document.getElementById('theme-eco-birth-foreign').textContent =
-  "Births to foreign mothers";
-document.getElementById('theme-socio-density').textContent =
-  "Population density";
-document.getElementById('theme-socio-school-delay').textContent =
-  "School delay";
+document.getElementById('subtitle-theme-socio').textContent = "Society";
+document.getElementById('theme-socio-growth').parentElement.textContent = "Annual population growth";
+document.getElementById('theme-socio-birth').parentElement.textContent = "Birth rate";
+document.getElementById('theme-socio-solmig').parentElement.textContent = "Migration balance";
+document.getElementById('theme-socio-age').parentElement.textContent = "Population aged 18 to 64";
+document.getElementById('theme-socio-perctimmig').parentElement.textContent = "Immigrant population: % and origins";
+document.getElementById('theme-eco-birth-foreign').parentElement.textContent = "Births to foreign mothers";
+document.getElementById('theme-socio-density').parentElement.textContent = "Population density";
+document.getElementById('theme-socio-school-delay').parentElement.textContent = "School delay";
 
-document.getElementById('subtitle-theme-socio-eco').textContent =
-  "Socio-Economics";
-document.getElementById('theme-socio-eco-income').textContent =
-  "Income level";
-document.getElementById('theme-socio-eco-employment-and-typeof').textContent =
-  "Employment rate & occupation type";
-document.getElementById('theme-socio-eco-unemployment').textContent =
-  "Unemployment rate";
-document.getElementById('theme-socio-eco-grapa').textContent =
-  "Elderly people facing financial hardship (65+)";
-document.getElementById('theme-socio-eco-birth-no-income').textContent =
-  "Births in households with no employment income";
+document.getElementById('subtitle-theme-socio-eco').textContent = "Socio-Economics";
+document.getElementById('theme-socio-eco-income').parentElement.textContent = "Income level";
+document.getElementById('theme-socio-eco-employment-and-typeof').parentElement.textContent = "Employment rate & occupation type";
+document.getElementById('theme-socio-eco-unemployment').parentElement.textContent = "Unemployment rate";
+document.getElementById('theme-socio-eco-grapa').parentElement.textContent = "Elderly people facing financial hardship (65+)";
+document.getElementById('theme-socio-eco-birth-no-income').parentElement.textContent = "Births in households with no employment income";
 
-document.getElementById('subtitle-theme-eco').textContent =
-  "Economy";
-document.getElementById('theme-eco-hq-etab').textContent =
-  "Headquarters & establishments";
-document.getElementById('theme-eco-soldmig-business').textContent =
-  "Business migration balance";
-document.getElementById('theme-eco-sectors').textContent =
-  "Economic sectors";
+document.getElementById('subtitle-theme-eco').textContent = "Economy";
+document.getElementById('theme-eco-hq-etab').parentElement.textContent = "Headquarters & establishments";
+document.getElementById('theme-eco-soldmig-business').parentElement.textContent = "Business migration balance";
+document.getElementById('theme-eco-sectors').parentElement.textContent = "Economic sectors";
 
-document.getElementById('subtitle-theme-qol').textContent =
-  "Quality of Life";
-document.getElementById('theme-qol-green').textContent =
-  "Green spaces";
-document.getElementById('theme-qol-pollution').textContent =
-  "Pollution (air, noise)";
+document.getElementById('subtitle-theme-qol').textContent = "Quality of Life";
+document.getElementById('theme-qol-green').parentElement.textContent = "Green spaces";
+document.getElementById('theme-qol-pollution').parentElement.textContent = "Pollution (air, noise)";
 
-document.getElementById('text-summary-title').textContent =
-  "Summary";
-document.getElementById('summaryContent').textContent =
-  "Pending...";
-document.getElementById('text-label-select-city').textContent =
-  "Select a city";
-document.getElementById('text-option-select-city').textContent =
-  "Select a city";
-document.getElementById('text-option-city-brussels').textContent =
-  "Brussels";
-document.getElementById('text-btn-send').textContent =
-  "Send";
+// Reste des textes classiques
+document.getElementById('text-summary-title').textContent = "Summary";
+document.getElementById('summaryContent').textContent = "Pending...";
+document.getElementById('text-label-select-city').textContent = "Select a city";
+document.getElementById('text-option-select-city').textContent = "Select a city";
+document.getElementById('text-option-city-brussels').textContent = "Brussels";
+document.getElementById('text-btn-send').textContent = "Send";
+
 
 
 
@@ -1037,22 +971,7 @@ discoverBtn.addEventListener('mouseleave', () => {
 
 
 
-// Réattacher les event listeners pour ce nouveau sous-menu
-const locationBtnEn = document.getElementById('locationBtn');
-const locationContentEn = document.getElementById('locationContent');
-let locationOpenEn = false;
-locationBtnEn.addEventListener('click', () => {
-  locationOpenEn = !locationOpenEn;
-  locationContentEn.style.display = locationOpenEn ? 'block' : 'none';
-});
-locationBtnEn.addEventListener('mouseenter', () => {
-  locationContentEn.style.display = 'block';
-  locationOpenEn = true;
-});
-
-
-
-// Gestion du sous-menu Location Intelligence
+// Gestion du sous-menu "Location Intelligence"
 const locationBtn = document.getElementById('locationBtn');
 const locationContent = document.getElementById('locationContent');
 let locationOpen = false;
@@ -1069,7 +988,8 @@ locationBtn.addEventListener('mouseenter', () => {
   locationOpen = true;
 });
 
-// On ne ferme pas au mouseleave, fermeture uniquement au clic sur locationBtn
+// On ne ferme pas au mouseleave, fermeture uniquement au clic
+
 
 
 
@@ -1261,6 +1181,7 @@ selectAllGoals.addEventListener('change', e => {
 </script>
 </body>
 </html>
+
 
 
 
