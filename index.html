@@ -272,8 +272,8 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 
 
         <div class="btn-flex" style="margin-top:20px; display:flex; justify-content:center; gap:12px;">
-          <button id="discoverSmartIn" class="btn-send">Discover Smart-In</button>
-          <button id="presentationSmartIn" class="btn-video">Video</button>
+          <button id="discoverSmartIn" class="btn-send"><span id="discover-text">Decouvrir</span></button>
+          <button id="presentationSmartIn" class="btn-video"><span id="video-text">Vidéo</span></button>
         </div>
       </div>
 
@@ -690,6 +690,9 @@ document.getElementById('about-menu-btn').innerHTML = `À PROPOS`;
 </div>`;
 
 
+document.getElementById('discover-text').innerHTML = 'Découvrir';
+document.getElementById('video-text').innerHTML = 'Vidéo';
+
 
 
 
@@ -750,7 +753,8 @@ document.getElementById('solutions-text').innerHTML = `
   </div>
 </div>`;
 
-
+document.getElementById('discover-text').innerHTML = 'Discover';
+document.getElementById('video-text').innerHTML = 'Video';
 
 
 // Réattacher les event listeners pour ce nouveau sous-menu
@@ -1022,6 +1026,7 @@ selectAllGoals.addEventListener('change', e => {
 </script>
 </body>
 </html>
+
 
 
 
