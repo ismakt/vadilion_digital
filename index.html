@@ -577,10 +577,15 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
  // Traductions
 
 
+  
 const frBtn = document.getElementById('fr-btn');
 const enBtn = document.getElementById('en-btn');
+
 frBtn.addEventListener('click', () => {
-  frBtn.classList.add('active'); enBtn.classList.remove('active');
+  frBtn.classList.add('active'); 
+  enBtn.classList.remove('active');
+});
+
 
  // FRANÇAIS
 
@@ -1178,6 +1183,7 @@ selectAllGoals.addEventListener('change', e => {
 </script>
 </body>
 </html>
+
 
 
 
