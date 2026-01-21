@@ -980,9 +980,21 @@ frBtn.addEventListener('click', () => {
 </div>`;
 
   
-  document.getElementById('solution-smart-in-btn').textContent = "SMART-IN";
-  document.getElementById('discover-smart-in-btn').textContent = "Découvrir";
-  document.getElementById('video-smart-in').textContent = "Vidéo";
+const smartInBtn = document.getElementById('solution-smart-in-btn');
+if (smartInBtn) {
+  smartInBtn.textContent = "SMART-IN";
+}
+
+const discoverBtn = document.getElementById('discover-smart-in-btn');
+if (discoverBtn) {
+  discoverBtn.textContent = "Découvrir";
+}
+
+const videoBtn = document.getElementById('video-smart-in');
+if (videoBtn) {
+  videoBtn.textContent = "Vidéo";
+}
+
 
   document.getElementById('contact-us').textContent = "Contactez-nous";
   document.getElementById('contact-slogan').textContent = "Nous écoutons attentivement vos besoins afin de vous proposer une solution précise et adaptée.";
@@ -1089,9 +1101,21 @@ document.getElementById('menu-about-button').textContent = "ABOUT";
 document.getElementById('about-text').innerHTML =
   `<p>We develop unique high–value digital solutions based on reliable data and designed to address real-world challenges.</p>`;
 
-document.getElementById('solution-smart-in-btn').textContent = "SMART-IN";
-document.getElementById('discover-smart-in-btn').textContent = "Discover";
-document.getElementById('video-smart-in').textContent = "Video";
+const smartInBtn = document.getElementById('solution-smart-in-btn');
+if (smartInBtn) {
+  smartInBtn.textContent = "SMART-IN";
+}
+
+const discoverBtn = document.getElementById('discover-smart-in-btn');
+if (discoverBtn) {
+  discoverBtn.textContent = "Discover";
+}
+
+const videoBtn = document.getElementById('video-smart-in');
+if (videoBtn) {
+  videoBtn.textContent = "Video";
+}
+
 
 
 document.getElementById('contact-us').textContent = "Contact us";
@@ -1194,6 +1218,7 @@ document.getElementById('text-btn-send').textContent = "Send";
 </script>
 </body>
 </html>
+
 
 
 
