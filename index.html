@@ -287,7 +287,7 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 <footer>
   <div class="footer-line"></div>
   <div class="footer-content">
-    <span onclick="openModal('officeModal')">Offices: Bruxelles, Paris, Monaco</span>
+<span id="offices-link" onclick="openModal('officeModal')">Bureaux: Bruxelles, Paris, Monaco</span>
     <span onclick="openModal('contactModal')">Contact</span>
     <span onclick="openModal('mediaModal')">Media</span>
   </div>
@@ -950,11 +950,13 @@ const translations = {
      
     "discoverSmartIn": "Découvrir Smart-In",
     "presentationSmartIn": "Vidéo",
+    "offices-link": "Bureaux: Bruxelles, Paris, Monaco"
+    "offices": "Bureaux"
     "contact-text": "Contactez-nous",
     "contact-text2": "Nous écoutons attentivement vos besoins afin de vous proposer une solution précise et adaptée.",
     "btn-send": "Envoyer",
     "our-media": "Nos réseaux",
-    "offices": "Bureaux"
+    
   },
 
 
@@ -993,11 +995,14 @@ const translations = {
     
     "discoverSmartIn": "Discover Smart-In",
     "presentationSmartIn": "Video",
+
+"offices-link": "Offices: Brussels, Paris, Monaco"
+    "offices": "Offices"
+      
     "contact-text": "Contact Us",
     "contact-text2": "We carefully listen to your needs to provide you with a precise and adapted solution.",
     "btn-send": "Send",
     "our-media": "Our Media",
-    "offices": "Offices"
   }
 };
 
@@ -1047,6 +1052,7 @@ document.getElementById('en-btn').addEventListener('click', () => {
 </script>
 </body>
 </html>
+
 
 
 
