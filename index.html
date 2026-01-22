@@ -229,7 +229,7 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 <main>
   <div id="vanta-bg"></div>
 <div class="menu">
-  <button onclick="togglePanel('about')">ABOUT</button>
+<button id="menu-about" onclick="togglePanel('about')">À PROPOS</button>
   <button onclick="togglePanel('solutions')">SOLUTIONS</button>
 </div>
 
@@ -514,43 +514,6 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.dots.min.js"></script>
 <script>
@@ -638,17 +601,6 @@ const contactInfoSmartIn = document.getElementById('contactInfoSmartIn');
 const summaryContent = document.getElementById('summaryContent');
 
   
-
-
-
-
-
-
-
-
-
-
-
 const discoverBtn = document.getElementById('discoverSmartIn');
 
 let smartInHoverTimeout = null;
@@ -966,10 +918,14 @@ selectAllGoals.addEventListener('change', e => {
 });
 
 
+
+  
+
   // --- Dictionnaire de traductions ---
 const translations = {
   fr: {
     "about-text": "Nous allions business intelligence et data science pour développer des solutions uniques, à forte valeur ajoutée, fondées sur des données fiables et répondant à des enjeux concrets.",
+    "menu-about": "À PROPOS",
     "locationBtn": "SMART-IN",
     "discoverSmartIn": "Découvrir Smart-In",
     "presentationSmartIn": "Vidéo",
@@ -981,6 +937,7 @@ const translations = {
   },
   en: {
     "about-text": "We combine business intelligence and data science to develop unique solutions with high added value, based on reliable data and addressing concrete challenges.",
+    "menu-about": "ABOUT",
     "locationBtn": "SMART-IN",
     "discoverSmartIn": "Discover Smart-In",
     "presentationSmartIn": "Video",
@@ -1019,6 +976,7 @@ document.getElementById('en-btn').addEventListener('click', () => {
 </script>
 </body>
 </html>
+
 
 
 
