@@ -340,19 +340,22 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 
     <span class="close" onclick="closeModal('smartInModal')">✕</span>
 
-<h3 id="smartin-title" style="color:var(--gold); margin-bottom:12px;">Smart-In Project Analysis</h3>
+<h3 id="smartin-title" style="color:var(--gold); margin-bottom:12px;">Smart-In: Formulaire de Contact</h3>
 
     <div class="smartin-layout">
 
       <!-- LEFT -->
       <div class="smartin-left">
 
-        <label>Contact info</label>
-        <input id="contactInfoSmartIn" placeholder="Email or phone">
+        <label id="contactInfo-label">Coordonnées de contact</label>
+<input id="contactInfoSmartIn" placeholder="email / mobile">
 
 
-        <label>Enter address (max 3, separated by commas)</label>
-        <input id="addressInput" placeholder="Street 1, Street 2, Street 3">
+
+ <label id="address-label">Adresse à analyser</label>
+<input id="addressInput" placeholder="Maximum 3 adresses séparés par une virgule">
+  
+       
 
 <label>About your project</label>
 <textarea id="projectDetails" rows="10" placeholder="Describe your project, goals, constraints..."></textarea>
@@ -964,9 +967,19 @@ const translations = {
     "our-media": "Nos réseaux",
     "presentation-title":"Présentation Smart-In",
 
-    "smartin-title":"Smart-In Project Analysis"
+    "smartin-title":"Smart-In: Formulaire de Contact",
 
-    
+        "contactInfo-label": "Coordonnées de contact",
+"contactInfoSmartIn":"email / mobile"
+
+    "address-label":"Adresse à analyser",
+"addressInput":"Maximum 3 adresses séparés par une virgule"
+
+
+
+
+
+  
   },
 
 
@@ -1032,7 +1045,14 @@ const translations = {
 
 "presentation-title":"Presentation Smart-In",
 
-    "smartin-title":"Smart-In Project Analysis"
+    "smartin-title":"Smart-In: Contact Form",
+
+    "contactInfo-label": "Contact details",
+"contactInfoSmartIn":"email / mobile",
+
+     "address-label":"Adresse à analyser",
+"addressInput":"Maximum 3 addresses, separated by commas"
+
 
     
   }
@@ -1084,6 +1104,7 @@ document.getElementById('en-btn').addEventListener('click', () => {
 </script>
 </body>
 </html>
+
 
 
 
