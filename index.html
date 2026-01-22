@@ -403,10 +403,12 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 
 
         
-<div class="theme-subtitle">Real Estate Essentials</div>
+<div class="theme-subtitle" id="subtitle-real-estate-essentials">Real Estate Essentials</div>
           
-<label><input type="checkbox" class="theme" value="Global Real Estate Sales">Global Real Estate Sales</label>
-<label><input type="checkbox" class="theme" value="Parc Immobilier"> Parc immobilier (social, résidentiel)</label>
+<label id="theme-global-real-estate-sales"><input type="checkbox" class="theme" value="Global Real Estate Sales">Global Real Estate Sales</label>
+  
+  
+  <label><input type="checkbox" class="theme" value="Parc Immobilier"> Parc immobilier (social, résidentiel)</label>
 <label><input type="checkbox" class="theme" value="Loyer moyen"> Loyer moyen</label>
 <label><input type="checkbox" class="theme" value="Nb Appartements"> Nombre d'appartements vendus</label>
 <label><input type="checkbox" class="theme" value="Nombre de maisons vendus"> Nombre de maisons vendues</label>
@@ -416,6 +418,20 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 <label><input type="checkbox" class="theme" value="M2 price///"> M2 price</label>
 <label><input type="checkbox" class="theme" value="Gentrification">Gentrification</label>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
 
           
 <div class="theme-subtitle">Security Statistics</div>
@@ -991,10 +1007,22 @@ const translations = {
 "selectmaingoa4":"Connaitre les essentiels du marché immobilier",
 
 "theme-label":"Sélectionnez les thèmes à analyser",
-"selectAllThemes":"Sélectionner tout"
+"selectAllThemes":"Sélectionner tout",
 
 
 
+"subtitle-real-estate-essentials":"Les essentiels du marché immobilier",
+"theme-global-real-estate-sales":"Ventes par type de bien"
+
+
+
+
+
+
+
+
+
+    
 
   },
 
@@ -1085,9 +1113,10 @@ const translations = {
 
 "theme-label": "Select the themes to analyze",
 
+"selectAllThemes":"Select all",
 
-
-"selectAllThemes":"Select all"
+    "subtitle-real-estate-essentials":"Real Estate Essentials",
+"theme-global-real-estate-sales":"Global Real Estate Sales"
 
 
 
@@ -1141,6 +1170,7 @@ document.getElementById('en-btn').addEventListener('click', () => {
 </script>
 </body>
 </html>
+
 
 
 
