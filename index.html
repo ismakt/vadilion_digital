@@ -394,12 +394,12 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 
 </div>
 
+    
 
-        
-        <label>Select themes</label>
-        <div class="themes">
+<label id="theme-label">Sélectionnez les thèmes à analyser</label>
+<div class="themes">
 
-<label><input type="checkbox" class="theme" id="selectAllThemes"> Select all</label>
+<label><input type="checkbox" class="theme" id="selectAllThemes">Sélectionner tout</label>
 
 
         
@@ -988,7 +988,10 @@ const translations = {
 "selectmaingoal":"Analyse de la cohérence du projet dans son milieu socioéconomique",
 "selectmaingoa2":"Étude des concurrents",
 "selectmaingoa3":"Étude des clients potentiels",
-"selectmaingoa4":"Connaitre les essentiels du marché immobilier"
+"selectmaingoa4":"Connaitre les essentiels du marché immobilier",
+
+"theme-label":"Sélectionnez les thèmes à analyser",
+"selectAllThemes":"Sélectionner tout"
 
 
 
@@ -1078,7 +1081,16 @@ const translations = {
 "selectmaingoal": "Analyze project consistency in its socio-economic context",
 "selectmaingoa2": "Competitor analysis",
 "selectmaingoa3": "Potential client analysis",
-"selectmaingoa4": "Know the essentials of the real estate market"
+"selectmaingoa4": "Know the essentials of the real estate market",
+
+"theme-label": "Select the themes to analyze",
+
+
+
+"selectAllThemes":"Select all"
+
+
+
     
   }
 };
@@ -1129,6 +1141,7 @@ document.getElementById('en-btn').addEventListener('click', () => {
 </script>
 </body>
 </html>
+
 
 
 
