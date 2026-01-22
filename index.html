@@ -325,7 +325,7 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 <div class="modal" id="videoModal">
   <div class="modal-content">
     <span class="close" onclick="closeModal('videoModal')">✕</span>
-    <h4>Presentation Smart-In</h4>
+<h4 id="presentation-title">Presentation Smart-In</h4>
     <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden;">
       <iframe id="smartInVideo" src="https://www.youtube.com/embed/VqEbCxg2bNI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
     </div>
@@ -335,21 +335,12 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 
 
 
-
-
-
-
-
-
-
-
-
 <div class="modal modal-smartin" id="smartInModal">
   <div class="modal-content modal-smartin-content">
 
     <span class="close" onclick="closeModal('smartInModal')">✕</span>
 
-    <h3 style="color:var(--gold); margin-bottom:12px;">Smart-In Contact</h3>
+<h3 id="smartin-title" style="color:var(--gold); margin-bottom:12px;">Smart-In Project Analysis</h3>
 
     <div class="smartin-layout">
 
@@ -971,6 +962,10 @@ const translations = {
     "contact-text2": "Nous écoutons attentivement vos besoins afin de vous proposer une solution précise et adaptée.",
     "btn-send": "Envoyer",
     "our-media": "Nos réseaux",
+    "presentation-title":"Présentation Smart-In",
+
+    "smartin-title":"Smart-In Project Analysis"
+
     
   },
 
@@ -1033,6 +1028,13 @@ const translations = {
     "contact-text2": "We carefully listen to your needs to provide you with a precise and adapted solution.",
     "btn-send": "Send",
     "our-media": "Our Media",
+
+
+"presentation-title":"Presentation Smart-In",
+
+    "smartin-title":"Smart-In Project Analysis"
+
+    
   }
 };
 
@@ -1082,6 +1084,7 @@ document.getElementById('en-btn').addEventListener('click', () => {
 </script>
 </body>
 </html>
+
 
 
 
