@@ -357,12 +357,13 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
   
        
 
-<label>About your project</label>
-<textarea id="projectDetails" rows="10" placeholder="Describe your project, goals, constraints..."></textarea>
+<label id="project-description">Décrivez votre projet</label>
+<textarea id="projectDetails" rows="10" placeholder="Donnez un maximum d'information utilse afin que nos équipes puisses vous proposer 
+  la meilleure solution possible"></textarea>
 
 
-        
-<label>Select your main goal</label>
+<label id="maingoal-label">Sélectionnez le principal objectif de l'étude</label>
+
 
 <div class="selectgoals">
 
@@ -973,8 +974,14 @@ const translations = {
 "contactInfoSmartIn":"email / mobile",
 
     "address-label":"Adresse à analyser",
-"addressInput":"Maximum 3 adresses séparés par une virgule"
+"addressInput":"Maximum 3 adresses séparés par une virgule",
 
+    "project-description":"Décrivez votre projet",
+"projectDetails":"Donnez un maximum d'information utilse afin que nos équipes puisses vous proposer la meilleure solution possible",
+
+"maingoal-label":"Sélectionnez le principal objectif de l'étude",
+
+    "selectAllGoals":"Sélectionner tout"
 
 
 
@@ -1051,9 +1058,17 @@ const translations = {
 "contactInfoSmartIn":"email / mobile",
 
      "address-label":"Adresse à analyser",
-"addressInput":"Maximum 3 addresses, separated by commas"
+"addressInput":"Maximum 3 addresses, separated by commas",
 
 
+    "project-description":"Describe your project",
+"projectDetails":"Provide as much useful information as possible so our team can propose the best solution for you",
+
+
+
+"maingoal-label":"Select the main goal of the study",
+
+    "selectAllGoals":"Select all"
     
   }
 };
@@ -1104,6 +1119,7 @@ document.getElementById('en-btn').addEventListener('click', () => {
 </script>
 </body>
 </html>
+
 
 
 
