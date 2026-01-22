@@ -254,7 +254,7 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
       <button id="locationBtn" class="btn-smartin" style="width:auto; text-align:left; font-weight:500;">SMART-IN</button>
 
       <!-- Contenu déroulant caché par défaut -->
-      <div id="locationContent" style="display:none; margin-top:12px; border-top:1px solid var(--border); padding-top:12px;">
+      <div id="locationContentText" style="display:none; margin-top:12px; border-top:1px solid var(--border); padding-top:12px;">
 
         <p>
           Constatant la difficulté pour les investisseurs et entrepreneurs à obtenir une information transparente sur le marché, 
@@ -927,7 +927,7 @@ const translations = {
     "about-text": "Nous allions business intelligence et data science pour développer des solutions uniques, à forte valeur ajoutée, fondées sur des données fiables et répondant à des enjeux concrets.",
     "menu-about": "À PROPOS",
     "locationBtn": "SMART-IN",
-    "locationContent": `
+    "locationContentText": `
       <p>
         Constatant la difficulté pour les investisseurs et entrepreneurs à obtenir une information transparente sur le marché, 
         et contraints de discerner entre embellissements et réalités, une volonté forte est née : offrir une alternative.
@@ -952,11 +952,15 @@ const translations = {
     "our-media": "Nos réseaux",
     "offices": "Bureaux"
   },
+
+
+
+  
   en: {
     "about-text": "We combine business intelligence and data science to develop unique solutions with high added value, based on reliable data and addressing concrete challenges.",
     "menu-about": "ABOUT",
     "locationBtn": "SMART-IN",
-      "locationContent": `
+      "locationContentText": `
       <p>
         Faced with the difficulty investors and entrepreneurs encounter in accessing transparent market information,
         and the challenge of distinguishing reality from embellishment, a strong ambition emerged: to offer an alternative.
@@ -983,32 +987,32 @@ const translations = {
   }
 };
 
-// --- Fonction pour changer la langue ---
 function setLanguage(lang) {
   const dict = translations[lang];
   if (!dict) return;
 
-  for (const id in dict) {
+  Object.keys(dict).forEach(id => {
     const el = document.getElementById(id);
-    if (!el) continue;
+    if (!el) return;
 
-    // Cas spécial : contenu HTML
-    if (id === "locationContent") {
+    // Si la traduction contient du HTML (multilignes)
+    if (el.dataset && el.dataset.html === "true") {
       el.innerHTML = dict[id];
     } 
-    // Cas standard : texte simple
+    // Texte simple
     else {
       el.textContent = dict[id];
     }
-  }
+  });
 
-  // UI active state FR / EN
+  // État visuel FR / EN
   document.getElementById('fr-btn')?.classList.toggle('active', lang === 'fr');
   document.getElementById('en-btn')?.classList.toggle('active', lang === 'en');
 
-  // Met à jour l'attribut lang du document
+  // Attribut HTML <html lang="">
   document.documentElement.lang = lang;
 }
+
 
 
 // --- Event listeners sur les boutons FR / EN ---
@@ -1027,6 +1031,7 @@ document.getElementById('en-btn').addEventListener('click', () => {
 </script>
 </body>
 </html>
+
 
 
 
