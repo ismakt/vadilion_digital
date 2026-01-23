@@ -679,24 +679,25 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
       <div class="smartin-right">
 
 
-        <div class="summary-box">
-          <h4>Summary</h4>
-          <div id="summaryContent">No data yet</div>
-        </div>
+<div class="summary-box">
+  <h4 id="summary-title">Résumé</h4>
+  <div id="summaryContent">En attente...</div>
+</div>
 
+<label id="select-city-label">Sélectionnez une ville</label>
+<select id="citySelect">
+  <option id="select-city-placeholder" value="">Sélectionner une ville</option>
+  <option value="Brussels" id="city-brussels">Bruxelles</option>
+</select>
 
-              <label>Select city</label>
-        <select id="citySelect">
-          <option value="">Select a city</option>
-          <option value="Brussels">Brussels</option>
-        </select>
 
 <div id="mapPreview" class="mapPreview"></div>
 
 
 
 
-        <button class="btn-send" onclick="sendSmartIn()">Send</button>
+        <button id="btn-send" class="btn-send" onclick="sendSmartIn()">Envoyer</button>
+
 
       </div>
 
@@ -1260,12 +1261,18 @@ const translations = {
 "subtitle-quality-of-life": "Qualité de vie",
     
 "theme-espaces-verts":"Espaces verts",
-"theme-pollution-air-noise":"Pollution (air, noise)"
+"theme-pollution-air-noise":"Pollution (air, noise)",
 
 
+id="summary-title":"Résumé",
+id="summaryContent":"En attente...",
 
 
+id="select-city-label":"Sélectionnez une ville",
+id="select-city-placeholder":"Sélectionner une ville",
+id="city-brussels":"Bruxelles",
 
+id="btn-send":"Envoyer"
 
 
 
@@ -1447,9 +1454,19 @@ const translations = {
 
 "subtitle-quality-of-life": "Quality of Life",
 "theme-espaces-verts": "Green Spaces",
-"theme-pollution-air-noise": "Pollution (Air, Noise)"
+"theme-pollution-air-noise": "Pollution (Air, Noise)",
 
 
+    
+id="summary-title":"Summary",
+id="summaryContent":"No data yet...",
+
+
+id="select-city-label":"Select a city",
+id="select-city-placeholder":"Select a city",
+id="city-brussels":"Brussels",
+
+id="btn-send":"Send"
     
   }
 };
@@ -1500,6 +1517,7 @@ document.getElementById('en-btn').addEventListener('click', () => {
 </script>
 </body>
 </html>
+
 
 
 
