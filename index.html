@@ -253,29 +253,24 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
       <!-- Bouton Location Intelligence -->
       <button id="locationBtn" class="btn-smartin" style="width:auto; text-align:left; font-weight:500;">SMART-IN</button>
 
-
-
       <!-- Contenu déroulant caché par défaut -->
-      <div id="locationContent" style="display:none; margin-top:12px; border-top:1px solid var(--border); padding-top:12px;">
-        
- <div id="locationContentText"> 
-<p>
+      <div id="locationContentText" style="display:none; margin-top:12px; border-top:1px solid var(--border); padding-top:12px;">
+
+        <p>
           Constatant la difficulté pour les investisseurs et entrepreneurs à obtenir une information transparente sur le marché, 
           et contraints de discerner entre embellissements et réalités, une volonté forte est née : offrir une alternative.
           Smart-IN est une application indépendante, offrant un accès transparent aux données cruciales pour tout projet immobilier ou commercial. 
-          Découvrez-la : choisissez votre ville et les paramètres qui vous intéressent.
+          Découvrez-la : choisissez votre ville et les paramètres qui vous intéressent.</p><br>
 
-        Nos études sont développées autour des principaux piliers :
-
-
-        Le marché : résilience, étude des concurrents et client potentiels
-          Socioéconomie : population (âge, cultures), revenus, attractivité
-          Immobilier & Projets urbains: impact et évolution des quartiers
-          Indicateurs clés: sécurité, prix, pollution</p>
-        
+        <p>Nos études sont développées autour des principaux piliers :</p>
 
 
-
+        <ul>
+          <li>Le marché : résilience, étude des concurrents et client potentiels</li>
+          <li>Socioéconomie : population (âge, cultures), revenus, attractivité</li>
+          <li>Immobilier & Projets urbains: impact et évolution des quartiers</li>
+          <li>Indicateurs clés: sécurité, prix, pollution</li>
+        </ul><br>
 
         <div class="btn-flex" style="margin-top:20px; display:flex; justify-content:center; gap:12px;">
           <button id="discoverSmartIn" class="btn-send">Discover Smart-In</button>
@@ -673,6 +668,9 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 </label>
 
 
+
+
+
         </div>
 
       </div>
@@ -863,6 +861,22 @@ discoverBtn.addEventListener('mouseleave', () => {
 
 
 
+// Réattacher les event listeners pour ce nouveau sous-menu
+const locationBtnEn = document.getElementById('locationBtn');
+const locationContentTextEn = document.getElementById('locationContentText');
+let locationOpenEn = false;
+locationBtnEn.addEventListener('click', () => {
+  locationOpenEn = !locationOpenEn;
+  locationContentTextEn.style.display = locationOpenEn ? 'block' : 'none';
+});
+locationBtnEn.addEventListener('mouseenter', () => {
+  locationContentTextEn.style.display = 'block';
+  locationOpenEn = true;
+});
+
+
+
+
 
 
 
@@ -887,21 +901,25 @@ document.getElementById('presentationSmartIn').addEventListener('click', () => o
 
 
   
+// Gestion du sous-menu Location Intelligence
 const locationBtn = document.getElementById('locationBtn');
-const locationContent = document.getElementById('locationContent');
+const locationContentText = document.getElementById('locationContentText');
 let locationOpen = false;
 
-// Toggle au clic : ouvre ou ferme le contenu complet
+// Fonction pour ouvrir/fermer au clic
 locationBtn.addEventListener('click', () => {
   locationOpen = !locationOpen;
-  locationContent.style.display = locationOpen ? 'block' : 'none';
+  locationContentText.style.display = locationOpen ? 'block' : 'none';
 });
 
-// Ouverture au survol
+// Fonction pour ouvrir au survol
 locationBtn.addEventListener('mouseenter', () => {
-  locationContent.style.display = 'block';
+  locationContentText.style.display = 'block';
   locationOpen = true;
 });
+
+// On ne ferme pas au mouseleave, fermeture uniquement au clic sur locationBtn
+
 
 
 let vantaEffect = VANTA.DOTS({ el:"#vanta-bg", mouseControls:true, touchControls:true, gyroControls:false, minHeight:200, minWidth:200, scale:1.0, scaleMobile:1.0, color:0xcffb7, color2:0x5520ff, backgroundColor:0x0, size:3.2, spacing:24, showLines:false });
@@ -1111,13 +1129,7 @@ const translations = {
     "locationBtn": "SMART-IN",
  
 
-
-
-
- "locationContentText":"Constatant la difficulté pour les investisseurs et entrepreneurs à obtenir une information transparente sur le marché, et contraints de discerner entre embellissements et réalités, une volonté forte est née : offrir une alternative. Smart-IN est une application indépendante, offrant un accès transparent aux données cruciales pour tout projet immobilier ou commercial. Découvrez-la : choisissez votre ville et les paramètres qui vous intéressent. Nos études sont développées autour des principaux piliers : Le marché : résilience, étude des concurrents et clients potentiels Socioéconomie : population (âge, cultures), revenus, attractivité Immobilier & Projets urbains : impact et évolution des quartiers Indicateurs clés : sécurité, prix, pollution",
-
-
-   
+   "locationContentText":"Constatant la difficulté pour les investisseurs et entrepreneurs à obtenir une information transparente sur le marché, et contraints de discerner entre embellissements et réalités, une volonté forte est née : offrir une alternative. Smart-IN est une application indépendante, offrant un accès transparent aux données cruciales pour tout projet immobilier ou commercial. Découvrez-la : choisissez votre ville et les paramètres qui vous intéressent. Nos études sont développées autour des principaux piliers : Le marché : résilience, étude des concurrents et clients potentiels Socioéconomie : population (âge, cultures), revenus, attractivité Immobilier & Projets urbains : impact et évolution des quartiers Indicateurs clés : sécurité, prix, pollution",
 
      
     "discoverSmartIn": "Découvrir Smart-In",
@@ -1261,7 +1273,6 @@ const translations = {
 
 
 "locationContentText":"Faced with the difficulty investors and entrepreneurs encounter in accessing transparent market information and the challenge of distinguishing reality from embellishment, a strong ambition emerged: to offer an alternative. Smart-IN is an independent application providing transparent access to critical data for any real estate or commercial project. Discover it: select your city and the parameters that matter to you. Our studies are built around key pillars: Market analysis: resilience, competitor analysis, and potential clients; Socioeconomics: population (age, culture), income, attractiveness; Real estate & urban projects: neighborhood impact and evolution; Key indicators: security, pricing, pollution",
-
 
 
 
@@ -1440,12 +1451,6 @@ document.getElementById('en-btn').addEventListener('click', () => {
 </script>
 </body>
 </html>
-
-
-
-
-
-
 
 
 
