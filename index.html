@@ -258,22 +258,7 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
       <!-- Contenu déroulant caché par défaut -->
       <div id="locationContent" style="display:none; margin-top:12px; border-top:1px solid var(--border); padding-top:12px;">
         
- <div id="locationContentText"></div>
-        <p>
-          Constatant la difficulté pour les investisseurs et entrepreneurs à obtenir une information transparente sur le marché, 
-          et contraints de discerner entre embellissements et réalités, une volonté forte est née : offrir une alternative.
-          Smart-IN est une application indépendante, offrant un accès transparent aux données cruciales pour tout projet immobilier ou commercial. 
-          Découvrez-la : choisissez votre ville et les paramètres qui vous intéressent.</p><br>
-
-        <p>Nos études sont développées autour des principaux piliers :</p>
-
-
-        <ul>
-          <li>Le marché : résilience, étude des concurrents et client potentiels</li>
-          <li>Socioéconomie : population (âge, cultures), revenus, attractivité</li>
-          <li>Immobilier & Projets urbains: impact et évolution des quartiers</li>
-          <li>Indicateurs clés: sécurité, prix, pollution</li>
-        </ul><br>
+ <div id="locationContentText" data-html="true"></div>    
 
         <div class="btn-flex" style="margin-top:20px; display:flex; justify-content:center; gap:12px;">
           <button id="discoverSmartIn" class="btn-send">Discover Smart-In</button>
@@ -888,25 +873,21 @@ document.getElementById('presentationSmartIn').addEventListener('click', () => o
 
 
   
-// Gestion du sous-menu Location Intelligence
 const locationBtn = document.getElementById('locationBtn');
-const locationContentText = document.getElementById('locationContentText');
+const locationContent = document.getElementById('locationContent');
 let locationOpen = false;
 
-// Fonction pour ouvrir/fermer au clic
+// Toggle au clic : ouvre ou ferme le contenu complet
 locationBtn.addEventListener('click', () => {
   locationOpen = !locationOpen;
   locationContent.style.display = locationOpen ? 'block' : 'none';
 });
 
-// Fonction pour ouvrir au survol
+// Ouverture au survol
 locationBtn.addEventListener('mouseenter', () => {
   locationContent.style.display = 'block';
   locationOpen = true;
 });
-
-// On ne ferme pas au mouseleave, fermeture uniquement au clic sur locationBtn
-
 
 
 let vantaEffect = VANTA.DOTS({ el:"#vanta-bg", mouseControls:true, touchControls:true, gyroControls:false, minHeight:200, minWidth:200, scale:1.0, scaleMobile:1.0, color:0xcffb7, color2:0x5520ff, backgroundColor:0x0, size:3.2, spacing:24, showLines:false });
@@ -1470,6 +1451,7 @@ document.getElementById('en-btn').addEventListener('click', () => {
 </script>
 </body>
 </html>
+
 
 
 
