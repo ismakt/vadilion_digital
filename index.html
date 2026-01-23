@@ -858,21 +858,7 @@ discoverBtn.addEventListener('mouseleave', () => {
 
 
 
-const locationBtn = document.getElementById('locationBtn');
-const locationContentText = document.getElementById('locationContentText');
-let locationOpen = false;
 
-// Toggle au clic : ouvre ou ferme le contenu
-locationBtn.addEventListener('click', () => {
-  locationOpen = !locationOpen;
-  locationContentText.style.display = locationOpen ? 'block' : 'none';
-});
-
-// Ouverture au survol : affiche le contenu sans le fermer automatiquement au mouseleave
-locationBtn.addEventListener('mouseenter', () => {
-  locationContentText.style.display = 'block';
-  locationOpen = true; // garde l'état cohérent pour le toggle au clic
-});
 
 
 
@@ -1484,6 +1470,7 @@ document.getElementById('en-btn').addEventListener('click', () => {
 </script>
 </body>
 </html>
+
 
 
 
