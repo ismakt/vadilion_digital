@@ -761,8 +761,55 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
   
 <script>
 
+let vantaEffect = VANTA.DOTS({ el:"#vanta-bg", mouseControls:true, touchControls:true, gyroControls:false, minHeight:200, minWidth:200, 
+                              scale:1.0, scaleMobile:1.0, color:0xcffb7, color2:0x5520ff, backgroundColor:0x0, size:3.2, spacing:24, showLines:false });
 
-  // DISCOVER SMART-IN -> SMART-IN CONTACT FORM
+
+// SOLUTIONS -> SMART-IN BUTON -> DÉROULEMENT SOUS-MENU
+
+
+const locationBtn = document.getElementById('locationBtn');
+const locationContentText = document.getElementById('locationContentText');
+let locationOpen = false;
+
+  // Fonction pour ouvrir/fermer au clic
+locationBtn.addEventListener('click', () => {
+  locationOpen = !locationOpen;
+  locationContentText.style.display = locationOpen ? 'block' : 'none';
+});
+
+  // Fonction pour ouvrir au survol
+locationBtn.addEventListener('mouseenter', () => {
+  locationContentText.style.display = 'block';
+  locationOpen = true;
+});
+
+// On ne ferme pas au mouseleave, fermeture uniquement au clic sur locationBtn
+
+
+// Le même mais pour En; Pourquoi?
+  
+const locationBtnEn = document.getElementById('locationBtn');
+const locationContentTextEn = document.getElementById('locationContentText');
+let locationOpenEn = false;
+locationBtnEn.addEventListener('click', () => {
+  locationOpenEn = !locationOpenEn;
+  locationContentTextEn.style.display = locationOpenEn ? 'block' : 'none';
+});
+locationBtnEn.addEventListener('mouseenter', () => {
+  locationContentTextEn.style.display = 'block';
+  locationOpenEn = true;
+});
+
+
+// SMART-IN BUTON -> DÉROULEMENT SOUS-MENU; Boutons Discover Smart-In et  Video
+
+document.getElementById('presentationSmartIn').addEventListener('click', () => openModal('videoModal'));
+
+  
+
+
+// DISCOVER SMART-IN -> SMART-IN CONTACT FORM
   
 
 const discoverBtn = document.getElementById('discoverSmartIn');
@@ -788,125 +835,51 @@ discoverBtn.addEventListener('mouseleave', () => {
 });
 
 
+// --- Menu hover / click logic (About & Solutions) ---
+const menuButtons = document.querySelectorAll('.menu button');
+const panels = document.querySelectorAll('.panel');
+
+menuButtons.forEach(btn => {
+  // Récupérer l'ID du panel à partir de l'attribut onclick existant
+  const panelIdMatch = btn.getAttribute('onclick')?.match(/'(\w+)'/);
+  if(!panelIdMatch) return;
+  const panel = document.getElementById(panelIdMatch[1]);
+
+  // Hover : ouvre le panel et ferme les autres
+  btn.addEventListener('mouseenter', () => {
+    panels.forEach(p => { if(p !== panel) p.style.display = 'none'; });
+    panel.style.display = 'block';
+  });
+
+  // Click : toggle uniquement ce panel
+  btn.addEventListener('click', () => {
+    panel.style.display = (panel.style.display === 'block') ? 'none' : 'block';
+  });
+});
+
+// **Plus besoin de ce listener, on le supprime**
+// document.addEventListener('mousemove', ...);
+
+
+
+
+
+
+
+
+  
+  
 const citySelect = document.getElementById('citySelect');
 const addressInput = document.getElementById('addressInput');
 const projectDetails = document.getElementById('projectDetails');
 const contactInfoSmartIn = document.getElementById('contactInfoSmartIn');
 const summaryContent = document.getElementById('summaryContent');
-
-
-  
-  // --- Summary Update Function ---
-
-  function updateSummary(){
-  const city = citySelect.value;
-  const addresses = addressInput.value;
-  const contact = contactInfoSmartIn.value;
-  const project = projectDetails.value;
-
-  const goals = [...document.querySelectorAll('.goal:checked')]
-    .map(g => g.parentElement.textContent.trim());
-
-  const themes = [...document.querySelectorAll('.theme:checked')]
-    .filter(t => t.id !== 'selectAllThemes')
-    .map(t => t.parentElement.textContent.trim());
-
-  summaryContent.innerHTML = `
-  
-    <b>City:</b> ${city || '-'}<br>
-    <b>Addresses:</b> ${addresses || '-'}<br>
-    <b>Contact info:</b> ${contact || '-'}<br>
-    <b>About your project:</b> ${project || '-'}<br>
-    <b>Main goals:</b> ${goals.join(', ') || '-'}<br>
-    <b>Themes:</b> ${themes.join(', ') || '-'}
-  `;
-}
-
-['citySelect','addressInput','projectDetails','contactInfoSmartIn']
-.forEach(id => document.getElementById(id).addEventListener('input', updateSummary));
+const selectAllGoals = document.getElementById('selectAllGoals');
 
 
 
-  
-  // --- Select city -> Map of Brussels ---
-  
-const bruxellesContour = [
-  [50.897838, 4.377298],
-  [50.902392, 4.344199],
-  [50.900750, 4.327877],
-  [50.893973, 4.312415],
-  [50.889656, 4.293477],
-  [50.880728, 4.297330],
-  [50.870691, 4.284429],
-  [50.866247, 4.278776],
-  [50.860285, 4.281114],
-  [50.855783, 4.289664],
-  [50.854185, 4.283001],
-  [50.837543, 4.281821],
-  [50.835917, 4.258190],
-  [50.825902, 4.253997],
-  [50.819764, 4.243681],
-  [50.817496, 4.245000],
-  [50.817085, 4.256735],
-  [50.811082, 4.261090],
-  [50.812229, 4.273701],
-  [50.808397, 4.276143],
-  [50.812222, 4.299704],
-  [50.812324, 4.305595],
-  [50.803639, 4.301175],
-  [50.799089, 4.305103],
-  [50.795488, 4.317261],
-  [50.775451, 4.330906],
-  [50.773641, 4.340649],
-  [50.775478, 4.345166],
-  [50.768587, 4.382710],
-  [50.763681, 4.383142],
-  [50.793553, 4.482248],
-  [50.808672, 4.447815],
-  [50.818897, 4.459151],
-  [50.820568, 4.476968],
-  [50.835620, 4.465399],
-  [50.837835, 4.468433],
-  [50.852329, 4.461708],
-  [50.863419, 4.426335],
-  [50.868019, 4.421486],
-  [50.877840, 4.428538],
-  [50.878911, 4.436795],
-  [50.891065, 4.427108],
-  [50.894867, 4.432491],
-  [50.907473, 4.413091],
-  [50.911571, 4.414397],
-  [50.914253, 4.403035],
-  [50.910627, 4.393672],
-  [50.909910, 4.387689],
-  [50.897407, 4.378014]
-];
 
-const bruxellesInterior = [
-  [50.847886, 4.351187],
-  [50.882791, 4.327702],
-  [50.875713, 4.304439],
-  [50.865721, 4.291617],
-  [50.863093, 4.329683],
-  [50.856711, 4.309934],
-  [50.830774, 4.302340],
-  [50.818363, 4.328158],
-  [50.827020, 4.344418],
-  [50.824415, 4.373052],
-  [50.796912, 4.364271],
-  [50.802678, 4.412690],
-  [50.832807, 4.391470],
-  [50.830684, 4.431618],
-  [50.847373, 4.434946],
-  [50.872396, 4.405943],
-  [50.860920, 4.380985],
-  [50.851763, 4.372782]
-];
-
-
-  
-  // --- Themes ---
-
+   // --- Themes ---
 
   // --- Event listener: When Select All selected; Select all themes and update summary---
   
@@ -915,80 +888,74 @@ const bruxellesInterior = [
   updateSummary();
 });
 
+    // Pour toutes les checkboxes de thèmes (hors selectAll)
+document.querySelectorAll('.themes .theme').forEach(cb => {
+  if(cb.id !== 'selectAllThemes'){ // ne pas réappliquer à selectAll
+    cb.addEventListener('change', updateSummary);
+  }
+});
 
+
+
+selectAllGoals.addEventListener('change', e => {
+  document.querySelectorAll('.goal').forEach(cb => {
+    cb.checked = e.target.checked;
+  });
+
+  updateSummary(); // si tu veux qu’ils apparaissent dans le summary
+});
+
+  document.querySelectorAll('.goal').forEach(cb => {
+  cb.addEventListener('change', () => {
+    const goals = document.querySelectorAll('.goal');
+    selectAllGoals.checked = [...goals].every(g => g.checked);
+    updateSummary();
+  });
+});
+
+
+
+  
+  
+  // --- Summary Update Function ---
+
+  function updateSummary(){
+
+  const contact = contactInfoSmartIn.value;
+  const addresses = addressInput.value;
+  const project = projectDetails.value;
     
+  const goals = [...document.querySelectorAll('.goal:checked')]
+    .map(g => g.parentElement.textContent.trim());
+    
+  const themes = [...document.querySelectorAll('.theme:checked')]
+    .filter(t => t.id !== 'selectAllThemes')
+    .map(t => t.parentElement.textContent.trim());
+
+  const city = citySelect.value;
+
+ 
+  summaryContent.innerHTML = `
+    <b>Contact info:</b> ${contact || '-'}<br>
+    <b>Addresses:</b> ${addresses || '-'}<br>
+    <b>About your project:</b> ${project || '-'}<br>
+    <b>Main goals:</b> ${goals.join(', ') || '-'}<br>
+    <b>Themes:</b> ${themes.join(', ') || '-'}
+    <b>City:</b> ${city || '-'}<br>
+  `;
+}
 
 
-
-
-
-
-
-
-// Réattacher les event listeners pour ce nouveau sous-menu
-const locationBtnEn = document.getElementById('locationBtn');
-const locationContentTextEn = document.getElementById('locationContentText');
-let locationOpenEn = false;
-locationBtnEn.addEventListener('click', () => {
-  locationOpenEn = !locationOpenEn;
-  locationContentTextEn.style.display = locationOpenEn ? 'block' : 'none';
-});
-locationBtnEn.addEventListener('mouseenter', () => {
-  locationContentTextEn.style.display = 'block';
-  locationOpenEn = true;
-});
-
-
-
-
-
-
-
-
-
+  ['contactInfoSmartIn', 'addressInput', 'projectDetails', 'citySelect']
+.forEach(id => document.getElementById(id).addEventListener('input', updateSummary));
 
 
 
   
-// Boutons Discover Smart-In et Présentation Video
+  // --- Select city -> Map ---
 
 
-
-
-
-document.getElementById('presentationSmartIn').addEventListener('click', () => openModal('videoModal'));
-
-
-
-
-
-
-
-  
-// Gestion du sous-menu Location Intelligence
-const locationBtn = document.getElementById('locationBtn');
-const locationContentText = document.getElementById('locationContentText');
-let locationOpen = false;
-
-// Fonction pour ouvrir/fermer au clic
-locationBtn.addEventListener('click', () => {
-  locationOpen = !locationOpen;
-  locationContentText.style.display = locationOpen ? 'block' : 'none';
-});
-
-// Fonction pour ouvrir au survol
-locationBtn.addEventListener('mouseenter', () => {
-  locationContentText.style.display = 'block';
-  locationOpen = true;
-});
-
-// On ne ferme pas au mouseleave, fermeture uniquement au clic sur locationBtn
-
-
-
-let vantaEffect = VANTA.DOTS({ el:"#vanta-bg", mouseControls:true, touchControls:true, gyroControls:false, minHeight:200, minWidth:200, scale:1.0, scaleMobile:1.0, color:0xcffb7, color2:0x5520ff, backgroundColor:0x0, size:3.2, spacing:24, showLines:false });
-
-function openModal(id){
+  function openModal(id){
   const modal = document.getElementById(id);
   modal.style.display = 'flex';
   document.body.style.overflow = 'hidden';
@@ -1012,36 +979,9 @@ function openModal(id){
 });
 
 
-// Fonction closeModal à l’extérieur
-function closeModal(id){
-  const modal = document.getElementById(id);
-  modal.style.display = 'none';
-  document.body.style.overflow = 'auto';
-  document.querySelector('main').classList.remove('blur-background');
-
-  if(id==='videoModal'){
-    const iframe = document.getElementById('smartInVideo');
-    iframe.src = iframe.src;
-  }
-}
 
 
-
-
-
-
-
-
-
-function sendSmartIn(){
-  alert("Smart-In request sent (mock)");
-}
-
-
-
-
-
-
+// --- Select city -> Map Function ---
 
 function drawPreMap() {
   const container = document.getElementById('mapPreview');
@@ -1129,63 +1069,170 @@ function drawPreMap() {
   });
 }
 
-  // Pour toutes les checkboxes de thèmes (hors selectAll)
-document.querySelectorAll('.themes .theme').forEach(cb => {
-  if(cb.id !== 'selectAllThemes'){ // ne pas réappliquer à selectAll
-    cb.addEventListener('change', updateSummary);
+
+
+
+// --- Select city -> Map: Brussels ---
+
+const bruxellesContour = [
+  [50.897838, 4.377298],
+  [50.902392, 4.344199],
+  [50.900750, 4.327877],
+  [50.893973, 4.312415],
+  [50.889656, 4.293477],
+  [50.880728, 4.297330],
+  [50.870691, 4.284429],
+  [50.866247, 4.278776],
+  [50.860285, 4.281114],
+  [50.855783, 4.289664],
+  [50.854185, 4.283001],
+  [50.837543, 4.281821],
+  [50.835917, 4.258190],
+  [50.825902, 4.253997],
+  [50.819764, 4.243681],
+  [50.817496, 4.245000],
+  [50.817085, 4.256735],
+  [50.811082, 4.261090],
+  [50.812229, 4.273701],
+  [50.808397, 4.276143],
+  [50.812222, 4.299704],
+  [50.812324, 4.305595],
+  [50.803639, 4.301175],
+  [50.799089, 4.305103],
+  [50.795488, 4.317261],
+  [50.775451, 4.330906],
+  [50.773641, 4.340649],
+  [50.775478, 4.345166],
+  [50.768587, 4.382710],
+  [50.763681, 4.383142],
+  [50.793553, 4.482248],
+  [50.808672, 4.447815],
+  [50.818897, 4.459151],
+  [50.820568, 4.476968],
+  [50.835620, 4.465399],
+  [50.837835, 4.468433],
+  [50.852329, 4.461708],
+  [50.863419, 4.426335],
+  [50.868019, 4.421486],
+  [50.877840, 4.428538],
+  [50.878911, 4.436795],
+  [50.891065, 4.427108],
+  [50.894867, 4.432491],
+  [50.907473, 4.413091],
+  [50.911571, 4.414397],
+  [50.914253, 4.403035],
+  [50.910627, 4.393672],
+  [50.909910, 4.387689],
+  [50.897407, 4.378014]
+];
+
+const bruxellesInterior = [
+  [50.847886, 4.351187],
+  [50.882791, 4.327702],
+  [50.875713, 4.304439],
+  [50.865721, 4.291617],
+  [50.863093, 4.329683],
+  [50.856711, 4.309934],
+  [50.830774, 4.302340],
+  [50.818363, 4.328158],
+  [50.827020, 4.344418],
+  [50.824415, 4.373052],
+  [50.796912, 4.364271],
+  [50.802678, 4.412690],
+  [50.832807, 4.391470],
+  [50.830684, 4.431618],
+  [50.847373, 4.434946],
+  [50.872396, 4.405943],
+  [50.860920, 4.380985],
+  [50.851763, 4.372782]
+];
+
+
+// --- Smart-In Contact Form: Send Button ---
+
+function sendSmartIn(){
+alert("Smart-In request sent (mock)");
+}
+
+
+  
+// Video Modal
+function closeModal(id){
+  const modal = document.getElementById(id);
+  modal.style.display = 'none';
+  document.body.style.overflow = 'auto';
+  document.querySelector('main').classList.remove('blur-background');
+
+  if(id==='videoModal'){
+    const iframe = document.getElementById('smartInVideo');
+    iframe.src = iframe.src;
   }
-});
+}
+
+  
 
 
-// --- Menu hover / click logic (About & Solutions) ---
-const menuButtons = document.querySelectorAll('.menu button');
-const panels = document.querySelectorAll('.panel');
-
-menuButtons.forEach(btn => {
-  // Récupérer l'ID du panel à partir de l'attribut onclick existant
-  const panelIdMatch = btn.getAttribute('onclick')?.match(/'(\w+)'/);
-  if(!panelIdMatch) return;
-  const panel = document.getElementById(panelIdMatch[1]);
-
-  // Hover : ouvre le panel et ferme les autres
-  btn.addEventListener('mouseenter', () => {
-    panels.forEach(p => { if(p !== panel) p.style.display = 'none'; });
-    panel.style.display = 'block';
-  });
-
-  // Click : toggle uniquement ce panel
-  btn.addEventListener('click', () => {
-    panel.style.display = (panel.style.display === 'block') ? 'none' : 'block';
-  });
-});
-
-// **Plus besoin de ce listener, on le supprime**
-// document.addEventListener('mousemove', ...);
 
 
-  const selectAllGoals = document.getElementById('selectAllGoals');
 
-selectAllGoals.addEventListener('change', e => {
-  document.querySelectorAll('.goal').forEach(cb => {
-    cb.checked = e.target.checked;
-  });
 
-  updateSummary(); // si tu veux qu’ils apparaissent dans le summary
-});
 
-  document.querySelectorAll('.goal').forEach(cb => {
-  cb.addEventListener('change', () => {
-    const goals = document.querySelectorAll('.goal');
-    selectAllGoals.checked = [...goals].every(g => g.checked);
-    updateSummary();
-  });
-});
 
 
 
   
 
-  // --- Dictionnaire de traductions ---
+
+
+
+// --- FONCTION CHANGEMENT LANGUE ---
+
+  function setLanguage(lang) {
+  const dict = translations[lang];
+  if (!dict) return;
+
+  Object.keys(dict).forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+
+    // Si la traduction contient du HTML (multilignes)
+    if (el.dataset && el.dataset.html === "true") {
+      el.innerHTML = dict[id];
+    } 
+    // Texte simple
+    else {
+      el.textContent = dict[id];
+    }
+  });
+
+  // État visuel FR / EN
+  document.getElementById('fr-btn')?.classList.toggle('active', lang === 'fr');
+  document.getElementById('en-btn')?.classList.toggle('active', lang === 'en');
+
+  // Attribut HTML <html lang="">
+  document.documentElement.lang = lang;
+}
+
+
+
+// --- Event listeners sur les boutons FR / EN ---
+document.getElementById('fr-btn').addEventListener('click', () => {
+  setLanguage('fr');
+  document.getElementById('fr-btn').classList.add('active');
+  document.getElementById('en-btn').classList.remove('active');
+});
+
+document.getElementById('en-btn').addEventListener('click', () => {
+  setLanguage('en');
+  document.getElementById('en-btn').classList.add('active');
+  document.getElementById('fr-btn').classList.remove('active');
+});
+
+
+
+
+// --- Dictionnaire de traduction ---
+  
 const translations = {
   fr: {
     "about-text": "Nous allions business intelligence et data science pour développer des solutions uniques, à forte valeur ajoutée, fondées sur des données fiables et répondant à des enjeux concrets.",
@@ -1472,52 +1519,13 @@ const translations = {
   }
 };
 
-// --- Fonction pour changer la langue ---
+  
 
-  function setLanguage(lang) {
-  const dict = translations[lang];
-  if (!dict) return;
-
-  Object.keys(dict).forEach(id => {
-    const el = document.getElementById(id);
-    if (!el) return;
-
-    // Si la traduction contient du HTML (multilignes)
-    if (el.dataset && el.dataset.html === "true") {
-      el.innerHTML = dict[id];
-    } 
-    // Texte simple
-    else {
-      el.textContent = dict[id];
-    }
-  });
-
-  // État visuel FR / EN
-  document.getElementById('fr-btn')?.classList.toggle('active', lang === 'fr');
-  document.getElementById('en-btn')?.classList.toggle('active', lang === 'en');
-
-  // Attribut HTML <html lang="">
-  document.documentElement.lang = lang;
-}
-
-
-
-// --- Event listeners sur les boutons FR / EN ---
-document.getElementById('fr-btn').addEventListener('click', () => {
-  setLanguage('fr');
-  document.getElementById('fr-btn').classList.add('active');
-  document.getElementById('en-btn').classList.remove('active');
-});
-
-document.getElementById('en-btn').addEventListener('click', () => {
-  setLanguage('en');
-  document.getElementById('en-btn').classList.add('active');
-  document.getElementById('fr-btn').classList.remove('active');
-});
 
 </script>
 </body>
 </html>
+
 
 
 
