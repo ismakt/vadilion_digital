@@ -406,7 +406,7 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 
 
   <label>
-  <input type="checkbox" id="selectAllGoalsCheckbox">
+  <input type="checkbox" id="selectAllGoalsCheckbox" class="goal-select-all">
   <span id="selectAllGoals">Sélectionner tout</span>
 </label>
 
@@ -862,10 +862,7 @@ discoverBtn.addEventListener('mouseleave', () => {
 
 
 
-  document.getElementById('selectAllThemes').addEventListener('change', e => {
-  document.querySelectorAll('.theme').forEach(cb => cb.checked = e.target.checked);
-  updateSummary();
-});
+
 
   function updateSummary(){
   const city = citySelect.value;
@@ -876,9 +873,9 @@ discoverBtn.addEventListener('mouseleave', () => {
   const goals = [...document.querySelectorAll('.goal:checked')]
     .map(g => g.parentElement.textContent.trim());
 
-  const themes = [...document.querySelectorAll('.theme:checked')]
-    .filter(t => t.id !== 'selectAllThemes')
-    .map(t => t.parentElement.textContent.trim());
+const themes = [...document.querySelectorAll('.themes .theme:checked')]
+  .map(t => t.parentElement.textContent.trim());
+
 
   summaryContent.innerHTML = `
     <b>City:</b> ${city || '-'}<br>
@@ -1106,11 +1103,23 @@ function drawPreMap() {
   });
 }
 
-  // Pour toutes les checkboxes de thèmes (hors selectAll)
-document.querySelectorAll('.themes .theme').forEach(cb => {
-  if(cb.id !== 'selectAllThemes'){ // ne pas réappliquer à selectAll
-    cb.addEventListener('change', updateSummary);
-  }
+
+const selectAllThemesCheckbox = document.getElementById('selectAllThemesCheckbox');
+const themeCheckboxes = document.querySelectorAll('.themes .theme');
+
+// Sélectionner tout → coche tous les thèmes
+selectAllThemesCheckbox.addEventListener('change', () => {
+  themeCheckboxes.forEach(cb => cb.checked = selectAllThemesCheckbox.checked);
+  updateSummary();
+});
+
+// Si un thème individuel change
+themeCheckboxes.forEach(cb => {
+  cb.addEventListener('change', () => {
+    const allChecked = [...themeCheckboxes].every(t => t.checked);
+    selectAllThemesCheckbox.checked = allChecked;
+    updateSummary();
+  });
 });
 
 
@@ -1140,25 +1149,25 @@ menuButtons.forEach(btn => {
 // document.addEventListener('mousemove', ...);
 
 
-  const selectAllGoals = document.getElementById('selectAllGoals');
 
-selectAllGoals.addEventListener('change', e => {
-  document.querySelectorAll('.goal').forEach(cb => {
-    cb.checked = e.target.checked;
-  });
 
-  updateSummary(); // si tu veux qu’ils apparaissent dans le summary
+const selectAllGoalsCheckbox = document.getElementById('selectAllGoalsCheckbox');
+const goalCheckboxes = document.querySelectorAll('.selectgoals .goal');
+
+// Sélectionner tout → coche tout
+selectAllGoalsCheckbox.addEventListener('change', () => {
+  goalCheckboxes.forEach(cb => cb.checked = selectAllGoalsCheckbox.checked);
+  updateSummary();
 });
 
-  document.querySelectorAll('.goal').forEach(cb => {
+// Si une goal individuelle change
+goalCheckboxes.forEach(cb => {
   cb.addEventListener('change', () => {
-    const goals = document.querySelectorAll('.goal');
-    selectAllGoals.checked = [...goals].every(g => g.checked);
+    const allChecked = [...goalCheckboxes].every(g => g.checked);
+    selectAllGoalsCheckbox.checked = allChecked;
     updateSummary();
   });
 });
-
-
 
   
 
@@ -1495,6 +1504,7 @@ document.getElementById('en-btn').addEventListener('click', () => {
 </script>
 </body>
 </html>
+
 
 
 
