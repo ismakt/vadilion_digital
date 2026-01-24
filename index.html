@@ -857,14 +857,9 @@ const selectAllGoals = document.getElementById('selectAllGoals');
 
 
 
+// THEMES
 
-   // --- Themes ---
-
-  // --- Event listener: When Select All selected; Select all themes and update summary---
-  
-// --- Themes & Select All Logic ---
-
-const selectAllThemesCheckbox = document.getElementById('selectAllThemes');
+const selectAllThemesCheckbox = document.getElementById('selectAllThemesCheckbox');
 const themeCheckboxes = document.querySelectorAll('.theme');
 
 // Select All Themes → coche toutes les themes
@@ -875,11 +870,9 @@ selectAllThemesCheckbox.addEventListener('change', () => {
 
 // Si un theme individuel change → met à jour Select All
 themeCheckboxes.forEach(cb => {
-  if(cb.id !== 'selectAllThemes'){ // ne pas appliquer à Select All lui-même
+  if(!cb.id){ // ignore le checkbox SelectAll
     cb.addEventListener('change', () => {
-      const allChecked = [...themeCheckboxes]
-        .filter(t => t.id !== 'selectAllThemes')
-        .every(t => t.checked);
+      const allChecked = [...themeCheckboxes].every(t => t.checked);
       selectAllThemesCheckbox.checked = allChecked;
       updateSummary();
     });
@@ -1530,6 +1523,7 @@ const translations = {
 </script>
 </body>
 </html>
+
 
 
 
