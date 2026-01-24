@@ -406,7 +406,7 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 
 
   <label>
-  <input type="checkbox" id="selectAllGoalsCheckbox" class="goal-select-all">
+  <input type="checkbox" id="selectAllGoalsCheckbox">
   <span id="selectAllGoals">Sélectionner tout</span>
 </label>
 
@@ -757,9 +757,79 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.dots.min.js"></script>
+
+  
 <script>
 
-  // --- Coordonnées du contour de Bruxelles ---
+
+  // DISCOVER SMART-IN -> SMART-IN CONTACT FORM
+  
+
+const discoverBtn = document.getElementById('discoverSmartIn');
+  
+
+let smartInHoverTimeout = null;
+
+discoverBtn.addEventListener('mouseenter', () => {
+  
+  // Ne rien faire si le modal est déjà ouvert
+  
+  if (document.getElementById('smartInModal').style.display === 'flex') return;
+
+  // Délai pour éviter les ouvertures accidentelles
+  
+  smartInHoverTimeout = setTimeout(() => {
+    openModal('smartInModal');
+  }, 250);
+});
+
+discoverBtn.addEventListener('mouseleave', () => {
+  clearTimeout(smartInHoverTimeout);
+});
+
+
+const citySelect = document.getElementById('citySelect');
+const addressInput = document.getElementById('addressInput');
+const projectDetails = document.getElementById('projectDetails');
+const contactInfoSmartIn = document.getElementById('contactInfoSmartIn');
+const summaryContent = document.getElementById('summaryContent');
+
+
+  
+  // --- Summary Update Function ---
+
+  function updateSummary(){
+  const city = citySelect.value;
+  const addresses = addressInput.value;
+  const contact = contactInfoSmartIn.value;
+  const project = projectDetails.value;
+
+  const goals = [...document.querySelectorAll('.goal:checked')]
+    .map(g => g.parentElement.textContent.trim());
+
+  const themes = [...document.querySelectorAll('.theme:checked')]
+    .filter(t => t.id !== 'selectAllThemes')
+    .map(t => t.parentElement.textContent.trim());
+
+  summaryContent.innerHTML = `
+  
+    <b>City:</b> ${city || '-'}<br>
+    <b>Addresses:</b> ${addresses || '-'}<br>
+    <b>Contact info:</b> ${contact || '-'}<br>
+    <b>About your project:</b> ${project || '-'}<br>
+    <b>Main goals:</b> ${goals.join(', ') || '-'}<br>
+    <b>Themes:</b> ${themes.join(', ') || '-'}
+  `;
+}
+
+['citySelect','addressInput','projectDetails','contactInfoSmartIn']
+.forEach(id => document.getElementById(id).addEventListener('input', updateSummary));
+
+
+
+  
+  // --- Select city -> Map of Brussels ---
+  
 const bruxellesContour = [
   [50.897838, 4.377298],
   [50.902392, 4.344199],
@@ -834,63 +904,19 @@ const bruxellesInterior = [
 ];
 
 
-
-const citySelect = document.getElementById('citySelect');
-const addressInput = document.getElementById('addressInput');
-const projectDetails = document.getElementById('projectDetails');
-const contactInfoSmartIn = document.getElementById('contactInfoSmartIn');
-const summaryContent = document.getElementById('summaryContent');
-
   
-const discoverBtn = document.getElementById('discoverSmartIn');
+  // --- Themes ---
 
-let smartInHoverTimeout = null;
 
-discoverBtn.addEventListener('mouseenter', () => {
-  // Ne rien faire si le modal est déjà ouvert
-  if (document.getElementById('smartInModal').style.display === 'flex') return;
-
-  // Délai pour éviter les ouvertures accidentelles
-  smartInHoverTimeout = setTimeout(() => {
-    openModal('smartInModal');
-  }, 250);
-});
-
-discoverBtn.addEventListener('mouseleave', () => {
-  clearTimeout(smartInHoverTimeout);
+  // --- Event listener: When Select All selected; Select all themes and update summary---
+  
+  document.getElementById('selectAllThemes').addEventListener('change', e => {
+  document.querySelectorAll('.theme').forEach(cb => cb.checked = e.target.checked);
+  updateSummary();
 });
 
 
-
-
-
-  function updateSummary(){
-  const city = citySelect.value;
-  const addresses = addressInput.value;
-  const contact = contactInfoSmartIn.value;
-  const project = projectDetails.value;
-
-  const goals = [...document.querySelectorAll('.goal:checked')]
-    .map(g => g.parentElement.textContent.trim());
-
-const themes = [...document.querySelectorAll('.themes .theme:checked')]
-  .map(t => t.parentElement.textContent.trim());
-
-
-  summaryContent.innerHTML = `
-    <b>City:</b> ${city || '-'}<br>
-    <b>Addresses:</b> ${addresses || '-'}<br>
-    <b>Contact info:</b> ${contact || '-'}<br>
-    <b>About your project:</b> ${project || '-'}<br>
-    <b>Main goals:</b> ${goals.join(', ') || '-'}<br>
-    <b>Themes:</b> ${themes.join(', ') || '-'}
-  `;
-}
-
-
-['citySelect','addressInput','projectDetails','contactInfoSmartIn']
-.forEach(id => document.getElementById(id).addEventListener('input', updateSummary));
-
+    
 
 
 
@@ -1103,23 +1129,11 @@ function drawPreMap() {
   });
 }
 
-
-const selectAllThemesCheckbox = document.getElementById('selectAllThemesCheckbox');
-const themeCheckboxes = document.querySelectorAll('.themes .theme');
-
-// Sélectionner tout → coche tous les thèmes
-selectAllThemesCheckbox.addEventListener('change', () => {
-  themeCheckboxes.forEach(cb => cb.checked = selectAllThemesCheckbox.checked);
-  updateSummary();
-});
-
-// Si un thème individuel change
-themeCheckboxes.forEach(cb => {
-  cb.addEventListener('change', () => {
-    const allChecked = [...themeCheckboxes].every(t => t.checked);
-    selectAllThemesCheckbox.checked = allChecked;
-    updateSummary();
-  });
+  // Pour toutes les checkboxes de thèmes (hors selectAll)
+document.querySelectorAll('.themes .theme').forEach(cb => {
+  if(cb.id !== 'selectAllThemes'){ // ne pas réappliquer à selectAll
+    cb.addEventListener('change', updateSummary);
+  }
 });
 
 
@@ -1149,25 +1163,25 @@ menuButtons.forEach(btn => {
 // document.addEventListener('mousemove', ...);
 
 
+  const selectAllGoals = document.getElementById('selectAllGoals');
 
+selectAllGoals.addEventListener('change', e => {
+  document.querySelectorAll('.goal').forEach(cb => {
+    cb.checked = e.target.checked;
+  });
 
-const selectAllGoalsCheckbox = document.getElementById('selectAllGoalsCheckbox');
-const goalCheckboxes = document.querySelectorAll('.selectgoals .goal');
-
-// Sélectionner tout → coche tout
-selectAllGoalsCheckbox.addEventListener('change', () => {
-  goalCheckboxes.forEach(cb => cb.checked = selectAllGoalsCheckbox.checked);
-  updateSummary();
+  updateSummary(); // si tu veux qu’ils apparaissent dans le summary
 });
 
-// Si une goal individuelle change
-goalCheckboxes.forEach(cb => {
+  document.querySelectorAll('.goal').forEach(cb => {
   cb.addEventListener('change', () => {
-    const allChecked = [...goalCheckboxes].every(g => g.checked);
-    selectAllGoalsCheckbox.checked = allChecked;
+    const goals = document.querySelectorAll('.goal');
+    selectAllGoals.checked = [...goals].every(g => g.checked);
     updateSummary();
   });
 });
+
+
 
   
 
@@ -1504,8 +1518,6 @@ document.getElementById('en-btn').addEventListener('click', () => {
 </script>
 </body>
 </html>
-
-
 
 
 
