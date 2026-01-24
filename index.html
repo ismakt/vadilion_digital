@@ -880,9 +880,6 @@ themeCheckboxes.forEach(cb => {
 });
 
 
-
-  
-
 const selectAllGoalsCheckbox = document.getElementById('selectAllGoalsCheckbox');
 const goalCheckboxes = document.querySelectorAll('.goal');
 
@@ -915,16 +912,13 @@ goalCheckboxes.forEach(cb => {
   const contact = contactInfoSmartIn.value;
   const addresses = addressInput.value;
   const project = projectDetails.value;
+
+
+
+  const goals = [...document.querySelectorAll('.goal:checked')]
+    .filter(t => t.id !== 'selectAllGoals')
+    .map(t => t.parentElement.textContent.trim());
     
-  let goals;
-
-if (selectAllGoalsCheckbox.checked) {
-  goals = [document.getElementById('selectAllGoals').textContent.trim()];
-} else {
-  goals = [...document.querySelectorAll('.goal:checked')]
-    .map(g => g.parentElement.textContent.trim());
-}
-
     
   const themes = [...document.querySelectorAll('.theme:checked')]
     .filter(t => t.id !== 'selectAllThemes')
@@ -1523,6 +1517,7 @@ const translations = {
 </script>
 </body>
 </html>
+
 
 
 
