@@ -787,19 +787,6 @@ locationBtn.addEventListener('mouseenter', () => {
 // On ne ferme pas au mouseleave, fermeture uniquement au clic sur locationBtn
 
 
-// Le même mais pour En; Pourquoi?
-  
-const locationBtnEn = document.getElementById('locationBtn');
-const locationContentTextEn = document.getElementById('locationContentText');
-let locationOpenEn = false;
-locationBtnEn.addEventListener('click', () => {
-  locationOpenEn = !locationOpenEn;
-  locationContentTextEn.style.display = locationOpenEn ? 'block' : 'none';
-});
-locationBtnEn.addEventListener('mouseenter', () => {
-  locationContentTextEn.style.display = 'block';
-  locationOpenEn = true;
-});
 
 
 // SMART-IN BUTON -> DÉROULEMENT SOUS-MENU; Boutons Discover Smart-In et  Video
@@ -1525,6 +1512,7 @@ const translations = {
 </script>
 </body>
 </html>
+
 
 
 
