@@ -47,18 +47,6 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 .brand .logo { position: absolute; top: 20px; left: 0; width: 160px; height: auto; border-radius: 0; z-index: 0; }
 
 
-
-#locationContentInnerText {
-  white-space: pre-line; /* interprète \n et \n\n comme retour à la ligne */
-  line-height: 1.6;      /* optionnel pour un espacement agréable */
-}
-
-
-
-
-
-
-
   
 
 .modal-smartin-content{
@@ -226,15 +214,6 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 
 
 
-
-
-
-
-
-
-  
-
-
 /* Par défaut, le message est caché */
 #mobileMessage {
   display: none;
@@ -248,8 +227,6 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
   font-size: 16px;
   line-height: 1.5;
 }
-
-  
 
 /* Mobile / tablet small screens */
 @media (max-width: 768px) {
@@ -322,11 +299,21 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
       <!-- Bouton Location Intelligence -->
       <button id="locationBtn" class="btn-smartin" style="width:auto; text-align:left; font-weight:500;">SMART-IN</button>
 
-
-      
       <!-- Contenu déroulant caché par défaut -->
       <div id="locationContentText" style="display:block; margin-top:12px; border:2px solid var(--border); padding:10px 12px;">
-          <div id="locationContentInnerText"></div>
+          <div id="locationContentInnerText">
+          <p>
+Nous accompagnons entrepreneurs et investisseurs
+dans leurs projets commerciaux et immobiliers
+en apportant une étude de marché indépendante et transparente,
+afin de réduire les risques avant tout engagement de capital.
+
+À travers Smart-In, notre plateforme interne,
+nous exploitons une large base de données
+capable de fournir les informations essentielles
+à la réussite de vos projets.        </p>
+
+          </div>
         
 
         <div class="btn-flex" style="margin-top:20px; display:flex; justify-content:center; gap:12px;">
@@ -786,25 +773,21 @@ let vantaEffect = VANTA.DOTS({ el:"#vanta-bg", mouseControls:true, touchControls
 // SOLUTIONS -> SMART-IN BUTON -> DÉROULEMENT SOUS-MENU
 
 
-// SMART-IN ouverture/fermeture uniquement au clic
 const locationBtn = document.getElementById('locationBtn');
 const locationContentText = document.getElementById('locationContentText');
-
 let locationOpen = false;
 
+  // Fonction pour ouvrir/fermer au clic
 locationBtn.addEventListener('click', () => {
   locationOpen = !locationOpen;
   locationContentText.style.display = locationOpen ? 'block' : 'none';
 });
 
-// Injection texte
-document.getElementById("locationContentInnerText").innerText =
-  translations.locationContentInnerText;
-
-  // Ouvrir par défaut
-locationContentText.style.display = 'block';
-locationOpen = true;
-
+  // Fonction pour ouvrir au survol
+locationBtn.addEventListener('mouseenter', () => {
+  locationContentText.style.display = 'block';
+  locationOpen = true;
+});
 
 // On ne ferme pas au mouseleave, fermeture uniquement au clic sur locationBtn
 
@@ -815,7 +798,7 @@ locationOpen = true;
 
 // document.getElementById('presentationSmartIn').addEventListener('click', () => openModal('videoModal'));
 
-
+  
 
 
 // DISCOVER SMART-IN -> SMART-IN CONTACT FORM
@@ -1258,7 +1241,9 @@ const translations = {
 
 
 
-"locationContentInnerText":"Nous accompagnons entrepreneurs et investisseurs dans leurs projets commerciaux et immobiliers en apportant une étude de marché sur mesure indépendante,afin de réduire les risques avant tout engagement de capital.\n\nÀ travers Smart-In, notre plateforme interne, nous exploitons une large base de données capable de fournir, rapidement, les informations essentielles à la réussite de vos projets.",
+  "locationContentInnerText": "Face à la complexité pour un entrepreneur ou un investisseur privé de comprendre la réalité du marché immobilier, souvent dépendant du discours commercial d’un agent motivé par la commission, nous avons développé Smart-In, notre plateforme interne et indépendante. Elle fournit des données fiables, transparentes et rapides, permettant de vérifier la cohérence de votre projet avec le territoire choisi et de réduire le risque. Nos analyses couvrent les fondamentaux du marché immobilier, les réalités socio-économiques, l’évolution urbaine et les indicateurs clés tels que la sécurité et la qualité de vie. Il vous suffit de choisir la ville et les données que vous souhaitez analyser via le formulaire de contact ci-dessous.",
+
+
      
     "discoverSmartIn": "Découvrir Smart-In",
     //"presentationSmartIn": "Vidéo",
@@ -1401,7 +1386,7 @@ const translations = {
 
 
 
-"locationContentInnerText":"We support entrepreneurs and investors in their commercial and real estate projects by providing tailored independent market studies, helping reduce risk before any capital commitment.\n\nThrough Smart-In, our internal platform, we leverage a large data base capable of delivering the essential insights needed for your projects’ success.",
+  "locationContentInnerText": "Faced with the complexity for an entrepreneur or private investor to understand the reality of the real estate market, often relying on the sales pitch of an agent motivated by commission, we developed Smart-In, our internal and independent platform. It provides reliable, transparent, and fast data, allowing you to verify the alignment of your project with the chosen location and reduce risk. Our analyses cover the fundamentals of the real estate market, socio-economic realities, urban development, and key indicators such as safety and quality of life. Simply select the city and the data you wish to analyze via the contact form below.",
 
 
 
@@ -1540,11 +1525,6 @@ const translations = {
 </script>
 </body>
 </html>
-
-
-
-
-
 
 
 
