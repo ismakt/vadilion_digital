@@ -157,7 +157,6 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
   display: flex;
   align-items: center;   /* centre checkbox et texte verticalement */
   gap: 8px;              /* espace entre la checkbox et le texte */
-    margin-bottom: 12px;
 
 }
 
@@ -226,7 +225,11 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
   line-height: 1.6;
 }
 
-
+  
+label {
+  display: block; /* pour forcer le label à prendre une ligne entière */
+  margin-bottom: 0.5em; /* espace entre label et champ */
+}
 
 /* Par défaut, le message est caché */
 #mobileMessage {
@@ -1524,6 +1527,7 @@ const translations = {
 </script>
 </body>
 </html>
+
 
 
 
