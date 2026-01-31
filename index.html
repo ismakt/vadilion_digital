@@ -226,18 +226,43 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 }
 
   
+/* Styles généraux pour uniformiser tous les champs */
 label {
-  display: block; /* pour forcer le label à prendre une ligne entière */
-  margin-bottom: 0.5em; /* espace entre label et champ */
+  display: block;          /* chaque label sur sa ligne */
+  margin-bottom: 0.3em;   /* espace avant le champ */
+  font-weight: 500;
 }
 
-select, input {
-  display: block; /* pour s’aligner proprement sous le label */
-  margin-bottom: 0.5em; /* espace après le champ */
-  width: 80%; /* optionnel, pour full-width */
-  padding: 0.5em; /* optionnel, pour confort visuel */
+input, select {
+  display: block;
+  width: 100%;             /* remplir la largeur du conteneur */
+  padding: 0.5em;          /* espace interne uniforme */
+  box-sizing: border-box;  /* padding inclus dans la largeur */
+  line-height: 1.4;        /* aligne le texte verticalement */
+  vertical-align: middle;  /* utile pour select */
 }
 
+
+  /* Optionnel : alignement du placeholder */
+input::placeholder {
+  color: #aaa;
+  opacity: 1;              /* pour Chrome */
+}
+
+
+  
+select {
+  background-color: #000;
+  color: #fff;
+  border: 1px solid #333;
+}
+
+select option {
+  background-color: #000;
+  color: #fff;
+}
+
+  
   .form-group {
   margin-bottom: 0.5em; /* espace entre chaque bloc */
 }
@@ -1560,6 +1585,7 @@ const translations = {
 </script>
 </body>
 </html>
+
 
 
 
