@@ -219,6 +219,11 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
     line-height: 1.6;
 }
 
+  #offices-list {
+  white-space: pre-line; /* interprète \n et \n\n comme retours à la ligne */
+  line-height: 1.6;
+}
+
 
 
 /* Par défaut, le message est caché */
@@ -359,8 +364,10 @@ Grâce à Smart-In, notre plateforme interne, nous exploitons une vaste base de 
     <span class="close" onclick="closeModal('officeModal')">✕</span>
     <h4 id="offices">Offices</h4>
     <p id="offices-list">
-      21 Avenue du Boulevard, Bruxelles (Financial District)<br><br>
-      7 Rue Meyerbeer, Paris (Opéra Garnier)<br><br>
+      21 Avenue du Boulevard, Bruxelles (Financial District)
+
+      7 Rue Meyerbeer, Paris (Opéra Garnier)
+
       74 Boulevard d'Italie, Monaco (Monte Carlo)
     </p>
   </div>
@@ -1250,11 +1257,8 @@ const translations = {
 
 
 
-    "offices-list":`
-      21 Avenue du Boulevard, Bruxelles (Financial District)<br><br>
-      7 Rue Meyerbeer, Paris (Opéra Garnier)<br><br>
-      74 Boulevard d'Italie, Monaco (Monte Carlo)
-    </p>`,
+ "offices-list": "21 Avenue du Boulevard, Bruxelles (Financial District)\n\n7 Rue Meyerbeer, Paris (Opéra Garnier)\n\n74 Boulevard d'Italie, Monaco (Monte Carlo)",
+
 
 
 
@@ -1393,11 +1397,8 @@ const translations = {
     "offices": "Offices",
 
 
- "offices-list":`
-      21 Avenue du Boulevard, Brussels (Financial District)<br><br>
-      7 Rue Meyerbeer, Paris (Opéra Garnier)<br><br>
-      74 Boulevard d'Italie, Monaco (Monte Carlo)
-    </p>`,
+     "offices-list": "21 Avenue du Boulevard, Brussels (Financial District)\n\n7 Rue Meyerbeer, Paris (Opéra Garnier)\n\n74 Boulevard d'Italie, Monaco (Monte Carlo)",
+
 
     
       
