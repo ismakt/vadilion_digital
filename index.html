@@ -47,6 +47,18 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 .brand .logo { position: absolute; top: 20px; left: 0; width: 160px; height: auto; border-radius: 0; z-index: 0; }
 
 
+
+#locationContentInnerText {
+  white-space: pre-line; /* interprète \n et \n\n comme retour à la ligne */
+  line-height: 1.6;      /* optionnel pour un espacement agréable */
+}
+
+
+
+
+
+
+
   
 
 .modal-smartin-content{
@@ -214,6 +226,15 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 
 
 
+
+
+
+
+
+
+  
+
+
 /* Par défaut, le message est caché */
 #mobileMessage {
   display: none;
@@ -227,6 +248,8 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
   font-size: 16px;
   line-height: 1.5;
 }
+
+  
 
 /* Mobile / tablet small screens */
 @media (max-width: 768px) {
@@ -299,21 +322,11 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
       <!-- Bouton Location Intelligence -->
       <button id="locationBtn" class="btn-smartin" style="width:auto; text-align:left; font-weight:500;">SMART-IN</button>
 
+
+      
       <!-- Contenu déroulant caché par défaut -->
       <div id="locationContentText" style="display:block; margin-top:12px; border:2px solid var(--border); padding:10px 12px;">
-          <div id="locationContentInnerText">
-          <p>
-Nous accompagnons entrepreneurs et investisseurs
-dans leurs projets commerciaux et immobiliers
-en apportant une étude de marché indépendante et transparente,
-afin de réduire les risques avant tout engagement de capital.
-
-À travers Smart-In, notre plateforme interne,
-nous exploitons une large base de données
-capable de fournir les informations essentielles
-à la réussite de vos projets.        </p>
-
-          </div>
+          <div id="locationContentInnerText"></div>
         
 
         <div class="btn-flex" style="margin-top:20px; display:flex; justify-content:center; gap:12px;">
@@ -798,6 +811,12 @@ locationBtn.addEventListener('mouseenter', () => {
 
 // document.getElementById('presentationSmartIn').addEventListener('click', () => openModal('videoModal'));
 
+
+  // Affichage Smart In déroulement;
+
+  document.getElementById("locationContentInnerText").innerText =
+  translations.locationContentInnerText; // ton texte JSON avec \n\n
+
   
 
 
@@ -1241,7 +1260,7 @@ const translations = {
 
 
 
-"locationContentInnerText":"Nous accompagnons entrepreneurs et investisseurs dans leurs projets commerciaux et immobiliers en apportant une étude de marché indépendante et transparente, afin de réduire les risques avant tout engagement de capital. À travers Smart-In, notre plateforme interne, nous exploitons une large base de données capable de fournir les informations essentielles à la réussite de vos projets.",
+"locationContentInnerText":"Nous accompagnons entrepreneurs et investisseurs dans leurs projets commerciaux et immobiliers en apportant une étude de marché sur mesure indépendante,afin de réduire les risques avant tout engagement de capital.\n\nÀ travers Smart-In, notre plateforme interne, nous exploitons une large base de données capable de fournir, rapidement, les informations essentielles à la réussite de vos projets.",
      
     "discoverSmartIn": "Découvrir Smart-In",
     //"presentationSmartIn": "Vidéo",
@@ -1384,7 +1403,7 @@ const translations = {
 
 
 
-"locationContentInnerText":"We support entrepreneurs and investors in their commercial and real estate projects by providing independent and transparent market studies, helping reduce risk before any capital commitment.\n\nThrough Smart-In, our internal platform, we leverage a large data base capable of delivering the essential insights needed for your projects’ success.",
+"locationContentInnerText":"We support entrepreneurs and investors in their commercial and real estate projects by providing tailored independent market studies, helping reduce risk before any capital commitment.\n\nThrough Smart-In, our internal platform, we leverage a large data base capable of delivering the essential insights needed for your projects’ success.",
 
 
 
@@ -1523,6 +1542,7 @@ const translations = {
 </script>
 </body>
 </html>
+
 
 
 
