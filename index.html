@@ -1295,7 +1295,7 @@ document.getElementById('en-btn').addEventListener('click', () => {
 
 // --- Mailto ---
 
-  document.getElementById('btn-send-summary').addEventListener('click', function() {
+  document.getElementById('btn-send').addEventListener('click', function() {
     const summary = document.getElementById('summary').innerText; // texte à envoyer
     const subject = encodeURIComponent('Résumé de mon analyse');
     const body = encodeURIComponent(summary);
@@ -1589,6 +1589,7 @@ const translations = {
 </script>
 </body>
 </html>
+
 
 
 
