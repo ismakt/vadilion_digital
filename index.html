@@ -1296,11 +1296,12 @@ document.getElementById('en-btn').addEventListener('click', () => {
 // --- Mailto ---
 
 document.getElementById('btn-send-summary').addEventListener('click', function() {
-    const summary = document.getElementById('summaryContent').innerText; // texte de ton résumé
+    const summary = document.getElementById('summaryContent').innerText;
     const subject = encodeURIComponent('Résumé de mon analyse');
     const body = encodeURIComponent(summary);
     window.location.href = `mailto:tonemail@exemple.com?subject=${subject}&body=${body}`;
 });
+
 
 
 
@@ -1589,6 +1590,7 @@ const translations = {
 </script>
 </body>
 </html>
+
 
 
 
