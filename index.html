@@ -786,22 +786,25 @@ let vantaEffect = VANTA.DOTS({ el:"#vanta-bg", mouseControls:true, touchControls
 // SOLUTIONS -> SMART-IN BUTON -> DÉROULEMENT SOUS-MENU
 
 
+// SMART-IN ouverture/fermeture uniquement au clic
 const locationBtn = document.getElementById('locationBtn');
 const locationContentText = document.getElementById('locationContentText');
-  
-// let locationOpen = false;
 
-//   // Fonction pour ouvrir/fermer au clic
-// locationBtn.addEventListener('click', () => {
-//   locationOpen = !locationOpen;
-//   locationContentText.style.display = locationOpen ? 'block' : 'none';
-// });
+let locationOpen = false;
 
-//   // Fonction pour ouvrir au survol
-// locationBtn.addEventListener('mouseenter', () => {
-//   locationContentText.style.display = 'block';
-//   locationOpen = true;
-// });
+locationBtn.addEventListener('click', () => {
+  locationOpen = !locationOpen;
+  locationContentText.style.display = locationOpen ? 'block' : 'none';
+});
+
+// Injection texte
+document.getElementById("locationContentInnerText").innerText =
+  translations.locationContentInnerText;
+
+  // Ouvrir par défaut
+locationContentText.style.display = 'block';
+locationOpen = true;
+
 
 // On ne ferme pas au mouseleave, fermeture uniquement au clic sur locationBtn
 
@@ -813,12 +816,6 @@ const locationContentText = document.getElementById('locationContentText');
 // document.getElementById('presentationSmartIn').addEventListener('click', () => openModal('videoModal'));
 
 
-  // Affichage Smart In déroulement;
-
-  document.getElementById("locationContentInnerText").innerText =
-  translations.locationContentInnerText; // ton texte JSON avec \n\n
-
-  
 
 
 // DISCOVER SMART-IN -> SMART-IN CONTACT FORM
@@ -1543,6 +1540,7 @@ const translations = {
 </script>
 </body>
 </html>
+
 
 
 
