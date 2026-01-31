@@ -398,8 +398,13 @@ Grâce à Smart-In, notre plateforme interne, nous exploitons une vaste base de 
 
         <label id="contactInfo-label">Coordonnées de contact</label>
 <input id="contactInfoSmartIn" placeholder="email / mobile">
+        
 
-
+<label id="select-city-label">Sélectionnez une ville</label>
+<select id="citySelect">
+  <option id="select-city-placeholder" value="">Sélectionner une ville</option>
+  <option value="Brussels" id="city-brussels">Bruxelles</option>
+  
 
  <label id="address-label">Adresse à analyser</label>
 <input id="addressInput" placeholder="Maximum 3 adresses séparés par une virgule">
@@ -731,10 +736,7 @@ Grâce à Smart-In, notre plateforme interne, nous exploitons une vaste base de 
   <div id="summaryContent">En attente...</div>
 </div>
 
-<label id="select-city-label">Sélectionnez une ville</label>
-<select id="citySelect">
-  <option id="select-city-placeholder" value="">Sélectionner une ville</option>
-  <option value="Brussels" id="city-brussels">Bruxelles</option>
+
 </select>
 
 
@@ -1520,6 +1522,7 @@ const translations = {
 </script>
 </body>
 </html>
+
 
 
 
