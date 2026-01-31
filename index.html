@@ -214,6 +214,13 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 
 
 
+  #locationContentInnerText {
+    white-space: pre-line; /* interprète \n et \n\n comme retours à la ligne */
+    line-height: 1.6;
+}
+
+
+
 /* Par défaut, le message est caché */
 #mobileMessage {
   display: none;
@@ -303,7 +310,8 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
       <div id="locationContentText" style="display:block; margin-top:12px; border:2px solid var(--border); padding:10px 12px;">
           <div id="locationContentInnerText">
 <p>
-Nous accompagnons les entrepreneurs et investisseurs dans leurs projets commerciaux et immobiliers en fournissant des études de marché sur mesure, afin de sécuriser chaque engagement de capital.<br><br>
+Nous accompagnons les entrepreneurs et investisseurs dans leurs projets commerciaux et immobiliers en fournissant des études de marché sur mesure, afin de sécuriser chaque engagement de capital.
+  
 Grâce à Smart-In, notre plateforme interne, nous exploitons une vaste base de données permettant de fournir rapidement toutes les informations essentielles à la réussite de vos projets.
 </p>
 
@@ -1517,6 +1525,7 @@ const translations = {
 </script>
 </body>
 </html>
+
 
 
 
