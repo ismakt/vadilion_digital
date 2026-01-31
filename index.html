@@ -1298,6 +1298,15 @@ document.getElementById('en-btn').addEventListener('click', () => {
 });
 
 
+// --- Mailto ---
+
+  document.getElementById('sendButton').addEventListener('click', function() {
+    const summary = document.getElementById('summary').innerText; // texte à envoyer
+    const subject = encodeURIComponent('Résumé de mon analyse');
+    const body = encodeURIComponent(summary);
+    window.location.href = `mailto:tonemail@exemple.com?subject=${subject}&body=${body}`;
+});
+
 
 
 // --- Dictionnaire de traduction ---
@@ -1585,6 +1594,7 @@ const translations = {
 </script>
 </body>
 </html>
+
 
 
 
