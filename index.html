@@ -231,6 +231,19 @@ label {
   margin-bottom: 0.5em; /* espace entre label et champ */
 }
 
+select, input {
+  display: block; /* pour s’aligner proprement sous le label */
+  margin-bottom: 1em; /* espace après le champ */
+  width: 100%; /* optionnel, pour full-width */
+  padding: 0.5em; /* optionnel, pour confort visuel */
+}
+
+  .form-group {
+  margin-bottom: 1.5em; /* espace entre chaque bloc */
+}
+
+
+
 /* Par défaut, le message est caché */
 #mobileMessage {
   display: none;
@@ -405,14 +418,19 @@ Grâce à Smart-In, notre plateforme interne, nous exploitons une vaste base de 
 <input id="contactInfoSmartIn" placeholder="email / mobile">
         
 
-<label id="select-city-label">Sélectionnez une ville</label>
-<select id="citySelect">
-  <option id="select-city-placeholder" value="">Sélectionner une ville</option>
-  <option value="Brussels" id="city-brussels">Bruxelles</option>
-  
+<div class="form-group">
+  <label id="select-city-label">Sélectionnez une ville</label>
+  <select id="citySelect">
+    <option value="">Sélectionner une ville</option>
+    <option value="Brussels">Bruxelles</option>
+  </select>
+</div>
 
- <label id="address-label">Adresse à analyser</label>
-<input id="addressInput" placeholder="Maximum 3 adresses séparés par une virgule">
+<div class="form-group">
+  <label id="address-label">Adresse à analyser</label>
+  <input id="addressInput" placeholder="Maximum 3 adresses séparés par une virgule">
+</div>
+
   
        
 
@@ -1527,6 +1545,7 @@ const translations = {
 </script>
 </body>
 </html>
+
 
 
 
