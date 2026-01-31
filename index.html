@@ -788,19 +788,20 @@ let vantaEffect = VANTA.DOTS({ el:"#vanta-bg", mouseControls:true, touchControls
 
 const locationBtn = document.getElementById('locationBtn');
 const locationContentText = document.getElementById('locationContentText');
-let locationOpen = false;
+  
+// let locationOpen = false;
 
-  // Fonction pour ouvrir/fermer au clic
-locationBtn.addEventListener('click', () => {
-  locationOpen = !locationOpen;
-  locationContentText.style.display = locationOpen ? 'block' : 'none';
-});
+//   // Fonction pour ouvrir/fermer au clic
+// locationBtn.addEventListener('click', () => {
+//   locationOpen = !locationOpen;
+//   locationContentText.style.display = locationOpen ? 'block' : 'none';
+// });
 
-  // Fonction pour ouvrir au survol
-locationBtn.addEventListener('mouseenter', () => {
-  locationContentText.style.display = 'block';
-  locationOpen = true;
-});
+//   // Fonction pour ouvrir au survol
+// locationBtn.addEventListener('mouseenter', () => {
+//   locationContentText.style.display = 'block';
+//   locationOpen = true;
+// });
 
 // On ne ferme pas au mouseleave, fermeture uniquement au clic sur locationBtn
 
@@ -1542,6 +1543,7 @@ const translations = {
 </script>
 </body>
 </html>
+
 
 
 
