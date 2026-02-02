@@ -1262,32 +1262,31 @@ function closeModal(id){
 
 
 // --- FONCTION CHANGEMENT LANGUE ---
-
-  function setLanguage(lang) {
+  
+function setLanguage(lang) {
   const dict = translations[lang];
   if (!dict) return;
 
   Object.keys(dict).forEach(id => {
     const el = document.getElementById(id);
     if (!el) return;
-
-    // Si la traduction contient du HTML (multilignes)
     if (el.dataset && el.dataset.html === "true") {
       el.innerHTML = dict[id];
-    } 
-    // Texte simple
-    else {
+    } else {
       el.textContent = dict[id];
     }
   });
 
-  // État visuel FR / EN
+  // Mettre à jour le message EmailJS si visible
+  if(emailStatus.style.display === 'block' && emailStatus.dataset.status){
+    emailStatus.textContent = dict[`email-${emailStatus.dataset.status}`];
+  }
+
   document.getElementById('fr-btn')?.classList.toggle('active', lang === 'fr');
   document.getElementById('en-btn')?.classList.toggle('active', lang === 'en');
-
-  // Attribut HTML <html lang="">
   document.documentElement.lang = lang;
 }
+
 
 
 
@@ -1340,20 +1339,19 @@ document.getElementById('btn-send-summary').addEventListener('click', function(e
     city: citySelect.value || '-'
   };
 
-  emailjs.send('service_41z5e5b', 'template_9s39ygw', templateParams)
-    .then(() => {
-      // ✅ succès
-      emailStatus.id = 'email-success'; // id pour la traduction
-      emailStatus.textContent = translations[document.documentElement.lang]['email-success'];
-      emailStatus.style.display = 'block';
-    })
-    .catch(err => {
-      console.error('EmailJS error:', err);
-      // ❌ erreur
-      emailStatus.id = 'email-error'; // id pour la traduction
-      emailStatus.textContent = translations[document.documentElement.lang]['email-error'];
-      emailStatus.style.display = 'block';
-    });
+emailjs.send('service_41z5e5b', 'template_9s39ygw', templateParams)
+  .then(() => {
+    emailStatus.dataset.status = 'success';
+    emailStatus.textContent = translations[document.documentElement.lang]['email-success'];
+    emailStatus.style.display = 'block';
+  })
+  .catch(err => {
+    console.error('EmailJS error:', err);
+    emailStatus.dataset.status = 'error';
+    emailStatus.textContent = translations[document.documentElement.lang]['email-error'];
+    emailStatus.style.display = 'block';
+  });
+
 });
 
 
@@ -1651,6 +1649,7 @@ const translations = {
 </script>
 </body>
 </html>
+
 
 
 
