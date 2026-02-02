@@ -818,6 +818,10 @@ Grâce à Smart-In, notre plateforme interne, nous exploitons une vaste base de 
 </div>
 
 
+<div id="email-status" style="margin-top:10px; font-size:14px;"></div>
+
+
+  
 <!-- Message pour mobile / tablette petite -->
 <div id="mobileMessage">
   Mobile version in development, please visit the website from your PC.
@@ -1315,35 +1319,42 @@ document.getElementById('en-btn').addEventListener('click', () => {
   
 // --- Email ---
 
-document.getElementById('btn-send-summary').addEventListener('click', function () {
+const emailStatus = document.getElementById('email-status');
+
+document.getElementById('btn-send-summary').addEventListener('click', function(event) {
+  event.preventDefault();
+
+  emailStatus.textContent = '';
+  emailStatus.style.display = 'none';
 
   const templateParams = {
     contact: contactInfoSmartIn.value || '-',
     addresses: addressInput.value || '-',
     project: projectDetails.value || '-',
     goals: [...document.querySelectorAll('.goal:checked')]
-              .map(g => g.parentElement.textContent.trim())
-              .join(', ') || '-',
+      .map(g => g.parentElement.textContent.trim())
+      .join(', ') || '-',
     themes: [...document.querySelectorAll('.theme:checked')]
-              .map(t => t.parentElement.textContent.trim())
-              .join(', ') || '-',
+      .map(t => t.parentElement.textContent.trim())
+      .join(', ') || '-',
     city: citySelect.value || '-'
   };
 
-  emailjs.send(
-    'service_41z5e5b',
-    'template_9s39ygw',
-    templateParams
-  )
-  .then(() => {
-    alert('Message envoyé avec succès ✅');
-  })
-  .catch(err => {
-    console.error('EmailJS error:', err);
-    alert('Erreur lors de l’envoi ❌');
-  });
+  emailjs.send('service_41z5e5b', 'template_9s39ygw', templateParams)
+    .then(() => {
+      // ✅ succès
+      emailStatus.id = 'email-success'; // id pour la traduction
+      emailStatus.textContent = translations[document.documentElement.lang]['email-success'];
+      emailStatus.style.display = 'block';
+    })
+    .catch(err => {
+      console.error('EmailJS error:', err);
+      // ❌ erreur
+      emailStatus.id = 'email-error'; // id pour la traduction
+      emailStatus.textContent = translations[document.documentElement.lang]['email-error'];
+      emailStatus.style.display = 'block';
+    });
 });
-;
 
 
 
@@ -1478,7 +1489,11 @@ const translations = {
 "select-city-placeholder": "Sélectionner une ville",
 "city-brussels": "Bruxelles",
 
-"btn-send-summary": "Envoyer"
+"btn-send-summary": "Envoyer",
+
+
+       "email-success": "Message envoyé avec succès ✅",
+    "email-error": "Erreur lors de l’envoi ❌"
 
 
  
@@ -1622,7 +1637,10 @@ const translations = {
 "select-city-placeholder":"Select a city",
 "city-brussels":"Brussels",
 
-"btn-send-summary":"Send"
+"btn-send-summary":"Send",
+
+    "email-success": "Message sent successfully ✅",
+    "email-error": "Error sending message ❌"
     
   }
 };
@@ -1633,6 +1651,7 @@ const translations = {
 </script>
 </body>
 </html>
+
 
 
 
