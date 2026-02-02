@@ -818,12 +818,23 @@ Grâce à Smart-In, notre plateforme interne, nous exploitons une vaste base de 
 </div>
 
 
+  
+<!-- Container Email Status -->
+
+<div id="email-status"
+     style="margin-top:10px; font-size:14px; display:none;">
+</div>
+
+
+  
 <!-- Message pour mobile / tablette petite -->
 <div id="mobileMessage">
   Mobile version in development, please visit the website from your PC.
 </div>
 
 
+
+  
 
 
   <!-- 3D JS -->
@@ -1315,7 +1326,16 @@ document.getElementById('en-btn').addEventListener('click', () => {
   
 // --- Email ---
 
-document.getElementById('btn-send-summary').addEventListener('click', function () {
+const emailStatus = document.getElementById('email-status');
+
+document.getElementById('btn-send-summary').addEventListener('click', function (event) {
+  event.preventDefault();
+
+  const btn = this;
+  btn.disabled = true;
+
+  emailStatus.style.display = 'none';
+  emailStatus.textContent = '';
 
   const templateParams = {
     contact: contactInfoSmartIn.value || '-',
@@ -1336,14 +1356,25 @@ document.getElementById('btn-send-summary').addEventListener('click', function (
     templateParams
   )
   .then(() => {
-    alert('Message envoyé avec succès ✅');
+    emailStatus.id = 'email-success';
+    emailStatus.textContent = translations[document.documentElement.lang]['email-success'];
+    emailStatus.style.color = '#2ecc71';
+    emailStatus.style.display = 'block';
+    btn.textContent = 'Envoyé';
   })
   .catch(err => {
     console.error('EmailJS error:', err);
-    alert('Erreur lors de l’envoi ❌');
+    emailStatus.id = 'email-error';
+    emailStatus.textContent = translations[document.documentElement.lang]['email-error'];
+    emailStatus.style.color = '#e74c3c';
+    emailStatus.style.display = 'block';
+    btn.disabled = false;
   });
 });
-;
+
+setTimeout(() => {
+  emailStatus.style.display = 'none';
+}, 5000);
 
 
 
@@ -1479,6 +1510,9 @@ const translations = {
 "city-brussels": "Bruxelles",
 
 "btn-send-summary": "Envoyer"
+
+    "email-success": "Message envoyé avec succès ✅",
+"email-error": "Erreur lors de l’envoi ❌ Veuillez réessayer."
 
 
  
@@ -1623,6 +1657,16 @@ const translations = {
 "city-brussels":"Brussels",
 
 "btn-send-summary":"Send"
+
+
+
+"email-success": "Message sent successfully ✅",
+"email-error": "Error while sending ❌ Please try again."
+
+
+
+
+    
     
   }
 };
@@ -1633,6 +1677,7 @@ const translations = {
 </script>
 </body>
 </html>
+
 
 
 
