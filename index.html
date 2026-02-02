@@ -821,7 +821,11 @@ Grâce à Smart-In, notre plateforme interne, nous exploitons une vaste base de 
   
 <!-- Container Email Status -->
 
-<div id="email-status"
+<div id="email-success"
+     style="margin-top:10px; font-size:14px; display:none;">
+</div>
+
+  <div id="email-error"
      style="margin-top:10px; font-size:14px; display:none;">
 </div>
 
@@ -1315,40 +1319,66 @@ document.getElementById('en-btn').addEventListener('click', () => {
   
 // --- EMAILJS ---
 
-
 // --- Function ---
-  
-  (function(){
-    emailjs.init("Y9G1UYj9VZqrRmSG1");
-  })();
+(function() {
+  emailjs.init("Y9G1UYj9VZqrRmSG1");
+})();
 
-  
 // --- Email ---
+const emailStatus = document.getElementById('email-status');
 
-const.then(() => {
-  emailStatus.className = 'email-success';
-  emailStatus.textContent =
-    translations[document.documentElement.lang]['email-success'];
-  emailStatus.style.color = '#2ecc71';
-  emailStatus.style.display = 'block';
-  btn.textContent = 'Envoyé';
+document.getElementById('btn-send-summary').addEventListener('click', function(event) {
+  event.preventDefault();
 
-  setTimeout(() => {
-    emailStatus.style.display = 'none';
-  }, 5000);
-})
-.catch(err => {
-  console.error('EmailJS error:', err);
-  emailStatus.className = 'email-error';
-  emailStatus.textContent =
-    translations[document.documentElement.lang]['email-error'];
-  emailStatus.style.color = '#e74c3c';
-  emailStatus.style.display = 'block';
-  btn.disabled = false;
+  const btn = this;
+  btn.disabled = true;
 
-  setTimeout(() => {
-    emailStatus.style.display = 'none';
-  }, 5000);
+  emailStatus.style.display = 'none';
+  emailStatus.textContent = '';
+
+  const templateParams = {
+    contact: contactInfoSmartIn.value || '-',
+    addresses: addressInput.value || '-',
+    project: projectDetails.value || '-',
+    goals: [...document.querySelectorAll('.goal:checked')]
+      .map(g => g.parentElement.textContent.trim())
+      .join(', ') || '-',
+    themes: [...document.querySelectorAll('.theme:checked')]
+      .map(t => t.parentElement.textContent.trim())
+      .join(', ') || '-',
+    city: citySelect.value || '-'
+  };
+
+  emailjs.send(
+    'service_41z5e5b',
+    'template_9s39ygw',
+    templateParams
+  )
+  .then(() => {
+    emailStatus.id = 'email-success';
+    emailStatus.textContent = translations[document.documentElement.lang]['email-success'];
+    emailStatus.style.color = '#2ecc71';
+    emailStatus.style.display = 'block';
+    btn.textContent = 'Envoyé';
+
+    // ✅ auto-hide après succès
+    setTimeout(() => {
+      emailStatus.style.display = 'none';
+    }, 5000);
+  })
+  .catch(err => {
+    console.error('EmailJS error:', err);
+    emailStatus.id = 'email-error';
+    emailStatus.textContent = translations[document.documentElement.lang]['email-error'];
+    emailStatus.style.color = '#e74c3c';
+    emailStatus.style.display = 'block';
+    btn.disabled = false;
+
+    // ✅ auto-hide après erreur
+    setTimeout(() => {
+      emailStatus.style.display = 'none';
+    }, 5000);
+  });
 });
 
 
@@ -1654,6 +1684,7 @@ const translations = {
 </script>
 </body>
 </html>
+
 
 
 
