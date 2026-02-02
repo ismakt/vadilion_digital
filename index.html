@@ -818,18 +818,6 @@ Grâce à Smart-In, notre plateforme interne, nous exploitons une vaste base de 
 </div>
 
 
-  
-<!-- Container Email Status -->
-
-<div id="email-success"
-     style="margin-top:10px; font-size:14px; display:none;">
-</div>
-
-  <div id="email-error"
-     style="margin-top:10px; font-size:14px; display:none;">
-</div>
-
-  
 <!-- Message pour mobile / tablette petite -->
 <div id="mobileMessage">
   Mobile version in development, please visit the website from your PC.
@@ -837,18 +825,14 @@ Grâce à Smart-In, notre plateforme interne, nous exploitons une vaste base de 
 
 
 
-  
-
-
-  <!-- 3D JS -->
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-  
 
 <!-- VantaDots -->
 
 <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.dots.min.js"></script>
 
+<!-- 3D JS -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 
 <!-- EmailJS -->
 
@@ -1319,33 +1303,28 @@ document.getElementById('en-btn').addEventListener('click', () => {
   
 // --- EMAILJS ---
 
+
 // --- Function ---
-(function() {
-  emailjs.init("Y9G1UYj9VZqrRmSG1");
-})();
+  
+  (function(){
+    emailjs.init("Y9G1UYj9VZqrRmSG1");
+  })();
 
+  
 // --- Email ---
-const emailStatus = document.getElementById('email-status');
 
-document.getElementById('btn-send-summary').addEventListener('click', function(event) {
-  event.preventDefault();
-
-  const btn = this;
-  btn.disabled = true;
-
-  emailStatus.style.display = 'none';
-  emailStatus.textContent = '';
+document.getElementById('btn-send-summary').addEventListener('click', function () {
 
   const templateParams = {
     contact: contactInfoSmartIn.value || '-',
     addresses: addressInput.value || '-',
     project: projectDetails.value || '-',
     goals: [...document.querySelectorAll('.goal:checked')]
-      .map(g => g.parentElement.textContent.trim())
-      .join(', ') || '-',
+              .map(g => g.parentElement.textContent.trim())
+              .join(', ') || '-',
     themes: [...document.querySelectorAll('.theme:checked')]
-      .map(t => t.parentElement.textContent.trim())
-      .join(', ') || '-',
+              .map(t => t.parentElement.textContent.trim())
+              .join(', ') || '-',
     city: citySelect.value || '-'
   };
 
@@ -1355,33 +1334,14 @@ document.getElementById('btn-send-summary').addEventListener('click', function(e
     templateParams
   )
   .then(() => {
-    emailStatus.id = 'email-success';
-    emailStatus.textContent = translations[document.documentElement.lang]['email-success'];
-    emailStatus.style.color = '#2ecc71';
-    emailStatus.style.display = 'block';
-    btn.textContent = 'Envoyé';
-
-    // ✅ auto-hide après succès
-    setTimeout(() => {
-      emailStatus.style.display = 'none';
-    }, 5000);
+    alert('Message envoyé avec succès ✅');
   })
   .catch(err => {
     console.error('EmailJS error:', err);
-    emailStatus.id = 'email-error';
-    emailStatus.textContent = translations[document.documentElement.lang]['email-error'];
-    emailStatus.style.color = '#e74c3c';
-    emailStatus.style.display = 'block';
-    btn.disabled = false;
-
-    // ✅ auto-hide après erreur
-    setTimeout(() => {
-      emailStatus.style.display = 'none';
-    }, 5000);
+    alert('Erreur lors de l’envoi ❌');
   });
 });
-
-
+;
 
 
 
@@ -1516,10 +1476,7 @@ const translations = {
 "select-city-placeholder": "Sélectionner une ville",
 "city-brussels": "Bruxelles",
 
-"btn-send-summary": "Envoyer",
-
-    "email-success": "Message envoyé avec succès ✅",
-"email-error": "Erreur lors de l’envoi ❌ Veuillez réessayer."
+"btn-send-summary": "Envoyer"
 
 
  
@@ -1663,17 +1620,7 @@ const translations = {
 "select-city-placeholder":"Select a city",
 "city-brussels":"Brussels",
 
-"btn-send-summary":"Send",
-
-
-
-"email-success": "Message sent successfully ✅",
-"email-error": "Error while sending ❌ Please try again."
-
-
-
-
-    
+"btn-send-summary":"Send"
     
   }
 };
@@ -1684,13 +1631,6 @@ const translations = {
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
 
 
 
