@@ -1326,6 +1326,8 @@ document.getElementById('en-btn').addEventListener('click', () => {
   
 // --- Email ---
 
+// --- Email ---
+
 const emailStatus = document.getElementById('email-status');
 
 document.getElementById('btn-send-summary').addEventListener('click', function (event) {
@@ -1357,24 +1359,33 @@ document.getElementById('btn-send-summary').addEventListener('click', function (
   )
   .then(() => {
     emailStatus.id = 'email-success';
-    emailStatus.textContent = translations[document.documentElement.lang]['email-success'];
+    emailStatus.textContent =
+      translations[document.documentElement.lang]['email-success'];
     emailStatus.style.color = '#2ecc71';
     emailStatus.style.display = 'block';
     btn.textContent = 'Envoyé';
+
+    // ✅ auto-hide après succès
+    setTimeout(() => {
+      emailStatus.style.display = 'none';
+    }, 5000);
   })
   .catch(err => {
     console.error('EmailJS error:', err);
     emailStatus.id = 'email-error';
-    emailStatus.textContent = translations[document.documentElement.lang]['email-error'];
+    emailStatus.textContent =
+      translations[document.documentElement.lang]['email-error'];
     emailStatus.style.color = '#e74c3c';
     emailStatus.style.display = 'block';
     btn.disabled = false;
+
+    // ✅ auto-hide après erreur
+    setTimeout(() => {
+      emailStatus.style.display = 'none';
+    }, 5000);
   });
 });
 
-setTimeout(() => {
-  emailStatus.style.display = 'none';
-}, 5000);
 
 
 
@@ -1677,6 +1688,7 @@ const translations = {
 </script>
 </body>
 </html>
+
 
 
 
