@@ -818,17 +818,11 @@ Grâce à Smart-In, notre plateforme interne, nous exploitons une vaste base de 
 </div>
 
 
-<div id="email-status" style="margin-top:10px; font-size:14px;"></div>
-
-
-  
 <!-- Message pour mobile / tablette petite -->
 <div id="mobileMessage">
   Mobile version in development, please visit the website from your PC.
 </div>
 
-
-  
 
 <!-- 3D JS -->
 
@@ -1262,31 +1256,32 @@ function closeModal(id){
 
 
 // --- FONCTION CHANGEMENT LANGUE ---
-  
-function setLanguage(lang) {
+
+  function setLanguage(lang) {
   const dict = translations[lang];
   if (!dict) return;
 
   Object.keys(dict).forEach(id => {
     const el = document.getElementById(id);
     if (!el) return;
+
+    // Si la traduction contient du HTML (multilignes)
     if (el.dataset && el.dataset.html === "true") {
       el.innerHTML = dict[id];
-    } else {
+    } 
+    // Texte simple
+    else {
       el.textContent = dict[id];
     }
   });
 
-  // Mettre à jour le message EmailJS si visible
-  if(emailStatus.style.display === 'block' && emailStatus.dataset.status){
-    emailStatus.textContent = dict[`email-${emailStatus.dataset.status}`];
-  }
-
+  // État visuel FR / EN
   document.getElementById('fr-btn')?.classList.toggle('active', lang === 'fr');
   document.getElementById('en-btn')?.classList.toggle('active', lang === 'en');
+
+  // Attribut HTML <html lang="">
   document.documentElement.lang = lang;
 }
-
 
 
 
@@ -1318,41 +1313,35 @@ document.getElementById('en-btn').addEventListener('click', () => {
   
 // --- Email ---
 
-const emailStatus = document.getElementById('email-status');
-
-document.getElementById('btn-send-summary').addEventListener('click', function(event) {
-  event.preventDefault();
-
-  emailStatus.textContent = '';
-  emailStatus.style.display = 'none';
+document.getElementById('btn-send-summary').addEventListener('click', function () {
 
   const templateParams = {
     contact: contactInfoSmartIn.value || '-',
     addresses: addressInput.value || '-',
     project: projectDetails.value || '-',
     goals: [...document.querySelectorAll('.goal:checked')]
-      .map(g => g.parentElement.textContent.trim())
-      .join(', ') || '-',
+              .map(g => g.parentElement.textContent.trim())
+              .join(', ') || '-',
     themes: [...document.querySelectorAll('.theme:checked')]
-      .map(t => t.parentElement.textContent.trim())
-      .join(', ') || '-',
+              .map(t => t.parentElement.textContent.trim())
+              .join(', ') || '-',
     city: citySelect.value || '-'
   };
 
-emailjs.send('service_41z5e5b', 'template_9s39ygw', templateParams)
+  emailjs.send(
+    'service_41z5e5b',
+    'template_9s39ygw',
+    templateParams
+  )
   .then(() => {
-    emailStatus.dataset.status = 'success';
-    emailStatus.textContent = translations[document.documentElement.lang]['email-success'];
-    emailStatus.style.display = 'block';
+    alert('Succes ✅');
   })
   .catch(err => {
     console.error('EmailJS error:', err);
-    emailStatus.dataset.status = 'error';
-    emailStatus.textContent = translations[document.documentElement.lang]['email-error'];
-    emailStatus.style.display = 'block';
+    alert('Error ❌');
   });
-
 });
+;
 
 
 
@@ -1487,11 +1476,7 @@ const translations = {
 "select-city-placeholder": "Sélectionner une ville",
 "city-brussels": "Bruxelles",
 
-"btn-send-summary": "Envoyer",
-
-
-       "email-success": "Message envoyé avec succès ✅",
-    "email-error": "Erreur lors de l’envoi ❌"
+"btn-send-summary": "Envoyer"
 
 
  
@@ -1635,10 +1620,7 @@ const translations = {
 "select-city-placeholder":"Select a city",
 "city-brussels":"Brussels",
 
-"btn-send-summary":"Send",
-
-    "email-success": "Message sent successfully ✅",
-    "email-error": "Error sending message ❌"
+"btn-send-summary":"Send"
     
   }
 };
@@ -1649,9 +1631,6 @@ const translations = {
 </script>
 </body>
 </html>
-
-
-
 
 
 
