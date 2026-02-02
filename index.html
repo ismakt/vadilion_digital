@@ -826,12 +826,18 @@ Grâce à Smart-In, notre plateforme interne, nous exploitons une vaste base de 
 
 
 
+<!-- VantaDots -->
 
+<script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.dots.min.js"></script>
 
-
+<!-- 3D JS -->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.dots.min.js"></script>
+
+<!-- EmailJS -->
+
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
 
   
 <script>
@@ -1293,14 +1299,49 @@ document.getElementById('en-btn').addEventListener('click', () => {
 });
 
 
-// --- Mailto ---
 
-document.getElementById('btn-send-summary').addEventListener('click', function() {
-    const summary = document.getElementById('summaryContent').innerText;
-    const subject = encodeURIComponent('Résumé de mon analyse');
-    const body = encodeURIComponent(summary);
-    window.location.href = `mailto:tonemail@exemple.com?subject=${subject}&body=${body}`;
+  
+// --- EMAILJS ---
+
+
+// --- Function ---
+  
+  (function(){
+    emailjs.init("Y9G1UYj9VZqrRmSG1");
+  })();
+
+  
+// --- Email ---
+
+document.getElementById('btn-send-summary').addEventListener('click', function () {
+
+  const templateParams = {
+    contact: contactInfoSmartIn.value || '-',
+    addresses: addressInput.value || '-',
+    project: projectDetails.value || '-',
+    goals: [...document.querySelectorAll('.goal:checked')]
+              .map(g => g.parentElement.textContent.trim())
+              .join(', ') || '-',
+    themes: [...document.querySelectorAll('.theme:checked')]
+              .map(t => t.parentElement.textContent.trim())
+              .join(', ') || '-',
+    city: citySelect.value || '-'
+  };
+
+  emailjs.send(
+    'service_41z5e5b',
+    'template_9s39ygw',
+    templateParams
+  )
+  .then(() => {
+    alert('Message envoyé avec succès ✅');
+  })
+  .catch(err => {
+    console.error('EmailJS error:', err);
+    alert('Erreur lors de l’envoi ❌');
+  });
 });
+;
 
 
 
@@ -1590,6 +1631,7 @@ const translations = {
 </script>
 </body>
 </html>
+
 
 
 
