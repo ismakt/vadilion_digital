@@ -298,6 +298,22 @@ select option {
   line-height: 1.5;
 }
 
+.approach-box {
+    max-width: 600px;      /* largeur maximale du container */
+    min-width: 300px;      /* largeur minimale */
+  min-height: 300px;
+    width: 100%;           /* s'adapte à la largeur disponible */
+    padding: 15px;         /* espace interne */
+    box-sizing: border-box; /* inclut padding et border dans la largeur totale */
+    overflow-wrap: break-word; /* casse les mots trop longs pour éviter le débordement */
+    border: 1px solid #ccc; /* optionnel : pour visualiser le container */
+    border-radius: 8px;     /* optionnel : coins arrondis */
+}
+
+
+
+  
+
 /* Mobile / tablet small screens */
 @media (max-width: 768px) {
   /* Affiche le message */
@@ -456,9 +472,9 @@ Grâce à Smart-In, notre plateforme interne, nous exploitons une vaste base de 
 
 
 
-        <div class="summary-box">
-  <h4 id="summary-title">Notre approche</h4>
-  <div id="summaryContent">3 steps approach: 1. Nous écoutons attentivement votre demande, 2. Nous revenons vers vous dans les plus bréfs délais avec un plan précis (deliverables & time), 3. Execution </div>
+        <div class="approach-box">
+  <h4 id="approach-title">Notre approche</h4>
+  <div id="approach-content">3 steps approach: 1. Nous écoutons attentivement votre demande, 2. Nous revenons vers vous dans les plus bréfs délais avec un plan précis (deliverables & time), 3. Execution </div>
 </div>
 
         <label id="contactInfo-label">Coordonnées de contact</label>
@@ -1642,6 +1658,7 @@ const translations = {
 </script>
 </body>
 </html>
+
 
 
 
