@@ -68,7 +68,7 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
   flex:1;
   display:flex;
   flex-direction:column;
-  gap:10px;
+  gap:6px;
   overflow-y:auto;
   padding: 10px; /* <-- ajoute de l'espace pour ne pas coller aux bords */
 
@@ -91,6 +91,7 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
   margin-top:10px;
   flex:1;
   overflow-y:auto;
+ min-height: 100px;
 }
 
 
@@ -125,10 +126,6 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
   box-sizing: border-box;
 }
 
-
-
-
-  
 
 /* Tout le label reste flex vertical/espacé */
 .themes {
@@ -229,7 +226,7 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 /* Styles généraux pour uniformiser tous les champs */
 label {
   display: block;          /* chaque label sur sa ligne */
-  margin-bottom: 0.3em;   /* espace avant le champ */
+  margin-bottom: 0.15em;   /* espace avant le champ */
   font-weight: 500;
 }
 
@@ -264,7 +261,7 @@ select option {
 
   
   .form-group {
-  margin-bottom: 0.5em; /* espace entre chaque bloc */
+  margin-bottom: 0.25em; /* espace entre chaque bloc */
 }
 
 #citySelect {
@@ -482,9 +479,7 @@ Grâce à Smart-In, notre plateforme interne, nous exploitons une vaste base de 
 
 <div class="approach-box">
   <h4 id="approach-title">Notre approche</h4>
-  <div id="approach-content">1. Écoute attentive
-2. Plan d'action précis
-3. Exécution</div>
+  <div id="approach-content">1. Écoute attentive 2. Plan d'action précis 3. Exécution</div>
 </div>
 
 
@@ -1441,6 +1436,7 @@ const translations = {
 </script>
 </body>
 </html>
+
 
 
 
