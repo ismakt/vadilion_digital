@@ -803,42 +803,46 @@ goalCheckboxes.forEach(cb => {
 
   
   
-  // --- Summary Update Function ---
+/* --- SUMMARY UPDATE FUNCTION --- */
+function updateSummary() {
 
-  function updateSummary(){
-
-  const contact = contactInfoSmartIn.value;
-  const addresses = addressInput.value;
-  const project = projectDetails.value;
-
-
+  const contact = document.getElementById('contactInfoSmartIn')?.value || '';
+  const addresses = document.getElementById('addressInput')?.value || '';
+  const project = document.getElementById('projectDetails')?.value || '';
+  const city = document.getElementById('citySelect')?.value || '';
 
   const goals = [...document.querySelectorAll('.goal:checked')]
-    .filter(t => t.id !== 'selectAllGoals')
-    .map(t => t.parentElement.textContent.trim());
-    
-    
+    .map(g => g.parentElement.innerText.trim());
+
   const themes = [...document.querySelectorAll('.theme:checked')]
-    .filter(t => t.id !== 'selectAllThemes')
-    .map(t => t.parentElement.textContent.trim());
+    .map(t => t.parentElement.innerText.trim());
 
-  const city = citySelect.value;
-
- 
-  summaryContent.innerHTML = `
-    <b>Contact info:</b> ${contact || '-'}<br>
-    <b>Addresses:</b> ${addresses || '-'}<br>
-    <b>About your project:</b> ${project || '-'}<br>
-    <b>Main goals:</b> ${goals.join(', ') || '-'}<br>
-    <b>Themes:</b> ${themes.join(', ') || '-'}<br>
-    <b>City:</b> ${city || '-'}<br>
+  document.getElementById('summaryContent').innerHTML = `
+    <b>Coordonnées :</b> ${contact || '-'}<br>
+    <b>Adresse(s) :</b> ${addresses || '-'}<br>
+    <b>Description du projet :</b> ${project || '-'}<br>
+    <b>Objectif(s) principal(aux) :</b> ${goals.length ? goals.join(', ') : '-'}<br>
+    <b>Thèmes sélectionnés :</b> ${themes.length ? themes.join(', ') : '-'}<br>
+    <b>Ville :</b> ${city || '-'}
   `;
 }
 
+/* --- LISTENERS --- */
+[
+  'contactInfoSmartIn',
+  'addressInput',
+  'projectDetails',
+  'citySelect'
+].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) el.addEventListener('input', updateSummary);
+});
 
-  ['contactInfoSmartIn', 'addressInput', 'projectDetails', 'citySelect']
-.forEach(id => document.getElementById(id).addEventListener('input', updateSummary));
-
+/* --- CHECKBOX LISTENERS --- */
+document.querySelectorAll('.goal, .theme').forEach(cb => {
+  cb.addEventListener('change', updateSummary);
+});
+</script>
 
 
   
@@ -1446,6 +1450,7 @@ const translations = {
 </script>
 </body>
 </html>
+
 
 
 
