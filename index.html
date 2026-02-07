@@ -755,48 +755,49 @@ const selectAllGoals = document.getElementById('selectAllGoals');
 
 
 
-// THEMES
-
+// --- THEMES ---
 const selectAllThemesCheckbox = document.getElementById('selectAllThemesCheckbox');
 const themeCheckboxes = document.querySelectorAll('.theme');
 
-// Select All Themes → coche toutes les themes
-selectAllThemesCheckbox.addEventListener('change', () => {
-  themeCheckboxes.forEach(cb => cb.checked = selectAllThemesCheckbox.checked);
-  updateSummary();
-});
+if (selectAllThemesCheckbox) {
+  selectAllThemesCheckbox.addEventListener('change', () => {
+    themeCheckboxes.forEach(cb => cb.checked = selectAllThemesCheckbox.checked);
+    updateSummary();
+  });
+}
 
-// Si un theme individuel change → met à jour Select All
 themeCheckboxes.forEach(cb => {
-  if(!cb.id){ // ignore le checkbox SelectAll
-    cb.addEventListener('change', () => {
-      const allChecked = [...themeCheckboxes].every(t => t.checked);
-      selectAllThemesCheckbox.checked = allChecked;
-      updateSummary();
-    });
-  }
-});
-
-
-const selectAllGoalsCheckbox = document.getElementById('selectAllGoalsCheckbox');
-const goalCheckboxes = document.querySelectorAll('.goal');
-
-// --- GOALS ---
-
-// Select all goals → coche toutes les goals
-selectAllGoalsCheckbox.addEventListener('change', () => {
-  goalCheckboxes.forEach(cb => cb.checked = selectAllGoalsCheckbox.checked);
-  updateSummary();
-});
-
-// Si une goal change → met à jour Select All
-goalCheckboxes.forEach(cb => {
   cb.addEventListener('change', () => {
-    const allChecked = [...goalCheckboxes].every(g => g.checked);
-    selectAllGoalsCheckbox.checked = allChecked;
+    if (selectAllThemesCheckbox) {
+      selectAllThemesCheckbox.checked =
+        [...themeCheckboxes].every(t => t.checked);
+    }
     updateSummary();
   });
 });
+
+
+// --- GOALS ---
+const selectAllGoalsCheckbox = document.getElementById('selectAllGoalsCheckbox');
+const goalCheckboxes = document.querySelectorAll('.goal');
+
+if (selectAllGoalsCheckbox) {
+  selectAllGoalsCheckbox.addEventListener('change', () => {
+    goalCheckboxes.forEach(cb => cb.checked = selectAllGoalsCheckbox.checked);
+    updateSummary();
+  });
+}
+
+goalCheckboxes.forEach(cb => {
+  cb.addEventListener('change', () => {
+    if (selectAllGoalsCheckbox) {
+      selectAllGoalsCheckbox.checked =
+        [...goalCheckboxes].every(g => g.checked);
+    }
+    updateSummary();
+  });
+});
+
 
 
 
@@ -1449,6 +1450,7 @@ const translations = {
 </script>
 </body>
 </html>
+
 
 
 
