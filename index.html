@@ -331,6 +331,17 @@ select option {
 }
 
 
+  .box-container {
+  border: 1px solid var(--border);
+  padding: 12px;
+  margin-top: 10px;
+  flex: 1;
+  overflow-y: auto;
+  min-height: 120px;
+  background: transparent;
+}
+
+
 /* Mobile / tablet small screens */
 @media (max-width: 768px) {
   /* Affiche le message */
@@ -490,7 +501,7 @@ select option {
       <div class="smartin-left">
 
 
-<div class="approach-box">
+<div class="box-container">
   <h4 id="approach-title">Notre approche</h4>
   <div id="approach-content">1. Comprendre le besoin. 
 2. Définir une stratégie claire.
@@ -499,12 +510,13 @@ select option {
 
 
 
-        
+
+
 
 <label id="maingoal-label">Objectif principal de l'étude</label>
 
 
-<div class="selectgoals">
+<div class="box-container">
 
 
 
@@ -544,7 +556,7 @@ select option {
     
 
 <label id="theme-label">Thèmes à étudier</label>
-<div class="themes">
+<div class="box-container">
 
 
 
@@ -1455,6 +1467,7 @@ const translations = {
 </script>
 </body>
 </html>
+
 
 
 
