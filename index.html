@@ -52,14 +52,25 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
    text-decoration: none; font-weight: 400; font-size: 12px; border-radius: 6px; transition: color 0.3s, background 0.3s; border: none; cursor: pointer; }
 
 .btn-send-summary {
+  display: inline-block; 
+  margin-top: 12px; 
+  padding: 8px 16px; 
+  background-color: #555; 
+  color: #fff; 
+  text-decoration: none; 
+  font-weight: 400; 
+  font-size: 12px; 
+  border-radius: 6px; 
+  transition: color 0.3s, background 0.3s; 
+  border: none; 
+  cursor: pointer;
+
   position: sticky;       /* reste visible même en scrollant */
   bottom: 0;              /* collé au bas du container */
   align-self: flex-end;   /* aligné à droite */
   z-index: 10;            /* pour éviter d’être caché */
-  
- display: inline-block; margin-top: 12px; padding: 8px 16px; background-color: #555; color: #fff; 
-   text-decoration: none; font-weight: 400; font-size: 12px; border-radius: 6px; transition: color 0.3s, background 0.3s; border: none; cursor: pointer;
 }
+
 
 
 
@@ -1570,6 +1581,7 @@ const translations = {
 </script>
 </body>
 </html>
+
 
 
 
