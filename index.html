@@ -38,7 +38,7 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 .modal-content input, .modal-content textarea{ width:100%; margin-bottom:10px; background:#000; border:1px solid var(--border); color:#fff; padding:8px; }
 .close{ position:absolute; top:8px; right:10px; cursor:pointer; }
 /* BUTTONS */
-.btn-linkedin, .btn-instagram, .btn-send, .btn-video, .btn-smartin
+.btn-linkedin, .btn-instagram,  .btn-video, .btn-smartin
   { display: inline-block; margin-top: 12px; padding: 8px 16px; background-color: #555; color: #fff; 
    text-decoration: none; font-weight: 400; font-size: 12px; border-radius: 6px; transition: color 0.3s, background 0.3s; border: none; cursor: pointer; }
 .blur-background { filter: blur(1px); }
@@ -47,8 +47,28 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 .brand .logo { position: absolute; top: 20px; left: 0; width: 160px; height: auto; border-radius: 0; z-index: 0; }
 
 
-  
 
+
+#btn-send {
+  position: sticky;       /* reste visible même en scrollant */
+  bottom: 0;              /* collé au bas du container */
+  align-self: flex-end;   /* aligné à droite */
+  margin-top: 8px;        /* espace au-dessus */
+  z-index: 10;            /* pour éviter d’être caché */
+  background-color: #555; /* garde ton style actuel */
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: 400;
+  font-size: 12px;
+  transition: color 0.3s, background 0.3s;
+}
+
+
+
+  
 .modal-smartin-content{
   width:95%;
   max-width:1200px;
@@ -85,13 +105,43 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
   color:var(--muted);
 }
 
+
+
+
+
+
+  
+.summary-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 100%;          /* occupe tout l’espace vertical disponible */
+  position: relative;     /* pour permettre le positionnement absolu du bouton */
+}
+
 .summary-box {
   border: 1px solid var(--border);
   padding: 12px;
-  margin-top: 10px;
-  overflow-y: auto; /* si tu veux garder le scroll si le contenu dépasse */
-  flex: 0 0 auto;   /* pour que le container ne force pas une taille égale à ses frères */
+  overflow-y: auto;       /* scroll si contenu trop grand */
+  max-height: 300px;      /* limite la taille avant scroll */
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
 
 
 .mapPreview {
@@ -1524,6 +1574,7 @@ const translations = {
 </script>
 </body>
 </html>
+
 
 
 
