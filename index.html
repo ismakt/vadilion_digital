@@ -326,7 +326,10 @@ select option {
 }
 
 
-  
+  #about-text {
+  white-space: pre-wrap;
+}
+
 
 /* Mobile / tablet small screens */
 @media (max-width: 768px) {
@@ -388,7 +391,8 @@ select option {
 
 <div class="panel" id="about">
   <div id="about-text" style="text-align: left;">
-    <p>Nous développons des solutions digitales uniques, répondant à des besoins concrets, à partir de données à forte valeur ajoutée.</p>
+    <p>Nous développons des solutions digitales uniques, 
+      répondant à des besoins concrets, à partir de données à forte valeur ajoutée.</p>
   </div>
 </div>
 
@@ -1156,7 +1160,7 @@ document.getElementById('btn-send-summary').addEventListener('click', function (
   
 const translations = {
   fr: {
-    "about-text": "Nous développons des solutions digitales uniques, répondant à des besoins concrets, à partir de données à forte valeur ajoutée.",
+    "about-text": "Nous développons des solutions digitales uniques,\n\nrépondant à des besoins concrets, à partir de données à forte valeur ajoutée.",
     "menu-about": "À PROPOS",
     "locationBtn": "SMART-IN",
  
@@ -1293,7 +1297,7 @@ const translations = {
 
   
   en: {
-    "about-text": "We build proprietary solutions to solve real-world challenges using high-value data.",
+    "about-text": "We build proprietary solutions to solve real-world\n\nchallenges using high-value data.",
     "menu-about": "ABOUT",
     "locationBtn": "SMART-IN",
 
@@ -1437,6 +1441,7 @@ const translations = {
 </script>
 </body>
 </html>
+
 
 
 
