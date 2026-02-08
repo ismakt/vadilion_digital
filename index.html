@@ -49,7 +49,7 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 
 .btn-discover
   { display: inline-block; margin-top: 12px; padding: 8px 16px; background-color: #555; color: #fff; 
-   text-decoration: none; font-weight: 400; font-size: 12px; border-radius: 6px; transition: color 0.3s, background 0.3s; border: none; cursor: pointer; width:80% }
+   text-decoration: none; font-weight: 400; font-size: 12px; border-radius: 6px; transition: color 0.3s, background 0.3s; border: none; cursor: pointer; width:60% }
 
 
 
@@ -137,25 +137,7 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
   z-index: 10;            /* toujours au-dessus */
 }
 
-  .btn-send-contact {
-  display: inline-block; 
-  margin-top: 12px; 
-  padding: 8px 16px; 
-  background-color: #555; 
-  color: #fff;           /* texte blanc */
-  font-weight: 400; 
-  font-size: 12px; 
-  border-radius: 6px; 
-  transition: color 0.3s, background 0.3s; 
-  border: none; 
-  cursor: pointer;
-
-  position: sticky;       /* reste visible même en scrollant */
-  bottom: 0;              /* collé au bas du container */
-  width: 80%;            /* prend toute la largeur */
-  text-align: center;     /* centre le texte */
-  z-index: 10;            /* toujours au-dessus */
-}
+  
 
 
 
@@ -589,7 +571,7 @@ répondant à des besoins concrets, à partir de données à forte valeur ajout�
     <input id="contact-name" placeholder="Nom" required>
     <input id="contact-info" placeholder="Coordonnées de contact" required>
     <textarea id="contact-message" placeholder="Comment pouvons nous vous aider?" maxlength="999" required></textarea>
-    <button id="btn-send" class="btn-send-contact">Envoyer</button>
+    <button id="btn-send" class="btn-send-summary">Envoyer</button>
   </div>
 </div>
 <div class="modal" id="mediaModal">
@@ -1606,6 +1588,7 @@ const translations = {
 </script>
 </body>
 </html>
+
 
 
 
