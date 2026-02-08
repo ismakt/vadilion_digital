@@ -391,6 +391,63 @@ select option {
 
 
 
+
+
+
+
+
+
+
+
+
+  .smartin-right {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 100%; /* occupe tout l’espace vertical disponible */
+}
+
+.smartin-right input,
+.smartin-right select,
+.smartin-right textarea {
+  width: 100%;
+  padding: 0.5em;
+  box-sizing: border-box;
+  background-color: #000;
+  border: 1px solid var(--border);
+  color: #fff;
+}
+
+.summary-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1 1 auto;   /* prend l’espace restant */
+  overflow: hidden; /* scroll interne à summary-box si nécessaire */
+}
+
+.summary-box {
+  border: 1px solid var(--border);
+  padding: 12px;
+  overflow-y: auto; /* scroll si trop de contenu */
+  flex: 1 1 auto;
+  min-height: 60px; /* hauteur initiale */
+}
+
+#btn-send-summary {
+  flex-shrink: 0;       /* le bouton reste visible */
+  align-self: flex-end; /* bouton aligné à droite */
+}
+
+
+
+
+
+
+
+  
+
+
   
 
 /* Mobile / tablet small screens */
@@ -645,58 +702,46 @@ répondant à des besoins concrets, à partir de données à forte valeur ajout�
 
       </div>
 
-      <!-- RIGHT -->
-      <div class="smartin-right">
+     <!-- RIGHT -->
+<div class="smartin-right">
 
-<label id="contactInfo-label">Coordonnées de contact</label>
-<input id="contactInfoSmartIn" placeholder="email / mobile">
-        
+  <!-- Coordonnées de contact -->
+  <label id="contactInfo-label">Coordonnées de contact</label>
+  <input id="contactInfoSmartIn" type="text" placeholder="email / mobile">
 
-<div class="form-group">
-  <label id="select-city-label">Sélectionnez une ville</label>
-  <select id="citySelect">
-    <option value="">Sélectionner une ville</option>
-    <option value="Brussels">Bruxelles</option>
-  </select>
-</div>
-
-<div class="form-group">
-  <label id="address-label">Adresse à analyser</label>
-  <input id="addressInput" placeholder="Maximum 3 adresses séparés par une virgule">
-</div>
-
-  
-       
-
-<label id="project-description">Description du projet</label>
-<textarea id="projectDetails" rows="10" placeholder="Donnez un maximum d'information utilse afin que nos équipes puisses vous proposer la meilleure solution possible"></textarea>
-
-
-
-        
-<div class="summary-box">
-  <h4 id="summary-title">Résumé</h4>
-  <div id="summaryContent">En attente...</div>
-</div>
-
-
-</select>
-
-
-<div id="mapPreview" class="mapPreview"></div>
-
-
-
-
-
-        <button id="btn-send-summary" class="btn-send" onclick="sendSmartIn()">Envoyer</button>
-
-
-      </div>
-
-    </div>
+  <!-- Sélection de la ville -->
+  <div class="form-group">
+    <label id="select-city-label">Sélectionnez une ville</label>
+    <select id="citySelect">
+      <option value="">Sélectionner une ville</option>
+      <option value="Brussels">Bruxelles</option>
+    </select>
   </div>
+
+  <!-- Adresse à analyser -->
+  <div class="form-group">
+    <label id="address-label">Adresse à analyser</label>
+    <input id="addressInput" type="text" placeholder="Maximum 3 adresses séparés par une virgule">
+  </div>
+
+  <!-- Description du projet -->
+  <label id="project-description">Description du projet</label>
+  <textarea id="projectDetails" rows="6" placeholder="Donnez un maximum d'informations utiles afin que nos équipes puissent vous proposer la meilleure solution possible"></textarea>
+
+  <!-- Wrapper résumé + bouton -->
+  <div class="summary-wrapper">
+    <div class="summary-box">
+      <h4 id="summary-title">Résumé</h4>
+      <div id="summaryContent">En attente...</div>
+    </div>
+    <button id="btn-send-summary" class="btn-send" onclick="sendSmartIn()">Envoyer</button>
+  </div>
+
+  <!-- Aperçu de la carte -->
+  <div id="mapPreview" class="mapPreview"></div>
+
 </div>
+
 
 
 <!-- Message pour mobile / tablette petite -->
@@ -1517,6 +1562,7 @@ const translations = {
 </script>
 </body>
 </html>
+
 
 
 
