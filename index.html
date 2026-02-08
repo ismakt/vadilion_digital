@@ -47,23 +47,18 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 .brand .logo { position: absolute; top: 20px; left: 0; width: 160px; height: auto; border-radius: 0; z-index: 0; }
 
 
-
+.btn-discover
+  { display: inline-block; margin-top: 12px; padding: 8px 16px; background-color: #555; color: #fff; 
+   text-decoration: none; font-weight: 400; font-size: 12px; border-radius: 6px; transition: color 0.3s, background 0.3s; border: none; cursor: pointer; }
 
 .btn-send-summary {
   position: sticky;       /* reste visible même en scrollant */
   bottom: 0;              /* collé au bas du container */
   align-self: flex-end;   /* aligné à droite */
-  margin-top: 8px;        /* espace au-dessus */
   z-index: 10;            /* pour éviter d’être caché */
-  background-color: #555; /* garde ton style actuel */
-  color: #fff;
-  padding: 8px 16px;
-  border-radius: 6px;
-  border: none;
-  cursor: pointer;
-  font-weight: 400;
-  font-size: 12px;
-  transition: color 0.3s, background 0.3s;
+  
+ display: inline-block; margin-top: 12px; padding: 8px 16px; background-color: #555; color: #fff; 
+   text-decoration: none; font-weight: 400; font-size: 12px; border-radius: 6px; transition: color 0.3s, background 0.3s; border: none; cursor: pointer;
 }
 
 
@@ -531,7 +526,7 @@ répondant à des besoins concrets, à partir de données à forte valeur ajout�
         
 
         <div class="btn-flex" style="margin-top:20px; display:flex; justify-content:center; gap:12px;">
-          <button id="discoverSmartIn" class="btn-send">Découvrir Smart-In</button>
+          <button id="discoverSmartIn" class="btn-discover">Découvrir Smart-In</button>
          <!-- <button id="presentationSmartIn" class="btn-video">Video</button>-->
         </div>
       </div>
@@ -1575,6 +1570,7 @@ const translations = {
 </script>
 </body>
 </html>
+
 
 
 
