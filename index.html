@@ -49,129 +49,96 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 
   
 
-:root {
-  --bg: #000000;
-  --overlay: rgba(0,0,0,0.85);
-  --panel: #0e0e0e;
-  --panel-2: #151515;
-  --border: #2a2a2a;
-  --gold: #c9a24d;
-  --text: #ffffff;
-  --muted: #b5b5b5;
+.modal-smartin-content{
+  width:95%;
+  max-width:1200px;
+  height:90vh;
+  display:flex;
+  flex-direction:column;
 }
 
-* {
-  box-sizing: border-box;
-  border-radius: 16px;
-  margin: 0;
-  padding: 0;
-  font-family: Arial, Helvetica, sans-serif;
+.smartin-layout{
+  display:flex;
+  gap:20px;
+  flex:1;
+  overflow:hidden;
 }
 
-body {
-  background: var(--bg);
-  color: var(--text);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+.smartin-left, .smartin-right{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  overflow-y:auto;
+  padding: 10px; /* <-- ajoute de l'espace pour ne pas coller aux bords */
+
+
 }
 
-/* === MODAL SMART-IN === */
-.modal-smartin-content {
-  width: 95%;
-  max-width: 1200px;
-  height: 90vh;
-  display: flex;
-  flex-direction: column;
-}
 
-.smartin-layout {
-  display: flex;
-  gap: 20px;
-  flex: 1;
-  overflow: hidden;
-}
-
-.smartin-left, .smartin-right {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: 10px;
-  overflow-y: auto;
-}
-
-/* Champs texte, select et textarea */
-.smartin-right input,
-.smartin-right select,
-.smartin-right textarea {
-  width: 100%;
-  padding: 0.5em;
-  box-sizing: border-box;
-  background-color: #000;
-  border: 1px solid var(--border);
-  color: #fff;
-  margin-bottom: 4px;
-}
-
-#projectDetails {
-  flex: 1;
-  min-height: 100px;
-  resize: vertical;
-}
-
-/* === SUMMARY BOX + BOUTON === */
-.summary-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  flex: 1 1 auto;      /* prend tout l’espace restant de la colonne */
-  overflow: hidden;
+.map-mock{
+  height:180px;
+  border:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--muted);
 }
 
 .summary-box {
   border: 1px solid var(--border);
   padding: 12px;
-  flex: 1 1 auto;      /* grandit avec le contenu */
-  overflow-y: auto;    /* scroll si contenu trop grand */
-  min-height: 60px;    /* hauteur initiale */
+  margin-top: 10px;
+  overflow-y: auto; /* si tu veux garder le scroll si le contenu dépasse */
+  flex: 0 0 auto;   /* pour que le container ne force pas une taille égale à ses frères */
 }
 
-#btn-send-summary {
-  flex-shrink: 0;       /* le bouton reste visible */
-  align-self: flex-end; /* aligné à droite */
-}
 
-/* === CHECKBOXES === */
-.box-container {
-  border: 1px solid var(--border);
-  padding: 12px;
-  margin-top: 4px;
-  background: transparent;
-}
-
-.box-container label {
+.mapPreview {
+  width: 220px;      /* largeur du SVG (carte) */
+  height: 220px;     /* hauteur du SVG */
+  border: none ;
+  margin: 12px auto; /* centre le conteneur */
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 6px;
+  justify-content: center;
+  padding: 7px;     /* <-- espace autour du SVG */
+  box-sizing: content-box; /* padding ajouté autour du contenu */
+}
+
+
+.smartin-left {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 10px;
+  flex: 1;
+  min-height: 300px;      /* hauteur minimum de la colonne */
+  overflow-y: auto;        /* scroll si trop de contenu */
+}
+
+#projectDetails {
+  flex: 1;                 /* prend tout l’espace restant de la colonne */
+  min-height: 100px;       /* hauteur minimum */
+  resize: vertical;        /* permet d’agrandir verticalement */
+  width: 100%;
+  box-sizing: border-box;
+    margin-top: 4px;
+
+}
+
+
+/* Tout le label reste flex vertical/espacé */
+.themes {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
   cursor: pointer;
 }
 
-.box-container input[type="checkbox"] {
-  width: 16px;
-  height: 16px;
-  margin: 0;
-  padding: 0;
-  flex-shrink: 0;
-}
 
-.box-container span {
-  display: inline-block;
-  line-height: 1.4;
-}
 
-/* TITRES ET SOUS-TITRES */
+  
 .theme-subtitle {
   font-weight: 400;
   font-size: 0.95rem;
@@ -182,15 +149,49 @@ body {
   letter-spacing: 0.03em;
 }
 
-/* === CHECKBOX + TEXTE HORIZONTAL === */
-.themes label,
+
+  
+/* Chaque label : alignement horizontal checkbox + texte */
+.themes label {
+  display: flex;
+  align-items: center;   /* centre checkbox et texte verticalement */
+  gap: 8px;              /* espace entre la checkbox et le texte */
+
+}
+
+/* Cibler uniquement les checkboxes */
+.themes input[type="checkbox"] {
+  width: 18px;      /* largeur de la checkbox */
+  height: 18px;     /* hauteur de la checkbox */
+  accent-color: var(--gold); /* couleur de la coche si navigateur le supporte */
+  flex-shrink: 0;   /* ne pas rétrécir */
+}
+
+
+
+
+
+
+#discoverSmartIn:hover {
+  background-color: var(--gold);
+  color: #000;
+}
+
+
+
+/* Harmonisation Goals / Themes */
+.selectgoals {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
 .selectgoals label {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.themes input[type="checkbox"],
 .selectgoals input[type="checkbox"] {
   width: 18px;
   height: 18px;
@@ -198,53 +199,249 @@ body {
   flex-shrink: 0;
 }
 
-/* Harmonisation goals / themes */
-.selectgoals {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+  .selectgoals {
   padding-bottom: 12px;
   border-bottom: 1px solid var(--border);
   margin-bottom: 12px;
 }
 
-/* Survol des boutons */
-#discoverSmartIn:hover,
-#locationBtn:hover {
+
+/* SMART-IN active / hover state */
+#locationBtn:hover{
   background-color: var(--gold);
-  color: #000;
+  color: #000
 }
 
-/* Texte avec retours à la ligne */
-#locationContentInnerText,
-#offices-list,
-#approach-content,
-#about-text {
-  white-space: pre-wrap;
+
+
+  #locationContentInnerText {
+    white-space: pre-line; /* interprète \n et \n\n comme retours à la ligne */
+    line-height: 1.6;
+}
+
+  #offices-list {
+  white-space: pre-line; /* interprète \n et \n\n comme retours à la ligne */
   line-height: 1.6;
 }
 
-/* MAP MOCK & PREVIEW */
-.map-mock {
-  height: 180px;
-  border: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--muted);
+  
+/* Styles généraux pour uniformiser tous les champs */
+label {
+  display: block;          /* chaque label sur sa ligne */
+  margin-bottom: 0.15em;   /* espace avant le champ */
+  font-weight: 500;
 }
 
-.mapPreview {
-  width: 220px;
-  height: 220px;
-  border: none;
-  margin: 12px auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 7px;
-  box-sizing: content-box;
+/* Inputs texte, email, textarea et select */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea,
+select {
+  display: block;
+  width: 100%;
+  padding: 0.5em;
+  box-sizing: border-box;
+  line-height: 1.4;
+  vertical-align: middle;
 }
+
+/* Inputs checkbox et radio */
+input[type="checkbox"],
+input[type="radio"] {
+  display: inline-block;   /* pas de largeur forcée */
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  flex-shrink: 0;          /* utile si label en flex */
+}
+
+
+  /* Optionnel : alignement du placeholder */
+input::placeholder {
+  color: #aaa;
+  opacity: 1;              /* pour Chrome */
+}
+
+
+  
+select {
+  background-color: #000;
+  color: #fff;
+  border: 1px solid #333;
+}
+
+select option {
+  background-color: #000;
+  color: #fff;
+}
+
+  
+  .form-group {
+  margin-bottom: 0.25em; /* espace entre chaque bloc */
+}
+
+#citySelect {
+  background-color: #000;  /* noir comme tes autres cellules */
+  color: #fff;             /* texte en blanc */
+  padding: 0.5em;
+  border: 1px solid #333;  /* optionnel : bordure */
+}
+
+#citySelect option {
+  background-color: #000;  /* fond noir aussi pour toutes les options */
+  color: #fff;             /* texte blanc */
+}
+
+  #select-city-placeholder {
+  color: #888;  /* gris clair */
+}
+
+
+  .smartin-right input,
+.smartin-right textarea,
+.smartin-right select{
+  margin-bottom: 4px;
+}
+
+
+
+/* Par défaut, le message est caché */
+#mobileMessage {
+  display: none;
+  text-align: center;
+  color: var(--text);
+  background-color: var(--panel);
+  border: 1px solid var(--border);
+  padding: 20px;
+  max-width: 500px;
+  border-radius: 12px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.approach-box {
+  max-width: 600px;
+  min-width: 300px;
+  width: 100%;
+
+  padding: 15px;
+  box-sizing: border-box;
+
+  overflow-wrap: break-word;
+
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+
+
+  #approach-content {
+  white-space: pre-wrap;
+}
+
+
+  #about-text {
+  white-space: pre-wrap;
+}
+
+
+
+
+.box-container {
+  border: 1px solid var(--border);
+  padding: 12px;
+  margin-top: 4px;
+  background: transparent;
+}
+
+
+
+/* === FIX ALIGNEMENT CHECKBOX + TEXTE === */
+
+/* Conteneurs de checkboxes */
+.box-container label {
+  display: flex;            /* override du display:block global */
+  align-items: center;      /* alignement vertical parfait */
+  gap: 8px;
+  margin-bottom: 6px;
+  cursor: pointer;
+}
+
+/* Checkbox : taille fixe, pas de largeur forcée */
+.box-container input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+/* Texte : reste bien aligné même sur plusieurs lignes */
+.box-container span {
+  display: inline-block;
+  line-height: 1.4;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  .smartin-right {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 100%; /* occupe tout l’espace vertical disponible */
+}
+
+.smartin-right input,
+.smartin-right select,
+.smartin-right textarea {
+  width: 100%;
+  padding: 0.5em;
+  box-sizing: border-box;
+  background-color: #000;
+  border: 1px solid var(--border);
+  color: #fff;
+}
+
+.summary-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1 1 auto;   /* prend l’espace restant */
+  overflow: hidden; /* scroll interne à summary-box si nécessaire */
+}
+
+.summary-box {
+  border: 1px solid var(--border);
+  padding: 12px;
+  overflow-y: auto; /* scroll si trop de contenu */
+  flex: 1 1 auto;
+  min-height: 60px; /* hauteur initiale */
+}
+
+#btn-send-summary {
+  flex-shrink: 0;       /* le bouton reste visible */
+  align-self: flex-end; /* bouton aligné à droite */
+}
+
+
+
+
 
 
 
@@ -1365,8 +1562,6 @@ const translations = {
 </script>
 </body>
 </html>
-
-
 
 
 
