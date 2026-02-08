@@ -232,13 +232,29 @@ label {
   font-weight: 500;
 }
 
-input, select {
+/* Inputs texte, email, textarea et select */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea,
+select {
   display: block;
-  width: 100%;             /* remplir la largeur du conteneur */
-  padding: 0.5em;          /* espace interne uniforme */
-  box-sizing: border-box;  /* padding inclus dans la largeur */
-  line-height: 1.4;        /* aligne le texte verticalement */
-  vertical-align: middle;  /* utile pour select */
+  width: 100%;
+  padding: 0.5em;
+  box-sizing: border-box;
+  line-height: 1.4;
+  vertical-align: middle;
+}
+
+/* Inputs checkbox et radio */
+input[type="checkbox"],
+input[type="radio"] {
+  display: inline-block;   /* pas de largeur forcée */
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  flex-shrink: 0;          /* utile si label en flex */
 }
 
 
@@ -339,6 +355,45 @@ select option {
   margin-top: 10px;
   background: transparent;
 }
+
+
+
+/* === FIX ALIGNEMENT CHECKBOX + TEXTE === */
+
+/* Conteneurs de checkboxes */
+.box-container label {
+  display: flex;            /* override du display:block global */
+  align-items: center;      /* alignement vertical parfait */
+  gap: 8px;
+  margin-bottom: 6px;
+  cursor: pointer;
+}
+
+/* Checkbox : taille fixe, pas de largeur forcée */
+.box-container input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+/* Texte : reste bien aligné même sur plusieurs lignes */
+.box-container span {
+  display: inline-block;
+  line-height: 1.4;
+}
+
+
+
+
+
+
+
+
+
+
+  
 
 /* Mobile / tablet small screens */
 @media (max-width: 768px) {
@@ -1465,6 +1520,7 @@ const translations = {
 </script>
 </body>
 </html>
+
 
 
 
