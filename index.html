@@ -722,15 +722,16 @@ Nous analysons notamment l’adéquation du projet avec son environnement socio-
 
       </div>
 
+      
       <!-- RIGHT -->
+
       <div class="smartin-right">
 
-<label id="contactInfo-label">Coordonnées de contact</label>
-<input id="contactInfoSmartIn" placeholder="email / mobile">
+  <!-- 🔹 CONTAINER : Projet -->
+  <div class="box-container">
         
-
 <div class="form-group">
-  <label id="select-city-label">Sélectionnez une ville</label>
+  <label id="select-city-label">Ville à étudier</label>
   <select id="citySelect">
     <option value="">Sélectionner une ville</option>
     <option value="Brussels">Bruxelles</option>
@@ -739,7 +740,7 @@ Nous analysons notamment l’adéquation du projet avec son environnement socio-
 
 <div class="form-group">
   <label id="address-label">Adresse à analyser</label>
-  <input id="addressInput" placeholder="Maximum 3 adresses séparés par une virgule">
+  <input id="addressInput" placeholder="Maximum 3 adresses séparées par une virgule">
 </div>
 
   
@@ -747,9 +748,16 @@ Nous analysons notamment l’adéquation du projet avec son environnement socio-
 
 <label id="project-description">Description du projet</label>
 <textarea id="projectDetails" rows="10" placeholder="Donnez un maximum d'information utilse afin que nos équipes puisses vous proposer la meilleure solution possible"></textarea>
+</div>
 
+        
+         <!-- 🔹 CONTAINER : Coordonnées -->
+  <div class="box-container">
+    
+<label id="contactInfo-label">Coordonnées de contact</label>
+<input id="contactInfoSmartIn" placeholder="email / mobile">
 
-
+</div>
         
 <div class="summary-box">
   <h4 id="summary-title">Résumé</h4>
@@ -1335,7 +1343,7 @@ const translations = {
 "contactInfoSmartIn":"email / mobile",
 
     "address-label":"Adresse à analyser",
-"addressInput":"Maximum 3 adresses séparés par une virgule",
+"addressInput":"Maximum 3 adresses séparées par une virgule",
 
     "project-description":"Décrivez votre projet",
 "projectDetails":"Donnez un maximum d'information utilse afin que nos équipes puisses vous proposer la meilleure solution possible",
@@ -1422,7 +1430,7 @@ const translations = {
 "summary-title": "Résumé",
 "summaryContent": "En attente...",
 
-"select-city-label": "Sélectionnez une ville",
+"select-city-label": "Ville à étudier",
 "select-city-placeholder": "Sélectionner une ville",
 "city-brussels": "Bruxelles",
 
@@ -1572,7 +1580,7 @@ const translations = {
 "summaryContent":"No data yet...",
 
 
-"select-city-label":"Select a city",
+"select-city-label":"City to analyze",
 "select-city-placeholder":"Select a city",
 "city-brussels":"Brussels",
 
@@ -1594,6 +1602,7 @@ const translations = {
 </script>
 </body>
 </html>
+
 
 
 
