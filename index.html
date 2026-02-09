@@ -117,14 +117,24 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
   position: relative;     /* pour permettre le positionnement absolu du bouton */
 }
 
+
+
 .summary-box {
   border: 1px solid var(--border);
   padding: 12px;
-  overflow-y: auto;       /* scroll si contenu trop grand */
-  max-height: 430px;      /* limite la taille avant scroll */
-    min-height: 180px;      /* limite la taille avant scroll */
+  overflow-y: auto;
+  max-height: 430px;
+  min-height: 180px;
 
+  /* 👇 cache visuellement mais garde le JS actif */
+  position: absolute;
+  left: -9999px;
+  visibility: hidden;
+  height: 0;
+  overflow: hidden;
 }
+
+
   
 
 .btn-send-summary {
@@ -1600,6 +1610,7 @@ const translations = {
 </script>
 </body>
 </html>
+
 
 
 
