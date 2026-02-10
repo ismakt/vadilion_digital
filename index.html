@@ -493,6 +493,11 @@ select option {
 
 
 
+.smartin-left-container{
+  display: flex;
+  flex-direction: column;
+  gap: 14px;        /* espace entre les blocs */
+}
 
   
 
@@ -652,7 +657,10 @@ Nous analysons notamment l’adéquation du projet avec son environnement socio-
       <!-- LEFT -->
       <div class="smartin-left">
 
+  <!-- Container global -->
+  <div class="smartin-left-container">
 
+    
 <div class="box-container">
   <h4 id="approach-title">Notre approche</h4>
   <div id="approach-content">1. Comprendre votre besoin
@@ -723,6 +731,8 @@ Nous analysons notamment l’adéquation du projet avec son environnement socio-
  </div>
 
       </div>
+        
+</div>
 
       
       <!-- RIGHT -->
@@ -1478,6 +1488,7 @@ const translations = {
 </script>
 </body>
 </html>
+
 
 
 
