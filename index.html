@@ -81,18 +81,19 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
   gap:20px;
   flex:1;
   overflow:hidden;
-}
-
-.smartin-left, .smartin-right{
-  flex:1;
-  display:flex;
-  flex-direction:column;
-  gap:6px;
-  overflow-y:auto;
-  padding: 10px; /* <-- ajoute de l'espace pour ne pas coller aux bords */
-
+    align-items: stretch;     /* ← fait que toutes les colonnes prennent la même hauteur */
 
 }
+
+.smartin-left,
+.smartin-right {
+  flex: 1;                 /* chaque colonne prend 50% (ou ajustable) */
+  display: flex;
+  flex-direction: column;   /* pour que les boxes restent verticales */
+  gap: 24px;                /* espace entre les boxes internes */
+}
+
+
 
 
 .map-mock{
@@ -494,11 +495,22 @@ select option {
 
 
 
-.smartin-left-container {
-  border: 1px solid var(--border); /* ou #ccc si tu veux plus clair */
-  border-radius: 12px;             /* optionnel, arrondi comme à droite */
-  padding: 12px;                    /* espace intérieur */
-  gap: 24px;               /* ← augmente l’espacement entre chaque box */
+
+  .smartin-left-container {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  flex: 1; /* ← prend toute la hauteur de la colonne */
+}
+
+.smartin-right .box-container {
+  flex: 1;   /* prend toute la hauteur de la colonne droite */
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
   
@@ -764,7 +776,7 @@ Nous analysons notamment l’adéquation du projet avec son environnement socio-
 
 <textarea id="projectDetails" rows="14" placeholder="Décrivez votre projet"></textarea>
 
-            <button id="btn-send-summary" class="btn-send-summary" onclick="sendSmartIn()">Envoyer</button>
+<button id="btn-send-summary" class="btn-send-summary" onclick="sendSmartIn()">Envoyer</button>
 
 </div>
 
@@ -1490,6 +1502,7 @@ const translations = {
 </script>
 </body>
 </html>
+
 
 
 
