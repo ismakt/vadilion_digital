@@ -78,21 +78,24 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 
 .smartin-layout{
   display:flex;
-  gap:20px;
+  gap:15px;
   flex:1;
   overflow:hidden;
 }
 
-.smartin-left, .smartin-right{
-  flex:1;
-  display:flex;
-  flex-direction:column;
-  gap:6px;
-  overflow-y:auto;
-  padding: 10px; /* <-- ajoute de l'espace pour ne pas coller aux bords */
-
-
+.smartin-left,
+.smartin-right {
+  flex: 1;                   /* chaque colonne prend la même hauteur */
+  display: flex;
+  flex-direction: column;     /* pour que les boxes restent verticales */
+  gap: 10px;                  /* espace entre les boxes internes */
+  padding: 10px;              /* espace intérieur */
+  min-height: unset;          /* supprime la hauteur minimum */
+  overflow: unset;            /* supprime le scroll vertical */
 }
+
+
+
 
 
 .map-mock{
@@ -192,15 +195,7 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 }
 
 
-.smartin-left {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: 10px;
-  flex: 1;
-  min-height: 300px;      /* hauteur minimum de la colonne */
-  overflow-y: auto;        /* scroll si trop de contenu */
-}
+
 
 #projectDetails {
   flex: 1;                 /* prend tout l’espace restant de la colonne */
@@ -1490,6 +1485,7 @@ const translations = {
 </script>
 </body>
 </html>
+
 
 
 
