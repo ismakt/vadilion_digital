@@ -661,17 +661,12 @@ Nous analysons notamment l’adéquation du projet avec son environnement socio-
 </div>
 
 
-
-
-
-
-
 <div class="box-container">
 <label id="maingoal-label">Objectif principal de l'étude</label>
 <label>
   <input type="checkbox" class="goal">
   <span id="selectmaingoal">
-    Étude du milieu socioéconomique
+    Étude du milieu socio-économique
   </span>
 </label>
 
@@ -685,56 +680,47 @@ Nous analysons notamment l’adéquation du projet avec son environnement socio-
 <label>
   <input type="checkbox" class="goal">
   <span id="selectmaingoa3">
-    Étude des clients potentiels
+    Identification des clients potentiels
   </span>
 </label>
 
 <label>
   <input type="checkbox" class="goal">
   <span id="selectmaingoa4">
-    Connaitre le marché immobilier local
+    Compréhension du marché immobilier et de ses dynamiques
   </span>
+  
 </label>
-
-
 </div>
-
-    
-
 <div class="box-container">
-<label id="theme-label">Thèmes à étudier</label>
-<label>
-  <input type="checkbox" class="theme">
-  <span id="theme-active-immo">
- Activité immobilière: étude des transactions, prix, loyers, etc.</span>
-</label>
+<label id="theme-label">Thèmes à étudier (liste non exhaustive)</label>
 
-  <label>
+    <label>
   <input type="checkbox" class="theme">
-  <span id="theme-projets">
-  Impact des projets immobiliers et urbains</span>
+  <span id="theme1">
+  Profil de la population: niveau de vie, type d’occupation, cultures, âges</span>
 </label>
 
     <label>
   <input type="checkbox" class="theme">
-  <span id="theme-population">
-  Population locale: revenus, composition culturelle, emploi, etc.</span>
+  <span id="theme2">
+  Tissu économique: sièges sociaux, établissements, résultats des activités économiques</span>
 </label>
 
-      <label>
+  
+<label>
   <input type="checkbox" class="theme">
-  <span id="theme-concurents">
-  Concurents: étude sur mesure</span>
+  <span id="theme3">
+ Marché immobilier: transactions, prix, impact des projets urbains, gentrification</span>
 </label>
 
-        <label>
-  <input type="checkbox" class="theme">
-  <span id="theme-attract">
-  Attractivité locale: stat des entreprises, sécurité et qualité de vie</span>
+  <label>
+  <input type="checkbox" class="theme4">
+  <span id="theme-lifequality">
+  Qualité de vie: accès aux espaces verts, pollution de l’air et sonore, sécurité</span>
 </label>
 
-
-        </div>
+ </div>
 
       </div>
 
@@ -1360,85 +1346,24 @@ const translations = {
     "project-description":"Décrivez votre projet",
 "projectDetails":"Décrivez votre projet",
 
-"maingoal-label":"Sélectionnez le principal objectif de l'étude",
+"maingoal-label":"Objectif principal de l'étude",
 
-
-    
-    
-"selectAllGoals":"Sélectionner tout",
-"selectmaingoal":"Analyse de la cohérence du projet dans son milieu socioéconomique",
+"selectmaingoal":"Étude du milieu socio-économique",
 "selectmaingoa2":"Étude des concurrents",
-"selectmaingoa3":"Étude des clients potentiels",
-"selectmaingoa4":"Connaitre les essentiels du marché immobilier",
+"selectmaingoa3":"Identification des clients potentiels",
+"selectmaingoa4":"Compréhension du marché immobilier et de ses dynamiques",
 
-"theme-label":"Sélectionnez les thèmes à analyser",
-"selectAllThemes":"Sélectionner tout",
+"theme-label":"Thèmes à étudier (liste non exhaustive)",
+
+"theme1":"Profil de la population: niveau de vie, type d’occupation, cultures, âges",
+"theme2":"Tissu économique: sièges sociaux, établissements, résultats des activités économiques",
+"theme3":"Marché immobilier: transactions, prix, impact des projets urbains, gentrification",
+"theme4":"Qualité de vie: accès aux espaces verts, pollution de l’air et sonore, sécurité",
 
 
 
-"subtitle-real-estate-essentials":"Les essentiels du marché immobilier",
-    
-"theme-global-real-estate-sales":"Ventes par type de bien",
-"theme-parc-immobilier":"Parc immobilier (social, résidentiel)",
-"theme-loyer-moyen":"Loyer moyen",
-
-"theme-nb-appartements":"Nombre d'appartements vendus",
-"theme-nombre-maisons-vendus":"Nombre de maisons vendues",
- "theme-prix-median-appartements":"Prix médian appartements",
-"theme-prix-median-maisons":"Prix médian maisons",
-"theme-urban-real-estate-projects":"Urban & Real Estate projects",
-"theme-m2-price":"M2 price",
-"theme-gentrification":"Gentrification",
 
     
-"subtitle-security-statistics": "Security Statistics",
-    
-"theme-vols":"Vols",
-"theme-coups-blessures":"Coups / Blessures",
-"theme-drogues":"Drogues",
-"theme-alcool":"Alcool",
-"theme-armes":"Armes",
-"theme-secu-publiq-2024":"Atteinte Sécurité Publique",
-"theme-degradat-prop":"Dégradations de propriété",
-"theme-cambriolages":"Cambriolages",
-
-    
-"subtitle-sociology": "Sociologie",
-    
-"theme-densite":"Densité",
-"theme-18-64-ans":"% 18-64 ans",
-"theme-solde-migratoire":"Solde migratoire",
-"theme-croissance-annuelle":"Croissance annuelle",
-"theme-population-immigree":"% Population immigrée",
-"theme-taux-natalite":"Taux natalité",
-"theme-cultural-composition":"Cultural Composition",
-
-    
-"theme-subtitle-socioeconomics":"Socio-Economie",
-    
-"theme-revenu-median":"Revenu médian",
-"theme-taux-emploi":"Taux emploi",
-"theme-taux-par-type-occupation":"Taux par type d'occupation",
-"theme-taux-chomage":"Taux chômage",
-"theme-taux-grapa-65":"Taux GRAPA 65+",
-"theme-naissances-sans-revenu-travail":"Naissances sans revenu de travail",
-"theme-naissances-meres-etrangeres":"Naissances mères étrangères",
-"theme-taux-retard-scolaire":"Taux retard scolaire",
-
-    
-"subtitle-economy": "Economie",
-    
-"theme-sieges-sociaux":"Sièges sociaux",
-"theme-etablissements":"Établissements",
-"theme-solde-migration-entreprises":"Solde migration entreprises",
-"theme-secteurs-economiques-majeurs":"Secteurs économiques majeurs",
-
-    
-"subtitle-quality-of-life": "Qualité de vie",
-
-"theme-espaces-verts": "Espaces verts",
-"theme-pollution-air-noise": "Pollution: air, noise",
-
 "summary-title": "Résumé",
 "summaryContent": "En attente...",
 
@@ -1509,81 +1434,19 @@ const translations = {
 
 
 
-"maingoal-label":"Select the main goal of the study",
+"maingoal-label":"Main objective of the study",
 
-"selectAllGoals": "Select all",
-"selectmaingoal": "Analyze project consistency in its socio-economic context",
-"selectmaingoa2": "Competitor analysis",
-"selectmaingoa3": "Potential client analysis",
-"selectmaingoa4": "Know the essentials of the real estate market",
+"selectmaingoal":"Socio-economic environment study",
+"selectmaingoa2":"Competitor analysis",
+"selectmaingoa3":"Identification of potential customers",
+"selectmaingoa4":"Understanding the real estate market and its dynamics",
 
-"theme-label": "Select the themes to analyze",
+"theme-label":"Themes to be studied (non-exhaustive list)",
 
-"selectAllThemes":"Select all",
-
-
-
-"subtitle-real-estate-essentials": "Real Estate Essentials",
-
-
-"theme-global-real-estate-sales": "Sales by Property Type",
-"theme-parc-immobilier": "Housing Stock (social, residential)",
-"theme-loyer-moyen": "Average Rent",
-
-"theme-nb-appartements": "Number of Apartments Sold",
-"theme-nombre-maisons-vendus": "Number of Houses Sold",
-"theme-prix-median-appartements": "Median Apartment Price",
-"theme-prix-median-maisons": "Median House Price",
-"theme-urban-real-estate-projects": "Urban & Real Estate Projects",
-"theme-m2-price": "Price per m²",
-"theme-gentrification": "Gentrification",
-
-      
-"subtitle-security-statistics": "Security Statistics",
-      
-"theme-vols": "Thefts",
-"theme-coups-blessures": "Assaults/Injuries",
-"theme-drogues": "Drugs",
-"theme-alcool": "Alcohol",
-"theme-armes": "Weapons",
-"theme-secu-publiq-2024": "Public Safety Offenses",
-"theme-degradat-prop": "Property Damage",
-"theme-cambriolages": "Burglaries",
-
-    
-"subtitle-sociology": "Sociology",
-    
-"theme-densite": "Population Density",
-"theme-18-64-ans": "% Age 18-64",
-"theme-solde-migratoire": "Migration Balance",
-"theme-croissance-annuelle": "Annual Growth",
-"theme-population-immigree": "% Immigrant Population",
-"theme-taux-natalite": "Birth Rate",
-"theme-cultural-composition": "Cultural Composition",
-
-    
-"theme-subtitle-socioeconomics":"Socio-Economics",
-    
-"theme-revenu-median": "Median Income",
-"theme-taux-emploi": "Employment Rate",
-"theme-taux-par-type-occupation": "Occupation Type Rates",
-"theme-taux-chomage": "Unemployment Rate",
-"theme-taux-grapa-65": "GRAPA 65+ Rate",
-"theme-naissances-sans-revenu-travail": "Births without Work Income",
-"theme-naissances-meres-etrangeres": "Births to Foreign Mothers",
-"theme-taux-retard-scolaire": "School Delay Rate",
-
-    
-"subtitle-economy": "Economy",
-    
-"theme-sieges-sociaux": "Headquarters",
-"theme-etablissements": "Establishments",
-"theme-solde-migration-entreprises": "Company Migration Balance",
-"theme-secteurs-economiques-majeurs": "Major Economic Sectors",
-
-"subtitle-quality-of-life": "Quality of Life",
-"theme-espaces-verts": "Green Spaces",
-"theme-pollution-air-noise": "Pollution: Air, Noise",
+"theme1":"Population profile: standard of living, type of occupancy, cultures, age groups",
+"theme2":"Economic fabric: headquarters, establishments, economic activity performance",
+"theme3":"Real estate market: transactions, prices, impact of urban projects, gentrification",
+"theme4":"Quality of life: access to green spaces, air and noise pollution, safety",
 
 
     
@@ -1613,6 +1476,7 @@ const translations = {
 </script>
 </body>
 </html>
+
 
 
 
