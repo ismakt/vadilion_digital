@@ -744,14 +744,17 @@ Nous analysons notamment l’adéquation du projet avec son environnement socio-
 
 <div class="form-group">
 
-  <input id="addressInput" placeholder="Adresse(s) à analyser (max. 3)">
+  <input id="addressInput" data-translate-placeholder="addressInput" placeholder="">
+
 </div>
 
-  
-<input id="contactInfoSmartIn" placeholder="Vos coordonnées de contact (email et/ou mobile)">
+
+<input id="contactInfoSmartIn" data-translate-placeholder="contactInfoSmartIn" placeholder="">
+
+    <textarea id="projectDetails" rows="14" data-translate-placeholder="projectDetails" placeholder=""></textarea>
 
 
-<textarea id="projectDetails" rows="14" placeholder="Décrivez votre projet"></textarea>
+    
 
             <button id="btn-send-summary" class="btn-send-summary" onclick="sendSmartIn()">Envoyer</button>
 
@@ -1473,12 +1476,18 @@ const translations = {
   }
 };
 
-  
+  const userLang = navigator.language.startsWith('fr') ? 'fr' : 'en';
+
+document.querySelectorAll('[data-translate-placeholder]').forEach(el => {
+  const key = el.getAttribute('data-translate-placeholder');
+  el.placeholder = translations[userLang][key] || '';
+});
 
 
 </script>
 </body>
 </html>
+
 
 
 
