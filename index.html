@@ -76,12 +76,13 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
   flex-direction:column;
 }
 
-.smartin-layout{
-  display:flex;
-  gap:15px;
-  flex:1;
-  overflow:hidden;
+.smartin-layout {
+  display: flex;
+  gap: 15px;               /* espacement minimum entre les colonnes */
+  justify-content: space-between; /* repousse chaque colonne aux extrémités */
+  align-items: flex-start;  /* alignement vertical si nécessaire */
 }
+
 
 .smartin-left,
 .smartin-right {
@@ -92,9 +93,33 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
   padding: 10px;              /* espace intérieur */
   min-height: unset;          /* supprime la hauteur minimum */
   overflow: unset;            /* supprime le scroll vertical */
+
+  
+}
+  
+.smartin-left {
+  transform: translateX(-50%);
+}
+
+.smartin-right {
+  transform: translateX(50%);
+}
+  
+  .smartin-left-container {
+  border: 1px solid var(--border); /* ou #ccc si tu veux plus clair */
+  border-radius: 12px;             /* optionnel, arrondi comme à droite */
+  padding: 10px;                    /* espace intérieur */
+  gap: 20px;               /* ← augmente l’espacement entre chaque box */
 }
 
 
+
+.box-container {
+  border: 1px solid var(--border);
+  padding: 12px;
+  margin-top: 7px;
+  background: transparent;
+}
 
 
 
@@ -163,23 +188,6 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 
   
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
 
 
 .mapPreview {
@@ -432,13 +440,6 @@ select option {
 
 
 
-.box-container {
-  border: 1px solid var(--border);
-  padding: 12px;
-  margin-top: 7px;
-  background: transparent;
-}
-
 
 
 /* === FIX ALIGNEMENT CHECKBOX + TEXTE === */
@@ -489,12 +490,6 @@ select option {
 
 
 
-.smartin-left-container {
-  border: 1px solid var(--border); /* ou #ccc si tu veux plus clair */
-  border-radius: 12px;             /* optionnel, arrondi comme à droite */
-  padding: 8px;                    /* espace intérieur */
-  gap: 50px;               /* ← augmente l’espacement entre chaque box */
-}
 
   
 
@@ -1485,6 +1480,7 @@ const translations = {
 </script>
 </body>
 </html>
+
 
 
 
