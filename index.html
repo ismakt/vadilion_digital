@@ -67,43 +67,42 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 
 
   
-.modal-smartin-content{
-  width:95%;
-  max-width:1200px;
-  height: auto;       /* s’adapte au contenu */
-  max-height: 90vh;   /* limite la hauteur si le contenu est trop grand */
-  display:flex;
-  flex-direction:column;
+.modal-smartin-content {
+  width: 95%;
+  max-width: 1200px;
+  height: auto;       
+  max-height: 90vh;   
+  display: flex;
+  flex-direction: column;
 }
 
 .smartin-layout {
   display: flex;
-  gap: 15px;               /* espacement minimum entre les colonnes */
-  justify-content: space-between; /* repousse chaque colonne aux extrémités */
-  align-items: flex-start;  /* alignement vertical si nécessaire */
+  gap: 15px;                  /* espace entre les colonnes */
+  justify-content: center;     /* centre le groupe de colonnes */
+  align-items: flex-start;     /* alignement vertical */
 }
-
 
 .smartin-left,
 .smartin-right {
-  flex: 1;                   /* chaque colonne prend la même hauteur */
+  flex: 1;                     /* prend la même largeur */
   display: flex;
-  flex-direction: column;     /* pour que les boxes restent verticales */
-  gap: 10px;                  /* espace entre les boxes internes */
-  padding: 10px;              /* espace intérieur */
-  min-height: unset;          /* supprime la hauteur minimum */
-  overflow: unset;            /* supprime le scroll vertical */
-
-  
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  min-height: unset;
+  overflow: unset;
 }
-  
+
+/* Optional: si tu veux espacer exactement les colonnes */
 .smartin-left {
-  transform: translateX(-50%);
+  margin-right: 7.5px;         /* moitié du gap */
 }
 
 .smartin-right {
-  transform: translateX(50%);
+  margin-left: 7.5px;          /* moitié du gap */
 }
+
   
   .smartin-left-container {
   border: 1px solid var(--border); /* ou #ccc si tu veux plus clair */
@@ -1480,6 +1479,7 @@ const translations = {
 </script>
 </body>
 </html>
+
 
 
 
