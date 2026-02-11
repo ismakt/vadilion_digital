@@ -492,26 +492,66 @@ select option {
 
   
 
-/* Mobile / tablet small screens */
 @media (max-width: 768px) {
-  /* Affiche le message */
-  #mobileMessage {
-    display: block;
-    position: fixed;
-    inset: 0; /* top:0; right:0; bottom:0; left:0 */
-    display: flex;
-    justify-content: center; /* horizontal */
-    align-items: center;     /* vertical */
-    margin: 0;
-    padding: 20px;
-    z-index: 9999;
+
+  .smartin-layout {
+    flex-direction: column;
   }
 
-  /* Masquer le reste du site */
-  main, header, footer {
-    display: none;
+  .smartin-left,
+  .smartin-right {
+    width: 100%;
+    margin: 0;
+    padding: 5px;
   }
+
+  .modal-smartin-content {
+    width: 95%;
+    max-height: 95vh;
+    overflow-y: auto;
+  }
+
+  .menu {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 40px;
+  }
+
+  .panel {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .btn-discover,
+  .btn-send-summary,
+  .btn-smartin {
+    width: 100%;
+  }
+
+  header {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .brand .logo {
+    position: relative;
+    width: 120px;
+    top: 0;
+  }
+
 }
+
+
+  
 </style>
 </head>
 <body>
@@ -1479,6 +1519,7 @@ const translations = {
 </script>
 </body>
 </html>
+
 
 
 
