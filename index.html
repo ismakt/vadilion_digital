@@ -729,33 +729,29 @@ Nous analysons notamment l’adéquation du projet avec son environnement socio-
       <!-- RIGHT -->
 
       <div class="smartin-right">
+<div class="box-container">
 
-  <!-- 🔹 CONTAINER : Projet -->
-  <div class="box-container">
+  <div class="form-group">
+    <select id="citySelect">
+      <option id="option-select-city" value="">Sélectionner une ville</option>
+      <option id="option-brussels" value="Brussels">Bruxelles</option>
+    </select>
+  </div>
 
+  <div class="form-group">
+    <textarea id="addressInput" rows="1"
+      placeholder="Adresse(s) à analyser (max. 3)"></textarea>
+  </div>
 
-    
-<div class="form-group">
-  <select id="citySelect">
-   <option id="option-select-city" value="">Sélectionner une ville</option>
-    <option id="option-brussels" value="Brussels">Bruxelles</option>
-  </select>
-</div>
+  <textarea id="contactInfoSmartIn" rows="1"
+    placeholder="Vos coordonnées de contact (email et/ou mobile)"></textarea>
 
-<div class="form-group">
+  <textarea id="projectDetails" rows="14"
+    placeholder="Décrivez votre projet"></textarea>
 
-  <textarea id="addressInput" rows="1" placeholder="Adresse(s) à analyser (max. 3)"></textarea>
- 
-</div>
-
-  
-<textarea id="contactInfoSmartIn" rows="1" placeholder="Vos coordonnées de contact (email et/ou mobile)"></textarea>
-
-
-
-<textarea id="projectDetails" rows="14" placeholder="Décrivez votre projet"></textarea>
-
-            <button id="btn-send-summary" class="btn-send-summary" onclick="sendSmartIn()">Envoyer</button>
+  <button id="btn-send-summary"
+          class="btn-send-summary"
+          onclick="sendSmartIn()">Envoyer</button>
 
 </div>
 
@@ -1483,6 +1479,7 @@ const translations = {
 </script>
 </body>
 </html>
+
 
 
 
