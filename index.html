@@ -734,6 +734,7 @@ Nous analysons notamment l’adéquation du projet avec son environnement socio-
   <div class="box-container">
 
 
+    
 <div class="form-group">
   <select id="citySelect">
     <option value="">Sélectionner une ville</option>
@@ -755,14 +756,19 @@ Nous analysons notamment l’adéquation du projet avec son environnement socio-
             <button id="btn-send-summary" class="btn-send-summary" onclick="sendSmartIn()">Envoyer</button>
 
 </div>
-     
+
+
+    
+
+
+        
 <div class="summary-box">
   <h4 id="summary-title">Résumé</h4>
   <div id="summaryContent">En attente...</div>
 </div>
 
 
-
+</select>
 
 
 
@@ -894,7 +900,7 @@ menuButtons.forEach(btn => {
   
 const citySelect = document.getElementById('citySelect');
 const addressInput = document.getElementById('addressInput');
-const  = document.getElementById('');
+const projectDetails = document.getElementById('projectDetails');
 const contactInfoSmartIn = document.getElementById('contactInfoSmartIn');
 const summaryContent = document.getElementById('summaryContent');
 const selectAllGoals = document.getElementById('selectAllGoals');
@@ -955,7 +961,7 @@ function updateSummary() {
 
   const contact = document.getElementById('contactInfoSmartIn')?.value || '';
   const addresses = document.getElementById('addressInput')?.value || '';
-  const project = document.getElementById('')?.value || '';
+  const project = document.getElementById('projectDetails')?.value || '';
   const city = document.getElementById('citySelect')?.value || '';
 
   const goals = [...document.querySelectorAll('.goal:checked')]
@@ -978,7 +984,7 @@ function updateSummary() {
 [
   'contactInfoSmartIn',
   'addressInput',
-  '',
+  'projectDetails',
   'citySelect'
 ].forEach(id => {
   const el = document.getElementById(id);
@@ -1271,7 +1277,7 @@ document.getElementById('btn-send-summary').addEventListener('click', function (
   const templateParams = {
     contact: contactInfoSmartIn.value || '-',
     addresses: addressInput.value || '-',
-    project: .value || '-',
+    project: projectDetails.value || '-',
     goals: [...document.querySelectorAll('.goal:checked')]
               .map(g => g.parentElement.textContent.trim())
               .join(', ') || '-',
@@ -1339,7 +1345,7 @@ const translations = {
 
 "addressInput":"Adresse(s) à analyser (max. 3)",
 
- 
+    "project-description":"Décrivez votre projet",
 "projectDetails":"Décrivez votre projet",
 
 "maingoal-label":"Objectif principal de l'étude",
@@ -1420,6 +1426,7 @@ const translations = {
 "addressInput":"Address(es) to analyze (max. 3)",
 
 
+    "project-description":"Describe your project",
 "projectDetails":"Describe your project",
 
 
@@ -1454,16 +1461,10 @@ const translations = {
     "approach-title":"Our Approach",
 
       
-"approach-content": "1. Understand your need\n2. Precise action plan\n3. Effective execution",
-
+"approach-content": "1. Understand your need\n2. Precise action plan\n3. Effective execution"
 
     
-     "select-city": "Select a city",
-  "brussels": "Brussels",
-  "addresses-to-analyze": "Address(es) to analyze (max. 3)",
-  "contact-details": "Your contact details (email and/or mobile)"
-
-      
+    
   }
 };
 
@@ -1473,8 +1474,6 @@ const translations = {
 </script>
 </body>
 </html>
-
-
 
 
 
