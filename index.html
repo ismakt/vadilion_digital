@@ -734,21 +734,33 @@ Nous analysons notamment l’adéquation du projet avec son environnement socio-
   <div class="box-container">
 
 
+
+
+
+
+
+
+    
     
 <div class="form-group">
   <select id="citySelect">
-    <option value="">Sélectionner une ville</option>
-    <option value="Brussels">Bruxelles</option>
+<option value="" data-i18n="select-city">Sélectionner une ville</option>
+<option value="Brussels" data-i18n="brussels">Bruxelles</option>
   </select>
 </div>
 
 <div class="form-group">
 
-  <input id="addressInput" placeholder="Adresse(s) à analyser (max. 3)">
+
+  <input id="addressInput"
+       placeholder="Adresse(s) à analyser (max. 3)"
+       data-i18n-placeholder="addresses-to-analyze">
 </div>
 
   
-<input id="contactInfoSmartIn" placeholder="Vos coordonnées de contact (email et/ou mobile)">
+<input id="contactInfoSmartIn"
+       placeholder="Vos coordonnées de contact (email et/ou mobile)"
+       data-i18n-placeholder="contact-details">
 
 
 <textarea id="projectDetails" rows="14" placeholder="Décrivez votre projet"></textarea>
@@ -900,7 +912,7 @@ menuButtons.forEach(btn => {
   
 const citySelect = document.getElementById('citySelect');
 const addressInput = document.getElementById('addressInput');
-const projectDetails = document.getElementById('projectDetails');
+const  = document.getElementById('');
 const contactInfoSmartIn = document.getElementById('contactInfoSmartIn');
 const summaryContent = document.getElementById('summaryContent');
 const selectAllGoals = document.getElementById('selectAllGoals');
@@ -961,7 +973,7 @@ function updateSummary() {
 
   const contact = document.getElementById('contactInfoSmartIn')?.value || '';
   const addresses = document.getElementById('addressInput')?.value || '';
-  const project = document.getElementById('projectDetails')?.value || '';
+  const project = document.getElementById('')?.value || '';
   const city = document.getElementById('citySelect')?.value || '';
 
   const goals = [...document.querySelectorAll('.goal:checked')]
@@ -984,7 +996,7 @@ function updateSummary() {
 [
   'contactInfoSmartIn',
   'addressInput',
-  'projectDetails',
+  '',
   'citySelect'
 ].forEach(id => {
   const el = document.getElementById(id);
@@ -1277,7 +1289,7 @@ document.getElementById('btn-send-summary').addEventListener('click', function (
   const templateParams = {
     contact: contactInfoSmartIn.value || '-',
     addresses: addressInput.value || '-',
-    project: projectDetails.value || '-',
+    project: .value || '-',
     goals: [...document.querySelectorAll('.goal:checked')]
               .map(g => g.parentElement.textContent.trim())
               .join(', ') || '-',
@@ -1345,7 +1357,7 @@ const translations = {
 
 "addressInput":"Adresse(s) à analyser (max. 3)",
 
-    "project-description":"Décrivez votre projet",
+ 
 "projectDetails":"Décrivez votre projet",
 
 "maingoal-label":"Objectif principal de l'étude",
@@ -1426,7 +1438,6 @@ const translations = {
 "addressInput":"Address(es) to analyze (max. 3)",
 
 
-    "project-description":"Describe your project",
 "projectDetails":"Describe your project",
 
 
@@ -1461,9 +1472,22 @@ const translations = {
     "approach-title":"Our Approach",
 
       
-"approach-content": "1. Understand your need\n2. Precise action plan\n3. Effective execution"
+"approach-content": "1. Understand your need\n2. Precise action plan\n3. Effective execution",
+
 
     
+     "select-city": "Select a city",
+  "brussels": "Brussels",
+  "addresses-to-analyze": "Address(es) to analyze (max. 3)",
+  "contact-details": "Your contact details (email and/or mobile)"
+
+    
+
+
+
+
+
+
     
   }
 };
@@ -1474,171 +1498,6 @@ const translations = {
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
