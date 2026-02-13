@@ -494,15 +494,6 @@ select option {
 
 @media (max-width: 768px) {
 
-  main {
-  height: 100dvh;               /* prend toute la hauteur de l’écran */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; /* répartit header, menu et panel */
-  overflow: hidden;             /* empêche le scroll */
-}
-
-  
   /* ===== SMARTIN MODAL ===== */
 
   .modal-smartin-content {
@@ -529,34 +520,24 @@ select option {
 
   /* ===== LANDING STRUCTURE ===== */
 
-.menu {
-  display: flex;               /* nécessaire pour flex */
-  flex-direction: row;         /* horizontal */
-  justify-content: center;     /* centre les boutons horizontalement */
-  align-items: center;         /* centre verticalement si plusieurs lignes */
-  gap: 20px;                   /* espace entre les boutons */
-  width: 100%;                 /* prend toute la largeur pour centrer correctement */
-  margin: 0 auto;              /* centre globalement */
-  position: relative;          /* reste dans le flux */
-  top: auto;
-  transform: none;
-}
+  .menu {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    flex-direction: row;
+    gap: 15px;
+    margin-top: 100px;
+  }
 
-
-.panel {
-  position: relative;
-  top: auto;
-  left: auto;
-  transform: none;
-  width: 100%;
-  margin-top: 20px;
-
-  /* Limite la hauteur pour éviter le scroll global */
-  max-height: calc(100dvh - 20px - 60px - 100px); /* 100dvh - header - menu - marges */
-  overflow-y: auto; /* scroll interne si nécessaire */
-}
-
-
+  .panel {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    width: 100%;
+    margin-top: 20px;
+  }
 
   .btn-discover,
   .btn-send-summary,
@@ -566,26 +547,28 @@ select option {
 
 header {
   display: flex;
-  justify-content: space-between;
-  align-items: center; /* centre verticalement logo et langues */
-  padding: 20px;       /* espace depuis le haut */
+  justify-content: space-between; /* logo à gauche, langues à droite */
+  align-items: center;            /* centre verticalement les items */
+  padding: 20px;                  /* même espace autour des 2 côtés */
+  width: 100%;
   box-sizing: border-box;
 }
 
 /* Logo */
-.brand .logo {
-  width: 100px;
-  height: auto;
-  display: block;
-  margin: 0;           /* déjà ok */
-}
+ .brand .logo {
+    position: relative;  /* dans le flux normal du header */
+    width: 100px;
+    height: auto;
+    margin: 0;           /* supprime tout margin par défaut */
+    display: block;      /* éviter le décalage inline */
+  }
 
 /* Menu langues */
 .menu-langs {
   display: flex;
-  gap: 10px;
-  align-items: center; 
-  margin: 0;           /* déjà ok */
+  gap: 10px;        /* espace entre les langues */
+  align-items: center;
+  margin: 0;         /* supprime tout margin par défaut */
 }
 
 
@@ -1561,8 +1544,6 @@ const translations = {
 </script>
 </body>
 </html>
-
-
 
 
 
