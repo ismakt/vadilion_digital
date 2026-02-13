@@ -494,8 +494,21 @@ select option {
 
 @media (max-width: 768px) {
 
-  .smartin-layout {
+  /* ===== SMARTIN MODAL ===== */
+
+  .modal-smartin-content {
+    width: 95%;
+    height: 90dvh;          /* hauteur contrôlée */
+    max-height: 90dvh;
+    display: flex;
     flex-direction: column;
+  }
+
+  .smartin-layout {
+    display: flex;
+    flex-direction: column;
+    flex: 1;                /* prend l’espace restant */
+    overflow-y: auto;       /* scroll interne */
   }
 
   .smartin-left,
@@ -505,11 +518,7 @@ select option {
     padding: 5px;
   }
 
-  .modal-smartin-content {
-    width: 95%;
-    max-height: 95vh;
-    overflow-y: auto;
-  }
+  /* ===== LANDING STRUCTURE ===== */
 
   .menu {
     position: relative;
@@ -1519,6 +1528,7 @@ const translations = {
 </script>
 </body>
 </html>
+
 
 
 
