@@ -494,40 +494,31 @@ select option {
 
 @media (max-width: 768px) {
 
-  /* ===== SMARTIN MODAL ===== */
-
-  .modal-smartin-content {
-    width: 90%;
-    height: 80dvh;          /* hauteur contrôlée */
-    max-height: 80dvh;
-    display: flex;
-    flex-direction: column;
-  }
-
   .smartin-layout {
-    display: flex;
     flex-direction: column;
-    flex: 1;                /* prend l’espace restant */
-    overflow-y: auto;       /* scroll interne */
   }
 
   .smartin-left,
   .smartin-right {
-    width: 95%;
-    margin: 0 auto;
+    width: 100%;
+    margin: 0;
     padding: 5px;
   }
 
-  /* ===== LANDING STRUCTURE ===== */
+  .modal-smartin-content {
+    width: 95%;
+    max-height: 95vh;
+    overflow-y: auto;
+  }
 
   .menu {
     position: relative;
     top: auto;
     left: auto;
     transform: none;
-    flex-direction: row;
+    flex-direction: column;
     gap: 15px;
-    margin-top: 100px;
+    margin-top: 40px;
   }
 
   .panel {
@@ -545,33 +536,17 @@ select option {
     width: 100%;
   }
 
-header {
-  display: flex;
-  justify-content: space-between; /* logo à gauche, langues à droite */
-  align-items: center;            /* centre verticalement les items */
-  padding: 20px;                  /* même espace autour des 2 côtés */
-  width: 100%;
-  box-sizing: border-box;
-}
-
-/* Logo */
- .brand .logo {
-    position: relative;  /* dans le flux normal du header */
-    width: 100px;
-    height: auto;
-    margin: 0;           /* supprime tout margin par défaut */
-    display: block;      /* éviter le décalage inline */
+  header {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
   }
 
-/* Menu langues */
-.menu-langs {
-  display: flex;
-  gap: 10px;        /* espace entre les langues */
-  align-items: center;
-  margin: 0;         /* supprime tout margin par défaut */
-}
-
-
+  .brand .logo {
+    position: relative;
+    width: 120px;
+    top: 0;
+  }
 
 }
 
@@ -1544,14 +1519,6 @@ const translations = {
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
 
 
 
