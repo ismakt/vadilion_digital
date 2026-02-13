@@ -507,17 +507,19 @@ select option {
 
   
 .menu {
-  position: relative;       /* relative pour ne pas sortir du flux normal */
-  top: auto;
-  left: auto;
-  transform: none;
-  flex-direction: row;      /* horizontal */
+  position: absolute;       /* relative pour ne pas sortir du flux normal */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);  /* centre parfait horizontalement et verticalement */
+  display: flex;
+flex-direction: row;      /* horizontal */
   justify-content: center;  /* centre horizontalement tous les boutons */
   align-items: center;      /* centre verticalement (si plusieurs lignes) */
   gap: 30px;                /* espace entre chaque bouton */
-  margin-top: 50px;         /* un petit espace depuis le header */
-  width: 100%;              /* prend toute la largeur pour centrer correctement */
+  width: auto;              /* prend toute la largeur pour centrer correctement */
 }
+
+
 
 
   .panel {
@@ -1553,6 +1555,7 @@ const translations = {
 </script>
 </body>
 </html>
+
 
 
 
