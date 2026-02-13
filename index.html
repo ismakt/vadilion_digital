@@ -548,17 +548,18 @@ select option {
 header {
   display: flex;
   justify-content: space-between; /* logo à gauche, langues à droite */
-  align-items: center;            /* centre verticalement */
-  padding: 10px 20px;             /* espace interne */
+  align-items: center;            /* centre verticalement les items */
+  padding: 20px;                  /* même espace autour des 2 côtés */
   width: 100%;
   box-sizing: border-box;
 }
 
 /* Logo */
 .brand .logo {
-  display: flex;
   width: 60px;
   height: auto;
+  margin: 0;          /* supprime tout margin par défaut */
+  display: block;     /* éviter le décalage inline */
 }
 
 /* Menu langues */
@@ -566,6 +567,7 @@ header {
   display: flex;
   gap: 10px;        /* espace entre les langues */
   align-items: center;
+  margin: 0;         /* supprime tout margin par défaut */
 }
 
 
@@ -1541,6 +1543,7 @@ const translations = {
 </script>
 </body>
 </html>
+
 
 
 
