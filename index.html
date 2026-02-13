@@ -494,33 +494,32 @@ select option {
 
 @media (max-width: 768px) {
 
+  .smartin-layout {
+    flex-direction: column;
+  }
 
+  .smartin-left,
+  .smartin-right {
+    width: 100%;
+    margin: 0;
+    padding: 5px;
+  }
 
- /* ===== LANDING STRUCTURE ===== */
+  .modal-smartin-content {
+    width: 95%;
+    max-height: 95vh;
+    overflow-y: auto;
+  }
 
-  main {
-  min-height: calc(100dvh - (60px + 80px + 100px));
-  max-height: 100dvh;
-  overflow: hidden;
-}
-
-
-  
-.menu {
-  position: absolute;       /* relative pour ne pas sortir du flux normal */
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);  /* centre parfait horizontalement et verticalement */
-  display: flex;
-flex-direction: row;      /* horizontal */
-  justify-content: center;  /* centre horizontalement tous les boutons */
-  align-items: center;      /* centre verticalement (si plusieurs lignes) */
-  gap: 30px;                /* espace entre chaque bouton */
-  width: auto;              /* prend toute la largeur pour centrer correctement */
-}
-
-
-
+  .menu {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 40px;
+  }
 
   .panel {
     position: relative;
@@ -528,13 +527,8 @@ flex-direction: row;      /* horizontal */
     left: auto;
     transform: none;
     width: 100%;
-    margin-top: 10px;
-  padding: 10px;      /* réduit légèrement le padding */
-     max-height: calc(100dvh - 60px - 10px - 20px); /* header + margin top + padding */
-  overflow-y: auto; 
+    margin-top: 20px;
   }
-
-
 
   .btn-discover,
   .btn-send-summary,
@@ -545,45 +539,15 @@ flex-direction: row;      /* horizontal */
   header {
     flex-direction: column;
     align-items: center;
-      padding: 8px 10px;  /* réduit légèrement le padding */
-    gap: 5px;
+    gap: 10px;
   }
 
-
-
-
-.brand { align-items: center; }
-.brand h1 { font-size: 14px; }
-.brand .logo { width: 120px; height: auto;  position: relative; top: 0;}
-
-  
-  /* ===== SMARTIN MODAL ===== */
-
-  .modal-smartin-content {
-    width: 90%;
-    height: 80dvh;          /* hauteur contrôlée */
-    max-height: 80dvh;
-    display: flex;
-    flex-direction: column;
+  .brand .logo {
+    position: relative;
+    width: 120px;
+    top: 0;
   }
 
-  .smartin-layout {
-    display: flex;
-    flex-direction: column;
-    flex: 1;                /* prend l’espace restant */
-    overflow-y: auto;       /* scroll interne */
-     padding-bottom: 20px;
-
-  }
-
-  .smartin-left,
-  .smartin-right {
-    width: 100%;
-    margin: 0;
-    padding: 5px;
-  }
-
- 
 }
 
 
@@ -1555,12 +1519,6 @@ const translations = {
 </script>
 </body>
 </html>
-
-
-
-
-
-
 
 
 
