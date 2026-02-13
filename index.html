@@ -494,12 +494,70 @@ select option {
 
 @media (max-width: 768px) {
 
+
+
+ /* ===== LANDING STRUCTURE ===== */
+
+    /* ===== MAIN LANDING ===== */
+main {
+  min-height: calc(100dvh -  /* écran complet */
+                   (60px +    /* header approx */
+                    80px +    /* menu approx */
+                    100px));  /* panel approx */
+  overflow: hidden;    /* empêche scroll de la landing */
+}
+
+  
+  .menu {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+
+  }
+
+  .panel {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    width: 100%;
+    margin-top: 10px;
+  padding: 10px;      /* réduit légèrement le padding */
+  }
+
+  .btn-discover,
+  .btn-send-summary,
+  .btn-smartin {
+    width: 100%;
+  }
+
+  header {
+    flex-direction: column;
+    align-items: center;
+      padding: 8px 10px;  /* réduit légèrement le padding */
+    gap: 5px;
+  }
+
+
+  .brand .logo {
+    position: relative;
+    width: 120px;
+    top: 0;
+  }
+
+
+
+  
   /* ===== SMARTIN MODAL ===== */
 
   .modal-smartin-content {
-    width: 95%;
-    height: 90dvh;          /* hauteur contrôlée */
-    max-height: 90dvh;
+    width: 90%;
+    height: 80dvh;          /* hauteur contrôlée */
+    max-height: 80dvh;
     display: flex;
     flex-direction: column;
   }
@@ -518,45 +576,7 @@ select option {
     padding: 5px;
   }
 
-  /* ===== LANDING STRUCTURE ===== */
-
-  .menu {
-    position: relative;
-    top: auto;
-    left: auto;
-    transform: none;
-    flex-direction: column;
-    gap: 15px;
-    margin-top: 40px;
-  }
-
-  .panel {
-    position: relative;
-    top: auto;
-    left: auto;
-    transform: none;
-    width: 100%;
-    margin-top: 20px;
-  }
-
-  .btn-discover,
-  .btn-send-summary,
-  .btn-smartin {
-    width: 100%;
-  }
-
-  header {
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .brand .logo {
-    position: relative;
-    width: 120px;
-    top: 0;
-  }
-
+ 
 }
 
 
@@ -1528,6 +1548,7 @@ const translations = {
 </script>
 </body>
 </html>
+
 
 
 
