@@ -513,7 +513,7 @@ select option {
 
   .smartin-left,
   .smartin-right {
-    width: 90%;
+    width: 95%;
     margin: 0 auto;
     padding: 5px;
   }
@@ -545,17 +545,29 @@ select option {
     width: 100%;
   }
 
-  header {
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-  }
+header {
+  display: flex;
+  justify-content: space-between; /* logo à gauche, langues à droite */
+  align-items: center;            /* centre verticalement */
+  padding: 10px 20px;             /* espace interne */
+  width: 100%;
+  box-sizing: border-box;
+}
 
-  .brand .logo {
-    position: relative;
-    width: 120px;
-    top: 0;
-  }
+/* Logo */
+.brand .logo {
+  width: 120px;
+  height: auto;
+}
+
+/* Menu langues */
+.menu-langs {
+  display: flex;
+  gap: 10px;        /* espace entre les langues */
+  align-items: center;
+}
+
+
 
 }
 
@@ -1528,6 +1540,7 @@ const translations = {
 </script>
 </body>
 </html>
+
 
 
 
