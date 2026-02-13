@@ -506,16 +506,19 @@ select option {
 
 
   
-  .menu {
-    position: relative;
-    top: auto;
-    left: auto;
-    transform: none;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 10px;
+.menu {
+  position: relative;       /* relative pour ne pas sortir du flux normal */
+  top: auto;
+  left: auto;
+  transform: none;
+  flex-direction: row;      /* horizontal */
+  justify-content: center;  /* centre horizontalement tous les boutons */
+  align-items: center;      /* centre verticalement (si plusieurs lignes) */
+  gap: 20px;                /* espace entre chaque bouton */
+  margin-top: 10px;         /* un petit espace depuis le header */
+  width: 100%;              /* prend toute la largeur pour centrer correctement */
+}
 
-  }
 
   .panel {
     position: relative;
@@ -1550,6 +1553,7 @@ const translations = {
 </script>
 </body>
 </html>
+
 
 
 
