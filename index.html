@@ -527,7 +527,7 @@ select option {
     transform: none;
     flex-direction: row;
     gap: 15px;
-    margin-top: 300px;
+    margin-top: 200px;
   }
 
   .panel {
@@ -555,12 +555,13 @@ header {
 }
 
 /* Logo */
-.brand .logo {
-  width: 60px;
-  height: auto;
-  margin: 0;          /* supprime tout margin par défaut */
-  display: block;     /* éviter le décalage inline */
-}
+ .brand .logo {
+    position: relative;  /* dans le flux normal du header */
+    width: 60px;
+    height: auto;
+    margin: 0;           /* supprime tout margin par défaut */
+    display: block;      /* éviter le décalage inline */
+  }
 
 /* Menu langues */
 .menu-langs {
@@ -1543,6 +1544,7 @@ const translations = {
 </script>
 </body>
 </html>
+
 
 
 
