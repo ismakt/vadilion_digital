@@ -1341,6 +1341,50 @@ document.getElementById('btn-send-summary').addEventListener('click', function (
 ;
 
 
+  // Contact
+
+// --- CONTACT FORM EMAIL ---
+document.getElementById("btn-send").addEventListener("click", function () {
+
+  const name = document.getElementById("contact-name").value;
+  const contact = document.getElementById("contact-info").value;
+  const message = document.getElementById("contact-message").value;
+
+  if (!name || !contact || !message) {
+    alert("Veuillez remplir tous les champs.");
+    return;
+  }
+
+  const templateParams = {
+    name: name,
+    contact: contact,
+    message: message
+  };
+
+  emailjs.send(
+    "service_41z5e5b",
+    "template_contact",
+    templateParams
+  )
+  .then(() => {
+    alert("Message envoyé avec succès ✅");
+    closeModal('contactModal');
+
+    // reset champs
+    document.getElementById("contact-name").value = "";
+    document.getElementById("contact-info").value = "";
+    document.getElementById("contact-message").value = "";
+
+  })
+  .catch((error) => {
+    console.error("EmailJS error:", error);
+    alert("Erreur lors de l'envoi ❌");
+  });
+
+});
+
+  
+
 
 
 // --- Dictionnaire de traduction ---
@@ -1519,6 +1563,7 @@ const translations = {
 </script>
 </body>
 </html>
+
 
 
 
