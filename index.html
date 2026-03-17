@@ -556,11 +556,15 @@ select option {
     margin: 0;
     padding: 0;
     overflow: hidden; /* pas de scroll global */
+    display: flex;
+    flex-direction: column;
   }
 
   .smartin-layout {
     flex-direction: column;
-    max-width: 100%;
+    width: 100%;
+    min-height: 100%;
+    box-sizing: border-box;
   }
 
   .smartin-left,
@@ -568,13 +572,12 @@ select option {
     width: 100%;
     margin: 0;
     padding: 6px;
-    gap: 8px;
+    box-sizing: border-box;
   }
 
   /* ===== Section Solutions ===== */
   .solutions {
-    height: 100%;
-    width: 100%;
+    flex: 1 1 auto; /* occupe tout l'espace disponible */
     overflow-y: auto; /* scroll interne uniquement */
     padding: 15px;
     box-sizing: border-box;
@@ -594,32 +597,16 @@ select option {
 
   /* ===== Modal Smart-In ===== */
   .modal-smartin-content {
-    width: auto;
+    width: 90%;
     max-width: 90vw;
     max-height: 75dvh;
     overflow-y: auto; /* scroll interne uniquement */
     margin: auto;
     padding: 20px 15px;
     border-radius: 16px;
-    background: rgba(20,20,20,0.95); /* opaque, pas transparent */
+    background: rgba(20,20,20,0.95); /* opaque */
     border: 1px solid var(--border);
     box-shadow: 0 20px 50px rgba(0,0,0,0.6);
-    animation: fadeInUp 0.25s ease;
-  }
-
-  .modal-smartin-content::after {
-    content: "";
-    position: sticky;
-    bottom: 0;
-    height: 25px;
-    background: linear-gradient(to bottom, transparent, rgba(20,20,20,0.95));
-    pointer-events: none;
-  }
-
-  /* Overlay modal */
-  .modal {
-    background: rgba(0, 0, 0, 0.18);
-    backdrop-filter: blur(2px);
   }
 
   /* ===== Menu & Panels ===== */
@@ -662,20 +649,7 @@ select option {
     top: 0;
   }
 
-  /* ===== Animations ===== */
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
 }
-
 
   
 </style>
