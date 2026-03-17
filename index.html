@@ -549,23 +549,80 @@ select option {
 
 @media (max-width: 768px) {
 
+  /* ===== Layout global ===== */
+  html, body, #root {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* pas de scroll global */
+  }
+
   .smartin-layout {
     flex-direction: column;
+    max-width: 100%;
   }
 
   .smartin-left,
   .smartin-right {
     width: 100%;
     margin: 0;
-    padding: 5px;
+    padding: 6px;
+    gap: 8px;
   }
 
+  /* ===== Section Solutions ===== */
+  .solutions {
+    height: 100%;
+    width: 100%;
+    overflow-y: auto; /* scroll interne uniquement */
+    padding: 15px;
+    box-sizing: border-box;
+    background: rgba(15, 15, 15, 0.45); /* transparent mais lisible */
+    backdrop-filter: blur(8px);
+    border-radius: 12px;
+  }
+
+  .solutions::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .solutions::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.3);
+    border-radius: 3px;
+  }
+
+  /* ===== Modal Smart-In ===== */
   .modal-smartin-content {
-    width: 95%;
-    max-height: 95vh;
-    overflow-y: auto;
+    width: auto;
+    max-width: 90vw;
+    max-height: 75dvh;
+    overflow-y: auto; /* scroll interne uniquement */
+    margin: auto;
+    padding: 20px 15px;
+    border-radius: 16px;
+    background: rgba(20,20,20,0.95); /* opaque, pas transparent */
+    border: 1px solid var(--border);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+    animation: fadeInUp 0.25s ease;
   }
 
+  .modal-smartin-content::after {
+    content: "";
+    position: sticky;
+    bottom: 0;
+    height: 25px;
+    background: linear-gradient(to bottom, transparent, rgba(20,20,20,0.95));
+    pointer-events: none;
+  }
+
+  /* Overlay modal */
+  .modal {
+    background: rgba(0, 0, 0, 0.18);
+    backdrop-filter: blur(2px);
+  }
+
+  /* ===== Menu & Panels ===== */
   .menu {
     position: relative;
     top: auto;
@@ -585,12 +642,14 @@ select option {
     margin-top: 20px;
   }
 
+  /* ===== Buttons ===== */
   .btn-discover,
   .btn-send-summary,
   .btn-smartin {
     width: 100%;
   }
 
+  /* ===== Header ===== */
   header {
     flex-direction: column;
     align-items: center;
@@ -601,6 +660,18 @@ select option {
     position: relative;
     width: 120px;
     top: 0;
+  }
+
+  /* ===== Animations ===== */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
 }
