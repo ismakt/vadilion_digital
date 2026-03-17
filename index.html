@@ -107,14 +107,46 @@ main{
 .footer-line{ height:1px; background:var(--border); }
 .footer-content{ display:flex; justify-content:space-around; padding:10px; font-size:13px; }
 .footer-content span{cursor:pointer;}
-/* MODAL */
-.modal{ display:none; position:fixed; inset:0; background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(1px); z-index:9999; justify-content:center; align-items:center; }
+
+  
+  /* MODAL */
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+
+  background: rgba(0, 0, 0, 0.35); /* 🔥 plus léger */
+  backdrop-filter: blur(3px);      /* 🔥 effet premium */
+
+  z-index:9999;
+  justify-content:center;
+  align-items:center;
+}
+  
 .modal-content{ background:var(--panel-2); border:1px solid var(--border); padding:20px; max-width:600px; width:100%; position:relative; }
 .modal-content h4{ color:var(--gold); margin-bottom:10px; }
 .modal-content p{ font-size:13px; color:var(--muted); margin-bottom:12px; }
 .modal-content input, .modal-content textarea{ width:100%; margin-bottom:10px; background:#000; border:1px solid var(--border); color:#fff; padding:8px; }
-.close{ position:absolute; top:8px; right:10px; cursor:pointer; }
-/* BUTTONS */
+
+
+
+.close{
+  position: sticky;   /* 🔥 change tout */
+  top: 10px;
+  align-self: flex-end;
+
+  font-size: 18px;
+  padding: 6px 10px;
+
+  background: var(--panel);
+  border: 1px solid var(--border);
+
+  cursor: pointer;
+  z-index: 20;
+}
+  
+  
+  /* BUTTONS */
 .btn-linkedin, .btn-instagram,  btn-send, .btn-video, .btn-smartin
   { display: inline-block; margin-top: 12px; padding: 8px 16px; background-color: #555; color: #fff; 
    text-decoration: none; font-weight: 400; font-size: 12px; border-radius: 6px; transition: color 0.3s, background 0.3s; border: none; cursor: pointer; }
@@ -132,18 +164,28 @@ main{
 
 
 
-
-  
 .modal-smartin-content {
-  width: 95%;
-  max-width: 1200px;
+  width: 92%;
+  max-width: 1000px;
+
   height: auto;
-  max-height: 90vh;
+  max-height: 85vh; /* 🔥 réduit la hauteur */
+
+  margin: auto; /* 🔥 centre parfaitement */
+
   display: flex;
   flex-direction: column;
-  overflow-y: auto; /* ✅ scroll uniquement ici */
+
+  overflow-y: auto;
+
+  padding-top: 35px; /* 🔥 espace pour le X */
+
+
+  border-radius: 20px;
+box-shadow: 0 20px 60px rgba(0,0,0,0.6);
 }
 
+  
 .smartin-layout {
   display: flex;
   gap: 15px;                  /* espace entre les colonnes */
@@ -759,7 +801,7 @@ Nous accompagnons les entrepreneurs, investisseurs et professionnels de l’immo
 
     <span class="close" onclick="closeModal('smartInModal')">✕</span>
 
-<h3 id="smartin-title" style="color:var(--gold); margin-bottom:12px;">Smart-In: Formulaire de Contact</h3>
+<h3 id="smartin-title" style="color:var(--gold); margin:30px 0 20px 0; text-align:center;">Smart-In: Formulaire de Contact</h3>
 
     <div class="smartin-layout">
 
