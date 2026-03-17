@@ -16,48 +16,14 @@
 
   
 *{ box-sizing:border-box; border-radius: 16px; margin:0; padding:0; font-family:Arial, Helvetica, sans-serif; }
-
-
-
-
-  
-html, body {
-  height: 100%;
-  overflow: hidden; /* 🔴 empêche le scroll global */
-}
-
-body{
-  background:var(--bg);
-  color:var(--text);
-  display:flex;
-  flex-direction:column;
-}
-
-
-  
-  
+body{ background:var(--bg); color:var(--text); min-height:100vh; display:flex; flex-direction:column; }
 /* HEADER */
 header{ display:flex; justify-content:space-between; padding:15px; z-index:20; position:relative; }
 .lang { display: inline-flex; align-items: center; justify-content: center; height: 28px; border: 1px solid var(--border); padding: 4px 12px; border-radius: 4px; font-size: 14px; line-height: 1; background-color: #000; }
 .lang span{ cursor:pointer; margin: 0 4px; }
 .lang .active{ color: var(--gold); }
-
-  
 /* MAIN */
-  
-main{
-  flex:1;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  position:relative;
-  padding:20px;
-  height: 100%;
-  overflow: hidden;
-}
-
-
-  
+main{ flex:1; display:flex; flex-direction:column; align-items:center; position:relative; padding:20px; overflow:hidden; }
 /* VANTA BG */
 #vanta-bg{ position:absolute; top:0; left:0; width:100%; height:100%; z-index:0; }
 .menu, .panel, .modal { position: relative; z-index: 10; }
@@ -65,88 +31,23 @@ main{
 .menu{ display:flex; gap:40px; position:absolute; top:23%; left:50%; transform:translateX(-50%); z-index:10; }
 .menu button{ background:none; border:none; color:var(--text); font-size:18px; cursor:pointer; font-weight: 600; }
 .menu button:hover{color:var(--gold);}
-
-
-  
 /* PANELS */
-.panel{
-  display:none;
-  position:absolute;
-  top:calc(20% + 50px);
-  left:50%;
-  transform:translateX(-50%);
-  background:var(--panel);
-  border:1px solid var(--border);
-  padding:20px;
-  max-width:600px;
-  width:100%;
-  z-index:15;
-  color: #ffffff;
-
-  max-height: 60vh;     /* 🔥 limite hauteur */
-  overflow-y: auto;     /* 🔥 scroll interne */
-
-  scrollbar-width: thin;
-
-.panel::after {
-  content: "";
-  position: sticky;
-  bottom: 0;
-  display: block;
-  height: 30px;
-  background: linear-gradient(to bottom, transparent, var(--panel));
-  pointer-events: none; /* 🔥 évite de bloquer les clics */
-}
-
-  background: linear-gradient(to bottom, rgba(0,0,0,0), var(--panel) 80%);
-  
-}.panel h3{ color:var(--gold); margin-bottom:10px; cursor:pointer; }
+.panel{ display:none; position:absolute; top:calc(20% + 50px); left:50%; transform:translateX(-50%); background:var(--panel); border:1px solid var(--border); padding:20px; max-width:600px; width:100%; z-index:15;  color: #ffffff;  }
+.panel h3{ color:var(--gold); margin-bottom:10px; cursor:pointer; }
 .panel p{ font-size:14px; line-height:1.6;  }
 .sub{display:none;margin-top:10px;}
 /* FOOTER */
 .footer-line{ height:1px; background:var(--border); }
 .footer-content{ display:flex; justify-content:space-around; padding:10px; font-size:13px; }
 .footer-content span{cursor:pointer;}
-
-  
-  /* MODAL */
-.modal{
-  display:none;
-  position:fixed;
-  inset:0;
-
-  background: rgba(0, 0, 0, 0.35); /* 🔥 plus léger */
-  backdrop-filter: blur(3px);      /* 🔥 effet premium */
-
-  z-index:9999;
-  justify-content:center;
-  align-items:center;
-}
-  
+/* MODAL */
+.modal{ display:none; position:fixed; inset:0; background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(1px); z-index:9999; justify-content:center; align-items:center; }
 .modal-content{ background:var(--panel-2); border:1px solid var(--border); padding:20px; max-width:600px; width:100%; position:relative; }
 .modal-content h4{ color:var(--gold); margin-bottom:10px; }
 .modal-content p{ font-size:13px; color:var(--muted); margin-bottom:12px; }
 .modal-content input, .modal-content textarea{ width:100%; margin-bottom:10px; background:#000; border:1px solid var(--border); color:#fff; padding:8px; }
-
-
-
-.close{
-  position: sticky;   /* 🔥 change tout */
-  top: 10px;
-  align-self: flex-end;
-
-  font-size: 18px;
-  padding: 6px 10px;
-
-  background: var(--panel);
-  border: 1px solid var(--border);
-
-  cursor: pointer;
-  z-index: 20;
-}
-  
-  
-  /* BUTTONS */
+.close{ position:absolute; top:8px; right:10px; cursor:pointer; }
+/* BUTTONS */
 .btn-linkedin, .btn-instagram,  btn-send, .btn-video, .btn-smartin
   { display: inline-block; margin-top: 12px; padding: 8px 16px; background-color: #555; color: #fff; 
    text-decoration: none; font-weight: 400; font-size: 12px; border-radius: 6px; transition: color 0.3s, background 0.3s; border: none; cursor: pointer; }
@@ -164,28 +65,17 @@ main{
 
 
 
-.modal-smartin-content {
-  width: 92%;
-  max-width: 1000px;
-
-  height: auto;
-  max-height: 85vh; /* 🔥 réduit la hauteur */
-
-  margin: auto; /* 🔥 centre parfaitement */
-
-  display: flex;
-  flex-direction: column;
-
-  overflow-y: auto;
-
-  padding-top: 35px; /* 🔥 espace pour le X */
-
-
-  border-radius: 20px;
-box-shadow: 0 20px 60px rgba(0,0,0,0.6);
-}
 
   
+.modal-smartin-content {
+  width: 95%;
+  max-width: 1200px;
+  height: auto;       
+  max-height: 90vh;   
+  display: flex;
+  flex-direction: column;
+}
+
 .smartin-layout {
   display: flex;
   gap: 15px;                  /* espace entre les colonnes */
@@ -604,17 +494,6 @@ select option {
 
 @media (max-width: 768px) {
 
-main{
-  flex:1;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  position:relative;
-  padding:20px;
-  height: 100%;
-  overflow: hidden;
-}
-  
   .smartin-layout {
     flex-direction: column;
   }
@@ -642,17 +521,14 @@ main{
     margin-top: 40px;
   }
 
-.panel {
-  position: relative;
-  top: auto;
-  left: auto;
-  transform: none;
-  width: 100%;
-  margin-top: 20px;
-
-  max-height: 60dvh;   /* 🔥 mobile safe */
-  overflow-y: auto;    /* 🔥 scroll interne */
-}
+  .panel {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    width: 100%;
+    margin-top: 20px;
+  }
 
   .btn-discover,
   .btn-send-summary,
@@ -801,7 +677,7 @@ Nous accompagnons les entrepreneurs, investisseurs et professionnels de l’immo
 
     <span class="close" onclick="closeModal('smartInModal')">✕</span>
 
-<h3 id="smartin-title" style="color:var(--gold); margin:30px 0 20px 0; text-align:center;">Smart-In: Formulaire de Contact</h3>
+<h3 id="smartin-title" style="color:var(--gold); margin-bottom:12px;">Smart-In: Formulaire de Contact</h3>
 
     <div class="smartin-layout">
 
@@ -1686,7 +1562,6 @@ const translations = {
 </script>
 </body>
 </html>
-
 
 
 
