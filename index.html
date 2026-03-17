@@ -16,14 +16,48 @@
 
   
 *{ box-sizing:border-box; border-radius: 16px; margin:0; padding:0; font-family:Arial, Helvetica, sans-serif; }
-body{ background:var(--bg); color:var(--text); min-height:100vh; display:flex; flex-direction:column; }
+
+
+
+
+  
+html, body {
+  height: 100%;
+  overflow: hidden; /* 🔴 empêche le scroll global */
+}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  display:flex;
+  flex-direction:column;
+}
+
+
+  
+  
 /* HEADER */
 header{ display:flex; justify-content:space-between; padding:15px; z-index:20; position:relative; }
 .lang { display: inline-flex; align-items: center; justify-content: center; height: 28px; border: 1px solid var(--border); padding: 4px 12px; border-radius: 4px; font-size: 14px; line-height: 1; background-color: #000; }
 .lang span{ cursor:pointer; margin: 0 4px; }
 .lang .active{ color: var(--gold); }
+
+  
 /* MAIN */
-main{ flex:1; display:flex; flex-direction:column; align-items:center; position:relative; padding:20px; overflow:hidden; }
+  
+main{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  position:relative;
+  padding:20px;
+  height: 100%;
+  overflow: hidden;
+}
+
+
+  
 /* VANTA BG */
 #vanta-bg{ position:absolute; top:0; left:0; width:100%; height:100%; z-index:0; }
 .menu, .panel, .modal { position: relative; z-index: 10; }
@@ -70,10 +104,11 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 .modal-smartin-content {
   width: 95%;
   max-width: 1200px;
-  height: auto;       
-  max-height: 90vh;   
+  height: auto;
+  max-height: 90vh;
   display: flex;
   flex-direction: column;
+  overflow-y: auto; /* ✅ scroll uniquement ici */
 }
 
 .smartin-layout {
@@ -494,6 +529,17 @@ select option {
 
 @media (max-width: 768px) {
 
+main{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  position:relative;
+  padding:20px;
+  height: 100%;
+  overflow: hidden;
+}
+  
   .smartin-layout {
     flex-direction: column;
   }
