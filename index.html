@@ -68,67 +68,12 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 
   
 .modal-smartin-content {
-  width: auto;
-  max-width: 90vw;
-
-  max-height: 75dvh; /* 🔥 plus compact */
-  overflow-y: auto;
-
-  margin: auto;
-  padding: 20px 15px;
-
-  border-radius: 16px;
-
-  /* 🔥 effet transparent comme Solutions */
-  background: rgba(15, 15, 15, 0.55);
-  backdrop-filter: blur(10px);
-
-  border: 1px solid var(--border);
-
-  box-shadow: 0 20px 50px rgba(0,0,0,0.6);
-}
-
-  /* 🔥 overlay plus transparent (voir ventadots) */
-.modal {
-  background: rgba(0, 0, 0, 0.18);
-  backdrop-filter: blur(2px);
-}
-
-/* 🔥 contenu plus compact */
-.smartin-layout {
-  max-width: 100%;
-}
-
-.smartin-left,
-.smartin-right {
-  padding: 6px;
-  gap: 8px;
-}
-
-/* 🔥 scroll propre */
-.modal-smartin-content {
-  scrollbar-width: thin;
-}
-
-/* 🔥 effet fade comme Solutions */
-.modal-smartin-content::after {
-  content: "";
-  position: sticky;
-  bottom: 0;
-  height: 25px;
-  background: linear-gradient(to bottom, transparent, rgba(15,15,15,0.8));
-  pointer-events: none;
-  animation: fadeInUp 0.25s ease;
-  @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+  width: 95%;
+  max-width: 1200px;
+  height: auto;       
+  max-height: 90vh;   
+  display: flex;
+  flex-direction: column;
 }
 
 .smartin-layout {
@@ -548,6 +493,7 @@ select option {
   
 
 @media (max-width: 768px) {
+
   .smartin-layout {
     flex-direction: column;
   }
@@ -601,7 +547,10 @@ select option {
     width: 120px;
     top: 0;
   }
+
 }
+
+
   
 </style>
 </head>
