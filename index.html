@@ -70,18 +70,20 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 .modal-smartin-content {
   width: 95%;
   max-width: 1200px;
-  height: auto;       
-  max-height: 90vh;   
+  height: 90vh;       
   display: flex;
   flex-direction: column;
 }
 
 .smartin-layout {
+  flex: 1;
   display: flex;
-  gap: 15px;                  /* espace entre les colonnes */
-  justify-content: center;     /* centre le groupe de colonnes */
-  align-items: flex-start;     /* alignement vertical */
+  gap: 15px;
+  justify-content: center;
+  align-items: stretch; /* important */
 }
+
+
 
 .smartin-left,
 .smartin-right {
@@ -90,7 +92,7 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
   flex-direction: column;
   gap: 10px;
   padding: 10px;
-  min-height: unset;
+  height: 100%; 
   overflow: unset;
 }
 
@@ -109,10 +111,12 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
   border-radius: 12px;             /* optionnel, arrondi comme à droite */
   padding: 10px;                    /* espace intérieur */
   gap: 20px;               /* ← augmente l’espacement entre chaque box */
-     height: 100%;
+    flex: 1;
   display: flex;
   flex-direction: column;
 }
+
+
 
 
 
@@ -489,17 +493,15 @@ select option {
   border-radius: 8px; /* ou 4px si tu veux encore plus droit */
 }
 
-.smartin-layout {
-  display: flex;
-  gap: 15px;
-  align-items: stretch; /* 🔥 clé */
-}
+
 
 .smartin-left,
 .smartin-right {
   flex: 1;
   display: flex;
   flex-direction: column;
+    justify-content: space-between;
+
 }
 
 
