@@ -486,7 +486,18 @@ select option {
   border-radius: 8px; /* ou 4px si tu veux encore plus droit */
 }
 
+.smartin-layout {
+  display: flex;
+  gap: 15px;
+  align-items: stretch; /* 🔥 clé */
+}
 
+.smartin-left,
+.smartin-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
 
 
 
