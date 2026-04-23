@@ -79,9 +79,11 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
   flex: 1;
   display: flex;
   gap: 15px;
-  justify-content: center;
+  justify-content: stretch;
+  height: 100%;
   align-items: stretch; /* important */
 }
+
 
 
 
@@ -103,7 +105,13 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 
 .smartin-right {
   margin-left: 7.5px;          /* moitié du gap */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* 🔥 clé */
 }
+
+
 
   
   .smartin-left-container {
@@ -145,6 +153,7 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 
   
 .summary-wrapper {
+   flex: 1; 
   display: flex;
   flex-direction: column;
   gap: 8px;
