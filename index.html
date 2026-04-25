@@ -70,7 +70,7 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 .modal-smartin-content {
   width: 95%;
   max-width: 1200px;
-  height: 90vh;       
+  height: auto;       
   max-height: 90vh;   
   display: flex;
   flex-direction: column;
@@ -507,10 +507,13 @@ select option {
 
 .modal-smartin-content {
   width: 95%;
-  max-height: 95vh;
+      height: 90vh;        /* 👈 contrôle écran */
+
+  max-height: 90vh;
   overflow-y: auto;
   padding: 15px;
 }
+
 
   .menu {
     position: relative;
