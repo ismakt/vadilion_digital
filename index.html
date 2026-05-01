@@ -264,6 +264,10 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
 }
 
 
+#casesSmartIn:hover {
+  background-color: var(--gold);
+  color: #000;
+}
 
 /* Harmonisation Goals / Themes */
 .selectgoals {
@@ -647,6 +651,7 @@ Concrètement, nous accompagnons les entrepreneurs dans le choix du meilleur emp
 </div>
       <div class="btn-flex" style="margin-top:20px; display:flex; justify-content:center; gap:12px;">
           <button id="discoverSmartIn" class="btn-discover">Découvrir Smart-In</button>
+        <button id="casesSmartIn" class="btn-discover">Cas clients</button>
          <!-- <button id="presentationSmartIn" class="btn-video">Video</button>-->
         </div>
       </div>
@@ -709,6 +714,9 @@ Concrètement, nous accompagnons les entrepreneurs dans le choix du meilleur emp
 
 
 
+
+<!-- Modal Smart-In Formulaire de Contact -->
+  
 <div class="modal modal-smartin" id="smartInModal">
   <div class="modal-content modal-smartin-content">
 
@@ -815,12 +823,6 @@ Concrètement, nous accompagnons les entrepreneurs dans le choix du meilleur emp
 
 
 
-
-
-
-
-  
-
 </div>
 
 
@@ -871,19 +873,61 @@ Concrètement, nous accompagnons les entrepreneurs dans le choix du meilleur emp
 
 </select>
 
-
-
-
-
-
-
-
-
       </div>
 
     </div>
   </div>
 </div>
+
+
+
+
+ <!-- Modal Case Studies -->
+  
+<div class="modal" id="casesModal">
+  <div class="modal-content">
+
+    <span class="close" onclick="closeModal('casesModal')">✕</span>
+
+    <h3 id="cases-title" style="color:var(--gold); margin-bottom:15px;">
+      Cas Clients
+    </h3>
+
+    <div class="box-container">
+      <h4 id="case1-title">Implantation d’un commerce</h4>
+      <p id="case1-desc">
+        Analyse d’une zone urbaine pour identifier le meilleur emplacement,
+        évaluer le potentiel client et comprendre la concurrence locale.
+      </p>
+    </div>
+
+    <div class="box-container">
+      <h4 id="case2-title">Optimisation marketing</h4>
+      <p id="case2-desc">
+        Étude du profil de population et des flux afin d’adapter la stratégie
+        marketing et améliorer le ciblage client.
+      </p>
+    </div>
+
+    <div class="box-container">
+      <h4 id="case3-title">Analyse immobilière</h4>
+      <p id="case3-desc">
+        Évaluation du marché immobilier local pour orienter un investissement
+        ou anticiper les évolutions de prix et de demande.
+      </p>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+  
 
 
 <!-- Message pour mobile / tablette petite -->
@@ -962,8 +1006,8 @@ menuButtons.forEach(btn => {
   
 
 
-// DISCOVER SMART-IN -> SMART-IN CONTACT FORM
   
+/*Hover Smart-In Contact Form*/
 
 const discoverBtn = document.getElementById('discoverSmartIn');
   
@@ -989,6 +1033,27 @@ discoverBtn.addEventListener('mouseleave', () => {
 
 
 
+
+
+
+/*Hover Case Studies*/
+  
+const casesBtn = document.getElementById('casesSmartIn');
+
+let casesHoverTimeout = null;
+
+casesBtn.addEventListener('mouseenter', () => {
+
+  if (document.getElementById('casesModal').style.display === 'flex') return;
+
+  casesHoverTimeout = setTimeout(() => {
+    openModal('casesModal');
+  }, 250);
+});
+
+casesBtn.addEventListener('mouseleave', () => {
+  clearTimeout(casesHoverTimeout);
+});
 
 
 
@@ -1521,13 +1586,26 @@ const translations = {
 
 
     "option-select-city":"Sélectionner une ville",
-    "option-brussels":"Bruxelles"
+    "option-brussels":"Bruxelles",
+    "casesSmartIn":"Cas Clients",
+    
+    "cases-title":"Cas Clients",
+"case1-title":"x",
+
+"case1-desc":"x"
+
 
 
   },
 
 
 
+
+
+
+
+
+  
   
   en: {
     "about-text": "We turn high-value data into unique digital solutions that solve real challenges.",
@@ -1608,8 +1686,15 @@ const translations = {
 "approach-content": "1. Fully understand your project\n2. Define the analysis and the data that will be provided to you\n3. Deliver the study within the shortest possible timeframe",
 
     "option-select-city":"Select a city",
-    "option-brussels":"Brussels"
+    "option-brussels":"Brussels",
+    "casesSmartIn":"Case Studies",
+    "cases-title":"Cas Clients"
 
+"cases-title":"Case Studies",
+
+"case1-title":"x",
+
+"case1-desc":"x"
     
     
   }
