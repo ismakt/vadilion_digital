@@ -61,10 +61,6 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
   { display: inline-block; margin-top: 12px; padding: 8px 16px; background-color: #555; color: #fff; 
    text-decoration: none; font-weight: 400; font-size: 12px; border-radius: 6px; transition: color 0.3s, background 0.3s; border: none; cursor: pointer; width:40% }
 
-.btn-cases
-  { display: inline-block; margin-top: 12px; padding: 8px 16px; background-color: #555; color: #fff; 
-   text-decoration: none; font-weight: 400; font-size: 12px; border-radius: 6px; transition: color 0.3s, background 0.3s; border: none; cursor: pointer; width:40% }
-
 
 
 
@@ -538,7 +534,6 @@ select option {
   }
 
   .btn-discover,
-  .btn-cases,
   .btn-send-summary,
   .btn-smartin {
     width: 100%;
@@ -623,7 +618,7 @@ select option {
 <main>
   <div id="vanta-bg"></div>
 <div class="menu">
-<button id="menu-about">MISSION</button>
+<button id="menu-about">À PROPOS</button>
 <button id="menu-solutions">SOLUTIONS</button>
 </div>
 
@@ -652,8 +647,6 @@ Concrètement, nous accompagnons les entrepreneurs dans le choix du meilleur emp
 </div>
       <div class="btn-flex" style="margin-top:20px; display:flex; justify-content:center; gap:12px;">
           <button id="discoverSmartIn" class="btn-discover">Découvrir Smart-In</button>
-          <button id="discoverCases" class="btn-cases">Cas Clients</button>
-
          <!-- <button id="presentationSmartIn" class="btn-video">Video</button>-->
         </div>
       </div>
@@ -680,7 +673,7 @@ Concrètement, nous accompagnons les entrepreneurs dans le choix du meilleur emp
     <input id="contact-name" placeholder="Nom" required>
     <input id="contact-info" placeholder="Coordonnées de contact" required>
     <textarea id="contact-message" placeholder="Comment pouvons nous vous aider?" maxlength="999" required></textarea>
-    <button id="btn-send-summary" class="btn-send-summary">Envoyer</button>
+    <button id="btn-send" class="btn-send-summary">Envoyer</button>
   </div>
 </div>
 <div class="modal" id="mediaModal">
@@ -715,35 +708,180 @@ Concrètement, nous accompagnons les entrepreneurs dans le choix du meilleur emp
 
 
 
-<div class="modal modal-cases" id="casesModal">
-  <div class="modal-content modal-cases-content">
 
-    <span class="close" onclick="closeModal('casesModal')">✕</span>
+<div class="modal modal-smartin" id="smartInModal">
+  <div class="modal-content modal-smartin-content">
 
-    <h3 id="cases-title" style="color:var(--gold); margin-bottom:12px;">
-      Cas Clients
-    </h3>
+    <span class="close" onclick="closeModal('smartInModal')">✕</span>
 
-    <div class="cases-layout">
+<h3 id="smartin-title" style="color:var(--gold); margin-bottom:12px;">Smart-In: Formulaire de Contact</h3>
 
-      <!-- Exemple de contenu -->
-      <div class="case-item">
-        <h4>Projet 1</h4>
-        <p>Description rapide du projet client.</p>
+    <div class="smartin-layout">
+
+
+      
+      <!-- LEFT -->
+      <div class="smartin-left">
+
+  <!-- Container global -->
+  <div class="smartin-left-container">
+
+    
+<div class="box-container">
+  <h4 id="approach-title">Notre approche</h4>
+  <div id="approach-content">1. Bien comprendre votre projet
+2. Définir l’analyse et les données qui vous seront fournies
+3. Livrer l’étude dans les plus brefs délais</div>
+</div>
+
+
+    
+
+<div class="box-container">
+<label id="maingoal-label">Que souhaitez vous connaître?</label>
+  
+
+  <!-- ECONOMIE -->
+  <label>
+  <input type="checkbox" class="goal">
+  <span id="maingoal_clients_concurents">
+    Étude des clients et concurents potentiels
+  </span>
+</label>
+
+
+   <!-- IMMOBILIER -->
+    <label>
+    <input type="checkbox" class="theme">
+        <span id="maingoal_urbandynamics">
+    <span>Dynamiques urbaines (gentrification, projets et impacts)</span>
+  </label>
+
+  
+  <!-- SOCIO-ECONOMIE -->
+    <label>
+    <input type="checkbox" class="theme">
+        <span id="maingoal_populationprofile">
+    <span>Profil de la population (revenus, emploi, difficultés, âges, origines)</span>
+  </label>
+
+  <!-- QUALITE DE VIE -->
+  <label>
+    <input type="checkbox" class="theme">
+      <span id="maingoal_security">
+    <span>Sécurité (statistiques et évolution des incidents)</span>
+  </label>
+
+
+  <label>
+    <input type="checkbox" class="theme">
+      <span id="maingoal_realestatemarket">
+    <span>Marché immobilier (prix, transactions, tendances)</span>
+  </label>
+
+
+  <label>
+    <input type="checkbox" class="theme">
+      <span id="maingoal_parcimmo">
+    <span>Parc immobilier (type et localisation des bâtiments)</span>
+  </label>
+
+
+  <label>
+    <input type="checkbox" class="theme">
+      <span id="maingoal_lifequality">
+    <span>Qualité de vie (espaces verts et accessibilité, pollution)</span>
+  </label>
+
+
+
+   <label>
+    <input type="checkbox" class="theme">
+       <span id="maingoal_visibility">
+    <span>Visibilité (flux piétons, automobiles, attractivité touristique)</span>
+  </label>
+
+   <label>
+    <input type="checkbox" class="theme">
+       <span id="maingoal_accessibility">
+    <span>Accessibilité (transport en commun, axes routiers, parkings)</span>
+  </label>
+
+     <label>
+    <input type="checkbox" class="theme">
+         <span id="maingoal_tauxvacance">
+    <span>Taux de vacance (commerces et logements inoccupés)</span>
+  </label>
+
+
+
+
+
+
+
+  
+
+</div>
+
+
       </div>
+        
+</div>
 
-      <div class="case-item">
-        <h4>Projet 2</h4>
-        <p>Description rapide du projet client.</p>
-      </div>
+      
+      <!-- RIGHT -->
 
-      <div class="case-item">
-        <h4>Projet 3</h4>
-        <p>Description rapide du projet client.</p>
+      <div class="smartin-right">
+<div class="box-container">
+
+  <div class="form-group">
+    <select id="citySelect">
+      <option id="option-select-city" value="">Sélectionner une ville</option>
+      <option id="option-brussels" value="Brussels">Bruxelles</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <textarea id="addressInput" rows="1"
+      placeholder="Adresse(s) à analyser (max. 3)"></textarea>
+  </div>
+
+  <textarea id="contactInfoSmartIn" rows="1"
+    placeholder="Vos coordonnées de contact (email et/ou mobile)"></textarea>
+
+  <textarea id="projectDetails" rows="14"
+    placeholder="Décrivez votre projet"></textarea>
+
+  <button id="btn-send-summary"
+          class="btn-send-summary"
+          onclick="sendSmartIn()">Envoyer</button>
+
+</div>
+
+
+    
+
+
+        
+<div class="summary-box">
+  <h4 id="summary-title">Résumé</h4>
+  <div id="summaryContent">En attente...</div>
+</div>
+
+
+</select>
+
+
+
+
+
+
+
+
+
       </div>
 
     </div>
-
   </div>
 </div>
 
@@ -771,9 +909,6 @@ Concrètement, nous accompagnons les entrepreneurs dans le choix du meilleur emp
 
   
 <script>
-
-  document.addEventListener('DOMContentLoaded', () => {
-
 
 let vantaEffect = VANTA.DOTS({ el:"#vanta-bg", mouseControls:true, touchControls:true, gyroControls:false, minHeight:200, minWidth:200, 
                               scale:1.0, scaleMobile:1.0, color:0xcffb7, color2:0x5520ff, backgroundColor:0x0, size:3.2, spacing:24, showLines:false });
@@ -854,27 +989,7 @@ discoverBtn.addEventListener('mouseleave', () => {
 
 
 
-// DISCOVER CASES -> CASES MODAL
 
-const discoverCasesBtn = document.getElementById('discoverCases');
-
-if (discoverCasesBtn) {
-  let casesHoverTimeout = null;
-
-  discoverCasesBtn.addEventListener('mouseenter', () => {
-    const modal = document.getElementById('casesModal');
-    if (modal && modal.style.display === 'flex') return;
-
-    casesHoverTimeout = setTimeout(() => {
-      openModal('casesModal');
-    }, 250);
-  });
-
-  discoverCasesBtn.addEventListener('mouseleave', () => {
-    clearTimeout(casesHoverTimeout);
-  });
-}
-  
 
 
   
@@ -977,8 +1092,6 @@ document.querySelectorAll('.goal, .theme').forEach(cb => {
 });
 
 
-
-  
   
   // --- Select city -> Map ---
 
@@ -1006,6 +1119,7 @@ document.querySelectorAll('.goal, .theme').forEach(cb => {
     requestAnimationFrame(drawPreMap); // dessine la carte
   }
 });
+
 
 
 
@@ -1335,7 +1449,7 @@ document.getElementById("btn-send").addEventListener("click", function () {
 const translations = {
   fr: {
     "about-text": "Nous développons des solutions digitales uniques, répondant à des besoins concrets, à partir de données à forte valeur ajoutée.",
-    "menu-about": "MISSION",
+    "menu-about": "À PROPOS",
     "locationBtn": "SMART-IN",
  
 
@@ -1344,7 +1458,6 @@ const translations = {
 
     
     "discoverSmartIn": "Découvrir Smart-In",
-    "discoverCases": "Cas Clients",
     //"presentationSmartIn": "Vidéo",
     "offices-link": "Bureaux",
     "offices": "Bureaux",
@@ -1418,7 +1531,7 @@ const translations = {
   
   en: {
     "about-text": "We turn high-value data into unique digital solutions that solve real challenges.",
-    "menu-about": "MISSION",
+    "menu-about": "ABOUT",
     "locationBtn": "SMART-IN",
 
 
@@ -1430,8 +1543,6 @@ const translations = {
 
     
     "discoverSmartIn": "Discover Smart-In",
-        "discoverCases": "Case Studies",
-
    // "presentationSmartIn": "Video",
 
 "offices-link": "Offices",
@@ -1504,16 +1615,12 @@ const translations = {
   }
 };
 
-
-
-    });
   
 
 
 </script>
 </body>
 </html>
-
 
 
 
