@@ -61,6 +61,10 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
   { display: inline-block; margin-top: 12px; padding: 8px 16px; background-color: #555; color: #fff; 
    text-decoration: none; font-weight: 400; font-size: 12px; border-radius: 6px; transition: color 0.3s, background 0.3s; border: none; cursor: pointer; width:40% }
 
+.btn-cases
+  { display: inline-block; margin-top: 12px; padding: 8px 16px; background-color: #555; color: #fff; 
+   text-decoration: none; font-weight: 400; font-size: 12px; border-radius: 6px; transition: color 0.3s, background 0.3s; border: none; cursor: pointer; width:40% }
+
 
 
 
@@ -534,6 +538,7 @@ select option {
   }
 
   .btn-discover,
+  .btn-cases,
   .btn-send-summary,
   .btn-smartin {
     width: 100%;
@@ -618,7 +623,7 @@ select option {
 <main>
   <div id="vanta-bg"></div>
 <div class="menu">
-<button id="menu-about">NOTRE MISSION</button>
+<button id="menu-about">MISSION</button>
 <button id="menu-solutions">SOLUTIONS</button>
 </div>
 
@@ -970,6 +975,8 @@ document.querySelectorAll('.goal, .theme').forEach(cb => {
 });
 
 
+
+  /*
   
   // --- Select city -> Map ---
 
@@ -997,7 +1004,7 @@ document.querySelectorAll('.goal, .theme').forEach(cb => {
     requestAnimationFrame(drawPreMap); // dessine la carte
   }
 });
-
+*/
 
 
 
@@ -1327,7 +1334,7 @@ document.getElementById("btn-send").addEventListener("click", function () {
 const translations = {
   fr: {
     "about-text": "Nous développons des solutions digitales uniques, répondant à des besoins concrets, à partir de données à forte valeur ajoutée.",
-    "menu-about": "NOTRE MISSION",
+    "menu-about": "MISSION",
     "locationBtn": "SMART-IN",
  
 
@@ -1410,7 +1417,7 @@ const translations = {
   
   en: {
     "about-text": "We turn high-value data into unique digital solutions that solve real challenges.",
-    "menu-about": "OUR MISSION",
+    "menu-about": "MISSION",
     "locationBtn": "SMART-IN",
 
 
