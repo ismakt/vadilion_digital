@@ -772,6 +772,9 @@ Concrètement, nous accompagnons les entrepreneurs dans le choix du meilleur emp
   
 <script>
 
+  document.addEventListener('DOMContentLoaded', () => {
+
+
 let vantaEffect = VANTA.DOTS({ el:"#vanta-bg", mouseControls:true, touchControls:true, gyroControls:false, minHeight:200, minWidth:200, 
                               scale:1.0, scaleMobile:1.0, color:0xcffb7, color2:0x5520ff, backgroundColor:0x0, size:3.2, spacing:24, showLines:false });
 
@@ -855,23 +858,22 @@ discoverBtn.addEventListener('mouseleave', () => {
 
 const discoverCasesBtn = document.getElementById('discoverCases');
 
-let casesHoverTimeout = null;
+if (discoverCasesBtn) {
+  let casesHoverTimeout = null;
 
-discoverCasesBtn.addEventListener('mouseenter', () => {
-  
-  // Ne rien faire si le modal est déjà ouvert
-  if (document.getElementById('casesModal').style.display === 'flex') return;
+  discoverCasesBtn.addEventListener('mouseenter', () => {
+    const modal = document.getElementById('casesModal');
+    if (modal && modal.style.display === 'flex') return;
 
-  // Délai pour éviter les ouvertures accidentelles
-  casesHoverTimeout = setTimeout(() => {
-    openModal('casesModal');
-  }, 250);
-});
+    casesHoverTimeout = setTimeout(() => {
+      openModal('casesModal');
+    }, 250);
+  });
 
-discoverCasesBtn.addEventListener('mouseleave', () => {
-  clearTimeout(casesHoverTimeout);
-});
-
+  discoverCasesBtn.addEventListener('mouseleave', () => {
+    clearTimeout(casesHoverTimeout);
+  });
+}
   
 
 
@@ -976,7 +978,7 @@ document.querySelectorAll('.goal, .theme').forEach(cb => {
 
 
 
-  /*
+  
   
   // --- Select city -> Map ---
 
@@ -1004,7 +1006,6 @@ document.querySelectorAll('.goal, .theme').forEach(cb => {
     requestAnimationFrame(drawPreMap); // dessine la carte
   }
 });
-*/
 
 
 
@@ -1503,6 +1504,9 @@ const translations = {
   }
 };
 
+
+
+    });
   
 
 
