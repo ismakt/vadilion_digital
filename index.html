@@ -352,6 +352,56 @@ footer {
 }
 
 /* ============================
+   MODAL — INPUTS
+   ============================ */
+.modal-content input,
+.modal-content textarea {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px 14px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  color: var(--text);
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+  resize: none;
+}
+
+.modal-content input:focus,
+.modal-content textarea:focus {
+  border-color: rgba(201,162,77,0.45);
+  background: rgba(255,255,255,0.06);
+}
+
+.modal-content input::placeholder,
+.modal-content textarea::placeholder { color: var(--muted); }
+
+.modal-content textarea { min-height: 110px; }
+
+.btn-modal-send {
+  width: 100%;
+  padding: 11px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, transform 0.15s;
+  letter-spacing: 0.3px;
+}
+
+.btn-modal-send:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.2);
+  transform: translateY(-1px);
+}
+
+/* ============================
    MODAL — OFFICES
    ============================ */
 .offices-list {
@@ -501,9 +551,25 @@ Concrètement, nous accompagnons les entrepreneurs dans le choix du meilleur emp
   <div class="footer-line"></div>
   <div class="footer-content">
     <span id="offices-link" onclick="openModal('officeModal')">Bureaux</span>
+    <span id="contact-footer-link" onclick="openModal('contactModal')">Contact</span>
     <span onclick="openModal('mediaModal')">Media</span>
   </div>
 </footer>
+
+<!-- ============================
+     MODAL — CONTACT
+     ============================ -->
+<div class="modal" id="contactModal">
+  <div class="modal-content">
+    <button class="close" onclick="closeModal('contactModal')">✕</button>
+    <h4 id="contact-text">Contactez-nous</h4>
+    <p id="contact-text2">Nous écoutons attentivement vos besoins afin de vous proposer une solution précise et adaptée.</p>
+    <input id="contact-name" placeholder="Nom" required>
+    <input id="contact-info" placeholder="Coordonnées de contact" required>
+    <textarea id="contact-message" placeholder="Comment pouvons-nous vous aider ?" maxlength="999" required></textarea>
+    <button id="btn-send" class="btn-modal-send">Envoyer</button>
+  </div>
+</div>
 
 <!-- ============================
      MODAL — MEDIA
@@ -557,6 +623,7 @@ Concrètement, nous accompagnons les entrepreneurs dans le choix du meilleur emp
      ============================ -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.dots.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
 <script>
 /* ============================
@@ -638,6 +705,27 @@ document.querySelectorAll('.modal').forEach(modal => {
   modal.addEventListener('click', e => {
     if (e.target === modal) closeModal(modal.id);
   });
+});
+
+/* ============================
+   EMAILJS
+   ============================ */
+(function(){ emailjs.init("Y9G1UYj9VZqrRmSG1"); })();
+
+document.getElementById('btn-send').addEventListener('click', function() {
+  const name    = document.getElementById('contact-name').value;
+  const contact = document.getElementById('contact-info').value;
+  const message = document.getElementById('contact-message').value;
+  if (!name || !contact || !message) { alert('Veuillez remplir tous les champs.'); return; }
+  emailjs.send('service_41z5e5b', 'template_9s39ygw', { name, contact, message })
+    .then(() => {
+      alert('Message envoyé ✅');
+      closeModal('contactModal');
+      document.getElementById('contact-name').value = '';
+      document.getElementById('contact-info').value = '';
+      document.getElementById('contact-message').value = '';
+    })
+    .catch(err => { console.error(err); alert('Erreur ❌'); });
 });
 
 /* ============================
