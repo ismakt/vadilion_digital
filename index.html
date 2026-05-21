@@ -352,259 +352,6 @@ footer {
 }
 
 /* ============================
-   MODAL — INPUTS
-   ============================ */
-.modal-content input,
-.modal-content textarea {
-  display: block;
-  width: 100%;
-  margin-bottom: 10px;
-  padding: 10px 14px;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid var(--border-light);
-  border-radius: 10px;
-  color: var(--text);
-  font-size: 13px;
-  outline: none;
-  transition: border-color 0.2s, background 0.2s;
-  resize: none;
-}
-
-.modal-content input:focus,
-.modal-content textarea:focus {
-  border-color: rgba(201,162,77,0.45);
-  background: rgba(255,255,255,0.06);
-}
-
-.modal-content input::placeholder,
-.modal-content textarea::placeholder {
-  color: var(--muted);
-}
-
-.modal-content textarea { min-height: 110px; }
-
-.btn-modal-send {
-  width: 100%;
-  padding: 11px;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid var(--border-light);
-  border-radius: 10px;
-  color: var(--text);
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s, border-color 0.2s, transform 0.15s;
-  letter-spacing: 0.3px;
-}
-
-.btn-modal-send:hover {
-  background: rgba(255,255,255,0.1);
-  border-color: rgba(255,255,255,0.2);
-  transform: translateY(-1px);
-}
-
-/* ============================
-   MODAL — SMART-IN FORM
-   ============================ */
-.modal-smartin-content {
-  max-width: 900px;
-  width: 95%;
-  max-height: 88vh;
-  overflow-y: auto;
-  padding: 28px;
-  border-radius: 20px;
-}
-
-.modal-smartin-content::-webkit-scrollbar { width: 4px; }
-.modal-smartin-content::-webkit-scrollbar-track { background: transparent; }
-.modal-smartin-content::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 4px; }
-
-.smartin-modal-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 20px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--border);
-}
-
-.smartin-modal-header h3 {
-  font-size: 17px;
-  font-weight: 600;
-  color: var(--gold);
-  letter-spacing: 0.2px;
-}
-
-.smartin-layout {
-  display: flex;
-  gap: 16px;
-  align-items: flex-start;
-}
-
-.smartin-left,
-.smartin-right {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.box-container {
-  background: rgba(255,255,255,0.02);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 14px;
-}
-
-.box-container h4 {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--gold);
-  margin-bottom: 10px;
-  letter-spacing: 0.2px;
-}
-
-#approach-content {
-  font-size: 12.5px;
-  color: var(--muted-light);
-  line-height: 1.8;
-  white-space: pre-line;
-  counter-reset: steps;
-}
-
-/* Goals / Checkboxes */
-#maingoal-label {
-  display: block;
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--gold);
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  margin-bottom: 10px;
-}
-
-.themes {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.themes label {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  cursor: pointer;
-  padding: 5px 7px;
-  border-radius: 7px;
-  transition: background 0.15s;
-}
-
-.themes label:hover { background: rgba(255,255,255,0.04); }
-
-.themes input[type="checkbox"] {
-  width: 15px;
-  height: 15px;
-  accent-color: var(--gold);
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-
-.themes label span {
-  font-size: 12.5px;
-  color: var(--muted-light);
-  line-height: 1.5;
-}
-
-/* Right column — form fields */
-.form-group { margin-bottom: 10px; }
-
-.form-group label,
-.field-label {
-  display: block;
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: 0.6px;
-  margin-bottom: 5px;
-}
-
-.smartin-right input,
-.smartin-right textarea,
-.smartin-right select {
-  display: block;
-  width: 100%;
-  padding: 9px 12px;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid var(--border-light);
-  border-radius: 9px;
-  color: var(--text);
-  font-size: 13px;
-  outline: none;
-  transition: border-color 0.2s, background 0.2s;
-  box-sizing: border-box;
-  margin-bottom: 0;
-  resize: none;
-}
-
-.smartin-right input:focus,
-.smartin-right textarea:focus,
-.smartin-right select:focus {
-  border-color: rgba(201,162,77,0.4);
-  background: rgba(255,255,255,0.06);
-}
-
-.smartin-right input::placeholder,
-.smartin-right textarea::placeholder { color: var(--muted); }
-
-.smartin-right select {
-  background-color: rgba(255,255,255,0.04);
-  color: var(--text);
-  -webkit-appearance: none;
-  cursor: pointer;
-}
-
-.smartin-right select option {
-  background: #111;
-  color: var(--text);
-}
-
-#projectDetails {
-  min-height: 130px;
-  resize: vertical;
-}
-
-.btn-send-smartin {
-  width: 100%;
-  padding: 11px;
-  background: rgba(201,162,77,0.1);
-  border: 1px solid rgba(201,162,77,0.3);
-  border-radius: 10px;
-  color: var(--gold-light);
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s, border-color 0.2s, transform 0.15s;
-  letter-spacing: 0.3px;
-  margin-top: 4px;
-}
-
-.btn-send-smartin:hover {
-  background: rgba(201,162,77,0.18);
-  border-color: rgba(201,162,77,0.55);
-  transform: translateY(-1px);
-}
-
-/* Hidden summary box (kept for JS) */
-.summary-box {
-  position: absolute;
-  left: -9999px;
-  visibility: hidden;
-  height: 0;
-  overflow: hidden;
-}
-
-/* ============================
    MODAL — OFFICES
    ============================ */
 .offices-list {
@@ -699,11 +446,6 @@ footer {
     margin-top: 12px;
   }
 
-  .smartin-layout { flex-direction: column; }
-  .smartin-left, .smartin-right { width: 100%; }
-
-  .modal-smartin-content { width: 95%; padding: 18px; }
-
   .footer-content { gap: 20px; }
 }
 </style>
@@ -746,10 +488,10 @@ footer {
 
 Concrètement, nous accompagnons les entrepreneurs dans le choix du meilleur emplacement afin de maximiser leurs chances de succès, et aidons les commerces existants à mieux comprendre leur environnement pour optimiser leur marketing, affiner leur ciblage client et se positionner efficacement face à la concurrence et aux tendances du marché.</div>
       <hr class="smartin-divider">
-      <button id="discoverSmartIn" class="btn-discover-smartin">
+      <a id="discoverSmartIn" class="btn-discover-smartin" href="https://ismakt.github.io/smart-in" target="_blank" rel="noopener noreferrer">
         <span id="discoverSmartIn-label">Découvrir Smart-In</span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-      </button>
+      </a>
     </div>
   </div>
 </main>
@@ -759,25 +501,9 @@ Concrètement, nous accompagnons les entrepreneurs dans le choix du meilleur emp
   <div class="footer-line"></div>
   <div class="footer-content">
     <span id="offices-link" onclick="openModal('officeModal')">Bureaux</span>
-    <span onclick="openModal('contactModal')">Contact</span>
     <span onclick="openModal('mediaModal')">Media</span>
   </div>
 </footer>
-
-<!-- ============================
-     MODAL — CONTACT
-     ============================ -->
-<div class="modal" id="contactModal">
-  <div class="modal-content">
-    <button class="close" onclick="closeModal('contactModal')">✕</button>
-    <h4 id="contact-text">Contactez-nous</h4>
-    <p id="contact-text2">Nous écoutons attentivement vos besoins afin de vous proposer une solution précise et adaptée.</p>
-    <input id="contact-name" placeholder="Nom" required>
-    <input id="contact-info" placeholder="Coordonnées de contact" required>
-    <textarea id="contact-message" placeholder="Comment pouvons-nous vous aider ?" maxlength="999" required></textarea>
-    <button id="btn-send" class="btn-modal-send">Envoyer</button>
-  </div>
-</div>
 
 <!-- ============================
      MODAL — MEDIA
@@ -827,129 +553,10 @@ Concrètement, nous accompagnons les entrepreneurs dans le choix du meilleur emp
 </div>
 
 <!-- ============================
-     MODAL — SMART-IN FORM
-     ============================ -->
-<div class="modal modal-smartin" id="smartInModal">
-  <div class="modal-content modal-smartin-content">
-    <button class="close" onclick="closeModal('smartInModal')">✕</button>
-
-    <div class="smartin-modal-header">
-      <span class="smartin-badge">SMART-IN</span>
-      <h3 id="smartin-title">Formulaire de Contact</h3>
-    </div>
-
-    <div class="smartin-layout">
-
-      <!-- LEFT -->
-      <div class="smartin-left">
-
-        <div class="box-container">
-          <h4 id="approach-title">Notre approche</h4>
-          <div id="approach-content">1. Bien comprendre votre projet
-2. Définir l'analyse et les données qui vous seront fournies
-3. Livrer l'étude dans les plus brefs délais</div>
-        </div>
-
-        <div class="box-container">
-          <label id="maingoal-label">Que souhaitez-vous connaître ?</label>
-          <div class="themes">
-
-            <label>
-              <input type="checkbox" class="goal">
-              <span id="maingoal_clients_concurents">Étude des clients et concurrents potentiels</span>
-            </label>
-            <label>
-              <input type="checkbox" class="theme">
-              <span id="maingoal_urbandynamics">Dynamiques urbaines (gentrification, projets et impacts)</span>
-            </label>
-            <label>
-              <input type="checkbox" class="theme">
-              <span id="maingoal_populationprofile">Profil de la population (revenus, emploi, difficultés, âges, origines)</span>
-            </label>
-            <label>
-              <input type="checkbox" class="theme">
-              <span id="maingoal_security">Sécurité (statistiques et évolution des incidents)</span>
-            </label>
-            <label>
-              <input type="checkbox" class="theme">
-              <span id="maingoal_realestatemarket">Marché immobilier (prix, transactions, tendances)</span>
-            </label>
-            <label>
-              <input type="checkbox" class="theme">
-              <span id="maingoal_parcimmo">Parc immobilier (type et localisation des bâtiments)</span>
-            </label>
-            <label>
-              <input type="checkbox" class="theme">
-              <span id="maingoal_lifequality">Qualité de vie (espaces verts et accessibilité, pollution)</span>
-            </label>
-            <label>
-              <input type="checkbox" class="theme">
-              <span id="maingoal_visibility">Visibilité (flux piétons, automobiles, attractivité touristique)</span>
-            </label>
-            <label>
-              <input type="checkbox" class="theme">
-              <span id="maingoal_accessibility">Accessibilité (transport en commun, axes routiers, parkings)</span>
-            </label>
-            <label>
-              <input type="checkbox" class="theme">
-              <span id="maingoal_tauxvacance">Taux de vacance (commerces et logements inoccupés)</span>
-            </label>
-
-          </div>
-        </div>
-
-      </div>
-
-      <!-- RIGHT -->
-      <div class="smartin-right">
-        <div class="box-container">
-
-          <div class="form-group">
-            <label class="field-label" id="city-label">Ville</label>
-            <select id="citySelect">
-              <option id="option-select-city" value="">Sélectionner une ville</option>
-              <option id="option-brussels" value="Brussels">Bruxelles</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label class="field-label" id="address-label">Adresse(s)</label>
-            <textarea id="addressInput" rows="2" placeholder="Adresse(s) à analyser (max. 3)"></textarea>
-          </div>
-
-          <div class="form-group">
-            <label class="field-label" id="contact-label-smartin">Contact</label>
-            <textarea id="contactInfoSmartIn" rows="2" placeholder="Email et/ou mobile"></textarea>
-          </div>
-
-          <div class="form-group">
-            <label class="field-label" id="project-label">Projet</label>
-            <textarea id="projectDetails" rows="8" placeholder="Décrivez votre projet"></textarea>
-          </div>
-
-          <button id="btn-send-summary" class="btn-send-smartin" onclick="sendSmartIn()">
-            <span id="btn-send-summary-label">Envoyer</span>
-          </button>
-
-        </div>
-
-        <!-- Hidden summary (for JS) -->
-        <div class="summary-box">
-          <h4 id="summary-title">Résumé</h4>
-          <div id="summaryContent">En attente...</div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ============================
      SCRIPTS
      ============================ -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.dots.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
 <script>
 /* ============================
@@ -1006,20 +613,6 @@ menuButtons.forEach(btn => {
 });
 
 /* ============================
-   DISCOVER BUTTON → SMART-IN MODAL
-   ============================ */
-const discoverBtn = document.getElementById('discoverSmartIn');
-let discoverTimeout = null;
-
-discoverBtn.addEventListener('mouseenter', () => {
-  if (document.getElementById('smartInModal').style.display === 'flex') return;
-  discoverTimeout = setTimeout(() => openModal('smartInModal'), 220);
-});
-
-discoverBtn.addEventListener('mouseleave', () => clearTimeout(discoverTimeout));
-discoverBtn.addEventListener('click', () => openModal('smartInModal'));
-
-/* ============================
    MODAL OPEN / CLOSE
    ============================ */
 function openModal(id) {
@@ -1048,67 +641,6 @@ document.querySelectorAll('.modal').forEach(modal => {
 });
 
 /* ============================
-   SUMMARY UPDATE
-   ============================ */
-function updateSummary() {
-  const contact  = document.getElementById('contactInfoSmartIn')?.value || '';
-  const addresses = document.getElementById('addressInput')?.value || '';
-  const project  = document.getElementById('projectDetails')?.value || '';
-  const city     = document.getElementById('citySelect')?.value || '';
-  const goals    = [...document.querySelectorAll('.goal:checked')].map(g => g.parentElement.innerText.trim());
-  const themes   = [...document.querySelectorAll('.theme:checked')].map(t => t.parentElement.innerText.trim());
-  document.getElementById('summaryContent').innerHTML = `
-    <b>Coordonnées :</b> ${contact || '-'}<br>
-    <b>Adresse(s) :</b> ${addresses || '-'}<br>
-    <b>Description du projet :</b> ${project || '-'}<br>
-    <b>Objectif(s) :</b> ${goals.length ? goals.join(', ') : '-'}<br>
-    <b>Thèmes :</b> ${themes.length ? themes.join(', ') : '-'}<br>
-    <b>Ville :</b> ${city || '-'}
-  `;
-}
-
-['contactInfoSmartIn','addressInput','projectDetails','citySelect'].forEach(id => {
-  document.getElementById(id)?.addEventListener('input', updateSummary);
-});
-
-document.querySelectorAll('.goal, .theme').forEach(cb => cb.addEventListener('change', updateSummary));
-
-/* ============================
-   EMAILJS
-   ============================ */
-(function(){ emailjs.init("Y9G1UYj9VZqrRmSG1"); })();
-
-function sendSmartIn() {
-  const templateParams = {
-    contact:   document.getElementById('contactInfoSmartIn').value || '-',
-    addresses: document.getElementById('addressInput').value || '-',
-    project:   document.getElementById('projectDetails').value || '-',
-    goals:     [...document.querySelectorAll('.goal:checked')].map(g => g.parentElement.textContent.trim()).join(', ') || '-',
-    themes:    [...document.querySelectorAll('.theme:checked')].map(t => t.parentElement.textContent.trim()).join(', ') || '-',
-    city:      document.getElementById('citySelect').value || '-'
-  };
-  emailjs.send('service_41z5e5b', 'template_9s39ygw', templateParams)
-    .then(() => alert('Succès ✅'))
-    .catch(err => { console.error(err); alert('Erreur ❌'); });
-}
-
-document.getElementById('btn-send').addEventListener('click', function() {
-  const name    = document.getElementById('contact-name').value;
-  const contact = document.getElementById('contact-info').value;
-  const message = document.getElementById('contact-message').value;
-  if (!name || !contact || !message) { alert('Veuillez remplir tous les champs.'); return; }
-  emailjs.send('service_41z5e5b', 'template_9s39ygw', { name, contact, message })
-    .then(() => {
-      alert('Message envoyé ✅');
-      closeModal('contactModal');
-      document.getElementById('contact-name').value = '';
-      document.getElementById('contact-info').value = '';
-      document.getElementById('contact-message').value = '';
-    })
-    .catch(err => { console.error(err); alert('Erreur ❌'); });
-});
-
-/* ============================
    TRANSLATIONS
    ============================ */
 const translations = {
@@ -1124,31 +656,7 @@ const translations = {
     "office1-city": "Bruxelles",
     "office2-city": "Paris",
     "office3-city": "Monaco",
-    "contact-text": "Contactez-nous",
-    "contact-text2": "Nous écoutons attentivement vos besoins afin de vous proposer une solution précise et adaptée.",
-    "btn-send": "Envoyer",
-    "our-media": "Nos réseaux",
-    "smartin-title": "Formulaire de Contact",
-    "approach-title": "Notre approche",
-    "approach-content": "1. Bien comprendre votre projet\n2. Définir l'analyse et les données qui vous seront fournies\n3. Livrer l'étude dans les plus brefs délais",
-    "maingoal-label": "Que souhaitez-vous connaître ?",
-    "maingoal_clients_concurents": "Étude des clients et concurrents potentiels",
-    "maingoal_urbandynamics": "Dynamiques urbaines (gentrification, projets et impacts)",
-    "maingoal_populationprofile": "Profil de la population (revenus, emploi, difficultés, âges, origines)",
-    "maingoal_security": "Sécurité (statistiques et évolution des incidents)",
-    "maingoal_realestatemarket": "Marché immobilier (prix, transactions, tendances)",
-    "maingoal_parcimmo": "Parc immobilier (type et localisation des bâtiments)",
-    "maingoal_lifequality": "Qualité de vie (espaces verts et accessibilité, pollution)",
-    "maingoal_visibility": "Visibilité (flux piétons, automobiles, attractivité touristique)",
-    "maingoal_accessibility": "Accessibilité (transport en commun, axes routiers, parkings)",
-    "maingoal_tauxvacance": "Taux de vacance (commerces et logements inoccupés)",
-    "city-label": "Ville",
-    "address-label": "Adresse(s)",
-    "contact-label-smartin": "Contact",
-    "project-label": "Projet",
-    "option-select-city": "Sélectionner une ville",
-    "option-brussels": "Bruxelles",
-    "btn-send-summary-label": "Envoyer"
+    "our-media": "Nos réseaux"
   },
   en: {
     "about-text": "We turn high-value data into unique digital solutions that solve real challenges.",
@@ -1162,31 +670,7 @@ const translations = {
     "office1-city": "Brussels",
     "office2-city": "Paris",
     "office3-city": "Monaco",
-    "contact-text": "Contact Us",
-    "contact-text2": "We carefully listen to your needs to provide you with a precise and adapted solution.",
-    "btn-send": "Send",
-    "our-media": "Our Media",
-    "smartin-title": "Contact Form",
-    "approach-title": "Our Approach",
-    "approach-content": "1. Fully understand your project\n2. Define the analysis and the data that will be provided to you\n3. Deliver the study within the shortest possible timeframe",
-    "maingoal-label": "What would you like to know?",
-    "maingoal_clients_concurents": "Analysis of potential customers and competitors",
-    "maingoal_urbandynamics": "Urban dynamics (gentrification, projects and impacts)",
-    "maingoal_populationprofile": "Population profile (income, employment, challenges, age, origins)",
-    "maingoal_security": "Safety (crime statistics and trends over time)",
-    "maingoal_realestatemarket": "Real estate market (prices, transactions, trends)",
-    "maingoal_parcimmo": "Building stock (types and locations of buildings)",
-    "maingoal_lifequality": "Quality of life (green spaces, accessibility, pollution)",
-    "maingoal_visibility": "Visibility (pedestrian and vehicle flows, tourist attractiveness)",
-    "maingoal_accessibility": "Accessibility (public transport, road networks, parking)",
-    "maingoal_tauxvacance": "Vacancy rate (empty commercial and residential properties)",
-    "city-label": "City",
-    "address-label": "Address(es)",
-    "contact-label-smartin": "Contact",
-    "project-label": "Project",
-    "option-select-city": "Select a city",
-    "option-brussels": "Brussels",
-    "btn-send-summary-label": "Send"
+    "our-media": "Our Media"
   }
 };
 
