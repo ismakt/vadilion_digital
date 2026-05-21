@@ -3,164 +3,600 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-    <!--
-    - favicon
-  -->
-  <link rel="shortcut icon" href="./assets/images/logo.png" type="image/png">
-  
-<style>
-:root{ --bg:#000000; --overlay: rgba(0,0,0,0.85); --panel:#0e0e0e; --panel-2:#151515; --border:#4a4a4a; --gold:#c9a24d; --text:#ffffff; --muted:#b5b5b5; }
+<link rel="shortcut icon" href="./assets/images/logo.png" type="image/png">
 
-.box-container,
-.panel,
-.modal-content {
-  border: 1px solid var(--border);
-  box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,0.04);
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P0VXRKH12S"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-P0VXRKH12S', { 'traffic_type': 'internal' });
+</script>
+
+<style>
+/* ============================
+   VARIABLES
+   ============================ */
+:root {
+  --bg: #000000;
+  --panel: #0e0e0e;
+  --panel-2: #111111;
+  --border: #2e2e2e;
+  --border-light: #3a3a3a;
+  --gold: #c9a24d;
+  --gold-light: #d4b06a;
+  --text: #ffffff;
+  --muted: #888888;
+  --muted-light: #aaaaaa;
 }
 
-  
-*{ box-sizing:border-box; border-radius: 16px; margin:0; padding:0; font-family:Arial, Helvetica, sans-serif; }
-body{ background:var(--bg); color:var(--text); min-height:100vh; display:flex; flex-direction:column; }
-/* HEADER */
-header{ display:flex; justify-content:space-between; padding:15px; z-index:20; position:relative; }
-.lang { display: inline-flex; align-items: center; justify-content: center; height: 28px; border: 1px solid var(--border); padding: 4px 12px; border-radius: 4px; font-size: 14px; line-height: 1; background-color: #000; }
-.lang span{ cursor:pointer; margin: 0 4px; }
-.lang .active{ color: var(--gold); }
-/* MAIN */
-main{ flex:1; display:flex; flex-direction:column; align-items:center; position:relative; padding:20px; overflow:hidden; }
-/* VANTA BG */
-#vanta-bg{ position:absolute; top:0; left:0; width:100%; height:100%; z-index:0; }
-.menu, .panel, .modal { position: relative; z-index: 10; }
-/* MENU */
-.menu{ display:flex; gap:40px; position:absolute; top:23%; left:50%; transform:translateX(-50%); z-index:10; }
-.menu button{ background:none; border:none; color:var(--text); font-size:18px; cursor:pointer; font-weight: 600; }
-.menu button:hover{color:var(--gold);}
-/* PANELS */
-.panel{ display:none; position:absolute; top:calc(20% + 50px); left:50%; transform:translateX(-50%); background:var(--panel); border:1px solid var(--border); padding:20px; max-width:600px; width:100%; z-index:15;  color: #ffffff;  }
-.panel h3{ color:var(--gold); margin-bottom:10px; cursor:pointer; }
-.panel p{ font-size:14px; line-height:1.6;  }
-.sub{display:none;margin-top:10px;}
-/* FOOTER */
-.footer-line{ height:1px; background:var(--border); }
-.footer-content{ display:flex; justify-content:space-around; padding:10px; font-size:13px; }
-.footer-content span{cursor:pointer;}
-/* MODAL */
-.modal{ display:none; position:fixed; inset:0; background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(1px); z-index:9999; justify-content:center; align-items:center; }
-.modal-content{ background:var(--panel-2); border:1px solid var(--border); padding:20px; max-width:600px; width:100%; position:relative; }
-.modal-content h4{ color:var(--gold); margin-bottom:10px; }
-.modal-content p{ font-size:13px; color:var(--muted); margin-bottom:12px; }
-.modal-content input, .modal-content textarea{ width:100%; margin-bottom:10px; background:#000; border:1px solid var(--border); color:#fff; padding:8px; }
-.close{ position:absolute; top:8px; right:10px; cursor:pointer; }
-/* BUTTONS */
-.btn-linkedin, .btn-instagram,  btn-send, .btn-video, .btn-smartin
-  { display: inline-block; margin-top: 12px; padding: 8px 16px; background-color: #555; color: #fff; 
-   text-decoration: none; font-weight: 400; font-size: 12px; border-radius: 6px; transition: color 0.3s, background 0.3s; border: none; cursor: pointer; }
-.blur-background { filter: blur(1px); }
-.brand { position: relative; display: flex; flex-direction: column; align-items: flex-start; }
-.brand h1 { color: var(--gold); font-size: 15px; letter-spacing: 1px; z-index: 1; }
-.brand .logo { position: absolute; top: 20px; left: 0; width: 160px; height: auto; border-radius: 0; z-index: 0; }
+/* ============================
+   RESET & BASE
+   ============================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+}
 
-
-.btn-discover
-  { display: inline-block; margin-top: 12px; padding: 8px 16px; background-color: #555; color: #fff; 
-   text-decoration: none; font-weight: 400; font-size: 12px; border-radius: 6px; transition: color 0.3s, background 0.3s; border: none; cursor: pointer; width:40% }
-
-
-
-
-
-
-  
-.modal-smartin-content {
-  width: 95%;
-  max-width: 1200px;
-  height: auto;       
-  max-height: 90vh;   
+body {
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================
+   HEADER
+   ============================ */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 24px;
+  z-index: 20;
+  position: relative;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+}
+
+.brand .logo {
+  width: 140px;
+  height: auto;
+}
+
+.lang {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 30px;
+  border: 1px solid var(--border-light);
+  padding: 4px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  background: rgba(255,255,255,0.03);
+  letter-spacing: 0.5px;
+}
+
+.lang span {
+  cursor: pointer;
+  color: var(--muted);
+  transition: color 0.2s;
+}
+
+.lang span:hover { color: var(--text); }
+.lang .active { color: var(--gold); font-weight: 600; }
+.lang .sep { color: var(--border-light); }
+
+/* ============================
+   MAIN
+   ============================ */
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding: 20px;
+  overflow: hidden;
+}
+
+#vanta-bg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+}
+
+.menu, .panel, .modal { position: relative; z-index: 10; }
+
+/* ============================
+   MENU
+   ============================ */
+.menu {
+  display: flex;
+  gap: 8px;
+  position: absolute;
+  top: 22%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 6px;
+}
+
+.menu button {
+  background: none;
+  border: none;
+  color: var(--muted-light);
+  font-size: 13px;
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  padding: 9px 20px;
+  border-radius: 8px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.menu button:hover {
+  background: rgba(255,255,255,0.06);
+  color: var(--text);
+}
+
+.menu button.active-menu {
+  background: rgba(201,162,77,0.12);
+  color: var(--gold);
+}
+
+/* ============================
+   PANELS
+   ============================ */
+.panel {
+  display: none;
+  position: absolute;
+  top: calc(22% + 62px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+  max-width: 560px;
+  width: calc(100% - 40px);
+  z-index: 15;
+  color: var(--text);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+.panel p {
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--muted-light);
+}
+
+/* ============================
+   SOLUTIONS PANEL — SMART-IN
+   ============================ */
+.smartin-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.smartin-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.smartin-badge {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  color: var(--gold);
+  background: rgba(201,162,77,0.1);
+  border: 1px solid rgba(201,162,77,0.25);
+  border-radius: 6px;
+  padding: 3px 10px;
+}
+
+.smartin-card-body {
+  font-size: 13.5px;
+  line-height: 1.75;
+  color: var(--muted-light);
+}
+
+.smartin-divider {
+  border: none;
+  border-top: 1px solid var(--border);
+}
+
+.btn-discover-smartin {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 22px;
+  background: rgba(201,162,77,0.1);
+  border: 1px solid rgba(201,162,77,0.35);
+  color: var(--gold-light);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.15s;
+  width: 100%;
+}
+
+.btn-discover-smartin:hover {
+  background: rgba(201,162,77,0.18);
+  border-color: rgba(201,162,77,0.6);
+  color: #e0c07a;
+  transform: translateY(-1px);
+}
+
+.btn-discover-smartin svg {
+  opacity: 0.7;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+.btn-discover-smartin:hover svg {
+  transform: translateX(3px);
+  opacity: 1;
+}
+
+/* ============================
+   FOOTER
+   ============================ */
+footer {
+  flex-shrink: 0;
+}
+
+.footer-line {
+  height: 1px;
+  background: var(--border);
+}
+
+.footer-content {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 14px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.footer-content span {
+  cursor: pointer;
+  letter-spacing: 0.3px;
+  transition: color 0.2s;
+}
+
+.footer-content span:hover { color: var(--text); }
+
+/* ============================
+   MODALS — BASE
+   ============================ */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.modal-content {
+  background: var(--panel-2);
+  border: 1px solid var(--border-light);
+  border-radius: 20px;
+  padding: 28px;
+  max-width: 540px;
+  width: 100%;
+  position: relative;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.05);
+}
+
+.modal-content h4 {
+  color: var(--gold);
+  margin-bottom: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+.modal-content p {
+  font-size: 13px;
+  color: var(--muted-light);
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+
+.close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--border);
+  color: var(--muted-light);
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s;
+  line-height: 1;
+}
+
+.close:hover {
+  background: rgba(255,255,255,0.12);
+  color: var(--text);
+}
+
+/* ============================
+   MODAL — INPUTS
+   ============================ */
+.modal-content input,
+.modal-content textarea {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px 14px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  color: var(--text);
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+  resize: none;
+}
+
+.modal-content input:focus,
+.modal-content textarea:focus {
+  border-color: rgba(201,162,77,0.45);
+  background: rgba(255,255,255,0.06);
+}
+
+.modal-content input::placeholder,
+.modal-content textarea::placeholder {
+  color: var(--muted);
+}
+
+.modal-content textarea { min-height: 110px; }
+
+.btn-modal-send {
+  width: 100%;
+  padding: 11px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, transform 0.15s;
+  letter-spacing: 0.3px;
+}
+
+.btn-modal-send:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.2);
+  transform: translateY(-1px);
+}
+
+/* ============================
+   MODAL — SMART-IN FORM
+   ============================ */
+.modal-smartin-content {
+  max-width: 900px;
+  width: 95%;
+  max-height: 88vh;
+  overflow-y: auto;
+  padding: 28px;
+  border-radius: 20px;
+}
+
+.modal-smartin-content::-webkit-scrollbar { width: 4px; }
+.modal-smartin-content::-webkit-scrollbar-track { background: transparent; }
+.modal-smartin-content::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 4px; }
+
+.smartin-modal-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.smartin-modal-header h3 {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 0.2px;
 }
 
 .smartin-layout {
   display: flex;
-  gap: 15px;                  /* espace entre les colonnes */
-  justify-content: center;     /* centre le groupe de colonnes */
-  align-items: flex-start;     /* alignement vertical */
+  gap: 16px;
+  align-items: flex-start;
 }
 
 .smartin-left,
 .smartin-right {
-  flex: 1;                     /* prend la même largeur */
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding: 10px;
-  min-height: unset;
-  overflow: unset;
+  gap: 12px;
 }
-
-/* Optional: si tu veux espacer exactement les colonnes */
-.smartin-left {
-  margin-right: 7.5px;         /* moitié du gap */
-}
-
-.smartin-right {
-  margin-left: 7.5px;          /* moitié du gap */
-}
-
-  
-  .smartin-left-container {
-  border: 1px solid var(--border); /* ou #ccc si tu veux plus clair */
-  border-radius: 12px;             /* optionnel, arrondi comme à droite */
-  padding: 10px;                    /* espace intérieur */
-  gap: 20px;               /* ← augmente l’espacement entre chaque box */
-}
-
-
 
 .box-container {
+  background: rgba(255,255,255,0.02);
   border: 1px solid var(--border);
-  padding: 12px;
-  margin-top: 7px;
-  background: transparent;
+  border-radius: 12px;
+  padding: 14px;
 }
 
-
-
-.map-mock{
-  height:180px;
-  border:1px solid var(--border);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:var(--muted);
+.box-container h4 {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gold);
+  margin-bottom: 10px;
+  letter-spacing: 0.2px;
 }
 
+#approach-content {
+  font-size: 12.5px;
+  color: var(--muted-light);
+  line-height: 1.8;
+  white-space: pre-line;
+  counter-reset: steps;
+}
 
+/* Goals / Checkboxes */
+#maingoal-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
 
-
-
-
-  
-.summary-wrapper {
+.themes {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  height: 100%;          /* occupe tout l’espace vertical disponible */
-  position: relative;     /* pour permettre le positionnement absolu du bouton */
+  gap: 6px;
 }
 
+.themes label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+  padding: 5px 7px;
+  border-radius: 7px;
+  transition: background 0.15s;
+}
 
+.themes label:hover { background: rgba(255,255,255,0.04); }
 
+.themes input[type="checkbox"] {
+  width: 15px;
+  height: 15px;
+  accent-color: var(--gold);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.themes label span {
+  font-size: 12.5px;
+  color: var(--muted-light);
+  line-height: 1.5;
+}
+
+/* Right column — form fields */
+.form-group { margin-bottom: 10px; }
+
+.form-group label,
+.field-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-bottom: 5px;
+}
+
+.smartin-right input,
+.smartin-right textarea,
+.smartin-right select {
+  display: block;
+  width: 100%;
+  padding: 9px 12px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border-light);
+  border-radius: 9px;
+  color: var(--text);
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+  box-sizing: border-box;
+  margin-bottom: 0;
+  resize: none;
+}
+
+.smartin-right input:focus,
+.smartin-right textarea:focus,
+.smartin-right select:focus {
+  border-color: rgba(201,162,77,0.4);
+  background: rgba(255,255,255,0.06);
+}
+
+.smartin-right input::placeholder,
+.smartin-right textarea::placeholder { color: var(--muted); }
+
+.smartin-right select {
+  background-color: rgba(255,255,255,0.04);
+  color: var(--text);
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+.smartin-right select option {
+  background: #111;
+  color: var(--text);
+}
+
+#projectDetails {
+  min-height: 130px;
+  resize: vertical;
+}
+
+.btn-send-smartin {
+  width: 100%;
+  padding: 11px;
+  background: rgba(201,162,77,0.1);
+  border: 1px solid rgba(201,162,77,0.3);
+  border-radius: 10px;
+  color: var(--gold-light);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, transform 0.15s;
+  letter-spacing: 0.3px;
+  margin-top: 4px;
+}
+
+.btn-send-smartin:hover {
+  background: rgba(201,162,77,0.18);
+  border-color: rgba(201,162,77,0.55);
+  transform: translateY(-1px);
+}
+
+/* Hidden summary box (kept for JS) */
 .summary-box {
-  border: 1px solid var(--border);
-  padding: 12px;
-  overflow-y: auto;
-  max-height: 430px;
-  min-height: 180px;
-
-  /* 👇 cache visuellement mais garde le JS actif */
   position: absolute;
   left: -9999px;
   visibility: hidden;
@@ -168,1564 +604,614 @@ main{ flex:1; display:flex; flex-direction:column; align-items:center; position:
   overflow: hidden;
 }
 
-
-  
-
-.btn-send-summary {
-  display: inline-block; 
-  margin-top: 12px; 
-  padding: 8px 16px; 
-  background-color: #555; 
-  color: #fff;           /* texte blanc */
-  font-weight: 400; 
-  font-size: 12px; 
-  border-radius: 6px; 
-  transition: color 0.3s, background 0.3s; 
-  border: none; 
-  cursor: pointer;
-
-  position: sticky;       /* reste visible même en scrollant */
-  bottom: 0;              /* collé au bas du container */
-  width: 100%;            /* prend toute la largeur */
-  text-align: center;     /* centre le texte */
-  z-index: 10;            /* toujours au-dessus */
-}
-
-  
-
-
-
-.mapPreview {
-  width: 220px;      /* largeur du SVG (carte) */
-  height: 220px;     /* hauteur du SVG */
-  border: none ;
-  margin: 12px auto; /* centre le conteneur */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 7px;     /* <-- espace autour du SVG */
-  box-sizing: content-box; /* padding ajouté autour du contenu */
-}
-
-
-
-
-#projectDetails {
-  flex: 1;                 /* prend tout l’espace restant de la colonne */
-  min-height: 100px;       /* hauteur minimum */
-  resize: vertical;        /* permet d’agrandir verticalement */
-  width: 100%;
-  box-sizing: border-box;
-    margin-top: 4px;
-
-}
-
-
-/* Tout le label reste flex vertical/espacé */
-.themes {
+/* ============================
+   MODAL — OFFICES
+   ============================ */
+.offices-list {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  cursor: pointer;
+  gap: 10px;
 }
 
-
-
-.theme-subtitle {
-  font-weight: 400;
-  font-size: 0.95rem;
-  color: #ffffff;
-  margin-top: 20px;
-  margin-bottom: 5px;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-}
-
-
-  
-/* Chaque label : alignement horizontal checkbox + texte */
-.themes label {
-  display: flex;
-  align-items: center;   /* centre checkbox et texte verticalement */
-  gap: 8px;              /* espace entre la checkbox et le texte */
-
-}
-
-/* Cibler uniquement les checkboxes */
-.themes input[type="checkbox"] {
-  width: 18px;      /* largeur de la checkbox */
-  height: 18px;     /* hauteur de la checkbox */
-  accent-color: var(--gold); /* couleur de la coche si navigateur le supporte */
-  flex-shrink: 0;   /* ne pas rétrécir */
-}
-
-
-
-
-
-
-#discoverSmartIn:hover {
-  background-color: var(--gold);
-  color: #000;
-}
-
-
-#casesSmartIn:hover {
-  background-color: var(--gold);
-  color: #000;
-}
-
-/* Harmonisation Goals / Themes */
-.selectgoals {
+.office-item {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-}
-
-.selectgoals label {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.selectgoals input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
-  accent-color: var(--gold);
-  flex-shrink: 0;
-}
-
-  .selectgoals {
-  padding-bottom: 12px;
-  border-bottom: 5px solid var(--border);
-  margin-bottom: 12px;
-}
-
-
-/* SMART-IN active / hover state */
-#locationBtn:hover{
-  background-color: var(--gold);
-  color: #000
-}
-
-
-
-  #locationContentInnerText {
-    white-space: pre-line; /* interprète \n et \n\n comme retours à la ligne */
-    line-height: 1.6;
-}
-
-  #offices-list {
-  white-space: pre-line; /* interprète \n et \n\n comme retours à la ligne */
-  line-height: 1.6;
-}
-
-  
-/* Styles généraux pour uniformiser tous les champs */
-label {
-  display: block;          /* chaque label sur sa ligne */
-  margin-bottom: 0.15em;   /* espace avant le champ */
-  font-weight: 500;
-}
-
-/* Inputs texte, email, textarea et select */
-input[type="text"],
-input[type="email"],
-input[type="tel"],
-textarea,
-select {
-  display: block;
-  width: 100%;
-  padding: 0.5em;
-  box-sizing: border-box;
-  line-height: 1.4;
-  vertical-align: middle;
-}
-
-/* Inputs checkbox et radio */
-input[type="checkbox"],
-input[type="radio"] {
-  display: inline-block;   /* pas de largeur forcée */
-  width: auto;
-  height: auto;
-  margin: 0;
-  padding: 0;
-  flex-shrink: 0;          /* utile si label en flex */
-}
-
-
-  /* Optionnel : alignement du placeholder */
-input::placeholder {
-  color: #aaa;
-  opacity: 1;              /* pour Chrome */
-}
-
-
-  
-select {
-  background-color: #000;
-  color: #fff;
-  border: 1px solid #333;
-}
-
-select option {
-  background-color: #000;
-  color: #fff;
-}
-
-  
-  .form-group {
-  margin-bottom: 0.25em; /* espace entre chaque bloc */
-}
-
-#citySelect {
-  background-color: #000;  /* noir comme tes autres cellules */
-  color: #fff;             /* texte en blanc */
-  padding: 0.5em;
-  border: 1px solid #333;  /* optionnel : bordure */
-}
-
-#citySelect option {
-  background-color: #000;  /* fond noir aussi pour toutes les options */
-  color: #fff;             /* texte blanc */
-}
-
-  #select-city-placeholder {
-  color: #888;  /* gris clair */
-}
-
-
-  .smartin-right input,
-.smartin-right textarea,
-.smartin-right select{
-  margin-bottom: 4px;
-}
-
-
-
-/* Par défaut, le message est caché */
-#mobileMessage {
-  display: none;
-  text-align: center;
-  color: var(--text);
-  background-color: var(--panel);
+  gap: 2px;
+  padding: 12px 14px;
+  background: rgba(255,255,255,0.03);
   border: 1px solid var(--border);
-  padding: 20px;
-  max-width: 500px;
-  border-radius: 12px;
-  font-size: 16px;
-  line-height: 1.5;
+  border-radius: 10px;
 }
 
-.approach-box {
-  max-width: 600px;
-  min-width: 300px;
-  width: 100%;
-
-  padding: 15px;
-  box-sizing: border-box;
-
-  overflow-wrap: break-word;
-
-  border: 1px solid #ccc;
-  border-radius: 8px;
+.office-city {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
 }
 
-
-
-  #approach-content {
-  white-space: pre-wrap;
+.office-address {
+  font-size: 12px;
+  color: var(--muted-light);
 }
 
-  #approach-title {
-  margin-bottom: 5px; /* ajuste à volonté */
+.office-district {
+  font-size: 11px;
+  color: var(--muted);
 }
 
-
-  #about-text {
-  white-space: pre-wrap;
+/* ============================
+   MODAL — MEDIA
+   ============================ */
+.media-links {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
 }
 
-
-
-
-
-
-/* === FIX ALIGNEMENT CHECKBOX + TEXTE === */
-
-/* Conteneurs de checkboxes */
-.box-container label {
-  display: flex;            /* override du display:block global */
-  align-items: center;      /* alignement vertical parfait */
-  gap: 8px;
-  margin-bottom: 6px;
-  cursor: pointer;
+.btn-social {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 16px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  transition: background 0.2s, border-color 0.2s;
 }
 
-/* Checkbox : taille fixe, pas de largeur forcée */
-.box-container input[type="checkbox"] {
-  width: 16px;
-  height: 16px;
-  margin: 0;
-  padding: 0;
-  flex-shrink: 0;
+.btn-social:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: var(--border-light);
 }
 
-/* Texte : reste bien aligné même sur plusieurs lignes */
-.box-container span {
-  display: inline-block;
-  line-height: 1.4;
-}
+/* ============================
+   BLUR EFFECT
+   ============================ */
+.blur-background { filter: blur(2px); pointer-events: none; }
 
-
-
-#maingoal-label,
-#theme-label {
-  display: block;
-  font-weight: 700;
-  color: var(--gold);
-
-  margin-bottom: 5px; /* espace entre le titre et la 1ère checkbox */
-}
-
-
-
-.smartin-right input,
-.smartin-right textarea,
-.smartin-right select {
-  border-radius: 8px; /* ou 4px si tu veux encore plus droit */
-}
-
-
-
-
-
-  
-
+/* ============================
+   RESPONSIVE
+   ============================ */
 @media (max-width: 768px) {
-
-  .smartin-layout {
-    flex-direction: column;
-  }
-
-  .smartin-left,
-  .smartin-right {
-    width: 100%;
-    margin: 0;
-    padding: 5px;
-  }
-
-.modal-smartin-content {
-  width: 90%;
-      height: 85%;        
-  max-height: 90vh;
-  overflow-y: auto;
-  padding: 15px;
-}
-
+  header { flex-direction: column; align-items: center; gap: 12px; padding: 16px; }
+  .brand .logo { width: 120px; }
 
   .menu {
     position: relative;
-    top: auto;
-    left: auto;
+    top: auto; left: auto;
     transform: none;
     flex-direction: column;
-    gap: 15px;
-    margin-top: 40px;
-  }
-
-  .panel {
-    position: relative;
-    top: auto;
-    left: auto;
-    transform: none;
-    width: 100%;
+    width: calc(100% - 0px);
     margin-top: 20px;
   }
 
-  .btn-discover,
-  .btn-send-summary,
-  .btn-smartin {
-    width: 100%;
-  }
-
-  header {
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .brand .logo {
-    position: relative;
-    width: 120px;
-    top: 0;
-  }
+  .menu button { width: 100%; text-align: center; }
 
   .panel {
-  padding: 15px;
-  text-align: justify;
-  line-height: 1.6;
-  word-break: break-word;
-  white-space: normal;
-}
-
-.panel p {
-  margin-bottom: 15px;
-}
-
-.menu-item {
-  width: 100%;
-  text-align: center;
-}
-
-
-  /* 1. Les 3 étapes (approach) */
-  #approach-content {
-    font-size: 14px;
-    line-height: 1.5;
+    position: relative;
+    top: auto; left: auto;
+    transform: none;
+    width: 100%;
+    margin-top: 12px;
   }
 
-    /* 3. Tous les textes des checkboxes */
-  .box-container label span {
-    font-size: 14px;
-    line-height: 1.4;
-  }
+  .smartin-layout { flex-direction: column; }
+  .smartin-left, .smartin-right { width: 100%; }
 
-  
+  .modal-smartin-content { width: 95%; padding: 18px; }
+
+  .footer-content { gap: 20px; }
 }
-
-
-  
 </style>
 </head>
 <body>
+
+<!-- HEADER -->
 <header>
   <div class="brand">
     <img src="images/vadiliondigital_logo.png" alt="Logo Vadilion Digital" class="logo">
   </div>
   <div class="lang">
-    <span class="active" id="fr-btn">FR</span>|<span id="en-btn">EN</span>
+    <span class="active" id="fr-btn">FR</span>
+    <span class="sep">|</span>
+    <span id="en-btn">EN</span>
   </div>
-
-
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-P0VXRKH12S"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-
-  gtag('js', new Date());
-
-  // 👇 Marquer ce trafic comme interne
-  gtag('config', 'G-P0VXRKH12S', {
-    'traffic_type': 'internal'
-  });
-</script>
-
-  
 </header>
+
+<!-- MAIN -->
 <main>
   <div id="vanta-bg"></div>
-<div class="menu">
-<button id="menu-about">À PROPOS</button>
-<button id="menu-solutions">SOLUTIONS</button>
-</div>
 
- 
+  <div class="menu">
+    <button id="menu-about">À PROPOS</button>
+    <button id="menu-solutions">SOLUTIONS</button>
+  </div>
 
+  <!-- ABOUT PANEL -->
+  <div class="panel" id="about">
+    <p id="about-text">Nous développons des solutions digitales uniques, répondant à des besoins concrets, à partir de données à forte valeur ajoutée.</p>
+  </div>
 
-
-  
-
-<div class="panel" id="about">
-  <div id="about-text" style="text-align: left;">Nous développons des solutions digitales uniques, répondant à des besoins concrets, à partir de données à forte valeur ajoutée.</div>
-</div>
-
-<div class="panel" id="solutions">
-  <div id="solutions-text">
-    <div style="text-align: left;">
-
-      <!-- Bouton Location Intelligence -->
-      <button id="locationBtn" class="btn-smartin" style="width:auto; text-align:left; font-weight:500;">SMART-IN</button>
-
-      <!-- Contenu déroulant caché par défaut -->
-      <div id="locationContentText" style="display:block; margin-top:10px; border:2px solid var(--border); padding:10px;">
-<div id="locationContentInnerText">Smart-In est notre plateforme d’analyse territoriale à travers laquelle nous fournissons des études sur mesure, rapides et indépendantes pour sécuriser les décisions avant tout investissement.
-
-Concrètement, nous accompagnons les entrepreneurs dans le choix du meilleur emplacement afin de maximiser leurs chances de succès, et aidons les commerces existants à mieux comprendre leur environnement pour optimiser leur marketing, affiner leur ciblage client et se positionner efficacement face à la concurrence et aux tendances du marché.
-</div>
-      <div class="btn-flex" style="margin-top:20px; display:flex; justify-content:center; gap:12px;">
-          <button id="discoverSmartIn" class="btn-discover">Formulaire de Contact</button>
-        <button id="casesSmartIn" class="btn-discover">Cas Clients</button>
-         <!-- <button id="presentationSmartIn" class="btn-video">Video</button>-->
-        </div>
+  <!-- SOLUTIONS PANEL -->
+  <div class="panel" id="solutions">
+    <div class="smartin-card">
+      <div class="smartin-card-header">
+        <span class="smartin-badge" id="locationBtn">SMART-IN</span>
       </div>
+      <div class="smartin-card-body" id="locationContentInnerText">Smart-In est notre plateforme d'analyse territoriale à travers laquelle nous fournissons des études sur mesure, rapides et indépendantes pour sécuriser les décisions avant tout investissement.
 
+Concrètement, nous accompagnons les entrepreneurs dans le choix du meilleur emplacement afin de maximiser leurs chances de succès, et aidons les commerces existants à mieux comprendre leur environnement pour optimiser leur marketing, affiner leur ciblage client et se positionner efficacement face à la concurrence et aux tendances du marché.</div>
+      <hr class="smartin-divider">
+      <button id="discoverSmartIn" class="btn-discover-smartin">
+        <span id="discoverSmartIn-label">Découvrir Smart-In</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </button>
     </div>
   </div>
-</div>
-
-
 </main>
+
+<!-- FOOTER -->
 <footer>
   <div class="footer-line"></div>
   <div class="footer-content">
-<span id="offices-link" onclick="openModal('officeModal')">Bureaux</span>
+    <span id="offices-link" onclick="openModal('officeModal')">Bureaux</span>
     <span onclick="openModal('contactModal')">Contact</span>
     <span onclick="openModal('mediaModal')">Media</span>
   </div>
 </footer>
+
+<!-- ============================
+     MODAL — CONTACT
+     ============================ -->
 <div class="modal" id="contactModal">
   <div class="modal-content">
-    <span class="close" onclick="closeModal('contactModal')">✕</span>
+    <button class="close" onclick="closeModal('contactModal')">✕</button>
     <h4 id="contact-text">Contactez-nous</h4>
     <p id="contact-text2">Nous écoutons attentivement vos besoins afin de vous proposer une solution précise et adaptée.</p>
     <input id="contact-name" placeholder="Nom" required>
     <input id="contact-info" placeholder="Coordonnées de contact" required>
-    <textarea id="contact-message" placeholder="Comment pouvons nous vous aider?" maxlength="999" required></textarea>
-    <button id="btn-send" class="btn-send-summary">Envoyer</button>
+    <textarea id="contact-message" placeholder="Comment pouvons-nous vous aider ?" maxlength="999" required></textarea>
+    <button id="btn-send" class="btn-modal-send">Envoyer</button>
   </div>
 </div>
+
+<!-- ============================
+     MODAL — MEDIA
+     ============================ -->
 <div class="modal" id="mediaModal">
   <div class="modal-content">
-    <span class="close" onclick="closeModal('mediaModal')">✕</span>
+    <button class="close" onclick="closeModal('mediaModal')">✕</button>
     <h4 id="our-media">Nos réseaux</h4>
-    <a href="https://www.linkedin.com/company/vadiliondigital" target="_blank" class="btn-linkedin">LinkedIn</a>
-    <a href="https://www.instagram.com/vadilion.digital" target="_blank" class="btn-instagram">Instagram</a>
-  </div>
-</div>
-<div class="modal" id="officeModal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal('officeModal')">✕</span>
-    <h4 id="offices">Offices</h4>
-    <p id="offices-list">21 Avenue du Boulevard, Bruxelles (Financial District)
-
-      7 Rue Meyerbeer, Paris (Opéra Garnier)
-
-      74 Boulevard d'Italie, Monaco (Monte Carlo)
-    </p>
-  </div>
-</div>
-<div class="modal" id="videoModal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal('videoModal')">✕</span>
-<h4 id="presentation-title">Presentation Smart-In</h4>
-    <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden;">
-      <iframe id="smartInVideo" src="https://www.youtube.com/embed/VqEbCxg2bNI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
+    <div class="media-links">
+      <a href="https://www.linkedin.com/company/vadiliondigital" target="_blank" class="btn-social">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://www.instagram.com/vadilion.digital" target="_blank" class="btn-social">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        Instagram
+      </a>
     </div>
   </div>
 </div>
 
+<!-- ============================
+     MODAL — OFFICES
+     ============================ -->
+<div class="modal" id="officeModal">
+  <div class="modal-content">
+    <button class="close" onclick="closeModal('officeModal')">✕</button>
+    <h4 id="offices">Bureaux</h4>
+    <div class="offices-list">
+      <div class="office-item">
+        <span class="office-city" id="office1-city">Bruxelles</span>
+        <span class="office-address">21 Avenue du Boulevard</span>
+        <span class="office-district">Financial District</span>
+      </div>
+      <div class="office-item">
+        <span class="office-city" id="office2-city">Paris</span>
+        <span class="office-address">7 Rue Meyerbeer</span>
+        <span class="office-district">Opéra Garnier</span>
+      </div>
+      <div class="office-item">
+        <span class="office-city" id="office3-city">Monaco</span>
+        <span class="office-address">74 Boulevard d'Italie</span>
+        <span class="office-district">Monte Carlo</span>
+      </div>
+    </div>
+  </div>
+</div>
 
-
-
-
-<!-- Modal Smart-In Formulaire de Contact -->
-  
+<!-- ============================
+     MODAL — SMART-IN FORM
+     ============================ -->
 <div class="modal modal-smartin" id="smartInModal">
   <div class="modal-content modal-smartin-content">
+    <button class="close" onclick="closeModal('smartInModal')">✕</button>
 
-    <span class="close" onclick="closeModal('smartInModal')">✕</span>
-
-<h3 id="smartin-title" style="color:var(--gold); margin-bottom:12px; font-weight:500;"
-  >Smart-In: Formulaire de Contact</h3>
+    <div class="smartin-modal-header">
+      <span class="smartin-badge">SMART-IN</span>
+      <h3 id="smartin-title">Formulaire de Contact</h3>
+    </div>
 
     <div class="smartin-layout">
 
-
-      
       <!-- LEFT -->
       <div class="smartin-left">
 
-  <!-- Container global -->
-  <div class="smartin-left-container">
+        <div class="box-container">
+          <h4 id="approach-title">Notre approche</h4>
+          <div id="approach-content">1. Bien comprendre votre projet
+2. Définir l'analyse et les données qui vous seront fournies
+3. Livrer l'étude dans les plus brefs délais</div>
+        </div>
 
-    
-<div class="box-container">
-  <h4 id="approach-title">Notre approche</h4>
-  <div id="approach-content">1. Bien comprendre votre projet
-2. Définir l’analyse et les données qui vous seront fournies
-3. Livrer l’étude dans les plus brefs délais</div>
-</div>
+        <div class="box-container">
+          <label id="maingoal-label">Que souhaitez-vous connaître ?</label>
+          <div class="themes">
 
+            <label>
+              <input type="checkbox" class="goal">
+              <span id="maingoal_clients_concurents">Étude des clients et concurrents potentiels</span>
+            </label>
+            <label>
+              <input type="checkbox" class="theme">
+              <span id="maingoal_urbandynamics">Dynamiques urbaines (gentrification, projets et impacts)</span>
+            </label>
+            <label>
+              <input type="checkbox" class="theme">
+              <span id="maingoal_populationprofile">Profil de la population (revenus, emploi, difficultés, âges, origines)</span>
+            </label>
+            <label>
+              <input type="checkbox" class="theme">
+              <span id="maingoal_security">Sécurité (statistiques et évolution des incidents)</span>
+            </label>
+            <label>
+              <input type="checkbox" class="theme">
+              <span id="maingoal_realestatemarket">Marché immobilier (prix, transactions, tendances)</span>
+            </label>
+            <label>
+              <input type="checkbox" class="theme">
+              <span id="maingoal_parcimmo">Parc immobilier (type et localisation des bâtiments)</span>
+            </label>
+            <label>
+              <input type="checkbox" class="theme">
+              <span id="maingoal_lifequality">Qualité de vie (espaces verts et accessibilité, pollution)</span>
+            </label>
+            <label>
+              <input type="checkbox" class="theme">
+              <span id="maingoal_visibility">Visibilité (flux piétons, automobiles, attractivité touristique)</span>
+            </label>
+            <label>
+              <input type="checkbox" class="theme">
+              <span id="maingoal_accessibility">Accessibilité (transport en commun, axes routiers, parkings)</span>
+            </label>
+            <label>
+              <input type="checkbox" class="theme">
+              <span id="maingoal_tauxvacance">Taux de vacance (commerces et logements inoccupés)</span>
+            </label>
 
-    
-
-<div class="box-container">
-<label id="maingoal-label">Que souhaitez vous connaître?</label>
-  
-
-  <!-- ECONOMIE -->
-  <label>
-  <input type="checkbox" class="goal">
-  <span id="maingoal_clients_concurents">
-    Étude des clients et concurents potentiels
-  </span>
-</label>
-
-
-   <!-- IMMOBILIER -->
-    <label>
-    <input type="checkbox" class="theme">
-        <span id="maingoal_urbandynamics">
-    <span>Dynamiques urbaines (gentrification, projets et impacts)</span>
-  </label>
-
-  
-  <!-- SOCIO-ECONOMIE -->
-    <label>
-    <input type="checkbox" class="theme">
-        <span id="maingoal_populationprofile">
-    <span>Profil de la population (revenus, emploi, difficultés, âges, origines)</span>
-  </label>
-
-  <!-- QUALITE DE VIE -->
-  <label>
-    <input type="checkbox" class="theme">
-      <span id="maingoal_security">
-    <span>Sécurité (statistiques et évolution des incidents)</span>
-  </label>
-
-
-  <label>
-    <input type="checkbox" class="theme">
-      <span id="maingoal_realestatemarket">
-    <span>Marché immobilier (prix, transactions, tendances)</span>
-  </label>
-
-
-  <label>
-    <input type="checkbox" class="theme">
-      <span id="maingoal_parcimmo">
-    <span>Parc immobilier (type et localisation des bâtiments)</span>
-  </label>
-
-
-  <label>
-    <input type="checkbox" class="theme">
-      <span id="maingoal_lifequality">
-    <span>Qualité de vie (espaces verts et accessibilité, pollution)</span>
-  </label>
-
-
-
-   <label>
-    <input type="checkbox" class="theme">
-       <span id="maingoal_visibility">
-    <span>Visibilité (flux piétons, automobiles, attractivité touristique)</span>
-  </label>
-
-   <label>
-    <input type="checkbox" class="theme">
-       <span id="maingoal_accessibility">
-    <span>Accessibilité (transport en commun, axes routiers, parkings)</span>
-  </label>
-
-     <label>
-    <input type="checkbox" class="theme">
-         <span id="maingoal_tauxvacance">
-    <span>Taux de vacance (commerces et logements inoccupés)</span>
-  </label>
-
-
-
-</div>
-
+          </div>
+        </div>
 
       </div>
-        
-</div>
 
-      
       <!-- RIGHT -->
-
       <div class="smartin-right">
-<div class="box-container">
+        <div class="box-container">
 
-  <div class="form-group">
-    <select id="citySelect">
-      <option id="option-select-city" value="">Sélectionner une ville</option>
-      <option id="option-brussels" value="Brussels">Bruxelles</option>
-    </select>
-  </div>
+          <div class="form-group">
+            <label class="field-label" id="city-label">Ville</label>
+            <select id="citySelect">
+              <option id="option-select-city" value="">Sélectionner une ville</option>
+              <option id="option-brussels" value="Brussels">Bruxelles</option>
+            </select>
+          </div>
 
-  <div class="form-group">
-    <textarea id="addressInput" rows="1"
-      placeholder="Adresse(s) à analyser (max. 3)"></textarea>
-  </div>
+          <div class="form-group">
+            <label class="field-label" id="address-label">Adresse(s)</label>
+            <textarea id="addressInput" rows="2" placeholder="Adresse(s) à analyser (max. 3)"></textarea>
+          </div>
 
-  <textarea id="contactInfoSmartIn" rows="1"
-    placeholder="Vos coordonnées de contact (email et/ou mobile)"></textarea>
+          <div class="form-group">
+            <label class="field-label" id="contact-label-smartin">Contact</label>
+            <textarea id="contactInfoSmartIn" rows="2" placeholder="Email et/ou mobile"></textarea>
+          </div>
 
-  <textarea id="projectDetails" rows="14"
-    placeholder="Décrivez votre projet"></textarea>
+          <div class="form-group">
+            <label class="field-label" id="project-label">Projet</label>
+            <textarea id="projectDetails" rows="8" placeholder="Décrivez votre projet"></textarea>
+          </div>
 
-  <button id="btn-send-summary"
-          class="btn-send-summary"
-          onclick="sendSmartIn()">Envoyer</button>
+          <button id="btn-send-summary" class="btn-send-smartin" onclick="sendSmartIn()">
+            <span id="btn-send-summary-label">Envoyer</span>
+          </button>
 
-</div>
+        </div>
 
-
-    
-
-
-        
-<div class="summary-box">
-  <h4 id="summary-title">Résumé</h4>
-  <div id="summaryContent">En attente...</div>
-</div>
-
-
-</select>
+        <!-- Hidden summary (for JS) -->
+        <div class="summary-box">
+          <h4 id="summary-title">Résumé</h4>
+          <div id="summaryContent">En attente...</div>
+        </div>
 
       </div>
-
     </div>
   </div>
 </div>
 
-
-
-
- <!-- Modal Case Studies -->
-  
-<div class="modal" id="casesModal">
-  <div class="modal-content">
-
-    <span class="close" onclick="closeModal('casesModal')">✕</span>
-
-    <h3 id="cases-title" style="color:var(--gold); margin-bottom:15px; font-weight:500;">
-      Smart-In: Cas Clients
-    </h3>
-
-    <div class="box-container">
-      <h4 id="case1-title">Implantation d’un commerce</h4>
-      <p id="case1-desc">
-        Analyse d’une zone urbaine pour identifier le meilleur emplacement,
-        évaluer le potentiel client et comprendre la concurrence locale.
-      </p>
-    </div>
-
-    <div class="box-container">
-      <h4 id="case2-title">Optimisation marketing</h4>
-      <p id="case2-desc">
-        Étude du profil de population et des flux afin d’adapter la stratégie
-        marketing et améliorer le ciblage client.
-      </p>
-    </div>
-
-    <div class="box-container">
-      <h4 id="case3-title">Analyse immobilière</h4>
-      <p id="case3-desc">
-        Évaluation du marché immobilier local pour orienter un investissement
-        ou anticiper les évolutions de prix et de demande.
-      </p>
-    </div>
-
-  </div>
-</div>
-
-
-
-
-
-
-
-
-  
-
-
-<!-- Message pour mobile / tablette petite -->
-<div id="mobileMessage">
-  Mobile version in development, please visit the website from your PC.
-</div>
-
-
-<!-- 3D JS -->
-
+<!-- ============================
+     SCRIPTS
+     ============================ -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-
-
-<!-- VantaDots -->
-
 <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.dots.min.js"></script>
-
-
-<!-- EmailJS -->
-
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
-
-  
 <script>
+/* ============================
+   VANTA
+   ============================ */
+VANTA.DOTS({
+  el: "#vanta-bg",
+  mouseControls: true,
+  touchControls: true,
+  gyroControls: false,
+  minHeight: 200,
+  minWidth: 200,
+  scale: 1.0,
+  scaleMobile: 1.0,
+  color: 0xcffb7,
+  color2: 0x5520ff,
+  backgroundColor: 0x0,
+  size: 3.2,
+  spacing: 24,
+  showLines: false
+});
 
-let vantaEffect = VANTA.DOTS({ el:"#vanta-bg", mouseControls:true, touchControls:true, gyroControls:false, minHeight:200, minWidth:200, 
-                              scale:1.0, scaleMobile:1.0, color:0xcffb7, color2:0x5520ff, backgroundColor:0x0, size:3.2, spacing:24, showLines:false });
-
-
-// SOLUTIONS -> SMART-IN BUTON -> DÉROULEMENT SOUS-MENU
-
-
+/* ============================
+   MENU PANELS
+   ============================ */
 const menuButtons = document.querySelectorAll('.menu button');
 const panels = document.querySelectorAll('.panel');
-
 const canHover = window.matchMedia('(hover: hover)').matches;
 
 menuButtons.forEach(btn => {
   const panelId = btn.id.replace('menu-', '');
   const panel = document.getElementById(panelId);
-
   if (!panel) return;
 
-  // ✅ Hover seulement desktop
   if (canHover) {
     btn.addEventListener('mouseenter', () => {
-      panels.forEach(p => { if (p !== panel) p.style.display = 'none'; });
+      panels.forEach(p => { p.style.display = 'none'; });
+      menuButtons.forEach(b => b.classList.remove('active-menu'));
       panel.style.display = 'block';
+      btn.classList.add('active-menu');
     });
   }
 
-  // ✅ Click (mobile + desktop)
-  btn.addEventListener('click', (e) => {
+  btn.addEventListener('click', e => {
     e.preventDefault();
-
     const isOpen = panel.style.display === 'block';
-
-    panels.forEach(p => p.style.display = 'none');
-
+    panels.forEach(p => { p.style.display = 'none'; });
+    menuButtons.forEach(b => b.classList.remove('active-menu'));
     if (!isOpen) {
       panel.style.display = 'block';
+      btn.classList.add('active-menu');
     }
   });
 });
-  
-// On ne ferme pas au mouseleave, fermeture uniquement au clic sur locationBtn
 
-
-
-
-// SMART-IN BUTON -> DÉROULEMENT SOUS-MENU; Boutons Discover Smart-In et  Video
-
-// document.getElementById('presentationSmartIn').addEventListener('click', () => openModal('videoModal'));
-
-  
-
-
-  
-/*Hover Smart-In Contact Form*/
-
+/* ============================
+   DISCOVER BUTTON → SMART-IN MODAL
+   ============================ */
 const discoverBtn = document.getElementById('discoverSmartIn');
-  
-
-let smartInHoverTimeout = null;
+let discoverTimeout = null;
 
 discoverBtn.addEventListener('mouseenter', () => {
-  
-  // Ne rien faire si le modal est déjà ouvert
-  
   if (document.getElementById('smartInModal').style.display === 'flex') return;
-
-  // Délai pour éviter les ouvertures accidentelles
-  
-  smartInHoverTimeout = setTimeout(() => {
-    openModal('smartInModal');
-  }, 250);
+  discoverTimeout = setTimeout(() => openModal('smartInModal'), 220);
 });
 
-discoverBtn.addEventListener('mouseleave', () => {
-  clearTimeout(smartInHoverTimeout);
-});
+discoverBtn.addEventListener('mouseleave', () => clearTimeout(discoverTimeout));
+discoverBtn.addEventListener('click', () => openModal('smartInModal'));
 
-
-
-
-
-
-/*Hover Case Studies*/
-  
-const casesBtn = document.getElementById('casesSmartIn');
-
-let casesHoverTimeout = null;
-
-casesBtn.addEventListener('mouseenter', () => {
-
-  if (document.getElementById('casesModal').style.display === 'flex') return;
-
-  casesHoverTimeout = setTimeout(() => {
-    openModal('casesModal');
-  }, 250);
-});
-
-casesBtn.addEventListener('mouseleave', () => {
-  clearTimeout(casesHoverTimeout);
-});
-
-
-
-  
-const citySelect = document.getElementById('citySelect');
-const addressInput = document.getElementById('addressInput');
-const projectDetails = document.getElementById('projectDetails');
-const contactInfoSmartIn = document.getElementById('contactInfoSmartIn');
-const summaryContent = document.getElementById('summaryContent');
-const selectAllGoals = document.getElementById('selectAllGoals');
-
-
-
-// --- THEMES ---
-const selectAllThemesCheckbox = document.getElementById('selectAllThemesCheckbox');
-const themeCheckboxes = document.querySelectorAll('.theme');
-
-if (selectAllThemesCheckbox) {
-  selectAllThemesCheckbox.addEventListener('change', () => {
-    themeCheckboxes.forEach(cb => cb.checked = selectAllThemesCheckbox.checked);
-    updateSummary();
-  });
-}
-
-themeCheckboxes.forEach(cb => {
-  cb.addEventListener('change', () => {
-    if (selectAllThemesCheckbox) {
-      selectAllThemesCheckbox.checked =
-        [...themeCheckboxes].every(t => t.checked);
-    }
-    updateSummary();
-  });
-});
-
-
-// --- GOALS ---
-const selectAllGoalsCheckbox = document.getElementById('selectAllGoalsCheckbox');
-const goalCheckboxes = document.querySelectorAll('.goal');
-
-if (selectAllGoalsCheckbox) {
-  selectAllGoalsCheckbox.addEventListener('change', () => {
-    goalCheckboxes.forEach(cb => cb.checked = selectAllGoalsCheckbox.checked);
-    updateSummary();
-  });
-}
-
-goalCheckboxes.forEach(cb => {
-  cb.addEventListener('change', () => {
-    if (selectAllGoalsCheckbox) {
-      selectAllGoalsCheckbox.checked =
-        [...goalCheckboxes].every(g => g.checked);
-    }
-    updateSummary();
-  });
-});
-
-
-
-
-
-  
-  
-/* --- SUMMARY UPDATE FUNCTION --- */
-function updateSummary() {
-
-  const contact = document.getElementById('contactInfoSmartIn')?.value || '';
-  const addresses = document.getElementById('addressInput')?.value || '';
-  const project = document.getElementById('projectDetails')?.value || '';
-  const city = document.getElementById('citySelect')?.value || '';
-
-  const goals = [...document.querySelectorAll('.goal:checked')]
-    .map(g => g.parentElement.innerText.trim());
-
-  const themes = [...document.querySelectorAll('.theme:checked')]
-    .map(t => t.parentElement.innerText.trim());
-
-  document.getElementById('summaryContent').innerHTML = `
-    <b>Coordonnées :</b> ${contact || '-'}<br>
-    <b>Adresse(s) :</b> ${addresses || '-'}<br>
-    <b>Description du projet :</b> ${project || '-'}<br>
-    <b>Objectif(s) principal(aux) :</b> ${goals.length ? goals.join(', ') : '-'}<br>
-    <b>Thèmes sélectionnés :</b> ${themes.length ? themes.join(', ') : '-'}<br>
-    <b>Ville :</b> ${city || '-'}
-  `;
-}
-
-/* --- LISTENERS --- */
-[
-  'contactInfoSmartIn',
-  'addressInput',
-  'projectDetails',
-  'citySelect'
-].forEach(id => {
-  const el = document.getElementById(id);
-  if (el) el.addEventListener('input', updateSummary);
-});
-
-/* --- CHECKBOX LISTENERS --- */
-document.querySelectorAll('.goal, .theme').forEach(cb => {
-  cb.addEventListener('change', updateSummary);
-});
-
-
-  
-  // --- Select city -> Map ---
-
-
-  function openModal(id){
+/* ============================
+   MODAL OPEN / CLOSE
+   ============================ */
+function openModal(id) {
   const modal = document.getElementById(id);
   modal.style.display = 'flex';
   document.body.style.overflow = 'hidden';
   document.querySelector('main').classList.add('blur-background');
-
-  // supprime l’ancienne carte à chaque ouverture
-  if(id === 'smartInModal'){
-    const container = document.getElementById('mapPreview');
-    container.innerHTML = '';
-  }
 }
 
-  citySelect.addEventListener('change', () => {
-  const container = document.getElementById('mapPreview');
-  container.innerHTML = ''; // supprime l’ancienne carte ou placeholder
-
-  
-    // si la ville sélectionnée est Brussels ET que le modal est ouvert
-  if(citySelect.value === "Brussels" && document.getElementById('smartInModal').style.display === 'flex'){
-    requestAnimationFrame(drawPreMap); // dessine la carte
-  }
-});
-
-
-
-
-/*
-// --- Select city -> Map Function ---
-
-function drawPreMap() {
-  const container = document.getElementById('mapPreview');
-  container.innerHTML = ''; // supprime le placeholder
-
-  const width = container.offsetWidth;
-  const height = container.offsetHeight;
-
-  const padding = 15; // espace autour de la carte
-
-  const svgNS = "http://www.w3.org/2000/svg";
-  const svg = document.createElementNS(svgNS, 'svg');
-  svg.setAttribute('width', '100%');
-  svg.setAttribute('height', '100%');
-  container.appendChild(svg);
-
-  // Normalisation
-  const lons = bruxellesContour.map(c => c[1]);
-  const lats = bruxellesContour.map(c => c[0]);
-  const lonMin = Math.min(...lons);
-  const lonMax = Math.max(...lons);
-  const latMin = Math.min(...lats);
-  const latMax = Math.max(...lats);
-
-  function scaleX(lon) {
-    return padding + ((lon - lonMin) / (lonMax - lonMin)) * (width - 2 * padding);
-  }
-  function scaleY(lat) {
-    // inversion Y pour que le nord soit en haut
-    return padding + (height - 2 * padding) - ((lat - latMin) / (latMax - latMin)) * (height - 2 * padding);
-  }
-
-  // --- Relief progressif ---
-  const layers = 3;
-  const offsetStep = 1.2;
-  const contourColor = '#969695';
-
-  for (let i = layers; i > 0; i--) {
-    const layer = document.createElementNS(svgNS, 'polygon');
-    layer.setAttribute('fill', 'none');
-    layer.setAttribute('stroke', contourColor);
-    layer.setAttribute('stroke-width', 0.9);
-    layer.setAttribute('stroke-linejoin', 'round');
-    layer.setAttribute('stroke-opacity', 0.15 * i);
-    layer.setAttribute(
-      'points',
-      bruxellesContour.map(c =>
-        (scaleX(c[1]) + i * offsetStep) + ',' + (scaleY(c[0]) + i * offsetStep)
-      ).join(' ')
-    );
-    layer.setAttribute('vector-effect', 'non-scaling-stroke');
-    svg.appendChild(layer);
-  }
-
-  // --- Contour principal ---
-  const polygon = document.createElementNS(svgNS, 'polygon');
-  polygon.setAttribute('fill', 'none');
-  polygon.setAttribute('stroke', contourColor);
-  polygon.setAttribute('stroke-width', '0.6');
-  polygon.setAttribute('stroke-linejoin', 'round');
-  polygon.setAttribute('vector-effect', 'non-scaling-stroke');
-  polygon.setAttribute(
-    'points',
-    bruxellesContour.map(c => scaleX(c[1]) + ',' + scaleY(c[0])).join(' ')
-  );
-  svg.appendChild(polygon);
-
-  // --- Points intérieurs ---
-  bruxellesInterior.forEach(c => {
-    const x = scaleX(c[1]);
-    const y = scaleY(c[0]);
-    const size = 3;
-    const diamond = document.createElementNS(svgNS, 'polygon');
-    diamond.setAttribute('points', `
-      ${x},${y-size}
-      ${x+size},${y}
-      ${x},${y+size}
-      ${x-size},${y}
-    `);
-    diamond.setAttribute('fill', 'none');
-    diamond.setAttribute('stroke', '#ccbb5a');
-    diamond.setAttribute('stroke-width', '1');
-    diamond.setAttribute('stroke-linejoin', 'round');
-    svg.appendChild(diamond);
-  });
-}
-*/
-
-
-/*
-// --- Select city -> Map: Brussels ---
-
-const bruxellesContour = [
-  [50.897838, 4.377298],
-  [50.902392, 4.344199],
-  [50.900750, 4.327877],
-  [50.893973, 4.312415],
-  [50.889656, 4.293477],
-  [50.880728, 4.297330],
-  [50.870691, 4.284429],
-  [50.866247, 4.278776],
-  [50.860285, 4.281114],
-  [50.855783, 4.289664],
-  [50.854185, 4.283001],
-  [50.837543, 4.281821],
-  [50.835917, 4.258190],
-  [50.825902, 4.253997],
-  [50.819764, 4.243681],
-  [50.817496, 4.245000],
-  [50.817085, 4.256735],
-  [50.811082, 4.261090],
-  [50.812229, 4.273701],
-  [50.808397, 4.276143],
-  [50.812222, 4.299704],
-  [50.812324, 4.305595],
-  [50.803639, 4.301175],
-  [50.799089, 4.305103],
-  [50.795488, 4.317261],
-  [50.775451, 4.330906],
-  [50.773641, 4.340649],
-  [50.775478, 4.345166],
-  [50.768587, 4.382710],
-  [50.763681, 4.383142],
-  [50.793553, 4.482248],
-  [50.808672, 4.447815],
-  [50.818897, 4.459151],
-  [50.820568, 4.476968],
-  [50.835620, 4.465399],
-  [50.837835, 4.468433],
-  [50.852329, 4.461708],
-  [50.863419, 4.426335],
-  [50.868019, 4.421486],
-  [50.877840, 4.428538],
-  [50.878911, 4.436795],
-  [50.891065, 4.427108],
-  [50.894867, 4.432491],
-  [50.907473, 4.413091],
-  [50.911571, 4.414397],
-  [50.914253, 4.403035],
-  [50.910627, 4.393672],
-  [50.909910, 4.387689],
-  [50.897407, 4.378014]
-];
-
-const bruxellesInterior = [
-  [50.847886, 4.351187],
-  [50.882791, 4.327702],
-  [50.875713, 4.304439],
-  [50.865721, 4.291617],
-  [50.863093, 4.329683],
-  [50.856711, 4.309934],
-  [50.830774, 4.302340],
-  [50.818363, 4.328158],
-  [50.827020, 4.344418],
-  [50.824415, 4.373052],
-  [50.796912, 4.364271],
-  [50.802678, 4.412690],
-  [50.832807, 4.391470],
-  [50.830684, 4.431618],
-  [50.847373, 4.434946],
-  [50.872396, 4.405943],
-  [50.860920, 4.380985],
-  [50.851763, 4.372782]
-];
-
-
-*/
-
-  
-// Video Modal
-function closeModal(id){
+function closeModal(id) {
   const modal = document.getElementById(id);
   modal.style.display = 'none';
   document.body.style.overflow = 'auto';
   document.querySelector('main').classList.remove('blur-background');
-
-  if(id==='videoModal'){
+  if (id === 'videoModal') {
     const iframe = document.getElementById('smartInVideo');
-    iframe.src = iframe.src;
+    if (iframe) iframe.src = iframe.src;
   }
 }
 
-  
-
-// --- FONCTION CHANGEMENT LANGUE ---
-
-  function setLanguage(lang) {
-  const dict = translations[lang];
-  if (!dict) return;
-
-  Object.keys(dict).forEach(id => {
-    const el = document.getElementById(id);
-    if (!el) return;
-
-    // Si la traduction contient du HTML (multilignes)
-    if (el.dataset && el.dataset.html === "true") {
-      el.innerHTML = dict[id];
-    } 
-    // Texte simple
-    else {
-      el.textContent = dict[id];
-    }
+// Close on backdrop click
+document.querySelectorAll('.modal').forEach(modal => {
+  modal.addEventListener('click', e => {
+    if (e.target === modal) closeModal(modal.id);
   });
+});
 
-  // État visuel FR / EN
-  document.getElementById('fr-btn')?.classList.toggle('active', lang === 'fr');
-  document.getElementById('en-btn')?.classList.toggle('active', lang === 'en');
-
-  // Attribut HTML <html lang="">
-  document.documentElement.lang = lang;
+/* ============================
+   SUMMARY UPDATE
+   ============================ */
+function updateSummary() {
+  const contact  = document.getElementById('contactInfoSmartIn')?.value || '';
+  const addresses = document.getElementById('addressInput')?.value || '';
+  const project  = document.getElementById('projectDetails')?.value || '';
+  const city     = document.getElementById('citySelect')?.value || '';
+  const goals    = [...document.querySelectorAll('.goal:checked')].map(g => g.parentElement.innerText.trim());
+  const themes   = [...document.querySelectorAll('.theme:checked')].map(t => t.parentElement.innerText.trim());
+  document.getElementById('summaryContent').innerHTML = `
+    <b>Coordonnées :</b> ${contact || '-'}<br>
+    <b>Adresse(s) :</b> ${addresses || '-'}<br>
+    <b>Description du projet :</b> ${project || '-'}<br>
+    <b>Objectif(s) :</b> ${goals.length ? goals.join(', ') : '-'}<br>
+    <b>Thèmes :</b> ${themes.length ? themes.join(', ') : '-'}<br>
+    <b>Ville :</b> ${city || '-'}
+  `;
 }
 
-
-
-// --- Event listeners sur les boutons FR / EN ---
-document.getElementById('fr-btn').addEventListener('click', () => {
-  setLanguage('fr');
-  document.getElementById('fr-btn').classList.add('active');
-  document.getElementById('en-btn').classList.remove('active');
+['contactInfoSmartIn','addressInput','projectDetails','citySelect'].forEach(id => {
+  document.getElementById(id)?.addEventListener('input', updateSummary);
 });
 
-document.getElementById('en-btn').addEventListener('click', () => {
-  setLanguage('en');
-  document.getElementById('en-btn').classList.add('active');
-  document.getElementById('fr-btn').classList.remove('active');
-});
+document.querySelectorAll('.goal, .theme').forEach(cb => cb.addEventListener('change', updateSummary));
 
+/* ============================
+   EMAILJS
+   ============================ */
+(function(){ emailjs.init("Y9G1UYj9VZqrRmSG1"); })();
 
-
-  
-// --- EMAILJS ---
-
-
-// --- Function ---
-  
-  (function(){
-    emailjs.init("Y9G1UYj9VZqrRmSG1");
-  })();
-
-  
-// --- Email ---
-
-document.getElementById('btn-send-summary').addEventListener('click', function () {
-
+function sendSmartIn() {
   const templateParams = {
-    contact: contactInfoSmartIn.value || '-',
-    addresses: addressInput.value || '-',
-    project: projectDetails.value || '-',
-    goals: [...document.querySelectorAll('.goal:checked')]
-              .map(g => g.parentElement.textContent.trim())
-              .join(', ') || '-',
-    themes: [...document.querySelectorAll('.theme:checked')]
-              .map(t => t.parentElement.textContent.trim())
-              .join(', ') || '-',
-    city: citySelect.value || '-'
+    contact:   document.getElementById('contactInfoSmartIn').value || '-',
+    addresses: document.getElementById('addressInput').value || '-',
+    project:   document.getElementById('projectDetails').value || '-',
+    goals:     [...document.querySelectorAll('.goal:checked')].map(g => g.parentElement.textContent.trim()).join(', ') || '-',
+    themes:    [...document.querySelectorAll('.theme:checked')].map(t => t.parentElement.textContent.trim()).join(', ') || '-',
+    city:      document.getElementById('citySelect').value || '-'
   };
+  emailjs.send('service_41z5e5b', 'template_9s39ygw', templateParams)
+    .then(() => alert('Succès ✅'))
+    .catch(err => { console.error(err); alert('Erreur ❌'); });
+}
 
-  emailjs.send(
-    'service_41z5e5b',
-    'template_9s39ygw',
-    templateParams
-  )
-  .then(() => {
-    alert('Succes ✅');
-  })
-  .catch(err => {
-    console.error('EmailJS error:', err);
-    alert('Error ❌');
-  });
-});
-;
-
-
-  // Contact
-
-// --- CONTACT FORM EMAIL ---
-document.getElementById("btn-send").addEventListener("click", function () {
-
-  const name = document.getElementById("contact-name").value;
-  const contact = document.getElementById("contact-info").value;
-  const message = document.getElementById("contact-message").value;
-
-  if (!name || !contact || !message) {
-    alert("Veuillez remplir tous les champs.");
-    return;
-  }
-
-  const templateParams = {
-    name: name,
-    contact: contact,
-    message: message
-  };
-
-  emailjs.send(
-    "service_41z5e5b",
-    "template_9s39ygw",
-    templateParams
-  )
-  .then(() => {
-    alert("Message envoyé avec succès ✅");
-    closeModal('contactModal');
-
-    // reset champs
-    document.getElementById("contact-name").value = "";
-    document.getElementById("contact-info").value = "";
-    document.getElementById("contact-message").value = "";
-
-  })
-  .catch((error) => {
-    console.error("EmailJS error:", error);
-    alert("Erreur lors de l'envoi ❌");
-  });
-
+document.getElementById('btn-send').addEventListener('click', function() {
+  const name    = document.getElementById('contact-name').value;
+  const contact = document.getElementById('contact-info').value;
+  const message = document.getElementById('contact-message').value;
+  if (!name || !contact || !message) { alert('Veuillez remplir tous les champs.'); return; }
+  emailjs.send('service_41z5e5b', 'template_9s39ygw', { name, contact, message })
+    .then(() => {
+      alert('Message envoyé ✅');
+      closeModal('contactModal');
+      document.getElementById('contact-name').value = '';
+      document.getElementById('contact-info').value = '';
+      document.getElementById('contact-message').value = '';
+    })
+    .catch(err => { console.error(err); alert('Erreur ❌'); });
 });
 
-  
-
-
-
-// --- Dictionnaire de traduction ---
-  
+/* ============================
+   TRANSLATIONS
+   ============================ */
 const translations = {
   fr: {
     "about-text": "Nous développons des solutions digitales uniques, répondant à des besoins concrets, à partir de données à forte valeur ajoutée.",
     "menu-about": "À PROPOS",
+    "menu-solutions": "SOLUTIONS",
     "locationBtn": "SMART-IN",
- 
-
-  "locationContentInnerText": "Smart-In est notre plateforme d’analyse territoriale à travers laquelle nous fournissons des études sur mesure, rapides et indépendantes pour sécuriser les décisions avant tout investissement.\n\nConcrètement, nous accompagnons les entrepreneurs dans le choix du meilleur emplacement afin de maximiser leurs chances de succès, et aidons les commerces existants à mieux comprendre leur environnement pour optimiser leur marketing, affiner leur ciblage client et se positionner efficacement face à la concurrence et aux tendances du marché.",
-
-
-    
-    "discoverSmartIn": "Formulaire de Contact",
-    //"presentationSmartIn": "Vidéo",
+    "locationContentInnerText": "Smart-In est notre plateforme d'analyse territoriale à travers laquelle nous fournissons des études sur mesure, rapides et indépendantes pour sécuriser les décisions avant tout investissement.\n\nConcrètement, nous accompagnons les entrepreneurs dans le choix du meilleur emplacement afin de maximiser leurs chances de succès, et aidons les commerces existants à mieux comprendre leur environnement pour optimiser leur marketing, affiner leur ciblage client et se positionner efficacement face à la concurrence et aux tendances du marché.",
+    "discoverSmartIn-label": "Découvrir Smart-In",
     "offices-link": "Bureaux",
     "offices": "Bureaux",
-
-
-
-
-
-
- "offices-list": "21 Avenue du Boulevard, Bruxelles (Financial District)\n\n7 Rue Meyerbeer, Paris (Opéra Garnier)\n\n74 Boulevard d'Italie, Monaco (Monte Carlo)",
-
-
-
-
-  
+    "office1-city": "Bruxelles",
+    "office2-city": "Paris",
+    "office3-city": "Monaco",
     "contact-text": "Contactez-nous",
     "contact-text2": "Nous écoutons attentivement vos besoins afin de vous proposer une solution précise et adaptée.",
     "btn-send": "Envoyer",
     "our-media": "Nos réseaux",
-    "presentation-title":"Présentation Smart-In",
-
-    "smartin-title":"Smart-In: Formulaire de Contact",
-
-        "contactInfo-label": "Coordonnées de contact",
-"contactInfoSmartIn":"Vos coordonnées de contact (email et/ou mobile)",
-
-"addressInput":"Adresse(s) à analyser (max. 3)",
-
-    "project-description":"Décrivez votre projet",
-"projectDetails":"Décrivez votre projet",
-
-"maingoal-label":"Que souhaitez vous connaître?",
-
-"maingoal_clients_concurents":"Étude des clients et concurents potentiels",
-"maingoal_urbandynamics":"Dynamiques urbaines (gentrification, projets et impacts)",
-"maingoal_populationprofile":"Profil de la population (revenus, emploi, difficultés, âges, origines)",
-"maingoal_security":"Sécurité (statistiques et évolution des incidents)",
-"maingoal_realestatemarket":"Marché immobilier (prix, transactions, tendances)",
-
-"maingoal_parcimmo":"Parc immobilier (type et localisation des bâtiments)",
-"maingoal_lifequality":"Qualité de vie (espaces verts et accessibilité, pollution)",
-"maingoal_visibility":"Visibilité (flux piétons, automobiles, attractivité touristique)",
-"maingoal_accessibility":"Accessibilité (transport en commun, axes routiers, parkings)",
-"maingoal_tauxvacance":"Taux de vacance (commerces et logements inoccupés)",
-
-
-
-
-    
-"summary-title": "Résumé",
-"summaryContent": "En attente...",
-
-"city-brussels": "Bruxelles",
-
-"btn-send-summary": "Envoyer",
-
-    "approach-title":"Notre approche",
-
-    
-"approach-content":"1. Bien comprendre votre projet\n2. Définir l’analyse et les données qui vous seront fournies\n3. Livrer l’étude dans les plus brefs délais",
-
-
-    "option-select-city":"Sélectionner une ville",
-    "option-brussels":"Bruxelles",
-    "casesSmartIn":"Cas Clients",
-    
-    "cases-title":"Cas Clients",
-"case1-title":"x",
-
-"case1-desc":"x"
-
-
-
+    "smartin-title": "Formulaire de Contact",
+    "approach-title": "Notre approche",
+    "approach-content": "1. Bien comprendre votre projet\n2. Définir l'analyse et les données qui vous seront fournies\n3. Livrer l'étude dans les plus brefs délais",
+    "maingoal-label": "Que souhaitez-vous connaître ?",
+    "maingoal_clients_concurents": "Étude des clients et concurrents potentiels",
+    "maingoal_urbandynamics": "Dynamiques urbaines (gentrification, projets et impacts)",
+    "maingoal_populationprofile": "Profil de la population (revenus, emploi, difficultés, âges, origines)",
+    "maingoal_security": "Sécurité (statistiques et évolution des incidents)",
+    "maingoal_realestatemarket": "Marché immobilier (prix, transactions, tendances)",
+    "maingoal_parcimmo": "Parc immobilier (type et localisation des bâtiments)",
+    "maingoal_lifequality": "Qualité de vie (espaces verts et accessibilité, pollution)",
+    "maingoal_visibility": "Visibilité (flux piétons, automobiles, attractivité touristique)",
+    "maingoal_accessibility": "Accessibilité (transport en commun, axes routiers, parkings)",
+    "maingoal_tauxvacance": "Taux de vacance (commerces et logements inoccupés)",
+    "city-label": "Ville",
+    "address-label": "Adresse(s)",
+    "contact-label-smartin": "Contact",
+    "project-label": "Projet",
+    "option-select-city": "Sélectionner une ville",
+    "option-brussels": "Bruxelles",
+    "btn-send-summary-label": "Envoyer"
   },
-
-
-
-
-
-
-
-
-  
-  
   en: {
     "about-text": "We turn high-value data into unique digital solutions that solve real challenges.",
     "menu-about": "ABOUT",
+    "menu-solutions": "SOLUTIONS",
     "locationBtn": "SMART-IN",
-
-
-
-
-
-"locationContentInnerText": "Smart-In is our territorial analysis platform through which we provide fast, independent, and tailored studies to help secure decisions before any investment is made.\n\nConcretely, we support entrepreneurs in selecting the most suitable location to maximize their chances of success, and help existing businesses better understand their environment in order to optimize their marketing, refine customer targeting, and position themselves effectively against competition and market trends.",
-
-
-    
-    "discoverSmartIn": "Contact Form",
-   // "presentationSmartIn": "Video",
-
-"offices-link": "Offices",
+    "locationContentInnerText": "Smart-In is our territorial analysis platform through which we provide fast, independent, and tailored studies to help secure decisions before any investment is made.\n\nConcretely, we support entrepreneurs in selecting the most suitable location to maximize their chances of success, and help existing businesses better understand their environment in order to optimize their marketing, refine customer targeting, and position themselves effectively against competition and market trends.",
+    "discoverSmartIn-label": "Discover Smart-In",
+    "offices-link": "Offices",
     "offices": "Offices",
-
-
-     "offices-list": "21 Avenue du Boulevard, Brussels (Financial District)\n\n7 Rue Meyerbeer, Paris (Opéra Garnier)\n\n74 Boulevard d'Italie, Monaco (Monte Carlo)",
-
-
-    
-      
+    "office1-city": "Brussels",
+    "office2-city": "Paris",
+    "office3-city": "Monaco",
     "contact-text": "Contact Us",
     "contact-text2": "We carefully listen to your needs to provide you with a precise and adapted solution.",
     "btn-send": "Send",
     "our-media": "Our Media",
-
-
-"presentation-title":"Presentation Smart-In",
-
-    "smartin-title":"Smart-In: Contact Form",
-
-    "contactInfo-label": "Contact details",
-"contactInfoSmartIn":"Your contact details (email and/or mobile)",
-
-"addressInput":"Address(es) to analyze (max. 3)",
-
-
-    "project-description":"Describe your project",
-"projectDetails":"Describe your project",
-
-
-
-"maingoal-label":"What would you like to know?",
-
-"maingoal_clients_concurents":"Analysis of potential customers and competitors",
-"maingoal_urbandynamics":"Urban dynamics (gentrification, projects and impacts)",
-"maingoal_populationprofile":"Population profile (income, employment, challenges, age, origins)",
-"maingoal_security":"Safety (crime statistics and trends over time)",
-"maingoal_realestatemarket":"Real estate market (prices, transactions, trends)",
-
-"maingoal_parcimmo":"Building stock (types and locations of buildings)",
-"maingoal_lifequality":"Quality of life (green spaces, accessibility, pollution)",
-"maingoal_visibility":"Visibility (pedestrian and vehicle flows, tourist attractiveness)",
-"maingoal_accessibility":"Accessibility (public transport, road networks, parking)",
-"maingoal_tauxvacance":"Vacancy rate (empty commercial and residential properties)",
-
-
-
-    
-"summary-title":"Summary",
-"summaryContent":"No data yet...",
-
-
-"select-city-label":"City to analyze",
-"select-city-placeholder":"Select a city",
-"city-brussels":"Brussels",
-
-"btn-send-summary":"Send",
-
-    "approach-title":"Our Approach",
-
-      
-"approach-content": "1. Fully understand your project\n2. Define the analysis and the data that will be provided to you\n3. Deliver the study within the shortest possible timeframe",
-
-    "option-select-city":"Select a city",
-    "option-brussels":"Brussels",
-    "casesSmartIn":"Case Studies",
-    "cases-title":"Cas Clients",
-
-"cases-title":"Case Studies",
-
-"case1-title":"x",
-
-"case1-desc":"x"
-    
-    
+    "smartin-title": "Contact Form",
+    "approach-title": "Our Approach",
+    "approach-content": "1. Fully understand your project\n2. Define the analysis and the data that will be provided to you\n3. Deliver the study within the shortest possible timeframe",
+    "maingoal-label": "What would you like to know?",
+    "maingoal_clients_concurents": "Analysis of potential customers and competitors",
+    "maingoal_urbandynamics": "Urban dynamics (gentrification, projects and impacts)",
+    "maingoal_populationprofile": "Population profile (income, employment, challenges, age, origins)",
+    "maingoal_security": "Safety (crime statistics and trends over time)",
+    "maingoal_realestatemarket": "Real estate market (prices, transactions, trends)",
+    "maingoal_parcimmo": "Building stock (types and locations of buildings)",
+    "maingoal_lifequality": "Quality of life (green spaces, accessibility, pollution)",
+    "maingoal_visibility": "Visibility (pedestrian and vehicle flows, tourist attractiveness)",
+    "maingoal_accessibility": "Accessibility (public transport, road networks, parking)",
+    "maingoal_tauxvacance": "Vacancy rate (empty commercial and residential properties)",
+    "city-label": "City",
+    "address-label": "Address(es)",
+    "contact-label-smartin": "Contact",
+    "project-label": "Project",
+    "option-select-city": "Select a city",
+    "option-brussels": "Brussels",
+    "btn-send-summary-label": "Send"
   }
 };
 
-  
+function setLanguage(lang) {
+  const dict = translations[lang];
+  if (!dict) return;
+  Object.keys(dict).forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    if (el.tagName === 'TEXTAREA' || el.tagName === 'INPUT') {
+      el.placeholder = dict[id];
+    } else if (el.tagName === 'OPTION') {
+      el.textContent = dict[id];
+    } else {
+      el.textContent = dict[id];
+    }
+  });
+  document.getElementById('fr-btn')?.classList.toggle('active', lang === 'fr');
+  document.getElementById('en-btn')?.classList.toggle('active', lang === 'en');
+  document.documentElement.lang = lang;
+}
 
-
+document.getElementById('fr-btn').addEventListener('click', () => setLanguage('fr'));
+document.getElementById('en-btn').addEventListener('click', () => setLanguage('en'));
 </script>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
