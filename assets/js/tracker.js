@@ -57,16 +57,14 @@ function sendPayload(data) {
   const sessionStart = Date.now();
   const ua           = navigator.userAgent;
   const botReasons   = detectBot();
-  const isMobile     = navigator.maxTouchPoints > 0;
 
   /* ── Behaviour counters ── */
   const beh = {
-    maxScroll:      0,
-    clickCount:     0,
-    rightClicks:    0,
-    copyAttempts:   0,
-    suspiciousKeys: [],
-    devTools:       false,
+    maxScroll:    0,
+    clickCount:   0,
+    rightClicks:  0,
+    copyAttempts: 0,
+    devToolsKeys: [],
   };
 
   window.addEventListener('scroll', () => {
@@ -79,14 +77,19 @@ function sendPayload(data) {
   document.addEventListener('click',       () => beh.clickCount++);
   document.addEventListener('contextmenu', () => beh.rightClicks++);
   document.addEventListener('copy',        () => beh.copyAttempts++);
-document.addEventListener('keydown', e => {
-  if (
-    e.key === 'F12' ||
-    (e.ctrlKey && e.shiftKey && ['I','J','C','U'].includes(e.key.toUpperCase())) ||
-    (e.ctrlKey && e.key.toUpperCase() === 'U')
-  ) beh.suspiciousKeys.push(e.key === 'F12' ? 'F12' : `Ctrl+Shift+${e.key.toUpperCase()}`);
-});
-  
+
+  // Collecte les raccourcis clavier pouvant ouvrir les devtools
+  document.addEventListener('keydown', e => {
+    if (
+      e.key === 'F12' ||
+      (e.ctrlKey && e.shiftKey && ['I','J','C','U'].includes(e.key.toUpperCase())) ||
+      (e.ctrlKey && e.key.toUpperCase() === 'U')
+    ) {
+      const label = e.key === 'F12' ? 'F12' : `Ctrl+Shift+${e.key.toUpperCase()}`;
+      beh.devToolsKeys.push(label);
+    }
+  });
+
   /* ── Static data ── */
   const perf = performance.getEntriesByType('navigation')[0];
 
@@ -101,7 +104,7 @@ document.addEventListener('keydown', e => {
     ip: '', city: '', region: '', country: '', org: '', isp: '', zip: '',
     latitude: '', longitude: '',
 
-    deviceType:     isMobile ? 'mobile/tablet' : 'desktop',
+    deviceType:     navigator.maxTouchPoints > 0 ? 'mobile/tablet' : 'desktop',
     cpuCores:       navigator.hardwareConcurrency || '',
     memory:         navigator.deviceMemory        || '',
     touchPoints:    navigator.maxTouchPoints      || '',
@@ -132,7 +135,7 @@ document.addEventListener('keydown', e => {
     isBot: botReasons.length ? botReasons.join(', ') : 'non',
 
     maxScroll: '', clickCount: 0, rightClicks: 0,
-    copyAttempts: 0, suspiciousKeys: '', devToolsDetected: '',
+    copyAttempts: 0, devToolsKeys: '',
     sessionDuration: '',
   };
 
@@ -193,12 +196,11 @@ document.addEventListener('keydown', e => {
 
   /* ── Snapshot behaviour then send ── */
   function applyBehaviour(d) {
-    d.maxScroll        = beh.maxScroll + '%';
-    d.clickCount       = beh.clickCount;
-    d.rightClicks      = beh.rightClicks;
-    d.copyAttempts     = beh.copyAttempts;
-    d.suspiciousKeys   = beh.suspiciousKeys.join(', ') || 'aucun';
-    d.devToolsDetected = beh.devTools ? 'oui' : 'non';
+    d.maxScroll    = beh.maxScroll + '%';
+    d.clickCount   = beh.clickCount;
+    d.rightClicks  = beh.rightClicks;
+    d.copyAttempts = beh.copyAttempts;
+    d.devToolsKeys = beh.devToolsKeys.length ? beh.devToolsKeys.join(', ') : 'aucun';
     try { d.lastTheme = window.activeTheme || ''; } catch (_) {}
   }
 
