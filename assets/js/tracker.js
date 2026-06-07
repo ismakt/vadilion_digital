@@ -1,21 +1,4 @@
-'use strict';
 
-/* ============================
-   TRACKER — Vadilion Digital
-   
-   FIXES vs original:
-   1. Bot detection now runs BEFORE blocking the page — original threw an error
-      that stopped the tracker from running entirely on legitimate browsers.
-   2. IP fetches run in parallel (Promise.allSettled) instead of sequentially —
-      much faster, one failure doesn't block the other.
-   3. geolocation timeout increased to 8s and properly awaited.
-   4. sendBeacon data is sent as a Blob with correct content-type so the
-      Google Apps Script actually receives the JSON body on page close.
-   5. Variables (maxScroll, clickCount, etc.) are now in a shared object so
-      both sendData() and the beforeunload handler read the same live values.
-   6. activeTheme / currentAccess references wrapped in try/catch so the
-      tracker doesn't crash when those vars don't exist on this page.
-   ============================ */
 
 const TRACKER_URL = 'https://script.google.com/macros/s/AKfycbyqYpE-rTBtyVn0fdz2FfvmTWg8kYGqKxea5NWZExP6oFLtwfkHBaa9MRBZBI3DeN9BUg/exec';
 
