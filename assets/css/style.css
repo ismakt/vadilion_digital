@@ -78,7 +78,7 @@ main {
   align-items: center;
   position: relative;
   padding: 20px;
-  overflow: hidden;
+  overflow: visible; /* ← was: overflow: hidden */
 }
 
 #vanta-bg {
@@ -142,12 +142,16 @@ main {
   background: var(--panel);
   border: 1px solid var(--border);
   border-radius: 16px;
-  padding: 24px;
+  padding: 16px;
   max-width: 560px;
   width: calc(100% - 40px);
   z-index: 15;
   color: var(--text);
   box-shadow: 0 24px 60px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.04);
+
+  /* ↓ add these two lines */
+  max-height: calc(100vh - 22% - 62px - 80px); /* leaves room for footer */
+  overflow-y: auto;
 }
 
 .panel p {
