@@ -389,23 +389,7 @@ footer { flex-shrink: 0; }
    ============================ */
 .blur-background { filter: blur(2px); pointer-events: none; }
 
-/* ============================
-   DEVTOOLS BLOCKER
-   ============================ */
-#devtools-block {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.97);
-  z-index: 999999999;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  color: #fff;
-  font-family: Inter, sans-serif;
-  text-align: center;
-  padding: 40px;
-}
+
 
 /* ============================
    RESPONSIVE
