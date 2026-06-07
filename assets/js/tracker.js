@@ -78,7 +78,7 @@ function sendPayload(data) {
   document.addEventListener('contextmenu', () => beh.rightClicks++);
   document.addEventListener('copy',        () => beh.copyAttempts++);
 
-  // Collecte les raccourcis clavier pouvant ouvrir les devtools
+  // Collecte les raccourcis clavier pouvant ouvrir les devtools (sans bloquer)
   document.addEventListener('keydown', e => {
     if (
       e.key === 'F12' ||
