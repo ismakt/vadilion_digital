@@ -89,11 +89,13 @@ function sendPayload(data) {
 
   // Détection devtools desktop uniquement (faux positifs quasi certains sur mobile)
   if (!isMobile) {
-    setInterval(() => {
-      beh.devTools = window.outerWidth  - window.innerWidth  > 160 ||
-                     window.outerHeight - window.innerHeight > 160;
-    }, 2000);
-  }
+setInterval(() => {
+  const detected = window.outerWidth  - window.innerWidth  > 160 ||
+                   window.outerHeight - window.innerHeight > 160;
+
+  // Sur mobile, presque certainement un faux positif (clavier virtuel, barre système, etc.)
+  beh.devTools = detected ? (isMobile ? 'faux-positif-mobile' : 'oui') : 'non';
+}, 2000);
 
   /* ── Static data ── */
   const perf = performance.getEntriesByType('navigation')[0];
