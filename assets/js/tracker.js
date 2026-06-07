@@ -124,13 +124,7 @@ function setupDevToolsBlock() {
     ) beh.suspiciousKeys.push(e.key === 'F12' ? 'F12' : `Ctrl+Shift+${e.key.toUpperCase()}`);
   });
 
-  // DevTools : détecter sur desktop seulement
-  if (!isMobile) {
-    setInterval(() => {
-      beh.devTools = window.outerWidth  - window.innerWidth  > 160 ||
-                     window.outerHeight - window.innerHeight > 160;
-    }, 2000);
-  }
+
 
   /* ── Static data ── */
   const perf = performance.getEntriesByType('navigation')[0];
