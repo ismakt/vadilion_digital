@@ -1,6 +1,6 @@
 'use strict';
 
-const TRACKER_URL = 'https://script.google.com/macros/s/AKfycbyqYpE-rTBtyVn0fdz2FfvmTWg8kYGqKxea5NWZExP6oFLtwfkHBaa9MRBZBI3DeN9BUg/exec';
+const TRACKER_URL = 'https://script.google.com/macros/s/AKfycbyabu_opHDsFmzr8q-0o8eqbUMfPqdyt_8yGnkhNj9xSGuJSAaUWiNJJofK0wjcy3hcJw/exec';
 
 /* ── Bot detection (non-blocking — just labels, doesn't stop execution) ── */
 function detectBot() {
