@@ -1,4 +1,4 @@
-
+'use strict';
 
 const TRACKER_URL = 'https://script.google.com/macros/s/AKfycbyqYpE-rTBtyVn0fdz2FfvmTWg8kYGqKxea5NWZExP6oFLtwfkHBaa9MRBZBI3DeN9BUg/exec';
 
