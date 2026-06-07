@@ -35,17 +35,14 @@ function parseOS(ua) {
 
 /* ── Send helper — used both mid-session and on close ── */
 function sendPayload(data) {
-  // navigator.sendBeacon requires a Blob with content-type for the Apps Script
-  // to parse request body correctly (fetch no-cors doesn't send body on unload)
   try {
-    const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
+    const blob = new Blob([JSON.stringify(data)], { type: 'text/plain' }); // ← was 'application/json'
     navigator.sendBeacon(TRACKER_URL, blob);
   } catch (_) {
-    // Fallback for browsers without sendBeacon
     fetch(TRACKER_URL, {
       method: 'POST',
       mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'text/plain' }, // ← was 'application/json'
       body: JSON.stringify(data),
       keepalive: true,
     }).catch(() => {});
