@@ -187,29 +187,47 @@ document.getElementById('fr-btn').addEventListener('click', () => setLanguage('f
 document.getElementById('en-btn').addEventListener('click', () => setLanguage('en'));
 
 /* ============================
-   SECURITY — DEVTOOLS BLOCKER
+   SECURITY — DEVTOOLS BLOCKER (desktop uniquement)
    ============================ */
+if (navigator.maxTouchPoints === 0) {
 
-// DevTools overlay (created in CSS, shown via JS)
-const devBlock = document.createElement('div');
-devBlock.id = 'devtools-block';
-devBlock.innerHTML = `
-  <div style="font-size:48px;margin-bottom:20px">🚫</div>
-  <div style="font-size:22px;font-weight:600;margin-bottom:12px">Accès refusé</div>
-  <div style="font-size:14px;color:rgba(255,255,255,0.5)">Les outils de développement ne sont pas autorisés sur cette application.</div>
-`;
-document.body.appendChild(devBlock);
+  const devBlock = document.createElement('div');
+  devBlock.style.cssText = `
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.97);
+    z-index: 999999999;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: #fff;
+    font-family: Inter, sans-serif;
+    text-align: center;
+    padding: 40px;
+  `;
+  devBlock.innerHTML = `
+    <div style="font-size:48px;margin-bottom:20px">🚫</div>
+    <div style="font-size:22px;font-weight:600;margin-bottom:12px">Accès refusé</div>
+    <div style="font-size:14px;color:rgba(255,255,255,0.5)">Les outils de développement ne sont pas autorisés sur cette application.</div>
+  `;
+  document.body.appendChild(devBlock);
 
-let devtoolsOpen = false;
-const checkDevTools = () => {
-  const open = window.outerWidth - window.innerWidth > 160 || window.outerHeight - window.innerHeight > 160;
-  if (open !== devtoolsOpen) {
-    devtoolsOpen = open;
-    devBlock.style.display = open ? 'flex' : 'none';
-  }
-};
-setInterval(checkDevTools, 1000);
-window.addEventListener('resize', checkDevTools);
+  document.addEventListener('keydown', e => {
+    if (
+      e.key === 'F12' ||
+      (e.ctrlKey && e.shiftKey && ['I','J','C','U'].includes(e.key.toUpperCase())) ||
+      (e.ctrlKey && e.key.toUpperCase() === 'U')
+    ) {
+      e.preventDefault();
+      e.stopPropagation();
+      devBlock.style.display = 'flex';
+    }
+  });
+
+}
+
+}
 
 // Block right-click, devtools shortcuts, text selection, copy/paste
 document.addEventListener('contextmenu', e => e.preventDefault());
