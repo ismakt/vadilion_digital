@@ -2,7 +2,7 @@
 
 const TRACKER_URL = 'https://script.google.com/macros/s/AKfycbyabu_opHDsFmzr8q-0o8eqbUMfPqdyt_8yGnkhNj9xSGuJSAaUWiNJJofK0wjcy3hcJw/exec';
 
-/* ── Bot detection (non-blocking — just labels, doesn't stop execution) ── */
+/* ── Bot detection ── */
 function detectBot() {
   const reasons = [];
   if (navigator.webdriver)                                    reasons.push('webdriver');
@@ -33,32 +33,68 @@ function parseOS(ua) {
   return 'Autre';
 }
 
-/* ── Send helper — used both mid-session and on close ── */
+/* ── Send helper ── */
 function sendPayload(data) {
   try {
-    const blob = new Blob([JSON.stringify(data)], { type: 'text/plain' }); // ← was 'application/json'
+    const blob = new Blob([JSON.stringify(data)], { type: 'text/plain' });
     navigator.sendBeacon(TRACKER_URL, blob);
   } catch (_) {
     fetch(TRACKER_URL, {
       method: 'POST',
       mode: 'no-cors',
-      headers: { 'Content-Type': 'text/plain' }, // ← was 'application/json'
+      headers: { 'Content-Type': 'text/plain' },
       body: JSON.stringify(data),
       keepalive: true,
     }).catch(() => {});
   }
 }
 
+/* ── DevTools block (desktop uniquement) ── */
+function setupDevToolsBlock() {
+  // Ne s'applique pas sur mobile/tablette
+  if (navigator.maxTouchPoints > 0) return;
+
+  // Méthode 1 : détection par timing (debugger trick)
+  const devToolsCheck = () => {
+    const threshold = 160;
+    const widthDiff  = window.outerWidth  - window.innerWidth;
+    const heightDiff = window.outerHeight - window.innerHeight;
+    // Seuil plus élevé pour éviter les faux positifs
+    return widthDiff > threshold || heightDiff > threshold;
+  };
+
+  let devToolsOpen = false;
+  setInterval(() => {
+    if (devToolsCheck() && !devToolsOpen) {
+      devToolsOpen = true;
+      document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:sans-serif;font-size:1.5rem;">🚫 Accès aux outils de développement interdit.</div>';
+    }
+  }, 1000);
+
+  // Méthode 2 : bloquer F12 et raccourcis
+  document.addEventListener('keydown', e => {
+    if (
+      e.key === 'F12' ||
+      (e.ctrlKey && e.shiftKey && ['I','J','C'].includes(e.key.toUpperCase())) ||
+      (e.ctrlKey && e.key.toUpperCase() === 'U')
+    ) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  }, true);
+}
+
 /* ════════════════════════════════════════
-   MAIN — async IIFE so we can await
+   MAIN
    ════════════════════════════════════════ */
 (async function collectAndSendVisit() {
 
   const sessionStart = Date.now();
   const ua           = navigator.userAgent;
   const botReasons   = detectBot();
+  const isMobile     = navigator.maxTouchPoints > 0;
 
-  /* ── Behaviour counters (shared object so both closures see live values) ── */
+  /* ── Behaviour counters ── */
   const beh = {
     maxScroll:      0,
     clickCount:     0,
@@ -78,6 +114,8 @@ function sendPayload(data) {
   document.addEventListener('click',       () => beh.clickCount++);
   document.addEventListener('contextmenu', () => beh.rightClicks++);
   document.addEventListener('copy',        () => beh.copyAttempts++);
+
+  // Détection touches suspectes (log uniquement, pas de blocage ici)
   document.addEventListener('keydown', e => {
     if (
       e.key === 'F12' ||
@@ -86,36 +124,35 @@ function sendPayload(data) {
     ) beh.suspiciousKeys.push(e.key === 'F12' ? 'F12' : `Ctrl+Shift+${e.key.toUpperCase()}`);
   });
 
-  setInterval(() => {
-    beh.devTools = window.outerWidth - window.innerWidth > 160 ||
-                   window.outerHeight - window.innerHeight > 160;
-  }, 2000);
+  // DevTools : détecter sur desktop seulement
+  if (!isMobile) {
+    setInterval(() => {
+      beh.devTools = window.outerWidth  - window.innerWidth  > 160 ||
+                     window.outerHeight - window.innerHeight > 160;
+    }, 2000);
+  }
 
-  /* ── Static data snapshot ── */
+  /* ── Static data ── */
   const perf = performance.getEntriesByType('navigation')[0];
 
   const data = {
-    // Time
-    timestamp:    new Date().toLocaleString('fr-BE', {
+    timestamp: new Date().toLocaleString('fr-BE', {
       timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
       day: '2-digit', month: '2-digit', year: 'numeric',
       hour: '2-digit', minute: '2-digit', second: '2-digit',
     }),
-    timezone:     Intl.DateTimeFormat().resolvedOptions().timeZone,
+    timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
 
-    // Network (filled below)
     ip: '', city: '', region: '', country: '', org: '', isp: '', zip: '',
-    latitude: '', longitude: '', accuracy: '',
+    latitude: '', longitude: '', accuracy: '',  // rempli par IP uniquement
 
-    // Device
-    deviceType:      navigator.maxTouchPoints > 0 ? 'mobile/tablet' : 'desktop',
+    deviceType:      isMobile ? 'mobile/tablet' : 'desktop',
     cpuCores:        navigator.hardwareConcurrency || '',
     memory:          navigator.deviceMemory        || '',
     touchPoints:     navigator.maxTouchPoints      || '',
     connectionType:  '', connectionSpeed: '', connectionRtt: '', dataSaver: '',
     batteryLevel:    '', batteryCharging:  '',
 
-    // Browser
     cookiesEnabled: navigator.cookieEnabled,
     language:       navigator.language,
     languages:      navigator.languages?.join(', ') || '',
@@ -124,7 +161,6 @@ function sendPayload(data) {
     os:             parseOS(ua),
     userAgent:      ua,
 
-    // Page
     screenWidth:   screen.width,
     screenHeight:  screen.height,
     windowWidth:   window.innerWidth,
@@ -133,28 +169,23 @@ function sendPayload(data) {
     url:           window.location.href,
     colorScheme:   window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light',
 
-    // Performance
-    pageLoadTime: perf ? Math.round(perf.loadEventEnd            - perf.startTime) + 'ms' : '',
+    pageLoadTime: perf ? Math.round(perf.loadEventEnd             - perf.startTime) + 'ms' : '',
     domReadyTime: perf ? Math.round(perf.domContentLoadedEventEnd - perf.startTime) + 'ms' : '',
 
-    // App context
     accessLevel: '', accessLabel: '', lastTheme: '',
 
-    // Bot
     isBot: botReasons.length ? botReasons.join(', ') : 'non',
 
-    // Behaviour (filled at send time)
     maxScroll: '', clickCount: 0, rightClicks: 0,
     copyAttempts: 0, suspiciousKeys: '', devToolsDetected: false,
     sessionDuration: '',
   };
 
-  /* ── App context (may not exist on this page) ── */
   try { data.accessLevel = window.currentAccess?.level || ''; } catch (_) {}
   try { data.accessLabel = window.currentAccess?.label || ''; } catch (_) {}
   try { data.lastTheme   = window.activeTheme          || ''; } catch (_) {}
 
-  /* ── Network / Geo — parallel to save time ── */
+  /* ── Geo par IP uniquement (sans popup) ── */
   const [ipapiRes, ipApiRes] = await Promise.allSettled([
     fetch('https://ipapi.co/json/').then(r => r.json()),
     fetch('https://ip-api.com/json/?fields=status,country,regionName,city,zip,lat,lon,isp,org,query')
@@ -174,7 +205,6 @@ function sendPayload(data) {
     data.longitude = d.longitude    || '';
   }
 
-  // ip-api can override with more precise values
   if (ipApiRes.status === 'fulfilled' && ipApiRes.value?.status === 'success') {
     const d = ipApiRes.value;
     data.ip        = d.query      || data.ip;
@@ -188,20 +218,7 @@ function sendPayload(data) {
     data.longitude = d.lon        || data.longitude;
   }
 
-  /* ── GPS (precise, optional) ── */
-  await new Promise(resolve => {
-    if (!navigator.geolocation) return resolve();
-    navigator.geolocation.getCurrentPosition(
-      pos => {
-        data.latitude  = pos.coords.latitude;
-        data.longitude = pos.coords.longitude;
-        data.accuracy  = Math.round(pos.coords.accuracy) + 'm';
-        resolve();
-      },
-      () => resolve(),
-      { timeout: 8000, maximumAge: 0 }
-    );
-  });
+  // ✅ Plus de navigator.geolocation — aucun popup
 
   /* ── Connection info ── */
   try {
@@ -221,7 +238,7 @@ function sendPayload(data) {
     data.batteryCharging = bat.charging ? 'oui' : 'non';
   } catch (_) {}
 
-  /* ── Snapshot behaviour then send ── */
+  /* ── Snapshot behaviour ── */
   function applyBehaviour(d) {
     d.maxScroll        = beh.maxScroll + '%';
     d.clickCount       = beh.clickCount;
@@ -234,6 +251,9 @@ function sendPayload(data) {
 
   applyBehaviour(data);
   sendPayload(data);
+
+  /* ── Blocage devtools (après l'envoi initial) ── */
+  setupDevToolsBlock();
 
   /* ── Final send on page close ── */
   window.addEventListener('beforeunload', () => {
