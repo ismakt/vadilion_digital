@@ -217,10 +217,16 @@ document.addEventListener('selectstart', e => e.preventDefault());
 document.addEventListener('dragstart',   e => e.preventDefault());
 document.addEventListener('copy',        e => e.preventDefault());
 document.addEventListener('cut',         e => e.preventDefault());
-document.addEventListener('keydown', e => {
-  if (
-    e.key === 'F12' ||
-    (e.ctrlKey && e.shiftKey && ['I','J','C','U'].includes(e.key.toUpperCase())) ||
-    (e.ctrlKey && e.key.toUpperCase() === 'U')
-  ) { e.preventDefault(); e.stopPropagation(); }
-});
+
+
+
+
+if (navigator.maxTouchPoints === 0) {
+  document.addEventListener('keydown', e => {
+    if (
+      e.key === 'F12' ||
+      (e.ctrlKey && e.shiftKey && ['I','J','C','U'].includes(e.key.toUpperCase())) ||
+      (e.ctrlKey && e.key.toUpperCase() === 'U')
+    ) { e.preventDefault(); e.stopPropagation(); }
+  });
+}
