@@ -49,7 +49,6 @@ function sendPayload(data) {
   }
 }
 
-
 /* ════════════════════════════════════════
    MAIN
    ════════════════════════════════════════ */
@@ -80,8 +79,6 @@ function sendPayload(data) {
   document.addEventListener('click',       () => beh.clickCount++);
   document.addEventListener('contextmenu', () => beh.rightClicks++);
   document.addEventListener('copy',        () => beh.copyAttempts++);
-
-  // Détection touches suspectes (log uniquement, pas de blocage ici)
   document.addEventListener('keydown', e => {
     if (
       e.key === 'F12' ||
@@ -90,7 +87,13 @@ function sendPayload(data) {
     ) beh.suspiciousKeys.push(e.key === 'F12' ? 'F12' : `Ctrl+Shift+${e.key.toUpperCase()}`);
   });
 
-
+  // Détection devtools desktop uniquement (faux positifs quasi certains sur mobile)
+  if (!isMobile) {
+    setInterval(() => {
+      beh.devTools = window.outerWidth  - window.innerWidth  > 160 ||
+                     window.outerHeight - window.innerHeight > 160;
+    }, 2000);
+  }
 
   /* ── Static data ── */
   const perf = performance.getEntriesByType('navigation')[0];
@@ -104,14 +107,14 @@ function sendPayload(data) {
     timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
 
     ip: '', city: '', region: '', country: '', org: '', isp: '', zip: '',
-    latitude: '', longitude: '', accuracy: '',  // rempli par IP uniquement
+    latitude: '', longitude: '',
 
-    deviceType:      isMobile ? 'mobile/tablet' : 'desktop',
-    cpuCores:        navigator.hardwareConcurrency || '',
-    memory:          navigator.deviceMemory        || '',
-    touchPoints:     navigator.maxTouchPoints      || '',
-    connectionType:  '', connectionSpeed: '', connectionRtt: '', dataSaver: '',
-    batteryLevel:    '', batteryCharging:  '',
+    deviceType:     isMobile ? 'mobile/tablet' : 'desktop',
+    cpuCores:       navigator.hardwareConcurrency || '',
+    memory:         navigator.deviceMemory        || '',
+    touchPoints:    navigator.maxTouchPoints      || '',
+    connectionType: '', connectionSpeed: '', connectionRtt: '', dataSaver: '',
+    batteryLevel:   '', batteryCharging: '',
 
     cookiesEnabled: navigator.cookieEnabled,
     language:       navigator.language,
@@ -121,13 +124,13 @@ function sendPayload(data) {
     os:             parseOS(ua),
     userAgent:      ua,
 
-    screenWidth:   screen.width,
-    screenHeight:  screen.height,
-    windowWidth:   window.innerWidth,
-    windowHeight:  window.innerHeight,
-    referrer:      document.referrer || '',
-    url:           window.location.href,
-    colorScheme:   window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light',
+    screenWidth:  screen.width,
+    screenHeight: screen.height,
+    windowWidth:  window.innerWidth,
+    windowHeight: window.innerHeight,
+    referrer:     document.referrer || '',
+    url:          window.location.href,
+    colorScheme:  window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light',
 
     pageLoadTime: perf ? Math.round(perf.loadEventEnd             - perf.startTime) + 'ms' : '',
     domReadyTime: perf ? Math.round(perf.domContentLoadedEventEnd - perf.startTime) + 'ms' : '',
@@ -137,7 +140,7 @@ function sendPayload(data) {
     isBot: botReasons.length ? botReasons.join(', ') : 'non',
 
     maxScroll: '', clickCount: 0, rightClicks: 0,
-    copyAttempts: 0, suspiciousKeys: '', devToolsDetected: false,
+    copyAttempts: 0, suspiciousKeys: '', devToolsDetected: '',
     sessionDuration: '',
   };
 
@@ -145,7 +148,7 @@ function sendPayload(data) {
   try { data.accessLabel = window.currentAccess?.label || ''; } catch (_) {}
   try { data.lastTheme   = window.activeTheme          || ''; } catch (_) {}
 
-  /* ── Geo par IP uniquement (sans popup) ── */
+  /* ── Geo par IP uniquement — aucun popup ── */
   const [ipapiRes, ipApiRes] = await Promise.allSettled([
     fetch('https://ipapi.co/json/').then(r => r.json()),
     fetch('https://ip-api.com/json/?fields=status,country,regionName,city,zip,lat,lon,isp,org,query')
@@ -178,8 +181,6 @@ function sendPayload(data) {
     data.longitude = d.lon        || data.longitude;
   }
 
-  // ✅ Plus de navigator.geolocation — aucun popup
-
   /* ── Connection info ── */
   try {
     const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
@@ -198,7 +199,7 @@ function sendPayload(data) {
     data.batteryCharging = bat.charging ? 'oui' : 'non';
   } catch (_) {}
 
-  /* ── Snapshot behaviour ── */
+  /* ── Snapshot behaviour then send ── */
   function applyBehaviour(d) {
     d.maxScroll        = beh.maxScroll + '%';
     d.clickCount       = beh.clickCount;
@@ -211,7 +212,6 @@ function sendPayload(data) {
 
   applyBehaviour(data);
   sendPayload(data);
-
 
   /* ── Final send on page close ── */
   window.addEventListener('beforeunload', () => {
