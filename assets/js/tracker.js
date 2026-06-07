@@ -79,24 +79,14 @@ function sendPayload(data) {
   document.addEventListener('click',       () => beh.clickCount++);
   document.addEventListener('contextmenu', () => beh.rightClicks++);
   document.addEventListener('copy',        () => beh.copyAttempts++);
-  document.addEventListener('keydown', e => {
-    if (
-      e.key === 'F12' ||
-      (e.ctrlKey && e.shiftKey && ['I','J','C','U'].includes(e.key.toUpperCase())) ||
-      (e.ctrlKey && e.key.toUpperCase() === 'U')
-    ) beh.suspiciousKeys.push(e.key === 'F12' ? 'F12' : `Ctrl+Shift+${e.key.toUpperCase()}`);
-  });
-
-  // Détection devtools desktop uniquement (faux positifs quasi certains sur mobile)
-  if (!isMobile) {
-setInterval(() => {
-  const detected = window.outerWidth  - window.innerWidth  > 160 ||
-                   window.outerHeight - window.innerHeight > 160;
-
-  // Sur mobile, presque certainement un faux positif (clavier virtuel, barre système, etc.)
-  beh.devTools = detected ? (isMobile ? 'faux-positif-mobile' : 'oui') : 'non';
-}, 2000);
-
+document.addEventListener('keydown', e => {
+  if (
+    e.key === 'F12' ||
+    (e.ctrlKey && e.shiftKey && ['I','J','C','U'].includes(e.key.toUpperCase())) ||
+    (e.ctrlKey && e.key.toUpperCase() === 'U')
+  ) beh.suspiciousKeys.push(e.key === 'F12' ? 'F12' : `Ctrl+Shift+${e.key.toUpperCase()}`);
+});
+  
   /* ── Static data ── */
   const perf = performance.getEntriesByType('navigation')[0];
 
