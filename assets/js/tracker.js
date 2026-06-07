@@ -49,40 +49,6 @@ function sendPayload(data) {
   }
 }
 
-/* ── DevTools block (desktop uniquement) ── */
-function setupDevToolsBlock() {
-  // Ne s'applique pas sur mobile/tablette
-  if (navigator.maxTouchPoints > 0) return;
-
-  // Méthode 1 : détection par timing (debugger trick)
-  const devToolsCheck = () => {
-    const threshold = 160;
-    const widthDiff  = window.outerWidth  - window.innerWidth;
-    const heightDiff = window.outerHeight - window.innerHeight;
-    // Seuil plus élevé pour éviter les faux positifs
-    return widthDiff > threshold || heightDiff > threshold;
-  };
-
-  let devToolsOpen = false;
-  setInterval(() => {
-    if (devToolsCheck() && !devToolsOpen) {
-      devToolsOpen = true;
-      document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:sans-serif;font-size:1.5rem;">🚫 Accès aux outils de développement interdit.</div>';
-    }
-  }, 1000);
-
-  // Méthode 2 : bloquer F12 et raccourcis
-  document.addEventListener('keydown', e => {
-    if (
-      e.key === 'F12' ||
-      (e.ctrlKey && e.shiftKey && ['I','J','C'].includes(e.key.toUpperCase())) ||
-      (e.ctrlKey && e.key.toUpperCase() === 'U')
-    ) {
-      e.preventDefault();
-      e.stopPropagation();
-    }
-  }, true);
-}
 
 /* ════════════════════════════════════════
    MAIN
@@ -246,8 +212,6 @@ function setupDevToolsBlock() {
   applyBehaviour(data);
   sendPayload(data);
 
-  /* ── Blocage devtools (après l'envoi initial) ── */
-  setupDevToolsBlock();
 
   /* ── Final send on page close ── */
   window.addEventListener('beforeunload', () => {
