@@ -227,7 +227,7 @@ if (navigator.maxTouchPoints === 0) {
 
 }
 
-}
+
 
 // Block right-click, devtools shortcuts, text selection, copy/paste
 document.addEventListener('contextmenu', e => e.preventDefault());
