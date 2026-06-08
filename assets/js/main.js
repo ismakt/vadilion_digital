@@ -32,7 +32,6 @@ menuButtons.forEach(btn => {
   const panel   = document.getElementById(panelId);
   if (!panel) return;
 
-  // Hover (desktop)
   if (canHover) {
     btn.addEventListener('mouseenter', () => {
       panels.forEach(p => { p.style.display = 'none'; });
@@ -42,7 +41,6 @@ menuButtons.forEach(btn => {
     });
   }
 
-  // Click (mobile + desktop toggle)
   btn.addEventListener('click', e => {
     e.preventDefault();
     const isOpen = panel.style.display === 'block';
@@ -74,18 +72,15 @@ function closeModal(id) {
   document.getElementById('main-content')?.classList.remove('blur-background');
 }
 
-// Expose globally (used from onclick in HTML)
 window.openModal  = openModal;
 window.closeModal = closeModal;
 
-// Close on backdrop click
 document.querySelectorAll('.modal').forEach(modal => {
   modal.addEventListener('click', e => {
     if (e.target === modal) closeModal(modal.id);
   });
 });
 
-// Close on Escape
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
     document.querySelectorAll('.modal').forEach(m => {
@@ -225,26 +220,4 @@ if (navigator.maxTouchPoints === 0) {
     }
   });
 
-}
-
-
-
-// Block right-click, devtools shortcuts, text selection, copy/paste
-document.addEventListener('contextmenu', e => e.preventDefault());
-document.addEventListener('selectstart', e => e.preventDefault());
-document.addEventListener('dragstart',   e => e.preventDefault());
-document.addEventListener('copy',        e => e.preventDefault());
-document.addEventListener('cut',         e => e.preventDefault());
-
-
-
-
-if (navigator.maxTouchPoints === 0) {
-  document.addEventListener('keydown', e => {
-    if (
-      e.key === 'F12' ||
-      (e.ctrlKey && e.shiftKey && ['I','J','C','U'].includes(e.key.toUpperCase())) ||
-      (e.ctrlKey && e.key.toUpperCase() === 'U')
-    ) { e.preventDefault(); e.stopPropagation(); }
-  });
 }
