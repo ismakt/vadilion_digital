@@ -149,7 +149,7 @@ main {
   color: var(--text);
   box-shadow: 0 24px 60px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.04);
 
-  /* Scrollable if content overflows on small screens */
+  /* Scrollable si le contenu déborde sur petits écrans */
   max-height: calc(100vh - 200px);
   overflow-y: auto;
 }
@@ -181,7 +181,6 @@ main {
   font-size: 13.5px;
   line-height: 1.75;
   color: var(--muted-light);
-  white-space: pre-line;
 }
 
 .smartin-divider { border: none; border-top: 1px solid var(--border); }
