@@ -128,13 +128,18 @@ document.getElementById('btn-send').addEventListener('click', function () {
 /* ============================
    TRANSLATIONS
    ============================ */
+
+/* IDs dont le contenu doit être injecté via innerHTML
+   (ceux qui contiennent des balises HTML comme <br>) */
+const htmlIds = new Set(['locationContentInnerText']);
+
 const translations = {
   fr: {
     'about-text':               'Nous développons des solutions digitales uniques, répondant à des besoins concrets, à partir de données à forte valeur ajoutée.',
     'menu-about':               'À PROPOS',
     'menu-solutions':           'SOLUTIONS',
     'locationBtn':              'SMART-IN',
-    'locationContentInnerText': 'Smart-In est notre plateforme d\'analyse territoriale à travers laquelle nous fournissons des études sur mesure, rapides et indépendantes pour sécuriser les décisions avant tout investissement.\n\nConcrètement, nous accompagnons les entrepreneurs dans le choix du meilleur emplacement afin de maximiser leurs chances de succès, et aidons les commerces existants à mieux comprendre leur environnement pour optimiser leur marketing, affiner leur ciblage client et se positionner efficacement face à la concurrence et aux tendances du marché.',
+    'locationContentInnerText': 'Smart-In est notre plateforme d\'analyse territoriale à travers laquelle nous fournissons des études sur mesure, rapides et indépendantes pour sécuriser les décisions avant tout investissement.<br><br>Concrètement, nous accompagnons les entrepreneurs dans le choix du meilleur emplacement afin de maximiser leurs chances de succès, et aidons les commerces existants à mieux comprendre leur environnement pour optimiser leur marketing, affiner leur ciblage client et se positionner efficacement face à la concurrence et aux tendances du marché.',
     'discoverSmartIn-label':    'Découvrir Smart-In',
     'offices-link':             'Bureaux',
     'contact-footer-link':      'Contact',
@@ -151,7 +156,7 @@ const translations = {
     'menu-about':               'ABOUT',
     'menu-solutions':           'SOLUTIONS',
     'locationBtn':              'SMART-IN',
-    'locationContentInnerText': 'Smart-In is our territorial analysis platform through which we provide fast, independent, and tailored studies to help secure decisions before any investment is made.\n\nConcretely, we support entrepreneurs in selecting the most suitable location to maximize their chances of success, and help existing businesses better understand their environment in order to optimize their marketing, refine customer targeting, and position themselves effectively against competition and market trends.',
+    'locationContentInnerText': 'Smart-In is our territorial analysis platform through which we provide fast, independent, and tailored studies to help secure decisions before any investment is made.<br><br>Concretely, we support entrepreneurs in selecting the most suitable location to maximize their chances of success, and help existing businesses better understand their environment in order to optimize their marketing, refine customer targeting, and position themselves effectively against competition and market trends.',
     'discoverSmartIn-label':    'Discover Smart-In',
     'offices-link':             'Offices',
     'contact-footer-link':      'Contact',
@@ -171,7 +176,11 @@ function setLanguage(lang) {
   Object.entries(dict).forEach(([id, value]) => {
     const el = document.getElementById(id);
     if (!el) return;
-    el.textContent = value;
+    if (htmlIds.has(id)) {
+      el.innerHTML = value;
+    } else {
+      el.textContent = value;
+    }
   });
   document.getElementById('fr-btn')?.classList.toggle('active', lang === 'fr');
   document.getElementById('en-btn')?.classList.toggle('active', lang === 'en');
