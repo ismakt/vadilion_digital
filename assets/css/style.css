@@ -24,6 +24,10 @@
   font-family: 'Inter', Arial, Helvetica, sans-serif;
 }
 
+html, body {
+  height: 100%;
+}
+
 body {
   background: var(--bg);
   color: var(--text);
@@ -44,6 +48,7 @@ header {
   padding: 18px 24px;
   z-index: 20;
   position: relative;
+  flex-shrink: 0;
 }
 
 .brand { display: flex; align-items: center; }
@@ -77,8 +82,8 @@ main {
   flex-direction: column;
   align-items: center;
   position: relative;
-  padding: 20px;
-  overflow: visible; /* ← was: overflow: hidden */
+  padding: 0 20px 20px;
+  overflow: hidden;
 }
 
 #vanta-bg {
@@ -88,23 +93,20 @@ main {
   z-index: 0;
 }
 
-.menu, .panel, .modal { position: relative; z-index: 10; }
-
 /* ============================
    MENU
    ============================ */
 .menu {
   display: flex;
   gap: 8px;
-  position: absolute;
-  top: 22%;
-  left: 50%;
-  transform: translateX(-50%);
   z-index: 10;
+  position: relative;
   background: rgba(255,255,255,0.03);
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 6px;
+  margin-top: clamp(30px, 10vh, 80px);
+  flex-shrink: 0;
 }
 
 .menu button {
@@ -135,22 +137,20 @@ main {
    ============================ */
 .panel {
   display: none;
-  position: absolute;
-  top: calc(22% + 62px);
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative;
+  z-index: 10;
   background: var(--panel);
   border: 1px solid var(--border);
   border-radius: 16px;
   padding: 16px;
+  width: 100%;
   max-width: 560px;
-  width: calc(100% - 40px);
-  z-index: 15;
+  margin-top: 12px;
   color: var(--text);
   box-shadow: 0 24px 60px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.04);
 
-  /* ↓ add these two lines */
-  max-height: calc(100vh - 22% - 62px - 80px); /* leaves room for footer */
+  /* Scrollable if content overflows on small screens */
+  max-height: calc(100vh - 200px);
   overflow-y: auto;
 }
 
@@ -263,6 +263,8 @@ footer { flex-shrink: 0; }
   width: 100%;
   position: relative;
   box-shadow: 0 32px 80px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.05);
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
 .modal-content h4 {
@@ -389,31 +391,85 @@ footer { flex-shrink: 0; }
    ============================ */
 .blur-background { filter: blur(2px); pointer-events: none; }
 
-
-
 /* ============================
-   RESPONSIVE
+   RESPONSIVE — TABLET
    ============================ */
 @media (max-width: 768px) {
-  header { flex-direction: column; align-items: center; gap: 12px; padding: 16px; }
+  header {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+  }
   .brand .logo { width: 120px; }
 
   .menu {
-    position: relative;
-    top: auto; left: auto; transform: none;
-    flex-direction: column;
+    flex-direction: row;
     width: 100%;
+    justify-content: center;
     margin-top: 20px;
   }
 
-  .menu button { width: 100%; text-align: center; }
+  .menu button {
+    flex: 1;
+    text-align: center;
+    padding: 9px 12px;
+  }
 
   .panel {
-    position: relative;
-    top: auto; left: auto; transform: none;
-    width: 100%;
-    margin-top: 12px;
+    max-height: calc(100vh - 260px);
   }
 
   .footer-content { gap: 20px; }
+}
+
+/* ============================
+   RESPONSIVE — MOBILE
+   ============================ */
+@media (max-width: 480px) {
+  header { padding: 12px 16px; }
+  .brand .logo { width: 100px; }
+
+  main { padding: 0 12px 16px; }
+
+  .menu {
+    margin-top: 16px;
+    padding: 4px;
+    gap: 4px;
+  }
+
+  .menu button {
+    font-size: 11px;
+    padding: 8px 10px;
+    letter-spacing: 0.4px;
+  }
+
+  .panel {
+    padding: 14px;
+    border-radius: 12px;
+    max-height: calc(100vh - 240px);
+  }
+
+  .smartin-card-body { font-size: 13px; }
+
+  .modal-content {
+    padding: 20px 16px;
+    border-radius: 16px;
+  }
+
+  .footer-content {
+    gap: 16px;
+    font-size: 11px;
+    padding: 12px;
+  }
+}
+
+/* ============================
+   VERY SMALL SCREENS
+   ============================ */
+@media (max-width: 360px) {
+  .menu button {
+    font-size: 10px;
+    padding: 7px 8px;
+  }
 }
