@@ -139,7 +139,7 @@ const translations = {
     'menu-about':               'À PROPOS',
     'menu-solutions':           'SOLUTIONS',
     'locationBtn':              'SMART-IN',
-    'locationContentInnerText': 'Fini les semaines de recherche et les décisions à l'instinct. Plus de 130 indicateurs du marché — prix, tendances, sécurité, projets à venir et leur impact, etc. — réunis en un seul endroit, issus de sources officielles. Explorez les données en détail sur une carte intuitive, ou posez directement votre question à l'agent IA intégré pour recevoir un rapport sur mesure, adapté à votre situation. Le tout avec un support multilingue disponible 24h/7.',
+    'locationContentInnerText': "Fini les semaines de recherche et les décisions à l'instinct. Plus de 130 indicateurs du marché — prix, tendances, sécurité, projets à venir et leur impact, etc. — réunis en un seul endroit, issus de sources officielles. Explorez les données en détail sur une carte intuitive, ou posez directement votre question à l'agent IA intégré pour recevoir un rapport sur mesure, adapté à votre situation. Le tout avec un support multilingue disponible 24h/7.",
     'discoverSmartIn-label':    'Découvrir Smart-In',
     'offices-link':             'Bureaux',
     'contact-footer-link':      'Contact',
@@ -169,7 +169,6 @@ const translations = {
     'contact-text':             'Contact us',
     'contact-text2':            'We listen carefully to your needs in order to offer you a precise and tailored solution.',
     'smartin-badge':            'SMART-IN - Location Intelligence Platform.'
-
   }
 };
 
