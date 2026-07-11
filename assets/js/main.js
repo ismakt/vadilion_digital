@@ -139,7 +139,7 @@ const translations = {
     'menu-about':               'À PROPOS',
     'menu-solutions':           'SOLUTIONS',
     'locationBtn':              'SMART-IN',
-    'locationContentInnerText': 'Smart-In est notre plateforme d\'analyse territoriale à travers laquelle nous fournissons des études sur mesure, rapides et indépendantes pour sécuriser les décisions avant tout investissement.<br><br>Concrètement, nous accompagnons les entrepreneurs dans le choix du meilleur emplacement afin de maximiser leurs chances de succès, et aidons les commerces existants à mieux comprendre leur environnement pour optimiser leur marketing, affiner leur ciblage client et se positionner efficacement face à la concurrence et aux tendances du marché.',
+    'locationContentInnerText': 'Smart-In est une plateforme d'intelligence territoriale : données indépendantes pour donner aux investisseurs une vision du marché sans biais.<br><br>Explorez le marché à travers nos thématiques de données, ou décrivez votre projet à notre agent IA intégré — il interroge plus de 130 indicateurs issus de sources officielles (prix de l'immobilier, sécurité, emploi, démographie, revenus, projets urbains et immobiliers, environnement) et vous livre un rapport détaillé, adapté à votre situation.',
     'discoverSmartIn-label':    'Découvrir Smart-In',
     'offices-link':             'Bureaux',
     'contact-footer-link':      'Contact',
