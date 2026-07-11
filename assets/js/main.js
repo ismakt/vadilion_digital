@@ -150,7 +150,7 @@ const translations = {
     'our-media':                'Nos réseaux',
     'contact-text':             'Contactez-nous',
     'contact-text2':            'Nous écoutons attentivement vos besoins afin de vous proposer une solution précise et adaptée.',
-    'smartin-badge':            'SMART-IN - Plateforme d'Intelligence Territoriale.'
+    'smartin-badge':            "SMART-IN - Plateforme d'Intelligence Territoriale."
   },
   en: {
     'about-text':               'We turn high-value data into unique digital solutions that solve real challenges.',
