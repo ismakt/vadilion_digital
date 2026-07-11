@@ -139,7 +139,7 @@ const translations = {
     'menu-about':               'À PROPOS',
     'menu-solutions':           'SOLUTIONS',
     'locationBtn':              'SMART-IN',
-    'locationContentInnerText': 'Smart-In est une plateforme d'intelligence territoriale : données indépendantes pour donner aux investisseurs une vision du marché sans biais.<br><br>Explorez le marché à travers nos thématiques de données, ou décrivez votre projet à notre agent IA intégré — il interroge plus de 130 indicateurs issus de sources officielles (prix de l'immobilier, sécurité, emploi, démographie, revenus, projets urbains et immobiliers, environnement) et vous livre un rapport détaillé, adapté à votre situation.',
+    'locationContentInnerText': 'Fini les semaines de recherche et les décisions à l'instinct. Plus de 130 indicateurs du marché — prix, tendances, sécurité, projets à venir et leur impact, etc. — réunis en un seul endroit, issus de sources officielles. Explorez les données en détail sur une carte intuitive, ou posez directement votre question à l'agent IA intégré pour recevoir un rapport sur mesure, adapté à votre situation. Le tout avec un support multilingue disponible 24h/7.',
     'discoverSmartIn-label':    'Découvrir Smart-In',
     'offices-link':             'Bureaux',
     'contact-footer-link':      'Contact',
@@ -150,13 +150,14 @@ const translations = {
     'our-media':                'Nos réseaux',
     'contact-text':             'Contactez-nous',
     'contact-text2':            'Nous écoutons attentivement vos besoins afin de vous proposer une solution précise et adaptée.',
+    'smartin-badge':            'SMART-IN - Plateforme d'Intelligence Territoriale.'
   },
   en: {
     'about-text':               'We turn high-value data into unique digital solutions that solve real challenges.',
     'menu-about':               'ABOUT',
     'menu-solutions':           'SOLUTIONS',
     'locationBtn':              'SMART-IN',
-    'locationContentInnerText': 'Smart-In is our territorial analysis platform through which we provide fast, independent, and tailored studies to help secure decisions before any investment is made.<br><br>Concretely, we support entrepreneurs in selecting the most suitable location to maximize their chances of success, and help existing businesses better understand their environment in order to optimize their marketing, refine customer targeting, and position themselves effectively against competition and market trends.',
+    'locationContentInnerText': 'No more need for weeks of research or gut-feel decisions. Access 130+ market indicators — prices, trends, safety, upcoming projects and their impact, and more — all in one place, sourced from official data. Explore the data in detail on an intuitive map, or simply ask our integrated AI agent to generate a tailored report for your situation. All backed by multilingual support, available 24/7.',
     'discoverSmartIn-label':    'Discover Smart-In',
     'offices-link':             'Offices',
     'contact-footer-link':      'Contact',
@@ -167,6 +168,8 @@ const translations = {
     'our-media':                'Our Media',
     'contact-text':             'Contact us',
     'contact-text2':            'We listen carefully to your needs in order to offer you a precise and tailored solution.',
+    'smartin-badge':            'SMART-IN - Location Intelligence Platform.'
+
   }
 };
 
