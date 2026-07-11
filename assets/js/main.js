@@ -150,15 +150,14 @@ const translations = {
     'our-media':                'Nos réseaux',
     'contact-text':             'Contactez-nous',
     'contact-text2':            'Nous écoutons attentivement vos besoins afin de vous proposer une solution précise et adaptée.',
-    'locationBtn':              "SMART-IN - Plateforme d'Intelligence Territoriale."
+    'locationBtn':              "SMART-IN - Plateforme d'Intelligence Territoriale"
   },
   en: {
     'about-text':               'We turn high-value data into unique digital solutions that solve real challenges.',
     'menu-about':               'ABOUT',
     'menu-solutions':           'SOLUTIONS',
     'locationBtn':              'SMART-IN',
-    'locationContentInnerText': 'Smart-In provides an independent view of the market, free from speculation. Explore the essential market data — prices, trends, upcoming projects and their impact — through an intuitive map or our integrated AI agent. All in 5 minutes, delivered as a tailored report adapted to your situation and project.',
-    'discoverSmartIn-label':    'Discover Smart-In',
+    'locationContentInnerText': 'Smart-In provides an independent view of the market, free from speculation.<br><br>Explore the essential market data — prices, trends, upcoming projects and their impact — through an intuitive map or our integrated AI agent.<br>All in 5 minutes, delivered as a tailored report adapted to your situation and project.',    'discoverSmartIn-label':    'Discover Smart-In',
     'offices-link':             'Offices',
     'contact-footer-link':      'Contact',
     'offices':                  'Offices',
@@ -168,7 +167,7 @@ const translations = {
     'our-media':                'Our Media',
     'contact-text':             'Contact us',
     'contact-text2':            'We listen carefully to your needs in order to offer you a precise and tailored solution.',
-    'locationBtn':              'SMART-IN - Location Intelligence Platform.'
+    'locationBtn':              'SMART-IN - Location Intelligence Platform'
   }
 };
 
