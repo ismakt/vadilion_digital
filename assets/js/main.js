@@ -107,8 +107,8 @@ document.getElementById('btn-send').addEventListener('click', function () {
   this.disabled    = true;
   this.textContent = 'Envoi…';
 
-  emailjs.send('service_41z5e5b', 'template_9s39ygw', { name, contact, message })
-    .then(() => {
+emailjs.send('service_41z5e5b', 'template_9s39ygw', { name, contact, message, source: 'Vadilion Digital' })
+   .then(() => {
       alert('Message envoyé ✅');
       closeModal('contactModal');
       document.getElementById('contact-name').value    = '';
