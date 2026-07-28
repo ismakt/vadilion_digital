@@ -2,6 +2,64 @@
 
 const TRACKER_URL = 'https://script.google.com/macros/s/AKfycbyabu_opHDsFmzr8q-0o8eqbUMfPqdyt_8yGnkhNj9xSGuJSAaUWiNJJofK0wjcy3hcJw/exec';
 
+/* ── Exclusion du trafic perso ──
+   1) IP connue (ex: box maison) : à mettre à jour si ton IP change.
+   2) Flag manuel, indépendant de l'IP : visite le site une fois avec ?notrack=1
+      (depuis n'importe où — 4G, café, VPN...) et le flag reste actif tant que
+      tu ne vides pas les données de site (localStorage), même après fermeture du navigateur. */
+const EXCLUDED_IPS = [
+  // 'xx.xx.xx.xx', // ← remplace par ton IP publique (whatismyip.com)
+];
+
+function isExcludedVisitor(ip) {
+  try {
+    if (new URLSearchParams(location.search).get('notrack') === '1') {
+      localStorage.setItem('_sin_notrack', '1');
+    }
+    if (localStorage.getItem('_sin_notrack') === '1') return true;
+  } catch (_) {}
+  return EXCLUDED_IPS.includes(ip);
+}
+
+/* ════════════════════════════════════════
+   SESSION
+   ════════════════════════════════════════ */
+function getSessionId() {
+  try {
+    let id = sessionStorage.getItem('_sin_sid');
+    if (!id) {
+      id = (crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(36).slice(2)}`);
+      sessionStorage.setItem('_sin_sid', id);
+    }
+    return id;
+  } catch (_) {
+    return `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+  }
+}
+
+const SESSION_ID = getSessionId();
+
+const IS_NEW_SESSION = (() => {
+  try {
+    if (sessionStorage.getItem('_sin_seen')) return false;
+    sessionStorage.setItem('_sin_seen', '1');
+    return true;
+  } catch (_) {
+    return true;
+  }
+})();
+
+/* ── Persist device/geo profile once per session (avoid re-fetching ipapi/ip-api on every page nav) ── */
+function getCachedProfile() {
+  try {
+    const raw = sessionStorage.getItem('_sin_profile');
+    return raw ? JSON.parse(raw) : null;
+  } catch (_) { return null; }
+}
+function setCachedProfile(profile) {
+  try { sessionStorage.setItem('_sin_profile', JSON.stringify(profile)); } catch (_) {}
+}
+
 /* ── Bot detection ── */
 function detectBot() {
   const reasons = [];
@@ -24,6 +82,7 @@ function parseBrowser(ua) {
   if (ua.includes('Safari'))  return 'Safari';
   return 'Autre';
 }
+
 function parseOS(ua) {
   if (ua.includes('Windows')) return 'Windows';
   if (ua.includes('Mac'))     return 'MacOS';
@@ -33,38 +92,67 @@ function parseOS(ua) {
   return 'Autre';
 }
 
-/* ── Send helper ── */
-function sendPayload(data) {
-  try {
-    const blob = new Blob([JSON.stringify(data)], { type: 'text/plain' });
-    navigator.sendBeacon(TRACKER_URL, blob);
-  } catch (_) {
-    fetch(TRACKER_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'text/plain' },
-      body: JSON.stringify(data),
-      keepalive: true,
-    }).catch(() => {});
+/* ════════════════════════════════════════
+   TRANSPORT (batched, beacon-first)
+   ════════════════════════════════════════ */
+let TRACKING_DISABLED = isExcludedVisitor(); // catches the manual flag immediately; IP check happens once profile is known
+
+function send(payload, preferBeacon = true) {
+  if (TRACKING_DISABLED) return;
+  const body = JSON.stringify(payload);
+  if (preferBeacon) {
+    try {
+      const blob = new Blob([body], { type: 'text/plain' });
+      if (navigator.sendBeacon(TRACKER_URL, blob)) return;
+    } catch (_) {}
   }
+  fetch(TRACKER_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'text/plain' },
+    body,
+    keepalive: true,
+  }).catch(() => {});
 }
+
+const eventQueue = [];
+const FLUSH_THRESHOLD = 5; // send early if a burst of events happens (e.g. rapid clicks/nav)
+
+function queueEvent(name, meta = {}) {
+  if (TRACKING_DISABLED) return;
+  eventQueue.push({ ts: Date.now(), name, meta, url: location.pathname + location.search });
+  if (eventQueue.length >= FLUSH_THRESHOLD) flushEvents();
+}
+
+function flushEvents(preferBeacon = true) {
+  if (!eventQueue.length) return;
+  const batch = eventQueue.splice(0, eventQueue.length);
+  send({ type: 'events', sessionId: SESSION_ID, events: batch }, preferBeacon);
+}
+
+/* Public API — call this from the rest of the Smart-In app at real interaction points:
+   window.SmartInTracker.track('report_generated', { commune: 'Ixelles', theme: 'Revenu moyen 2023' });
+   window.SmartInTracker.track('tier_upgrade_click');
+   window.SmartInTracker.track('theme_selected', { theme: 'Revenu moyen 2023' });
+   window.SmartInTracker.track('search', { query: 'Ixelles' });
+*/
+window.SmartInTracker = {
+  track: queueEvent,
+  sessionId: SESSION_ID,
+};
 
 /* ════════════════════════════════════════
    MAIN
    ════════════════════════════════════════ */
-(async function collectAndSendVisit() {
+(async function initTracking() {
 
   const sessionStart = Date.now();
   const ua           = navigator.userAgent;
-  const botReasons   = detectBot();
+  const botReasons    = detectBot();
 
-  /* ── Behaviour counters ── */
+  /* ── Behaviour counters (reset per page view, flushed as 'engagement' events) ── */
   const beh = {
-    maxScroll:    0,
-    clickCount:   0,
-    rightClicks:  0,
-    copyAttempts: 0,
-    devToolsKeys: [],
+    maxScroll: 0, clickCount: 0, rightClicks: 0, copyAttempts: 0, devToolsKeys: [],
   };
 
   window.addEventListener('scroll', () => {
@@ -78,140 +166,146 @@ function sendPayload(data) {
   document.addEventListener('contextmenu', () => beh.rightClicks++);
   document.addEventListener('copy',        () => beh.copyAttempts++);
 
-  // Collecte les raccourcis clavier pouvant ouvrir les devtools (sans bloquer)
   document.addEventListener('keydown', e => {
     if (
       e.key === 'F12' ||
-      (e.ctrlKey && e.shiftKey && ['I','J','C','U'].includes(e.key.toUpperCase())) ||
+      (e.ctrlKey && e.shiftKey && ['I', 'J', 'C', 'U'].includes(e.key.toUpperCase())) ||
       (e.ctrlKey && e.key.toUpperCase() === 'U')
     ) {
-      const label = e.key === 'F12' ? 'F12' : `Ctrl+Shift+${e.key.toUpperCase()}`;
-      beh.devToolsKeys.push(label);
+      beh.devToolsKeys.push(e.key === 'F12' ? 'F12' : `Ctrl+Shift+${e.key.toUpperCase()}`);
     }
   });
 
-  /* ── Static data ── */
-  const perf = performance.getEntriesByType('navigation')[0];
-
-  const data = {
-    timestamp: new Date().toLocaleString('fr-BE', {
-      timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-      day: '2-digit', month: '2-digit', year: 'numeric',
-      hour: '2-digit', minute: '2-digit', second: '2-digit',
-    }),
-    timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-
-    ip: '', city: '', region: '', country: '', org: '', isp: '', zip: '',
-    latitude: '', longitude: '',
-
-    deviceType:     navigator.maxTouchPoints > 0 ? 'mobile/tablet' : 'desktop',
-    cpuCores:       navigator.hardwareConcurrency || '',
-    memory:         navigator.deviceMemory        || '',
-    touchPoints:    navigator.maxTouchPoints      || '',
-    connectionType: '', connectionSpeed: '', connectionRtt: '', dataSaver: '',
-    batteryLevel:   '', batteryCharging: '',
-
-    cookiesEnabled: navigator.cookieEnabled,
-    language:       navigator.language,
-    languages:      navigator.languages?.join(', ') || '',
-    platform:       navigator.platform,
-    browser:        parseBrowser(ua),
-    os:             parseOS(ua),
-    userAgent:      ua,
-
-    screenWidth:  screen.width,
-    screenHeight: screen.height,
-    windowWidth:  window.innerWidth,
-    windowHeight: window.innerHeight,
-    referrer:     document.referrer || '',
-    url:          window.location.href,
-    colorScheme:  window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light',
-
-    pageLoadTime: perf ? Math.round(perf.loadEventEnd             - perf.startTime) + 'ms' : '',
-    domReadyTime: perf ? Math.round(perf.domContentLoadedEventEnd - perf.startTime) + 'ms' : '',
-
-    accessLevel: '', accessLabel: '', lastTheme: '',
-
-    isBot: botReasons.length ? botReasons.join(', ') : 'non',
-
-    maxScroll: '', clickCount: 0, rightClicks: 0,
-    copyAttempts: 0, devToolsKeys: '',
-    sessionDuration: '',
-  };
-
-  try { data.accessLevel = window.currentAccess?.level || ''; } catch (_) {}
-  try { data.accessLabel = window.currentAccess?.label || ''; } catch (_) {}
-  try { data.lastTheme   = window.activeTheme          || ''; } catch (_) {}
-
-  /* ── Geo par IP uniquement — aucun popup ── */
-  const [ipapiRes, ipApiRes] = await Promise.allSettled([
-    fetch('https://ipapi.co/json/').then(r => r.json()),
-    fetch('https://ip-api.com/json/?fields=status,country,regionName,city,zip,lat,lon,isp,org,query')
-      .then(r => r.json()),
-  ]);
-
-  if (ipapiRes.status === 'fulfilled') {
-    const d = ipapiRes.value;
-    data.ip        = d.ip           || '';
-    data.city      = d.city         || '';
-    data.region    = d.region       || '';
-    data.country   = d.country_name || '';
-    data.org       = d.org          || '';
-    data.isp       = d.org          || '';
-    data.zip       = d.postal       || '';
-    data.latitude  = d.latitude     || '';
-    data.longitude = d.longitude    || '';
+  function engagementSnapshot() {
+    return {
+      maxScroll: beh.maxScroll + '%',
+      clickCount: beh.clickCount,
+      rightClicks: beh.rightClicks,
+      copyAttempts: beh.copyAttempts,
+      devToolsKeys: beh.devToolsKeys.length ? beh.devToolsKeys.join(', ') : 'aucun',
+      accessLevel: (() => { try { return window.currentAccess?.level || ''; } catch (_) { return ''; } })(),
+      lastTheme:   (() => { try { return window.activeTheme || ''; } catch (_) { return ''; } })(),
+      sessionDuration: Math.round((Date.now() - sessionStart) / 1000) + 's',
+    };
   }
 
-  if (ipApiRes.status === 'fulfilled' && ipApiRes.value?.status === 'success') {
-    const d = ipApiRes.value;
-    data.ip        = d.query      || data.ip;
-    data.city      = d.city       || data.city;
-    data.region    = d.regionName || data.region;
-    data.country   = d.country    || data.country;
-    data.org       = d.org        || data.org;
-    data.isp       = d.isp        || data.isp;
-    data.zip       = d.zip        || data.zip;
-    data.latitude  = d.lat        || data.latitude;
-    data.longitude = d.lon        || data.longitude;
-  }
+  /* ── Build (or reuse cached) device/geo profile — fetched ONCE per session, not per page ── */
+  let profile = getCachedProfile();
 
-  /* ── Connection info ── */
-  try {
-    const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-    if (conn) {
-      data.connectionType  = conn.type     || '';
-      data.connectionSpeed = conn.downlink || '';
-      data.connectionRtt   = conn.rtt      || '';
-      data.dataSaver       = conn.saveData ?? '';
+  if (!profile) {
+    const perf = performance.getEntriesByType('navigation')[0];
+
+    profile = {
+      timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+      ip: '', city: '', region: '', country: '', org: '', isp: '', zip: '',
+      latitude: '', longitude: '',
+      deviceType: navigator.maxTouchPoints > 0 ? 'mobile/tablet' : 'desktop',
+      cpuCores: navigator.hardwareConcurrency || '',
+      memory: navigator.deviceMemory || '',
+      touchPoints: navigator.maxTouchPoints || '',
+      connectionType: '', connectionSpeed: '', connectionRtt: '', dataSaver: '',
+      batteryLevel: '', batteryCharging: '',
+      cookiesEnabled: navigator.cookieEnabled,
+      language: navigator.language,
+      languages: navigator.languages?.join(', ') || '',
+      platform: navigator.platform,
+      browser: parseBrowser(ua),
+      os: parseOS(ua),
+      userAgent: ua,
+      screenWidth: screen.width,
+      screenHeight: screen.height,
+      referrer: document.referrer || '',
+      colorScheme: window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light',
+      pageLoadTime: perf ? Math.round(perf.loadEventEnd - perf.startTime) + 'ms' : '',
+      domReadyTime: perf ? Math.round(perf.domContentLoadedEventEnd - perf.startTime) + 'ms' : '',
+      isBot: botReasons.length ? botReasons.join(', ') : 'non',
+    };
+
+    const [ipapiRes, ipApiRes] = await Promise.allSettled([
+      fetch('https://ipapi.co/json/').then(r => r.json()),
+      fetch('https://ip-api.com/json/?fields=status,country,regionName,city,zip,lat,lon,isp,org,query').then(r => r.json()),
+    ]);
+
+    if (ipapiRes.status === 'fulfilled') {
+      const d = ipapiRes.value;
+      Object.assign(profile, {
+        ip: d.ip || '', city: d.city || '', region: d.region || '', country: d.country_name || '',
+        org: d.org || '', isp: d.org || '', zip: d.postal || '',
+        latitude: d.latitude || '', longitude: d.longitude || '',
+      });
     }
-  } catch (_) {}
+    if (ipApiRes.status === 'fulfilled' && ipApiRes.value?.status === 'success') {
+      const d = ipApiRes.value;
+      Object.assign(profile, {
+        ip: d.query || profile.ip, city: d.city || profile.city, region: d.regionName || profile.region,
+        country: d.country || profile.country, org: d.org || profile.org, isp: d.isp || profile.isp,
+        zip: d.zip || profile.zip, latitude: d.lat || profile.latitude, longitude: d.lon || profile.longitude,
+      });
+    }
 
-  /* ── Battery ── */
-  try {
-    const bat = await navigator.getBattery();
-    data.batteryLevel    = Math.round(bat.level * 100) + '%';
-    data.batteryCharging = bat.charging ? 'oui' : 'non';
-  } catch (_) {}
+    try {
+      const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+      if (conn) {
+        profile.connectionType = conn.type || '';
+        profile.connectionSpeed = conn.downlink || '';
+        profile.connectionRtt = conn.rtt || '';
+        profile.dataSaver = conn.saveData ?? '';
+      }
+    } catch (_) {}
 
-  /* ── Snapshot behaviour then send ── */
-  function applyBehaviour(d) {
-    d.maxScroll    = beh.maxScroll + '%';
-    d.clickCount   = beh.clickCount;
-    d.rightClicks  = beh.rightClicks;
-    d.copyAttempts = beh.copyAttempts;
-    d.devToolsKeys = beh.devToolsKeys.length ? beh.devToolsKeys.join(', ') : 'aucun';
-    try { d.lastTheme = window.activeTheme || ''; } catch (_) {}
+    try {
+      const bat = await navigator.getBattery();
+      profile.batteryLevel = Math.round(bat.level * 100) + '%';
+      profile.batteryCharging = bat.charging ? 'oui' : 'non';
+    } catch (_) {}
+
+    setCachedProfile(profile);
   }
 
-  applyBehaviour(data);
-  sendPayload(data);
+  if (!TRACKING_DISABLED) TRACKING_DISABLED = isExcludedVisitor(profile.ip);
 
-  /* ── Final send on page close ── */
-  window.addEventListener('beforeunload', () => {
-    data.sessionDuration = Math.round((Date.now() - sessionStart) / 1000) + 's';
-    applyBehaviour(data);
-    sendPayload(data);
+  /* ── session_start: sent once, ties profile to sessionId ── */
+  if (IS_NEW_SESSION) {
+    send({
+      type: 'session_start',
+      sessionId: SESSION_ID,
+      timestamp: new Date().toLocaleString('fr-BE', {
+        day: '2-digit', month: '2-digit', year: 'numeric',
+        hour: '2-digit', minute: '2-digit', second: '2-digit',
+      }),
+      url: location.href,
+      profile,
+    });
+  } else {
+    // page_view within an existing session — cheap, no profile refetch
+    queueEvent('page_view', { url: location.pathname });
+  }
+
+  /* ── Heartbeat: periodic engagement snapshot while tab is visible ── */
+  const HEARTBEAT_MS = 20000;
+  const heartbeat = setInterval(() => {
+    if (TRACKING_DISABLED) { clearInterval(heartbeat); return; }
+    if (document.visibilityState === 'visible') {
+      queueEvent('engagement', engagementSnapshot());
+      flushEvents(); // heartbeat ticks are a good natural flush point
+    }
+  }, HEARTBEAT_MS);
+
+  /* ── Reliable end-of-session capture: visibilitychange + pagehide cover mobile
+         (beforeunload is unreliable on iOS Safari / bfcache) ── */
+  let ended = false;
+  function endSession(reason) {
+    if (ended) return;
+    ended = true;
+    clearInterval(heartbeat);
+    queueEvent('session_end', { ...engagementSnapshot(), reason });
+    flushEvents();
+  }
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') endSession('hidden');
   });
+  window.addEventListener('pagehide', () => endSession('pagehide'));
+  window.addEventListener('beforeunload', () => endSession('beforeunload'));
 
 })();
