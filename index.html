@@ -2,77 +2,75 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="shortcut icon" href="./assets/images/logo.png" type="image/png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#000000" />
+
+  <title>Vadilion Digital — Solutions digitales sur données à forte valeur ajoutée</title>
+  <meta name="description" content="Vadilion Digital conçoit des solutions digitales uniques répondant à des besoins concrets : intelligence territoriale, commande en ligne, présence locale et développement sur mesure." />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Vadilion Digital" />
+  <meta property="og:description" content="Des solutions digitales uniques, répondant à des besoins concrets, à partir de données à forte valeur ajoutée." />
+  <meta property="og:url" content="https://vadiliondigital.be/" />
+  <meta property="og:image" content="https://vadiliondigital.be/images/vadiliondigital_logo.png" />
+
+  <link rel="canonical" href="https://vadiliondigital.be/" />
+  <link rel="icon" href="images/vadiliondigital_logo.png" type="image/png" />
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
 
 <!-- ═══════════════ HEADER ═══════════════ -->
-  
-  
 <header>
   <div class="brand">
-    <img src="images/vadiliondigital_logo.png" alt="Logo Vadilion Digital" class="logo" />
+    <img src="images/vadiliondigital_logo.png" alt="Vadilion Digital" class="logo" width="140" height="32" />
   </div>
   <div class="lang">
-    <span class="active" id="fr-btn">FR</span>
-    <span class="sep">|</span>
-    <span id="en-btn">EN</span>
+    <span class="active" id="fr-btn" role="button" tabindex="0">FR</span>
+    <span class="sep" aria-hidden="true">|</span>
+    <span id="en-btn" role="button" tabindex="0">EN</span>
   </div>
 </header>
 
 <!-- ═══════════════ MAIN ═══════════════ -->
 <main id="main-content">
-  <div id="vanta-bg"></div>
+  <div id="vanta-bg" aria-hidden="true"></div>
 
   <!-- Navigation menu -->
-  <nav class="menu">
-    <button id="menu-about">À PROPOS</button>
-    <button id="menu-solutions">SOLUTIONS</button>
+  <nav class="menu" aria-label="Sections">
+    <button id="menu-about" aria-controls="about" aria-expanded="false">À PROPOS</button>
+    <button id="menu-solutions" aria-controls="solutions" aria-expanded="false">SOLUTIONS</button>
   </nav>
 
   <!-- About panel -->
-  <div class="panel" id="about">
+  <section class="panel" id="about">
     <p id="about-text">
       Nous développons des solutions digitales uniques, répondant à des besoins
       concrets, à partir de données à forte valeur ajoutée.
     </p>
-  </div>
+  </section>
 
-  <!-- Solutions panel -->
-  <div class="panel" id="solutions">
-    <div class="smartin-card">
-      <div class="smartin-card-header">
-        <span class="smartin-badge" id="locationBtn">SMART-IN - Plateforme d'Intelligence Territoriale</span>
-      </div>
-      <div class="smartin-card-body" id="locationContentInnerText">Smart-In, c'est une vision indépendante du marché, libre de toute spéculation.<br><br>Explorez l'essentiel des données — prix, tendances, projets à venir et leur impact — grâce à une carte intuitive ou à notre agent IA intégré.<br>Le tout en 5 minutes, sous forme de rapport sur mesure, adapté à votre situation et à votre projet.</div>
-      <hr class="smartin-divider" />
-      <a id="discoverSmartIn" class="btn-discover-smartin"
-         href="https://smartinapp.eu" target="_blank" rel="noopener noreferrer">
-        <span id="discoverSmartIn-label">Découvrir Smart-In</span>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-             stroke="currentColor" stroke-width="2.5"
-             stroke-linecap="round" stroke-linejoin="round">
-          <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
-        </svg>
-      </a>
+  <!-- Solutions panel — contenu injecté depuis assets/js/solutions.js -->
+  <section class="panel panel-wide" id="solutions">
+    <div class="sol-layout">
+      <div class="sol-nav" id="sol-nav"></div>
+      <div class="sol-detail-pane" id="sol-detail-pane"></div>
     </div>
-  </div>
+  </section>
 </main>
 
 <!-- ═══════════════ FOOTER ═══════════════ -->
 <footer>
   <div class="footer-line"></div>
   <div class="footer-content">
-    <span id="offices-link" onclick="openModal('officeModal')">Bureaux</span>
-    <span id="contact-footer-link" onclick="openModal('contactModal')">Contact</span>
-    <span onclick="openModal('mediaModal')">Media</span>
+    <button type="button" id="offices-link" onclick="openModal('officeModal')">Bureaux</button>
+    <button type="button" id="contact-footer-link" onclick="openModal('contactModal')">Contact</button>
+    <button type="button" id="media-link" onclick="openModal('mediaModal')">Media</button>
   </div>
 </footer>
 
 <!-- ═══════════════ MODAL — CONTACT ═══════════════ -->
-<div class="modal" id="contactModal" role="dialog" aria-modal="true">
+<div class="modal" id="contactModal" role="dialog" aria-modal="true" aria-labelledby="contact-text">
   <div class="modal-content">
     <button class="close" onclick="closeModal('contactModal')" aria-label="Fermer">✕</button>
     <h4 id="contact-text">Contactez-nous</h4>
@@ -80,8 +78,8 @@
       Nous écoutons attentivement vos besoins afin de vous proposer une solution
       précise et adaptée.
     </p>
-    <input  id="contact-name"    placeholder="Nom"                            required />
-    <input  id="contact-info"    placeholder="Coordonnées de contact"         required />
+    <input  id="contact-name"    placeholder="Nom"                    autocomplete="name"  required />
+    <input  id="contact-info"    placeholder="Coordonnées de contact"  autocomplete="email" required />
     <textarea id="contact-message" placeholder="Comment pouvons-nous vous aider ?"
               maxlength="999" required></textarea>
     <button id="btn-send" class="btn-modal-send">Envoyer</button>
@@ -89,14 +87,14 @@
 </div>
 
 <!-- ═══════════════ MODAL — MEDIA ═══════════════ -->
-<div class="modal" id="mediaModal" role="dialog" aria-modal="true">
+<div class="modal" id="mediaModal" role="dialog" aria-modal="true" aria-labelledby="our-media">
   <div class="modal-content">
     <button class="close" onclick="closeModal('mediaModal')" aria-label="Fermer">✕</button>
     <h4 id="our-media">Nos réseaux</h4>
     <div class="media-links">
       <a href="https://www.linkedin.com/company/vadiliondigital"
-         target="_blank" class="btn-social">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+         target="_blank" rel="noopener noreferrer" class="btn-social">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
           <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
           <rect x="2" y="9" width="4" height="12"/>
           <circle cx="4" cy="4" r="2"/>
@@ -104,10 +102,10 @@
         LinkedIn
       </a>
       <a href="https://www.instagram.com/vadilion.digital"
-         target="_blank" class="btn-social">
+         target="_blank" rel="noopener noreferrer" class="btn-social">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
              stroke="currentColor" stroke-width="2"
-             stroke-linecap="round" stroke-linejoin="round">
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
           <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
           <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
@@ -119,7 +117,7 @@
 </div>
 
 <!-- ═══════════════ MODAL — OFFICES ═══════════════ -->
-<div class="modal" id="officeModal" role="dialog" aria-modal="true">
+<div class="modal" id="officeModal" role="dialog" aria-modal="true" aria-labelledby="offices">
   <div class="modal-content">
     <button class="close" onclick="closeModal('officeModal')" aria-label="Fermer">✕</button>
     <h4 id="offices">Bureaux</h4>
@@ -143,14 +141,13 @@
   </div>
 </div>
 
-<!-- ═══════════════ LIBS ═══════════════ -->
+<!-- ═══════════════ SCRIPTS ═══════════════ -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.dots.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-
-<!-- App scripts — ORDER MATTERS -->
-<script src="assets/js/tracker.js"></script>
-<script src="assets/js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js" defer></script>
+<script src="assets/js/tracker.js" defer></script>
+<script src="assets/js/solutions.js" defer></script>
+<script src="assets/js/main.js" defer></script>
 
 </body>
 </html>
