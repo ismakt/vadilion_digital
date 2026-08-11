@@ -37,14 +37,14 @@ const SOLUTIONS = [
   fr: {
     name: 'Wasabi',
     tagline: 'Reprenez le contrôle de vos commandes',
-    body: "Les commissions que vous payez aux plateformes sur chaque commande représentent un manque à gagner important, alors qu’une bonne partie de vos clients fidélisés pourraient commander directement auprès de vous.<br><br>C’est exactement ce que Wasabi vous apporte : une plateforme prête à accueillir votre établissement et vos clients, pour des commandes simples, intuitives et sécurisées.<br>Un prix mensuel abordable, juste et fixe.<br><br>Nous pouvons également développer ou adapter votre propre site pour intégrer la prise de commandes. Prix sur demande.",
+    body: "Les commissions que vous payez aux plateformes représentent un manque à gagner important.<br><br>Une grande partie de vos clients fidélisés pourraient pourtant commander directement auprès de vous, à condition de disposer d’une structure adaptée.<br><br>C’est exactement ce que Wasabi apporte : une plateforme intuitive et sécurisée pour accueillir votre établissement et vos clients.<br><br>Tarif mensuel fixe, abordable et sans engagement.<br><br>Vous pouvez également adapter votre propre site web pour y intégrer la prise de commandes.<br>Tarif variable.",
     tags: ['Indépendance', 'Manque à gagner', 'Conversion clients'],
     cta: 'Explorer'
   },
   en: {
     name: 'Wasabi',
     tagline: 'Take back control of your orders',
-    body: "The commissions you pay platforms on every order represent a significant loss of revenue, even though many of your loyal customers could order directly from you.<br><br>That is exactly what Wasabi offers: a platform ready to host your business and your customers, for a simple, intuitive and secure ordering experience.<br><br>An affordable, fair and fixed monthly fee.<br><br>We can also build or adapt your own website to integrate online ordering. Price on request.",
+    body: "The commissions you pay platforms represent a significant loss of revenue.<br><br>Many of your loyal customers could instead order directly from you, provided you have the right structure in place.<br><br>That is exactly what Wasabi provides: an intuitive and secure platform for your business and your customers.<br><br>A fixed, affordable monthly fee with no commitment.<br><br>You can also adapt your own website to integrate online ordering.<br>Variable pricing.",
     tags: ['Independence', 'Lost revenue', 'Customer conversion'],
     cta: 'Explore'
   }
