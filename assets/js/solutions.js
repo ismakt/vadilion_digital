@@ -37,7 +37,7 @@ const SOLUTIONS = [
   fr: {
     name: 'Wasabi',
     tagline: 'Reprenez le contrôle de vos commandes',
-    body: "Les commissions que vous payez aux plateformes représentent un manque à gagner important.<br><br>Une grande partie de vos clients fidélisés pourraient pourtant commander directement auprès de vous, à condition de disposer d’une structure adaptée.<br><br>C’est exactement ce que Wasabi apporte : une plateforme intuitive et sécurisée pour accueillir votre établissement et vos clients.<br><br>Tarif mensuel fixe, abordable et sans engagement.<br><br>Vous pouvez également adapter votre propre site web pour y intégrer la prise de commandes.<br>Tarif variable.",
+    body: "Les commissions que vous payez aux plateformes représentent un manque à gagner important.<br>Une grande partie de vos clients fidélisés pourraient pourtant commander directement auprès de vous, à condition de disposer d’une structure adaptée.<br><br>C’est exactement ce que Wasabi apporte : une plateforme intuitive et sécurisée pour accueillir votre établissement et vos clients.<br>Tarif mensuel fixe, abordable et sans engagement.<br><br>Nous pouvons également adapter votre propre site web.<br>Tarif variable.",
     tags: ['Indépendance', 'Manque à gagner', 'Conversion clients'],
     cta: 'Explorer'
   },
