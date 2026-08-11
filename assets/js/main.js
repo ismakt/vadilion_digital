@@ -1,8 +1,17 @@
 'use strict';
 
-/* ============================
-   VANTA BACKGROUND
-   ============================ */
+/* ============================================================
+   ÉTAT GLOBAL
+   ============================================================ */
+let currentLang = 'fr';
+let activeSolutionId = (window.SOLUTIONS && window.SOLUTIONS[0]) ? window.SOLUTIONS[0].id : null;
+
+const mqDesktop = window.matchMedia('(min-width: 900px)');
+const mqHover   = window.matchMedia('(hover: hover) and (pointer: fine)');
+
+/* ============================================================
+   FOND ANIMÉ — configuration d'origine (v1)
+   ============================================================ */
 VANTA.DOTS({
   el: '#vanta-bg',
   mouseControls: true,
@@ -20,46 +29,179 @@ VANTA.DOTS({
   showLines: false
 });
 
-/* ============================
-   MENU PANELS
-   ============================ */
+/* ============================================================
+   SOLUTIONS — RENDU
+   ============================================================ */
+const ARROW_SVG = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>';
+const CHEVRON_SVG = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
+
+function iconSvg(key) {
+  const path = (window.SOLUTION_ICONS || {})[key];
+  if (!path) return '';
+  return '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + path + '</svg>';
+}
+
+function buildDetail(sol) {
+  const t = sol[currentLang];
+  const wrap = document.createElement('div');
+  wrap.className = 'sol-detail';
+  wrap.id = 'sol-detail-' + sol.id;
+
+  const tags = (t.tags || [])
+    .map(tag => '<span class="sol-tag">' + tag + '</span>')
+    .join('');
+
+  let cta = '';
+  if (sol.url) {
+    cta = '<a class="btn-discover" href="' + sol.url + '" target="_blank" rel="noopener noreferrer">'
+        + '<span>' + t.cta + '</span>' + ARROW_SVG + '</a>';
+  } else if (sol.action === 'contact') {
+    cta = '<button type="button" class="btn-discover" data-open-contact>'
+        + '<span>' + t.cta + '</span>' + ARROW_SVG + '</button>';
+  }
+
+  wrap.innerHTML =
+      '<div class="sol-detail-title">' + t.name + ' — ' + t.tagline + '</div>'
+    + '<div class="sol-detail-body">' + t.body + '</div>'
+    + (tags ? '<div class="sol-tags">' + tags + '</div>' : '')
+    + cta;
+
+  return wrap;
+}
+
+function buildItem(sol) {
+  const t = sol[currentLang];
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'sol-item';
+  btn.dataset.solId = sol.id;
+  btn.setAttribute('aria-controls', 'sol-detail-' + sol.id);
+
+  btn.innerHTML =
+      '<span class="sol-item-icon">' + iconSvg(sol.icon) + '</span>'
+    + '<span class="sol-item-text">'
+    +   '<span class="sol-item-name">' + t.name + '</span>'
+    +   '<span class="sol-item-tagline">' + t.tagline + '</span>'
+    + '</span>'
+    + '<span class="sol-item-chevron">' + CHEVRON_SVG + '</span>';
+
+  return btn;
+}
+
+function renderSolutions() {
+  const nav  = document.getElementById('sol-nav');
+  const pane = document.getElementById('sol-detail-pane');
+  const list = window.SOLUTIONS || [];
+  if (!nav || !pane || !list.length) return;
+
+  nav.innerHTML  = '';
+  pane.innerHTML = '';
+
+  const isDesktop = mqDesktop.matches;
+  const groups    = window.SOLUTION_GROUPS || {};
+  let lastGroup   = null;
+
+  list.forEach(sol => {
+    if (sol.group && sol.group !== lastGroup && groups[sol.group]) {
+      const label = document.createElement('div');
+      label.className = 'sol-group-label';
+      label.textContent = groups[sol.group][currentLang];
+      nav.appendChild(label);
+      lastGroup = sol.group;
+    }
+
+    const item     = buildItem(sol);
+    const isActive = sol.id === activeSolutionId;
+
+    item.classList.toggle('is-active', isActive);
+    item.setAttribute('aria-expanded', isDesktop ? 'false' : String(isActive));
+    if (isDesktop && isActive) item.setAttribute('aria-current', 'true');
+
+    nav.appendChild(item);
+
+    if (isDesktop) {
+      if (isActive) pane.appendChild(buildDetail(sol));
+    } else {
+      const detail = buildDetail(sol);
+      detail.classList.toggle('is-open', isActive);
+      nav.appendChild(detail);
+    }
+  });
+}
+
+function selectSolution(id) {
+  const isDesktop = mqDesktop.matches;
+  /* Sur mobile, retoucher la ligne active la referme. */
+  activeSolutionId = (!isDesktop && id === activeSolutionId) ? null : id;
+  renderSolutions();
+}
+
+document.getElementById('sol-nav')?.addEventListener('click', e => {
+  const item = e.target.closest('.sol-item');
+  if (item) { selectSolution(item.dataset.solId); return; }
+  if (e.target.closest('[data-open-contact]')) openModal('contactModal');
+});
+
+document.getElementById('sol-detail-pane')?.addEventListener('click', e => {
+  if (e.target.closest('[data-open-contact]')) openModal('contactModal');
+});
+
+/* Au changement de format, on garde une solution ouverte sur desktop */
+function handleBreakpoint() {
+  if (mqDesktop.matches && !activeSolutionId && window.SOLUTIONS?.length) {
+    activeSolutionId = window.SOLUTIONS[0].id;
+  }
+  renderSolutions();
+}
+mqDesktop.addEventListener('change', handleBreakpoint);
+
+/* ============================================================
+   MENU / PANNEAUX
+   ============================================================ */
 const menuButtons = document.querySelectorAll('.menu button');
 const panels      = document.querySelectorAll('.panel');
-const canHover    = window.matchMedia('(hover: hover)').matches;
+
+function openPanel(panelId) {
+  panels.forEach(p => p.classList.toggle('is-open', p.id === panelId));
+  menuButtons.forEach(b => {
+    const isTarget = b.id === 'menu-' + panelId;
+    b.classList.toggle('active-menu', isTarget);
+    b.setAttribute('aria-expanded', String(isTarget));
+  });
+}
+
+function closePanels() {
+  panels.forEach(p => p.classList.remove('is-open'));
+  menuButtons.forEach(b => {
+    b.classList.remove('active-menu');
+    b.setAttribute('aria-expanded', 'false');
+  });
+}
 
 menuButtons.forEach(btn => {
   const panelId = btn.id.replace('menu-', '');
   const panel   = document.getElementById(panelId);
   if (!panel) return;
 
-  if (canHover) {
-    btn.addEventListener('mouseenter', () => {
-      panels.forEach(p => { p.style.display = 'none'; });
-      menuButtons.forEach(b => b.classList.remove('active-menu'));
-      panel.style.display = 'block';
-      btn.classList.add('active-menu');
-    });
+  /* Le survol n'ouvre les panneaux que sur un vrai pointeur */
+  if (mqHover.matches) {
+    btn.addEventListener('mouseenter', () => openPanel(panelId));
   }
 
   btn.addEventListener('click', e => {
     e.preventDefault();
-    const isOpen = panel.style.display === 'block';
-    panels.forEach(p => { p.style.display = 'none'; });
-    menuButtons.forEach(b => b.classList.remove('active-menu'));
-    if (!isOpen) {
-      panel.style.display = 'block';
-      btn.classList.add('active-menu');
-    }
+    if (panel.classList.contains('is-open')) closePanels();
+    else openPanel(panelId);
   });
 });
 
-/* ============================
-   MODALS
-   ============================ */
+/* ============================================================
+   MODALES
+   ============================================================ */
 function openModal(id) {
   const modal = document.getElementById(id);
   if (!modal) return;
-  modal.style.display = 'flex';
+  modal.classList.add('is-open');
   document.body.style.overflow = 'hidden';
   document.getElementById('main-content')?.classList.add('blur-background');
 }
@@ -67,8 +209,8 @@ function openModal(id) {
 function closeModal(id) {
   const modal = document.getElementById(id);
   if (!modal) return;
-  modal.style.display = 'none';
-  document.body.style.overflow = 'auto';
+  modal.classList.remove('is-open');
+  document.body.style.overflow = '';
   document.getElementById('main-content')?.classList.remove('blur-background');
 }
 
@@ -82,152 +224,125 @@ document.querySelectorAll('.modal').forEach(modal => {
 });
 
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') {
-    document.querySelectorAll('.modal').forEach(m => {
-      if (m.style.display === 'flex') closeModal(m.id);
-    });
-  }
+  if (e.key !== 'Escape') return;
+  document.querySelectorAll('.modal.is-open').forEach(m => closeModal(m.id));
 });
 
-/* ============================
-   EMAILJS — CONTACT FORM
-   ============================ */
-(function () { emailjs.init('Y9G1UYj9VZqrRmSG1'); })();
+/* ============================================================
+   EMAILJS — FORMULAIRE DE CONTACT
+   ============================================================ */
+function initContactForm() {
+  const btn = document.getElementById('btn-send');
+  if (!btn || !window.emailjs) return;
 
-document.getElementById('btn-send').addEventListener('click', function () {
-  const name    = document.getElementById('contact-name').value.trim();
-  const contact = document.getElementById('contact-info').value.trim();
-  const message = document.getElementById('contact-message').value.trim();
+  emailjs.init('Y9G1UYj9VZqrRmSG1');
 
-  if (!name || !contact || !message) {
-    alert('Veuillez remplir tous les champs.');
-    return;
-  }
+  btn.addEventListener('click', function () {
+    const name    = document.getElementById('contact-name').value.trim();
+    const contact = document.getElementById('contact-info').value.trim();
+    const message = document.getElementById('contact-message').value.trim();
 
-  this.disabled    = true;
-  this.textContent = 'Envoi…';
+    if (!name || !contact || !message) {
+      alert(currentLang === 'fr' ? 'Veuillez remplir tous les champs.' : 'Please fill in all fields.');
+      return;
+    }
 
-emailjs.send('service_41z5e5b', 'template_9s39ygw', { name, contact, message, source: 'Vadilion Digital' })
-   .then(() => {
-      alert('Message envoyé ✅');
-      closeModal('contactModal');
-      document.getElementById('contact-name').value    = '';
-      document.getElementById('contact-info').value    = '';
-      document.getElementById('contact-message').value = '';
+    const label = this.textContent;
+    this.disabled    = true;
+    this.textContent = currentLang === 'fr' ? 'Envoi…' : 'Sending…';
+
+    emailjs.send('service_41z5e5b', 'template_9s39ygw', {
+      name, contact, message, source: 'Vadilion Digital'
     })
-    .catch(err => {
-      console.error(err);
-      alert('Erreur lors de l\'envoi ❌');
-    })
-    .finally(() => {
-      this.disabled    = false;
-      this.textContent = 'Envoyer';
-    });
-});
+      .then(() => {
+        alert(currentLang === 'fr' ? 'Message envoyé ✅' : 'Message sent ✅');
+        closeModal('contactModal');
+        document.getElementById('contact-name').value    = '';
+        document.getElementById('contact-info').value    = '';
+        document.getElementById('contact-message').value = '';
+      })
+      .catch(err => {
+        console.error(err);
+        alert(currentLang === 'fr' ? "Erreur lors de l'envoi ❌" : 'Sending failed ❌');
+      })
+      .finally(() => {
+        this.disabled    = false;
+        this.textContent = label;
+      });
+  });
+}
 
-/* ============================
-   TRANSLATIONS
-   ============================ */
-
-/* IDs dont le contenu doit être injecté via innerHTML
-   (ceux qui contiennent des balises HTML comme <br>) */
-const htmlIds = new Set(['locationContentInnerText']);
-
+/* ============================================================
+   TRADUCTIONS (hors solutions, gérées dans solutions.js)
+   ============================================================ */
 const translations = {
   fr: {
-    'about-text':               'Nous développons des solutions digitales uniques, répondant à des besoins concrets, à partir de données à forte valeur ajoutée.',
-    'menu-about':               'À PROPOS',
-    'menu-solutions':           'SOLUTIONS',
-    'locationBtn':              'SMART-IN',
-    'locationContentInnerText': "Smart-In, c'est une vision indépendante du marché, libre de toute spéculation. Explorez l'essentiel des données — prix, tendances, projets à venir et leur impact — grâce à une carte intuitive ou à notre agent IA intégré. Le tout en 5 minutes, sous forme de rapport sur mesure, adapté à votre situation et à votre projet.",
-    'discoverSmartIn-label':    'Découvrir Smart-In',
-    'offices-link':             'Bureaux',
-    'contact-footer-link':      'Contact',
-    'offices':                  'Bureaux',
-    'office1-city':             'Bruxelles',
-    'office2-city':             'Paris',
-    'office3-city':             'Monaco',
-    'our-media':                'Nos réseaux',
-    'contact-text':             'Contactez-nous',
-    'contact-text2':            'Nous écoutons attentivement vos besoins afin de vous proposer une solution précise et adaptée.',
-    'locationBtn':              "SMART-IN - Plateforme d'Intelligence Territoriale"
+    'about-text':          'Nous développons des solutions digitales uniques, répondant à des besoins concrets, à partir de données à forte valeur ajoutée.',
+    'menu-about':          'À PROPOS',
+    'menu-solutions':      'SOLUTIONS',
+    'offices-link':        'Bureaux',
+    'contact-footer-link': 'Contact',
+    'media-link':          'Media',
+    'offices':             'Bureaux',
+    'office1-city':        'Bruxelles',
+    'office2-city':        'Paris',
+    'office3-city':        'Monaco',
+    'our-media':           'Nos réseaux',
+    'contact-text':        'Contactez-nous',
+    'contact-text2':       'Nous écoutons attentivement vos besoins afin de vous proposer une solution précise et adaptée.',
+    'btn-send':            'Envoyer'
   },
   en: {
-    'about-text':               'We turn high-value data into unique digital solutions that solve real challenges.',
-    'menu-about':               'ABOUT',
-    'menu-solutions':           'SOLUTIONS',
-    'locationBtn':              'SMART-IN',
-    'locationContentInnerText': 'Smart-In provides an independent view of the market, free from speculation.<br><br>Explore the essential market data — prices, trends, upcoming projects and their impact — through an intuitive map or our integrated AI agent.<br>All in 5 minutes, delivered as a tailored report adapted to your situation and project.',    'discoverSmartIn-label':    'Discover Smart-In',
-    'offices-link':             'Offices',
-    'contact-footer-link':      'Contact',
-    'offices':                  'Offices',
-    'office1-city':             'Brussels',
-    'office2-city':             'Paris',
-    'office3-city':             'Monaco',
-    'our-media':                'Our Media',
-    'contact-text':             'Contact us',
-    'contact-text2':            'We listen carefully to your needs in order to offer you a precise and tailored solution.',
-    'locationBtn':              'SMART-IN - Location Intelligence Platform'
+    'about-text':          'We turn high-value data into unique digital solutions that solve real challenges.',
+    'menu-about':          'ABOUT',
+    'menu-solutions':      'SOLUTIONS',
+    'offices-link':        'Offices',
+    'contact-footer-link': 'Contact',
+    'media-link':          'Media',
+    'offices':             'Offices',
+    'office1-city':        'Brussels',
+    'office2-city':        'Paris',
+    'office3-city':        'Monaco',
+    'our-media':           'Our media',
+    'contact-text':        'Contact us',
+    'contact-text2':       'We listen carefully to your needs in order to offer you a precise and tailored solution.',
+    'btn-send':            'Send'
   }
+};
+
+const placeholders = {
+  fr: { 'contact-name': 'Nom', 'contact-info': 'Coordonnées de contact', 'contact-message': 'Comment pouvons-nous vous aider ?' },
+  en: { 'contact-name': 'Name', 'contact-info': 'Contact details',       'contact-message': 'How can we help you?' }
 };
 
 function setLanguage(lang) {
   const dict = translations[lang];
   if (!dict) return;
+  currentLang = lang;
+
   Object.entries(dict).forEach(([id, value]) => {
     const el = document.getElementById(id);
-    if (!el) return;
-    if (htmlIds.has(id)) {
-      el.innerHTML = value;
-    } else {
-      el.textContent = value;
-    }
+    if (el) el.textContent = value;
   });
+
+  Object.entries(placeholders[lang]).forEach(([id, value]) => {
+    const el = document.getElementById(id);
+    if (el) el.placeholder = value;
+  });
+
   document.getElementById('fr-btn')?.classList.toggle('active', lang === 'fr');
   document.getElementById('en-btn')?.classList.toggle('active', lang === 'en');
   document.documentElement.lang = lang;
+
+  renderSolutions();
 }
 
-document.getElementById('fr-btn').addEventListener('click', () => setLanguage('fr'));
-document.getElementById('en-btn').addEventListener('click', () => setLanguage('en'));
+document.getElementById('fr-btn')?.addEventListener('click', () => setLanguage('fr'));
+document.getElementById('en-btn')?.addEventListener('click', () => setLanguage('en'));
 
-/* ============================
-   SECURITY — DEVTOOLS BLOCKER (desktop uniquement)
-   ============================ */
-if (navigator.maxTouchPoints === 0) {
-
-  const devBlock = document.createElement('div');
-  devBlock.style.cssText = `
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.97);
-    z-index: 999999999;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    color: #fff;
-    font-family: Inter, sans-serif;
-    text-align: center;
-    padding: 40px;
-  `;
-  devBlock.innerHTML = `
-    <div style="font-size:48px;margin-bottom:20px">🚫</div>
-    <div style="font-size:22px;font-weight:600;margin-bottom:12px">Accès refusé</div>
-    <div style="font-size:14px;color:rgba(255,255,255,0.5)">Les outils de développement ne sont pas autorisés sur cette application.</div>
-  `;
-  document.body.appendChild(devBlock);
-
-  document.addEventListener('keydown', e => {
-    if (
-      e.key === 'F12' ||
-      (e.ctrlKey && e.shiftKey && ['I','J','C','U'].includes(e.key.toUpperCase())) ||
-      (e.ctrlKey && e.key.toUpperCase() === 'U')
-    ) {
-      e.preventDefault();
-      e.stopPropagation();
-      devBlock.style.display = 'flex';
-    }
-  });
-
-}
+/* ============================================================
+   INITIALISATION
+   ============================================================ */
+initContactForm();
+renderSolutions();
+openPanel('about');
