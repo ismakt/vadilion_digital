@@ -24,10 +24,11 @@ VANTA.DOTS({
   color: 0xcffb7,
   color2: 0x5520ff,
   backgroundColor: 0x0,
-  size: 3.2,
+  size: 3,
   spacing: 24,
   showLines: false
 });
+
 
 /* ============================================================
    SOLUTIONS — RENDU
