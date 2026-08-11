@@ -28,6 +28,7 @@ code: '<path d="m8 6-6 6 6 6M16 6l6 6-6 6"/>'
 };
 
 const SOLUTIONS = [
+
 {
   id: 'toki-eats',
   group: 'products',
@@ -36,14 +37,14 @@ const SOLUTIONS = [
   fr: {
     name: 'Wasabi',
     tagline: 'Reprenez le contrôle de vos commandes',
-    body: "Il existe un manque à gagner important : les commissions que vous payez aux plateformes sur chaque commande.<br><br>Une partie de vos clients fidélisés peut pourtant commander directement, via un canal indépendant de ces plateformes.<br><br>C’est exactement ce que Wasabi vous apporte : une plateforme prête à accueillir votre établissement et vos clients, pour des commandes simples, intuitives et sécurisées.<br><br>Un prix mensuel fixe, inférieur à 2 % de vos ventes.<br><br>Vous pouvez également choisir votre propre site : nous l’adaptons pour permettre à vos clients de commander directement en ligne. Prix sur demande.",
+    body: "Les commissions que vous payez aux plateformes sur chaque commande représentent un manque à gagner important, alors qu’une bonne partie de vos clients fidélisés pourraient commander directement auprès de vous.<br><br>C’est exactement ce que Wasabi vous apporte : une plateforme prête à accueillir votre établissement et vos clients, pour des commandes simples, intuitives et sécurisées.<br><br>Un prix mensuel abordable, juste et fixe.<br><br>Nous pouvons également développer ou adapter votre propre site pour intégrer la prise de commandes. Prix sur demande.",
     tags: ['Indépendance', 'Manque à gagner', 'Conversion clients'],
     cta: 'Explorer'
   },
   en: {
     name: 'Wasabi',
     tagline: 'Take back control of your orders',
-    body: 'There is a significant loss of revenue: the commissions you pay platforms on every order.<br><br>Yet, some of your loyal customers can order directly, through a channel independent of these platforms.<br><br>That is exactly what Wasabi provides: a platform ready to host your business and your customers, for simple, intuitive and secure orders.<br><br>A fixed monthly price, below 2% of your sales.<br><br>You can also choose your own website: we adapt it to allow your customers to order directly online. Price on request.',
+    body: "The commissions you pay platforms on every order represent a significant loss of revenue, even though many of your loyal customers could order directly from you.<br><br>That is exactly what Wasabi offers: a platform ready to host your business and your customers, for a simple, intuitive and secure ordering experience.<br><br>An affordable, fair and fixed monthly fee.<br><br>We can also build or adapt your own website to integrate online ordering. Price on request.",
     tags: ['Independence', 'Lost revenue', 'Customer conversion'],
     cta: 'Explore'
   }
