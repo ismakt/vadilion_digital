@@ -37,19 +37,19 @@ const SOLUTIONS = [
   fr: {
     name: 'Wasabi',
     tagline: 'Reprenez le contrôle de vos commandes',
-    body: "Les commissions que vous payez aux plateformes représentent un manque à gagner important.<br>Une grande partie de vos clients fidélisés pourraient pourtant commander directement auprès de vous, à condition de disposer d’une structure adaptée.<br><br>C’est exactement ce que Wasabi apporte : une plateforme intuitive et sécurisée pour accueillir votre établissement et vos clients.<br>Tarif mensuel fixe, abordable et sans engagement.<br><br>Nous pouvons également adapter votre propre site web.<br>Tarif variable.",
+    body: "Wasabi apporte aux restaurateurs la structure nécessaire pour combler le manque à gagner existant, en convertissant leurs clients fidèles à la commande directe, sans passer par les grandes plateformes tierces à commissions élevées.<br><br>Vous avez le choix : rejoindre notre plateforme intuitive et sécurisée, avec un tarif fixe, abordable et sans engagement, ou opter pour le développement de votre propre site web (tarif variable).",
     tags: ['Indépendance', 'Manque à gagner', 'Conversion clients'],
     cta: 'Explorer'
   },
   en: {
     name: 'Wasabi',
     tagline: 'Take back control of your orders',
-    body: "The commissions you pay platforms represent a significant loss of revenue.<br><br>Many of your loyal customers could instead order directly from you, provided you have the right structure in place.<br><br>That is exactly what Wasabi provides: an intuitive and secure platform for your business and your customers.<br><br>A fixed, affordable monthly fee with no commitment.<br><br>You can also adapt your own website to integrate online ordering.<br>Variable pricing.",
+    body: "Wasabi gives restaurants the structure they need to recover lost revenue by converting loyal customers to direct ordering, without relying on major third-party platforms with high commissions.<br><br>You have the choice: join our intuitive and secure platform, with a fixed, affordable and commitment-free fee, or have your own website developed (variable pricing).",
     tags: ['Independence', 'Lost revenue', 'Customer conversion'],
     cta: 'Explore'
   }
 },
-  {
+{
     id: 'smart-in',
     group: 'products',
     icon: 'map',
