@@ -36,15 +36,15 @@ const SOLUTIONS = [
   fr: {
     name: 'Wasabi',
     tagline: 'Reprenez le contrôle de vos commandes',
-    body: "Chaque mois, les commissions des plateformes amputent votre marge sur des clients qui sont déjà les vôtres.<br><br>Wasabi vous rend votre canal direct : notre plateforme ou votre propre site adapté par nos soins, à travers lesquels vos clients pourront commander directement. Vous récupérez ainsi la commission que vous perdez actuellement sur ces commandes, grâce à vos clients déjà acquis.",
+    body: "Il existe un manque à gagner important : les commissions que vous payez aux plateformes sur chaque commande.<br><br>Une partie de vos clients fidélisés peut pourtant commander directement, via un canal indépendant de ces plateformes.<br><br>C’est exactement ce que Wasabi vous apporte : une plateforme prête à accueillir votre établissement et vos clients, pour des commandes simples, intuitives et sécurisées.<br><br>Un prix mensuel fixe, inférieur à 2 % de vos ventes.<br><br>Vous pouvez également choisir votre propre site : nous l’adaptons pour permettre à vos clients de commander directement en ligne. Prix sur demande.",
     tags: ['Indépendance', 'Manque à gagner', 'Conversion clients'],
     cta: 'Explorer'
   },
   en: {
     name: 'Wasabi',
     tagline: 'Take back control of your orders',
-    body: 'Every month, platform commissions eat into your margin on customers who are already yours.<br><br>Wasabi gives you back your direct channel: our platform or your own website, adapted by us, through which your customers can order directly. You recover the commission you are currently losing on those orders, from customers you already acquired.',
-    tags: ['Independence', 'Lost margin', 'Customer conversion'],
+    body: 'There is a significant loss of revenue: the commissions you pay platforms on every order.<br><br>Yet, some of your loyal customers can order directly, through a channel independent of these platforms.<br><br>That is exactly what Wasabi provides: a platform ready to host your business and your customers, for simple, intuitive and secure orders.<br><br>A fixed monthly price, below 2% of your sales.<br><br>You can also choose your own website: we adapt it to allow your customers to order directly online. Price on request.',
+    tags: ['Independence', 'Lost revenue', 'Customer conversion'],
     cta: 'Explore'
   }
 },
