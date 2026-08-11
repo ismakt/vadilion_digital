@@ -21,14 +21,36 @@ const SOLUTION_GROUPS = {
 };
 
 const ICONS = {
-  map: '<path d="M9 20l-5.447-2.724A1 1 0 0 1 3 16.382V5.618a1 1 0 0 1 1.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0 0 21 18.382V7.618a1 1 0 0 0-.553-.894L15 4m0 13V4m0 0L9 7"/>',
-  order: '<path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17"/><circle cx="9" cy="20" r="1"/><circle cx="17" cy="20" r="1"/>',
-  globe: '<circle cx="12" cy="12" r="9"/><path d="M3.6 9h16.8M3.6 15h16.8M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/>',
-  code: '<path d="m8 6-6 6 6 6M16 6l6 6-6 6"/>'
+map: '<path d="M9 20l-5.447-2.724A1 1 0 0 1 3 16.382V5.618a1 1 0 0 1 1.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0 0 21 18.382V7.618a1 1 0 0 0-.553-.894L15 4m0 13V4m0 0L9 7"/>',
+order: '<path d="M3 15.5c0-1.4 1.1-2.5 2.5-2.5h13c1.4 0 2.5 1.1 2.5 2.5S19.9 18 18.5 18h-13C4.1 18 3 16.9 3 15.5z"/><path d="M4.5 13c.6-2.6 3.6-4.5 7.5-4.5s6.9 1.9 7.5 4.5"/><path d="M9 8.9V13M15 8.9V13"/>',
+globe: '<circle cx="12" cy="12" r="9"/><path d="M3.6 9h16.8M3.6 15h16.8M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/>',
+code: '<path d="m8 6-6 6 6 6M16 6l6 6-6 6"/>'
 };
 
 const SOLUTIONS = [
-  {
+  
+ {
+    id: 'toki-eats',
+    group: 'products',
+    icon: 'order',
+    action: 'contact',
+    fr: {
+      name: 'Wasabi',
+      tagline: 'Reprenez le contrôle de vos commandes',
+      body: "Chaque mois, les commissions des plateformes tierces amputent votre marge sur des clients qui sont déjà les vôtres.<br><br>Avec Wasabi, nous mettons à votre disposition notre plateforme ou adaptons votre propre site web, pour convertir vos clients réguliers vers votre canal direct — et réduire durablement votre dépendance aux acteurs dominants du marché.",
+      tags: ['Sans commission', 'Vos données', 'Écran cuisine'],
+      cta: 'Demander une démonstration'
+    },
+    en: {
+      name: 'Wasabi',
+      tagline: 'Take back control of your orders',
+      body: 'Every month, third-party commissions eat into your margin on customers who are already yours.<br><br>With Wasabi, we provide our platform or your own ordering website, to move your regular customers onto your direct channel — and durably reduce your dependence on the dominant players in the market.',
+      tags: ['No commission', 'Your data', 'Kitchen display'],
+      cta: 'Request a demo'
+    }
+  },
+
+   {
     id: 'smart-in',
     group: 'products',
     icon: 'map',
@@ -48,35 +70,17 @@ const SOLUTIONS = [
       cta: 'Discover Smart-In'
     }
   },
-  {
-    id: 'toki-eats',
-    group: 'products',
-    icon: 'order',
-    action: 'contact',
-    fr: {
-      name: 'Toki Eats',
-      tagline: 'Commande en ligne',
-      body: "La commande en ligne sous votre propre marque, sans commission par transaction.<br><br>Menu public, panier client, suivi de commande et écran cuisine en temps réel. Chaque établissement dispose de son espace isolé et de ses propres données.",
-      tags: ['Restauration', 'Marque blanche', 'Temps réel'],
-      cta: 'Demander une démonstration'
-    },
-    en: {
-      name: 'Toki Eats',
-      tagline: 'Online ordering',
-      body: 'Online ordering under your own brand, with no per-transaction commission.<br><br>Public menu, customer cart, order tracking and a real-time kitchen display. Each venue gets its own isolated space and its own data.',
-      tags: ['Hospitality', 'White label', 'Real time'],
-      cta: 'Request a demo'
-    }
-  },
+
+   
   {
     id: 'presence',
     group: 'services',
     icon: 'globe',
     action: 'contact',
     fr: {
-      name: 'Présence locale',
-      tagline: 'Web, Google, avis',
-      body: "L'infrastructure visible d'une entreprise établie : site vitrine, fiche Google optimisée, collecte structurée des avis clients.<br><br>Mise en place complète, puis autonomie totale du client sur ses propres outils.",
+      name: 'Business Essentials',
+      tagline: 'Branding en ligne',
+      body: "Les essentiels d'une bonne présentation enn ligne : site web, branding, systeme de collecte d'avis.",
       tags: ['Site web', 'Google Business', 'Avis clients'],
       cta: 'Nous contacter'
     },
