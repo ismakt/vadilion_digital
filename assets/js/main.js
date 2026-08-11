@@ -346,4 +346,3 @@ document.getElementById('en-btn')?.addEventListener('click', () => setLanguage('
    ============================================================ */
 initContactForm();
 renderSolutions();
-openPanel('about');
