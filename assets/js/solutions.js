@@ -32,7 +32,7 @@ const SOLUTIONS = [
   id: 'toki-eats',
   group: 'products',
   icon: 'order',
-  action: 'contact',
+  url: 'https://platform-for-restaurants-omega.vercel.app',
   fr: {
     name: 'Wasabi',
     tagline: 'Reprenez le contrôle de vos commandes',
