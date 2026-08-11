@@ -38,14 +38,14 @@ const SOLUTIONS = [
     tagline: 'Reprenez le contrôle de vos commandes',
     body: "Chaque mois, les commissions des plateformes amputent votre marge sur des clients qui sont déjà les vôtres.<br><br>Wasabi vous rend votre canal direct : notre plateforme ou votre propre site adapté par nos soins, à travers lesquels vos clients pourront commander directement. Vous récupérez ainsi la commission que vous perdez actuellement sur ces commandes, grâce à vos clients déjà acquis.",
     tags: ['Indépendance', 'Manque à gagner', 'Conversion clients'],
-    cta: 'Demander une démonstration'
+    cta: 'Explorer'
   },
   en: {
     name: 'Wasabi',
     tagline: 'Take back control of your orders',
     body: 'Every month, platform commissions eat into your margin on customers who are already yours.<br><br>Wasabi gives you back your direct channel: our platform or your own website, adapted by us, through which your customers can order directly. You recover the commission you are currently losing on those orders, from customers you already acquired.',
     tags: ['Independence', 'Lost margin', 'Customer conversion'],
-    cta: 'Request a demo'
+    cta: 'Explore'
   }
 },
   {
@@ -58,14 +58,14 @@ const SOLUTIONS = [
       tagline: 'Intelligence territoriale',
       body: "Une lecture indépendante du marché en 5 minutes.<br><br>Prix, tendances, projets à venir et leur impact : tout ce qui décide de la valeur d'un quartier, dans une seule interface.",
       tags: ['Carte interactive', 'Agent IA integré', 'Immobilier'],
-      cta: 'Explorer la carte'
+      cta: 'Explorer'
     },
     en: {
       name: 'Smart-In',
       tagline: 'Location intelligence',
       body: 'An independent read of the market in 5 minutes.<br><br>Prices, trends, upcoming projects and their impact: everything that drives a neighbourhood\'s value, in a single interface.',
       tags: ['Interactive map', 'Integrated AI agent', 'Real estate'],
-      cta: 'Explore the map'
+      cta: 'Explore'
     }
   },
   {
