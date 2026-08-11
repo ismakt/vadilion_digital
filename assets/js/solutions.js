@@ -28,29 +28,27 @@ code: '<path d="m8 6-6 6 6 6M16 6l6 6-6 6"/>'
 };
 
 const SOLUTIONS = [
-  
- {
-    id: 'toki-eats',
-    group: 'products',
-    icon: 'order',
-    action: 'contact',
-    fr: {
-      name: 'Wasabi',
-      tagline: 'Reprenez le contrôle de vos commandes',
-      body: "Chaque mois, les commissions des plateformes tierces amputent votre marge sur des clients qui sont déjà les vôtres.<br><br>Avec Wasabi, nous mettons à votre disposition notre plateforme ou adaptons votre propre site web, pour convertir vos clients réguliers vers votre canal direct — et réduire durablement votre dépendance aux acteurs dominants du marché.",
-      tags: ['Sans commission', 'Vos données', 'Écran cuisine'],
-      cta: 'Demander une démonstration'
-    },
-    en: {
-      name: 'Wasabi',
-      tagline: 'Take back control of your orders',
-      body: 'Every month, third-party commissions eat into your margin on customers who are already yours.<br><br>With Wasabi, we provide our platform or your own ordering website, to move your regular customers onto your direct channel — and durably reduce your dependence on the dominant players in the market.',
-      tags: ['No commission', 'Your data', 'Kitchen display'],
-      cta: 'Request a demo'
-    }
+{
+  id: 'toki-eats',
+  group: 'products',
+  icon: 'order',
+  action: 'contact',
+  fr: {
+    name: 'Wasabi',
+    tagline: 'Reprenez le contrôle de vos commandes',
+    body: "Chaque mois, les commissions des plateformes amputent votre marge sur des clients qui sont déjà les vôtres.<br><br>Wasabi vous rend votre canal direct : notre plateforme ou votre propre site adapté par nos soins, à travers lesquels vos clients pourront commander directement. Vous récupérez ainsi la commission que vous perdez actuellement sur ces commandes, grâce à vos clients déjà acquis.",
+    tags: ['Indépendance', 'Manque à gagner', 'Conversion clients'],
+    cta: 'Demander une démonstration'
   },
-
-   {
+  en: {
+    name: 'Wasabi',
+    tagline: 'Take back control of your orders',
+    body: 'Every month, platform commissions eat into your margin on customers who are already yours.<br><br>Wasabi gives you back your direct channel: our platform or your own website, adapted by us, through which your customers can order directly. You recover the commission you are currently losing on those orders, from customers you already acquired.',
+    tags: ['Independence', 'Lost margin', 'Customer conversion'],
+    cta: 'Request a demo'
+  }
+},
+  {
     id: 'smart-in',
     group: 'products',
     icon: 'map',
@@ -58,20 +56,18 @@ const SOLUTIONS = [
     fr: {
       name: 'Smart-In',
       tagline: 'Intelligence territoriale',
-      body: "Une vision indépendante du marché, libre de toute spéculation.<br><br>Explorez l'essentiel des données — prix, tendances, projets à venir et leur impact — grâce à une carte intuitive ou à notre agent IA intégré. Le tout en 5 minutes, sous forme de rapport sur mesure, adapté à votre situation et à votre projet.",
-      tags: ['Cartographie', 'Rapports IA', 'Immobilier'],
-      cta: 'Découvrir Smart-In'
+      body: "Une lecture indépendante du marché en 5 minutes.<br><br>Prix, tendances, projets à venir et leur impact : tout ce qui décide de la valeur d'un quartier, dans une seule interface.",
+      tags: ['Carte interactive', 'Agent IA integré', 'Immobilier'],
+      cta: 'Explorer la carte'
     },
     en: {
       name: 'Smart-In',
       tagline: 'Location intelligence',
-      body: 'An independent view of the market, free from speculation.<br><br>Explore the essential data — prices, trends, upcoming projects and their impact — through an intuitive map or our integrated AI agent. All in 5 minutes, delivered as a tailored report adapted to your situation and project.',
-      tags: ['Mapping', 'AI reports', 'Real estate'],
-      cta: 'Discover Smart-In'
+      body: 'An independent read of the market in 5 minutes.<br><br>Prices, trends, upcoming projects and their impact: everything that drives a neighbourhood\'s value, in a single interface.',
+      tags: ['Interactive map', 'Integrated AI agent', 'Real estate'],
+      cta: 'Explore the map'
     }
   },
-
-   
   {
     id: 'presence',
     group: 'services',
@@ -79,16 +75,16 @@ const SOLUTIONS = [
     action: 'contact',
     fr: {
       name: 'Business Essentials',
-      tagline: 'Branding en ligne',
-      body: "Les essentiels d'une bonne présentation enn ligne : site web, branding, systeme de collecte d'avis.",
-      tags: ['Site web', 'Google Business', 'Avis clients'],
+      tagline: 'Votre image en ligne',
+      body: "L'image cohérente d'une entreprise qui inspire confiance : site web, logo, réseaux sociaux, collecte d'avis, cartes de visite et plus.",
+      tags: ['Identité visuelle', 'Site web', 'Avis clients'],
       cta: 'Nous contacter'
     },
     en: {
-      name: 'Local presence',
-      tagline: 'Web, Google, reviews',
-      body: 'The visible infrastructure of an established business: showcase website, optimised Google listing, structured customer review collection.<br><br>Full setup, then complete client autonomy over their own tools.',
-      tags: ['Website', 'Google Business', 'Reviews'],
+      name: 'Business Essentials',
+      tagline: 'Your online image',
+      body: 'The coherent image of a business that inspires trust: website, logo, social profiles, review collection, business cards and more.',
+      tags: ['Visual identity', 'Website', 'Reviews'],
       cta: 'Get in touch'
     }
   },
@@ -100,16 +96,16 @@ const SOLUTIONS = [
     fr: {
       name: 'Sur mesure',
       tagline: 'Développement dédié',
-      body: "Lorsque aucun outil du marché ne répond au besoin, nous concevons la solution.<br><br>Automatisation de processus, traitement de données, interfaces métier et intégrations entre vos systèmes existants.",
+      body: "Décrivez le problème, nous concevons la solution.<br><br>Site web, application, automatisation, traitement de données, interfaces métier et plus.",
       tags: ['Automatisation', 'Données', 'Intégrations'],
       cta: 'Décrire votre besoin'
     },
     en: {
       name: 'Bespoke',
       tagline: 'Dedicated development',
-      body: 'When no off-the-shelf tool fits the need, we design the solution.<br><br>Process automation, data processing, business interfaces and integrations across your existing systems.',
+      body: 'Describe the problem, we design the solution.<br><br>Website, app, automation, data processing, business interfaces and more.',
       tags: ['Automation', 'Data', 'Integrations'],
-      cta: 'Describe your need'
+      cta: 'Describe the problem'
     }
   }
 ];
