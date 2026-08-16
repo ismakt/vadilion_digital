@@ -41,8 +41,8 @@ const SOLUTIONS = [
     action: 'simulator',
     fr: {
       name: 'Wasabi',
-      tagline: 'Manque à gagner. Clients réguliers. HoReCa',
-      body: "Les plateformes tierces sont utiles pour attirer de nouveaux clients. Mais lorsqu'ils deviennent réguliers, continuer à payer des commissions sur chaque commande et chaque réservation réduit inutilement votre marge.<br><br>Wasabi vous aide à les convertir vers vos propres canaux — site web ou application — avec une expérience d'utilisation au niveau des grandes plateformes et des rappels réguliers pour favoriser la commande directe.<br><br>À la clé : plusieurs centaines, voire milliers d'euros économisés chaque mois.",
+      tagline: 'Gagnez votre indépendance',
+      body: "Les plateformes tierces sont utiles pour attirer de nouveaux clients. Mais lorsqu'ils deviennent réguliers, continuer à payer des commissions sur chaque commande et chaque réservation réduit inutilement votre marge.<br>Wasabi vous aide à les convertir vers vos propres canaux — site web ou application — avec une expérience d'utilisation au top niveau du marché et des rappels réguliers pour favoriser la commande directe.<br>À la clé : plusieurs centaines, voire milliers d'euros économisés chaque mois.",
       tags: ['Marge', 'Clients directs', 'Indépendance'],
       cta: 'Estimer votre manque à gagner'
     },
