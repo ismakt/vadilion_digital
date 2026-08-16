@@ -309,7 +309,7 @@ main {
 }
 
 /* ============================
-   BOUTON CTA
+   BOUTONS CTA
    ============================ */
 .btn-discover {
   display: inline-flex;
@@ -340,6 +340,31 @@ main {
 
 .btn-discover svg { opacity: 0.7; transition: transform 0.2s, opacity 0.2s; }
 .btn-discover:hover svg { transform: translateX(3px); opacity: 1; }
+
+/* — Deux CTA côte à côte : conteneur — */
+.sol-ctas {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+/* La marge verticale vit sur le conteneur, plus sur les boutons */
+.sol-ctas .btn-discover { margin-top: 0; }
+
+/* — CTA secondaire : neutre, il ne concurrence pas l'or du principal — */
+.btn-discover--secondary {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: var(--border-light);
+  color: var(--muted-light);
+  font-weight: 500;
+}
+
+.btn-discover--secondary:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: var(--text);
+}
 
 /* ============================
    FOOTER
@@ -609,7 +634,10 @@ footer {
   .sol-detail-title { font-size: 17px; margin-bottom: 10px; }
   .sol-detail-body  { font-size: 14px; }
 
+  /* Les boutons reprennent leur largeur naturelle et passent en ligne */
   .btn-discover { width: auto; min-width: 220px; }
+  .sol-ctas { flex-direction: row; flex-wrap: wrap; align-items: center; }
+  .sol-ctas .btn-discover--secondary { min-width: 0; }
 }
 
 /* ============================================================
