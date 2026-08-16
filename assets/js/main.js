@@ -56,6 +56,9 @@ function buildDetail(sol) {
   if (sol.url) {
     cta = '<a class="btn-discover" href="' + sol.url + '" target="_blank" rel="noopener noreferrer">'
         + '<span>' + t.cta + '</span>' + ARROW_SVG + '</a>';
+  } else if (sol.action === 'simulator') {
+    cta = '<button type="button" class="btn-discover" data-open-simulator>'
+        + '<span>' + t.cta + '</span>' + ARROW_SVG + '</button>';
   } else if (sol.action === 'contact') {
     cta = '<button type="button" class="btn-discover" data-open-contact>'
         + '<span>' + t.cta + '</span>' + ARROW_SVG + '</button>';
@@ -137,15 +140,34 @@ function selectSolution(id) {
   renderSolutions();
 }
 
+/* Ouverture du simulateur — tolère l'absence du module (404, réseau)
+   en basculant sur la modale contact plutôt que de ne rien faire. */
+function openSimulator(trigger) {
+  if (typeof window.openWasabiSimulator === 'function') {
+    window.openWasabiSimulator(currentLang, trigger);
+  } else {
+    console.warn('[main] wasabi_simulator.js non chargé — bascule sur la modale contact.');
+    openModal('contactModal');
+  }
+}
+
+/* Un seul gestionnaire pour les CTA, réutilisé par les deux conteneurs. */
+function handleSolutionClick(e) {
+  const sim = e.target.closest('[data-open-simulator]');
+  if (sim) { openSimulator(sim); return true; }
+
+  if (e.target.closest('[data-open-contact]')) { openModal('contactModal'); return true; }
+
+  return false;
+}
+
 document.getElementById('sol-nav')?.addEventListener('click', e => {
+  if (handleSolutionClick(e)) return;
   const item = e.target.closest('.sol-item');
-  if (item) { selectSolution(item.dataset.solId); return; }
-  if (e.target.closest('[data-open-contact]')) openModal('contactModal');
+  if (item) selectSolution(item.dataset.solId);
 });
 
-document.getElementById('sol-detail-pane')?.addEventListener('click', e => {
-  if (e.target.closest('[data-open-contact]')) openModal('contactModal');
-});
+document.getElementById('sol-detail-pane')?.addEventListener('click', handleSolutionClick);
 
 /* Au changement de format, on garde une solution ouverte sur desktop */
 function handleBreakpoint() {
@@ -217,6 +239,10 @@ function closeModal(id) {
 
 window.openModal  = openModal;
 window.closeModal = closeModal;
+
+/* Passerelle utilisée par le bouton « Discuter de ces chiffres »
+   du simulateur. Sans elle, ce bouton n'est pas affiché. */
+window.WASABI_SIM_CONTACT = function () { openModal('contactModal'); };
 
 document.querySelectorAll('.modal').forEach(modal => {
   modal.addEventListener('click', e => {
@@ -334,6 +360,10 @@ function setLanguage(lang) {
   document.getElementById('fr-btn')?.classList.toggle('active', lang === 'fr');
   document.getElementById('en-btn')?.classList.toggle('active', lang === 'en');
   document.documentElement.lang = lang;
+
+  /* Le simulateur ouvert suit la langue : on le referme pour éviter
+     une modale figée en FR pendant que le site passe en EN. */
+  if (typeof window.closeWasabiSimulator === 'function') window.closeWasabiSimulator();
 
   renderSolutions();
 }
