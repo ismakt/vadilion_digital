@@ -41,17 +41,17 @@ const SOLUTIONS = [
     action: 'simulator',
     fr: {
       name: 'Wasabi',
-      tagline: 'Gagnez votre indépendance',
+      tagline: 'Reprenez le contrôle de votre marge',
       body: "Les plateformes tierces sont utiles pour attirer de nouveaux clients. Mais lorsqu'ils deviennent réguliers, continuer à payer des commissions sur chaque commande et chaque réservation réduit inutilement votre marge.<br>Wasabi vous aide à les convertir vers vos propres canaux — site web ou application — avec une expérience d'utilisation au top niveau du marché et des rappels réguliers pour favoriser la commande directe.<br>À la clé : plusieurs centaines, voire milliers d'euros économisés chaque mois.",
       tags: ['Marge', 'Clients directs', 'Indépendance'],
       cta: 'Estimer votre manque à gagner'
     },
     en: {
-      name: 'Wasabi',
-      tagline: 'Lost margin. Regular customers. HoReCa',
-      body: "Third-party platforms are useful for attracting new customers. But once those customers become regulars, paying commission on every order and every booking cuts into your margin for nothing.<br><br>Wasabi helps you move them to your own channels — website or app — with a user experience on par with the major platforms, and regular reminders that encourage direct orders and bookings.<br><br>The result: hundreds, sometimes thousands of euros saved every month.",
-      tags: ['Margin', 'Direct customers', 'Independence'],
-      cta: 'Estimate your lost margin'
+  name: 'Wasabi',
+  tagline: 'Take back control of your margin',
+  body: "Third-party platforms are useful for attracting new customers. But once those customers become regulars, continuing to pay commissions on every order and reservation unnecessarily cuts into your margin.<br>Wasabi helps you convert them to your own channels — website or app — with an experience that matches the best platforms, combined with regular reminders to encourage direct orders and bookings.<br>The result: savings of hundreds, or even thousands, of euros every month.",
+  tags: ['Margin', 'Direct Customers', 'Independence'],
+  cta: 'Estimate your lost margin'
     }
   },
 
