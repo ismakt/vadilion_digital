@@ -54,11 +54,11 @@
       conversion: 'Part de ces clients que vous pensez convertir',
       commission: 'Commission que vous payez',
       result: 'Manque à gagner mensuel',
-      annual: 'soit %s sur douze mois',
+      annual: 'soit %s sur 12 mois',
       compute: 'Calculer',
       stale: 'Valeurs modifiées — recalculez',
-      disclaimer: 'Calcul simplifié : chiffre d\'affaires × commission × part convertie. Il ne tient compte ni de la TVA ni des frais de livraison.',
-      contact: 'Discuter de ces chiffres',
+      disclaimer: 'Calcul simplifié.',
+      contact: 'Contact',
       close: 'Fermer'
     },
     en: {
@@ -68,11 +68,11 @@
       conversion: 'Share of those customers you expect to convert',
       commission: 'Commission you pay',
       result: 'Lost margin per month',
-      annual: 'that is %s over twelve months',
+      annual: 'that is %s over 12 months',
       compute: 'Calculate',
       stale: 'Values changed — run the calculation again',
       disclaimer: 'Simplified calculation: revenue × commission × converted share. VAT and delivery fees are not included.',
-      contact: 'Discuss these figures',
+      contact: 'Contact',
       close: 'Close'
     }
   };
