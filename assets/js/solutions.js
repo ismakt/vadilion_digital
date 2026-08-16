@@ -39,19 +39,22 @@ const SOLUTIONS = [
     group: 'products',
     icon: 'order',
     action: 'simulator',
+     action2: 'contact',
     fr: {
       name: 'Wasabi',
       tagline: 'Reprenez le contrôle de votre marge',
       body: "Les plateformes tierces sont utiles pour attirer de nouveaux clients. Mais lorsqu'ils deviennent réguliers, continuer à payer des commissions sur chaque commande et chaque réservation réduit inutilement votre marge.<br>Wasabi vous aide à les convertir vers vos propres canaux — site web ou application — avec une expérience d'utilisation au top niveau du marché et des rappels réguliers pour favoriser la commande directe.<br>À la clé : plusieurs centaines, voire milliers d'euros économisés chaque mois.",
       tags: ['Marge', 'Clients directs', 'Indépendance'],
-      cta: 'Estimer votre manque à gagner'
+      cta: 'Estimer votre manque à gagner',
+             cta2: 'En savoir plus'
     },
     en: {
   name: 'Wasabi',
   tagline: 'Take back control of your margin',
   body: "Third-party platforms are useful for attracting new customers. But once those customers become regulars, continuing to pay commissions on every order and reservation unnecessarily cuts into your margin.<br>Wasabi helps you convert them to your own channels — website or app — with an experience that matches the best platforms, combined with regular reminders to encourage direct orders and bookings.<br>The result: savings of hundreds, or even thousands, of euros every month.",
   tags: ['Margin', 'Direct Customers', 'Independence'],
-  cta: 'Estimate your lost margin'
+  cta: 'Estimate your lost margin',
+             cta2: 'Learn more'
     }
   },
 
