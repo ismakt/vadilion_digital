@@ -42,6 +42,30 @@ function iconSvg(key) {
   return '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + path + '</svg>';
 }
 
+/* Construit un bouton (ou un lien) d'appel à l'action.
+   action  : 'simulator' | 'contact' | undefined (lien externe si url)
+   variant : 'primary' | 'secondary' */
+function buildCta(action, url, label, variant) {
+  if (!label) return '';
+
+  const cls   = 'btn-discover' + (variant === 'secondary' ? ' btn-discover--secondary' : '');
+  const arrow = variant === 'secondary' ? '' : ARROW_SVG;
+
+  if (url) {
+    return '<a class="' + cls + '" href="' + url + '" target="_blank" rel="noopener noreferrer">'
+         + '<span>' + label + '</span>' + arrow + '</a>';
+  }
+  if (action === 'simulator') {
+    return '<button type="button" class="' + cls + '" data-open-simulator>'
+         + '<span>' + label + '</span>' + arrow + '</button>';
+  }
+  if (action === 'contact') {
+    return '<button type="button" class="' + cls + '" data-open-contact>'
+         + '<span>' + label + '</span>' + arrow + '</button>';
+  }
+  return '';
+}
+
 function buildDetail(sol) {
   const t = sol[currentLang];
   const wrap = document.createElement('div');
@@ -52,23 +76,17 @@ function buildDetail(sol) {
     .map(tag => '<span class="sol-tag">' + tag + '</span>')
     .join('');
 
-  let cta = '';
-  if (sol.url) {
-    cta = '<a class="btn-discover" href="' + sol.url + '" target="_blank" rel="noopener noreferrer">'
-        + '<span>' + t.cta + '</span>' + ARROW_SVG + '</a>';
-  } else if (sol.action === 'simulator') {
-    cta = '<button type="button" class="btn-discover" data-open-simulator>'
-        + '<span>' + t.cta + '</span>' + ARROW_SVG + '</button>';
-  } else if (sol.action === 'contact') {
-    cta = '<button type="button" class="btn-discover" data-open-contact>'
-        + '<span>' + t.cta + '</span>' + ARROW_SVG + '</button>';
-  }
+  /* CTA principal, puis CTA secondaire optionnel (sol.action2 + t.cta2). */
+  const ctas = [
+    buildCta(sol.action,  sol.url,  t.cta,  'primary'),
+    buildCta(sol.action2, sol.url2, t.cta2, 'secondary')
+  ].filter(Boolean).join('');
 
   wrap.innerHTML =
       '<div class="sol-detail-title">' + t.name + ' — ' + t.tagline + '</div>'
     + '<div class="sol-detail-body">' + t.body + '</div>'
     + (tags ? '<div class="sol-tags">' + tags + '</div>' : '')
-    + cta;
+    + (ctas ? '<div class="sol-ctas">' + ctas + '</div>' : '');
 
   return wrap;
 }
