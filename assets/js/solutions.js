@@ -11,7 +11,8 @@
      group    : 'products' | 'services'
      icon     : clé d'icône (voir ICONS ci-dessous)
      url      : lien externe          (optionnel, '' = pas de lien)
-     action   : 'contact' pour ouvrir la modale contact (optionnel)
+     action   : 'contact'   → ouvre la modale contact   (optionnel)
+                'simulator' → ouvre le simulateur Wasabi (optionnel)
      badge    : { fr, en } petit label d'état, ex. « Bientôt »
                 (optionnel — ne s'affiche que si main.js le gère)
      fr / en  : { name, tagline, body, tags[], cta }
@@ -37,20 +38,20 @@ const SOLUTIONS = [
     id: 'wasabi',
     group: 'products',
     icon: 'order',
-    action: 'contact',
+    action: 'simulator',
     fr: {
       name: 'Wasabi',
-      tagline: 'HoReCa - Manque à gagner sur vos clients réguliers',
-      body: "Une partie de vos clients réguliers continue de commander via des plateformes tierces. Autant de marge en moins sur des commandes et résérvations que vous auriez pu capter directement.<br><br>Nous accompagnons les établissements HoReCa pour ramener ces clients vers leurs canaux propriétaires : interface et expérience de commande au niveau des grandes plateformes, et incitation à commander en direct.",
-      tags: ['Indépendance', 'Manque à gagner', 'Conversion clients'],
-      cta: 'En savoir plus'
+      tagline: 'Manque à gagner. Clients réguliers. HoReCa',
+      body: "Les plateformes tierces sont utiles pour attirer de nouveaux clients. Mais lorsqu'ils deviennent réguliers, continuer à payer des commissions sur chaque commande et chaque réservation réduit inutilement votre marge.<br><br>Wasabi vous aide à les convertir vers vos propres canaux — site web ou application — avec une expérience d'utilisation au niveau des grandes plateformes et des rappels réguliers pour favoriser la commande directe.<br><br>À la clé : plusieurs centaines, voire milliers d'euros économisés chaque mois.",
+      tags: ['Marge', 'Clients directs', 'Indépendance'],
+      cta: 'Estimer votre manque à gagner'
     },
     en: {
       name: 'Wasabi',
-      tagline: 'HoReCa - Lost revenue on your regular customers',
-      body: "Some of your regular customers still order through third-party platforms. That is margin lost on orders and reservations you could have captured directly.<br><br>We help HoReCa businesses bring those customers back to their own channels: an interface and ordering experience on par with the major platforms, plus the incentives to order direct.",
-      tags: ['Independence', 'Lost revenue', 'Customer conversion'],
-      cta: 'Learn more'
+      tagline: 'Lost margin. Regular customers. HoReCa',
+      body: "Third-party platforms are useful for attracting new customers. But once those customers become regulars, paying commission on every order and every booking cuts into your margin for nothing.<br><br>Wasabi helps you move them to your own channels — website or app — with a user experience on par with the major platforms, and regular reminders that encourage direct orders and bookings.<br><br>The result: hundreds, sometimes thousands of euros saved every month.",
+      tags: ['Margin', 'Direct customers', 'Independence'],
+      cta: 'Estimate your lost margin'
     }
   },
 
@@ -92,7 +93,7 @@ const SOLUTIONS = [
       tagline: 'Dedicated development',
       body: 'Describe the problem, we design the solution.<br><br>Online presence (website, app, visual identity), automation of repetitive tasks, data analysis and reporting.',
       tags: ['Website', 'App', 'Automation', 'Data analysis'],
-      cta: 'Explore'
+      cta: 'Describe your need'
     }
   }
 ];
