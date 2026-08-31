@@ -53,6 +53,7 @@ en: {
   tags: ['Website', 'Application', 'Automation', 'Efficiency', 'Tailored'],
   cta: 'Let’s discuss'
 }
+}
 ];
 
 /* ============================================================
