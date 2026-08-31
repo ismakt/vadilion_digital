@@ -43,7 +43,7 @@ const SOLUTIONS = [
     fr: {
       name: 'Développement dédié',
       tagline: 'Sur mesure',
-      'Décrivez votre problème, nous concevons la solution sur mesure.<br><br>Pour nos clients B2B, nous développons des sites, applications et outils adaptés à leurs besoins spécifiques, conçus pour automatiser, simplifier et structurer leurs opérations internes afin de gagner en efficacité au quotidien.',
+      body: 'Décrivez votre problème, nous concevons la solution sur mesure.<br><br>Pour nos clients B2B, nous développons des sites, applications et outils adaptés à leurs besoins spécifiques, conçus pour automatiser, simplifier et structurer leurs opérations internes afin de gagner en efficacité au quotidien.',
       tags: ['Site web', 'Application', 'Automatisation', 'Efficacité'],
       cta: 'En discuter'
     },
