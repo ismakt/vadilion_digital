@@ -22,9 +22,7 @@
 
 /* Ordre d'affichage des groupes = ordre des clés ci-dessous. */
 const SOLUTION_GROUPS = {
-  services: { fr: 'Services', en: 'Services' },
-  products: { fr: 'Réalisations', en: 'Portfolio' }
-  
+  services: { fr: 'Services', en: 'Services' }  
 };
 
 const ICONS = {
@@ -41,66 +39,20 @@ const SOLUTIONS = [
     icon: 'code',
     action: 'contact',
     fr: {
-      name: 'Développement dédié',
-      tagline: 'Sur mesure',
-      body: 'Décrivez votre problème, nous concevons la solution sur mesure.<br><br>Pour nos clients B2B, nous développons des sites, applications et outils adaptés à leurs besoins spécifiques, conçus pour automatiser, simplifier et structurer leurs opérations internes afin de gagner en efficacité au quotidien.',
-      tags: ['Site web', 'Application', 'Automatisation', 'Efficacité'],
+      name: 'Développement sur mesure',
+      tagline: 'Solutions sur mesure',
+      body: 'Nous développons des solutions sur mesure répondant à des besoins concrets de nos clients professionnels.<br><br>Sites web, applications et autres outils, conçus pour automatiser, simplifier et structurer le travail afin de gagner en efficacité au quotidien.',
+      tags: ['Site web', 'Application', 'Automatisation', 'Efficacité','Sur mesure'],
       cta: 'En discuter'
     },
-    en: {
-      name: 'Bespoke',
-      tagline: 'Dedicated development',
-      body: 'Describe the problem, we design the solution.<br><br>Online presence (website, app, visual identity), automation of repetitive tasks, data analysis and reporting.',
-      tags: ['Website', 'App', 'Automation', 'Data analysis'],
-      cta: 'Describe your need'
-    },
-      },
-       
-   {
-    id: 'wasabi',
-    group: 'products',
-    icon: 'order',
-    action: 'simulator',
-     action2: 'contact',
-    fr: {
-      name: 'Wasabi',
-      tagline: 'Controlez votre marge',
-      body: "Les plateformes tierces sont utiles pour attirer de nouveaux clients. Mais lorsqu'ils deviennent réguliers, continuer à payer des commissions sur chaque commande et chaque réservation réduit inutilement votre marge.<br>Wasabi vous aide à les convertir vers vos propres canaux — site web ou application — avec une expérience d'utilisation au top niveau du marché et des rappels réguliers pour favoriser la commande directe.<br>À la clé : plusieurs centaines, voire milliers d'euros économisés chaque mois.",
-      tags: ['Marge', 'Clients directs', 'Indépendance'],
-      cta: 'Estimer votre manque à gagner',
-             cta2: 'En savoir plus'
-    },
-    en: {
-  name: 'Wasabi',
-  tagline: 'Take back control of your margin',
-  body: "Third-party platforms are useful for attracting new customers. But once those customers become regulars, continuing to pay commissions on every order and reservation unnecessarily cuts into your margin.<br>Wasabi helps you convert them to your own channels — website or app — with an experience that matches the best platforms, combined with regular reminders to encourage direct orders and bookings.<br>The result: savings of hundreds, or even thousands, of euros every month.",
-  tags: ['Margin', 'Direct Customers', 'Independence'],
-  cta: 'Estimate your lost margin',
-             cta2: 'Learn more'
-    }
-  },
-
-  {
-    id: 'smart-in',
-    group: 'products',
-    icon: 'map',
-    url: 'https://smartinapp.eu',
-    fr: {
-      name: 'Smart-In',
-      tagline: 'Intelligence territoriale',
-      body: "Une lecture indépendante du marché en 5 minutes.<br><br>Prix, tendances, projets à venir et leur impact : tout ce qui décide de la valeur d'un quartier, dans une seule interface.",
-      tags: ['Carte interactive', 'Agent IA intégré', 'Immobilier'],
-      cta: 'Explorer'
-    },
-    en: {
-      name: 'Smart-In',
-      tagline: 'Location intelligence',
-      body: "An independent read of the market in 5 minutes.<br><br>Prices, trends, upcoming projects and their impact: everything that drives a neighbourhood's value, in a single interface.",
-      tags: ['Interactive map', 'Integrated AI agent', 'Real estate'],
-      cta: 'Explore'
-    }
-  },
-  
+      
+en: {
+  name: 'Tailored Development',
+  tagline: 'Tailored Solutions',
+  body: 'We develop tailored solutions that address concrete needs for professional clients.<br><br>Websites, applications and other digital tools, designed to automate, simplify and structure your workflows, helping you work more efficiently every day.',
+  tags: ['Website', 'Application', 'Automation', 'Efficiency', 'Tailored'],
+  cta: 'Let’s discuss'
+}
 ];
 
 /* ============================================================
