@@ -22,8 +22,9 @@
 
 /* Ordre d'affichage des groupes = ordre des clés ci-dessous. */
 const SOLUTION_GROUPS = {
-  products: { fr: 'Produits', en: 'Products' },
-  services: { fr: 'Services', en: 'Services' }
+  services: { fr: 'Services', en: 'Services' },
+  products: { fr: 'Produits', en: 'Products' }
+  
 };
 
 const ICONS = {
@@ -34,7 +35,27 @@ const ICONS = {
 };
 
 const SOLUTIONS = [
-  {
+   {
+    id: 'sur-mesure',
+    group: 'services',
+    icon: 'code',
+    action: 'contact',
+    fr: {
+      name: 'Sur mesure',
+      tagline: 'Développement dédié',
+      body: "Décrivez le problème, nous concevons la solution.<br><br>Présence en ligne (site web, application, identité visuelle), automatisation des tâches répétitives, analyse et exploitation de vos données.",
+      tags: ['Site web', 'Application', 'Automatisation', 'Analyse de données'],
+      cta: 'Décrire votre besoin'
+    },
+    en: {
+      name: 'Bespoke',
+      tagline: 'Dedicated development',
+      body: 'Describe the problem, we design the solution.<br><br>Online presence (website, app, visual identity), automation of repetitive tasks, data analysis and reporting.',
+      tags: ['Website', 'App', 'Automation', 'Data analysis'],
+      cta: 'Describe your need'
+    },
+       
+   {
     id: 'wasabi',
     group: 'products',
     icon: 'order',
@@ -78,26 +99,6 @@ const SOLUTIONS = [
       cta: 'Explore'
     }
   },
-
-  {
-    id: 'sur-mesure',
-    group: 'services',
-    icon: 'code',
-    action: 'contact',
-    fr: {
-      name: 'Sur mesure',
-      tagline: 'Développement dédié',
-      body: "Décrivez le problème, nous concevons la solution.<br><br>Présence en ligne (site web, application, identité visuelle), automatisation des tâches répétitives, analyse et exploitation de vos données.",
-      tags: ['Site web', 'Application', 'Automatisation', 'Analyse de données'],
-      cta: 'Décrire votre besoin'
-    },
-    en: {
-      name: 'Bespoke',
-      tagline: 'Dedicated development',
-      body: 'Describe the problem, we design the solution.<br><br>Online presence (website, app, visual identity), automation of repetitive tasks, data analysis and reporting.',
-      tags: ['Website', 'App', 'Automation', 'Data analysis'],
-      cta: 'Describe your need'
-    }
   }
 ];
 
