@@ -40,14 +40,14 @@ const SOLUTIONS = [
     action: 'contact',
 
     fr: {
-      name: 'Développement sur mesure',
+      name: 'Solutions sur mesure',
       body: 'Nous développons des solutions sur mesure répondant à des besoins concrets de nos clients professionnels.<br><br>Sites web, applications et autres outils, conçus pour automatiser, simplifier et structurer le travail afin de gagner en efficacité au quotidien.',
       tags: ['Site web', 'Application', 'Automatisation', 'Efficacité', 'Sur mesure'],
       cta: 'En discuter'
     },
 
     en: {
-      name: 'Tailored Development',
+      name: 'Tailored Solutions',
       body: 'We develop tailored solutions that address concrete needs for professional clients.<br><br>Websites, applications and other digital tools, designed to automate, simplify and structure your workflows, helping you work more efficiently every day.',
       tags: ['Website', 'Application', 'Automation', 'Efficiency', 'Tailored'],
       cta: 'Let’s discuss'
