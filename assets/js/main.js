@@ -327,15 +327,23 @@ const translations = {
     'menu-solutions':      'SOLUTIONS',
     'offices-link':        'Bureaux',
     'contact-footer-link': 'Contact',
+     
+      /*
     'media-link':          'Media',
+      */
     'offices':             'Bureaux',
     'office1-city':        'Bruxelles',
+     
+     /* 
     'office2-city':        'Paris',
     'office3-city':        'Monaco',
+    */
+     
     'our-media':           'Nos réseaux',
     'contact-text':        'Contactez-nous',
-    'contact-text2':       'Nous écoutons attentivement vos besoins afin de vous proposer une solution précise et adaptée.',
-    'btn-send':            'Envoyer'
+    'contact-text2':       'Comment pouvons nous vous aider ?',
+    'btn-send':            'Envoyer',
+    'office-note':         '*Uniquement sur rendez-vous.'
   },
   en: {
     'about-text':          'We turn high-value data into unique digital solutions that solve real challenges.',
@@ -343,15 +351,25 @@ const translations = {
     'menu-solutions':      'SOLUTIONS',
     'offices-link':        'Offices',
     'contact-footer-link': 'Contact',
+
+      /*
     'media-link':          'Media',
+      */
+    
     'offices':             'Offices',
-    'office1-city':        'Brussels',
+    'office1-city':        'Brussels',     
+     
+     /* 
     'office2-city':        'Paris',
     'office3-city':        'Monaco',
+    */
+     
     'our-media':           'Our media',
     'contact-text':        'Contact us',
-    'contact-text2':       'We listen carefully to your needs in order to offer you a precise and tailored solution.',
-    'btn-send':            'Send'
+    'contact-text2':       'How can we help you ?',
+    'btn-send':            'Send',
+    'office-note':         '*By appointment only.'
+
   }
 };
 
