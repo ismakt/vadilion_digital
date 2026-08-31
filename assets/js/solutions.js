@@ -23,7 +23,7 @@
 /* Ordre d'affichage des groupes = ordre des clés ci-dessous. */
 const SOLUTION_GROUPS = {
   services: { fr: 'Services', en: 'Services' },
-  products: { fr: 'Produits', en: 'Products' }
+  products: { fr: 'Réalisations', en: 'Portfolio' }
   
 };
 
@@ -41,11 +41,11 @@ const SOLUTIONS = [
     icon: 'code',
     action: 'contact',
     fr: {
-      name: 'Sur mesure',
-      tagline: 'Développement dédié',
-      body: "Décrivez le problème, nous concevons la solution.<br><br>Présence en ligne (site web, application, identité visuelle), automatisation des tâches répétitives, analyse et exploitation de vos données.",
-      tags: ['Site web', 'Application', 'Automatisation', 'Analyse de données'],
-      cta: 'Décrire votre besoin'
+      name: 'Développement dédié',
+      tagline: 'Sur mesure',
+      'Décrivez votre problème, nous concevons la solution sur mesure.<br><br>Pour nos clients B2B, nous développons des sites, applications et outils adaptés à leurs besoins spécifiques, conçus pour automatiser, simplifier et structurer leurs opérations internes afin de gagner en efficacité au quotidien.',
+      tags: ['Site web', 'Application', 'Automatisation', 'Efficacité'],
+      cta: 'En discuter'
     },
     en: {
       name: 'Bespoke',
