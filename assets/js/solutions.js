@@ -54,6 +54,7 @@ const SOLUTIONS = [
       tags: ['Website', 'App', 'Automation', 'Data analysis'],
       cta: 'Describe your need'
     },
+      },
        
    {
     id: 'wasabi',
