@@ -501,8 +501,7 @@ h1 {
 @keyframes drawer-in { from { transform: translateX(16px); opacity: 0.6; } to { transform: none; opacity: 1; } }
 
 .drawer-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
-.drawer-top img { width: 116px; height: auto; }
-
+.drawer-top { display: flex; justify-content: flex-end; margin-bottom: 14px; }
 .drawer .nav-link {
   padding: 14px 4px;
   border-bottom: 1px solid var(--border);
