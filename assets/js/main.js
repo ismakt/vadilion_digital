@@ -2,6 +2,15 @@
 
 'use strict';
 
+/* Empêche les navigateurs mobiles de restaurer eux-mêmes la position de
+   scroll d'une visite précédente (retour arrière, onglet remis au premier
+   plan, etc.). Sans ça, le navigateur peut réappliquer sa propre position
+   avant ou après notre reset, ce qui donne l'impression que la page
+   s'ouvre "scrollée". */
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
+
 function resetPageScroll() {
   window.scrollTo(0, 0);
 
@@ -11,7 +20,17 @@ function resetPageScroll() {
   });
 }
 
+/* "load" couvre le premier chargement classique de la page. */
 window.addEventListener('load', resetPageScroll);
+
+/* "pageshow" couvre les cas où le navigateur restaure la page depuis son
+   cache (bfcache) au lieu de la recharger — très courant sur mobile quand
+   on revient sur l'onglet, qu'on navigue en arrière, ou que le navigateur
+   remet l'appli au premier plan. Dans ces cas-là, "load" ne se redéclenche
+   PAS, donc resetPageScroll() ne serait jamais rappelé sans ce listener. */
+window.addEventListener('pageshow', function (e) {
+  if (e.persisted) resetPageScroll();
+});
 
 /* ============================================================
    ÉTAT GLOBAL
