@@ -68,7 +68,7 @@ header {
 }
 
 .brand { display: flex; align-items: center; }
-.brand img { width: 112px; height: auto; display: block; }
+.brand img { height: 32px; width: auto; display: block; }
 
 .nav-d { display: none; gap: 4px; }
 
@@ -161,7 +161,11 @@ main { flex: 1; min-height: 0; display: flex; flex-direction: column; }
   justify-content: center;
   padding: 18px 0;
   text-align: center;
+  overflow-y: auto;
+  scrollbar-width: none;
 }
+
+.view::-webkit-scrollbar { display: none; }
 
 .view.is-on { display: flex; }
 
@@ -229,8 +233,7 @@ h1 {
   background: linear-gradient(150deg, #191410, #0b0b0b 55%, #0d0d0d);
 }
 
-.hero-art svg { position: absolute; inset: 0; width: 100%; height: 100%; }
-
+.hero-art { flex: 0 0 440px; max-width: 440px; max-height: none; }
 /* ============================
    FILTRES & RAILS DE CARTES
    ============================ */
@@ -651,8 +654,8 @@ footer button:hover { color: var(--muted); }
 @media (min-width: 600px) {
   :root { --gutter: 28px; }
 
-  .brand img { width: 128px; }
-  .modal { align-items: center; }
+.brand img { height: 36px; }
+   .modal { align-items: center; }
   .modal-content { padding: 26px; border-radius: 20px; }
   .sheet-wrap { align-items: center; padding: var(--gutter); }
   .sheet { max-width: 520px; border: 1px solid var(--border-2); border-radius: 18px; }
