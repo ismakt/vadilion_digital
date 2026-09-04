@@ -1,8 +1,6 @@
 'use strict';
 
-if ('scrollRestoration' in history) {
-  history.scrollRestoration = 'manual';
-}
+'use strict';
 
 function resetPageScroll() {
   window.scrollTo(0, 0);
@@ -14,7 +12,6 @@ function resetPageScroll() {
 }
 
 window.addEventListener('load', resetPageScroll);
-window.addEventListener('pageshow', resetPageScroll);
 
 /* ============================================================
    ÉTAT GLOBAL
