@@ -4,162 +4,190 @@
    ÉTAT GLOBAL
    ============================================================ */
 let currentLang = 'fr';
-let activeSolutionId = (window.SOLUTIONS && window.SOLUTIONS[0]) ? window.SOLUTIONS[0].id : null;
+let currentView = 'home';
+let currentCat  = 'all';
 
-const mqDesktop = window.matchMedia('(min-width: 900px)');
-const mqHover   = window.matchMedia('(hover: hover) and (pointer: fine)');
+const mqDesktop = window.matchMedia('(min-width: 860px)');
 
-/* ============================================================
-   FOND ANIMÉ — configuration d'origine (v1)
-   ============================================================ */
-VANTA.DOTS({
-  el: '#vanta-bg',
-  mouseControls: true,
-  touchControls: true,
-  gyroControls: false,
-  minHeight: 200,
-  minWidth: 200,
-  scale: 1.0,
-  scaleMobile: 1.0,
-  color: 0xcffb7,
-  color2: 0x5520ff,
-  backgroundColor: 0x0,
-  size: 3,
-  spacing: 24,
-  showLines: false
-});
-
+const $  = function (sel) { return document.querySelector(sel); };
+const $$ = function (sel) { return Array.prototype.slice.call(document.querySelectorAll(sel)); };
 
 /* ============================================================
-   SOLUTIONS — RENDU
+   FRAGMENTS RÉUTILISABLES
    ============================================================ */
-const ARROW_SVG = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>';
-const CHEVRON_SVG = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
+const ICO = {
+  arrow: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h13m-5-6 6 6-6 6"/></svg>',
+  close: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>',
+  cap:   '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 9 12 5 2 9l10 4 10-4z"/><path d="M6 11v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></svg>'
+};
 
-function iconSvg(key) {
-  const path = (window.SOLUTION_ICONS || {})[key];
-  if (!path) return '';
-  return '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + path + '</svg>';
+function art(key) { return window.getArt ? window.getArt(key) : ''; }
+
+/* Carte illustrée — utilisée par les solutions et les réalisations. */
+function cardHtml(o, withBricks) {
+  const t = o[currentLang];
+  return '<article class="card" data-id="' + o.id + '" role="button" tabindex="0">'
+    +   '<div class="thumb">' + art(o.art) + '</div>'
+    +   '<div class="meta"><span class="kind">' + t.kind + '</span>'
+    +     '<span class="sep" aria-hidden="true">·</span><span class="state">' + t.state + '</span></div>'
+    +   '<h3>' + t.name + '</h3>'
+    +   '<p class="line">' + t.line + '</p>'
+    +   (withBricks
+          ? '<ul class="bricks">' + t.items.map(function (i) { return '<li><b>' + i[0] + '</b></li>'; }).join('') + '</ul>'
+          : '')
+    +   '<div class="foot"><span class="proof">' + t.proof + '</span><span>' + L('details') + '</span></div>'
+    + '</article>';
 }
 
-/* Construit un bouton (ou un lien) d'appel à l'action.
-   action  : 'simulator' | 'contact' | undefined (lien externe si url)
-   variant : 'primary' | 'secondary' */
-function buildCta(action, url, label, variant) {
-  if (!label) return '';
-
-  const cls   = 'btn-discover' + (variant === 'secondary' ? ' btn-discover--secondary' : '');
-  const arrow = variant === 'secondary' ? '' : ARROW_SVG;
-
-  if (url) {
-    return '<a class="' + cls + '" href="' + url + '" target="_blank" rel="noopener noreferrer">'
-         + '<span>' + label + '</span>' + arrow + '</a>';
-  }
-  if (action === 'simulator') {
-    return '<button type="button" class="' + cls + '" data-open-simulator>'
-         + '<span>' + label + '</span>' + arrow + '</button>';
-  }
-  if (action === 'contact') {
-    return '<button type="button" class="' + cls + '" data-open-contact>'
-         + '<span>' + label + '</span>' + arrow + '</button>';
-  }
-  return '';
-}
-
-function buildDetail(sol) {
-  const t = sol[currentLang];
-  const wrap = document.createElement('div');
-  wrap.className = 'sol-detail';
-  wrap.id = 'sol-detail-' + sol.id;
-
-  const tags = (t.tags || [])
-    .map(tag => '<span class="sol-tag">' + tag + '</span>')
-    .join('');
-
-  /* CTA principal, puis CTA secondaire optionnel (sol.action2 + t.cta2). */
-  const ctas = [
-    buildCta(sol.action,  sol.url,  t.cta,  'primary'),
-    buildCta(sol.action2, sol.url2, t.cta2, 'secondary')
-  ].filter(Boolean).join('');
-
-  wrap.innerHTML =
-      '<div class="sol-detail-title">' + t.name + ' — ' + t.tagline + '</div>'
-    + '<div class="sol-detail-body">' + t.body + '</div>'
-    + (tags ? '<div class="sol-tags">' + tags + '</div>' : '')
-    + (ctas ? '<div class="sol-ctas">' + ctas + '</div>' : '');
-
-  return wrap;
-}
-
-function buildItem(sol) {
-  const t = sol[currentLang];
-  const btn = document.createElement('button');
-  btn.type = 'button';
-  btn.className = 'sol-item';
-  btn.dataset.solId = sol.id;
-  btn.setAttribute('aria-controls', 'sol-detail-' + sol.id);
-
-  btn.innerHTML =
-      '<span class="sol-item-icon">' + iconSvg(sol.icon) + '</span>'
-    + '<span class="sol-item-text">'
-    +   '<span class="sol-item-name">' + t.name + '</span>'
-    +   '<span class="sol-item-tagline">' + t.tagline + '</span>'
-    + '</span>'
-    + '<span class="sol-item-chevron">' + CHEVRON_SVG + '</span>';
-
-  return btn;
+/* ============================================================
+   RENDU DES SECTIONS
+   ============================================================ */
+function renderHeroArt() {
+  const el = $('#hero-art');
+  if (el) el.innerHTML = art('hero');
 }
 
 function renderSolutions() {
-  const nav  = document.getElementById('sol-nav');
-  const pane = document.getElementById('sol-detail-pane');
-  const list = window.SOLUTIONS || [];
-  if (!nav || !pane || !list.length) return;
-
-  nav.innerHTML  = '';
-  pane.innerHTML = '';
-
-  const isDesktop = mqDesktop.matches;
-  const groups    = window.SOLUTION_GROUPS || {};
-  let lastGroup   = null;
-
-  list.forEach(sol => {
-    if (sol.group && sol.group !== lastGroup && groups[sol.group]) {
-      const label = document.createElement('div');
-      label.className = 'sol-group-label';
-      label.textContent = groups[sol.group][currentLang];
-      nav.appendChild(label);
-      lastGroup = sol.group;
-    }
-
-    const item     = buildItem(sol);
-    const isActive = sol.id === activeSolutionId;
-
-    item.classList.toggle('is-active', isActive);
-    item.setAttribute('aria-expanded', isDesktop ? 'false' : String(isActive));
-    if (isDesktop && isActive) item.setAttribute('aria-current', 'true');
-
-    nav.appendChild(item);
-
-    if (isDesktop) {
-      if (isActive) pane.appendChild(buildDetail(sol));
-    } else {
-      const detail = buildDetail(sol);
-      detail.classList.toggle('is-open', isActive);
-      nav.appendChild(detail);
-    }
-  });
+  const rail = $('#sol-rail');
+  if (!rail || !window.SOLUTIONS) return;
+  rail.innerHTML = window.SOLUTIONS.map(function (s) { return cardHtml(s, true); }).join('');
 }
 
-function selectSolution(id) {
-  const isDesktop = mqDesktop.matches;
-  /* Sur mobile, retoucher la ligne active la referme. */
-  activeSolutionId = (!isDesktop && id === activeSolutionId) ? null : id;
+function renderFilters() {
+  const wrap = $('#work-filters');
+  if (!wrap || !window.WORK_FILTERS) return;
+  wrap.innerHTML = window.WORK_FILTERS.map(function (f) {
+    return '<button type="button" class="chip' + (f.id === currentCat ? ' is-on' : '') + '" data-cat="' + f.id + '">'
+         + f[currentLang] + '</button>';
+  }).join('');
+}
+
+function renderWorks() {
+  const rail = $('#work-rail');
+  if (!rail || !window.WORKS) return;
+  rail.innerHTML = window.WORKS
+    .filter(function (w) { return currentCat === 'all' || w.cat === currentCat; })
+    .map(function (w) { return cardHtml(w, false); })
+    .join('');
+  rail.scrollLeft = 0;
+}
+
+function renderCredentials() {
+  const wrap = $('#creds');
+  if (!wrap || !window.CREDENTIALS) return;
+  wrap.innerHTML = window.CREDENTIALS.map(function (c) {
+    const t = c[currentLang];
+    return '<div class="cred"><span class="cred-ic">' + ICO.cap + '</span>'
+         + '<div><b>' + t[0] + '</b><span>' + t[1] + '</span></div>'
+         + '<span class="yr">' + c.year + '</span></div>';
+  }).join('');
+}
+
+function renderAll() {
+  renderHeroArt();
   renderSolutions();
+  renderFilters();
+  renderWorks();
+  renderCredentials();
 }
 
-/* Ouverture du simulateur — tolère l'absence du module (404, réseau)
-   en basculant sur la modale contact plutôt que de ne rien faire. */
+/* ============================================================
+   FICHE (bottom sheet)
+   ============================================================ */
+function findItem(id) {
+  const all = (window.SOLUTIONS || []).concat(window.WORKS || []);
+  return all.find(function (x) { return x.id === id; }) || null;
+}
+
+function buildCta(action, url, label, variant) {
+  if (!label) return '';
+  const cls = variant === 'secondary' ? 'btn-ghost' : 'btn-solid';
+  if (url) {
+    return '<a class="' + cls + '" href="' + url + '" target="_blank" rel="noopener noreferrer">' + label + '</a>';
+  }
+  const attr = action === 'simulator' ? 'data-open-simulator' : 'data-open-contact';
+  return '<button type="button" class="' + cls + '" ' + attr + '>' + label + ICO.arrow + '</button>';
+}
+
+function openSheet(id) {
+  const o = findItem(id);
+  if (!o) return;
+  const t = o[currentLang];
+
+  const ctas = [
+    buildCta(o.action,  null, t.cta,  'primary'),
+    buildCta(o.action2, null, t.cta2, 'secondary'),
+    o.url ? '<a class="btn-ghost" href="' + o.url + '" target="_blank" rel="noopener noreferrer">' + t.urlLabel + '</a>' : ''
+  ].filter(Boolean).join('');
+
+  $('#sheetBody').innerHTML =
+      '<div class="sheet-head">'
+    +   '<div><h3>' + t.name + '</h3><div class="status">' + t.kind + ' · ' + t.state + '</div></div>'
+    +   '<button type="button" class="icon-btn" data-close-sheet aria-label="' + L('close') + '">' + ICO.close + '</button>'
+    + '</div>'
+    + '<div class="thumb">' + art(o.art) + '</div>'
+    + (t.text  ? '<p class="sheet-text">' + t.text + '</p>' : '')
+    + (t.items ? '<ul class="items">' + t.items.map(function (i) { return '<li><b>' + i[0] + '</b>' + i[1] + '</li>'; }).join('') + '</ul>' : '')
+    + (t.note  ? '<div class="note">' + t.note + '</div>' : '')
+    + (t.tags  ? '<div class="tags">' + t.tags.map(function (x) { return '<span class="tag">' + x + '</span>'; }).join('') + '</div>' : '')
+    + (t.proof && !t.items ? '<div class="note"><b>' + L('brick') + '</b> — ' + t.proof + '</div>' : '')
+    + (ctas ? '<div class="sheet-ctas">' + ctas + '</div>' : '');
+
+  $('#sheetWrap').classList.add('is-open');
+  $('#sheetWrap').setAttribute('aria-hidden', 'false');
+}
+
+function closeSheet() {
+  $('#sheetWrap').classList.remove('is-open');
+  $('#sheetWrap').setAttribute('aria-hidden', 'true');
+}
+
+/* ============================================================
+   VUES / TIROIR / MODALES
+   ============================================================ */
+function showView(view) {
+  if (!$('#v-' + view)) return;
+  currentView = view;
+  $$('.view').forEach(function (v) { v.classList.toggle('is-on', v.id === 'v-' + view); });
+  $$('.nav-d button').forEach(function (b) { b.classList.toggle('is-on', b.dataset.view === view); });
+  $$('.drawer .nav-link').forEach(function (b) { b.classList.toggle('is-on', b.dataset.view === view); });
+  closeDrawer();
+}
+
+function openDrawer() {
+  $('#drawerWrap').classList.add('is-open');
+  $('#drawerWrap').setAttribute('aria-hidden', 'false');
+  $('#burger').setAttribute('aria-expanded', 'true');
+}
+
+function closeDrawer() {
+  $('#drawerWrap').classList.remove('is-open');
+  $('#drawerWrap').setAttribute('aria-hidden', 'true');
+  $('#burger').setAttribute('aria-expanded', 'false');
+}
+
+function openModal(id) {
+  const modal = document.getElementById(id);
+  if (!modal) return;
+  closeSheet();
+  closeDrawer();
+  modal.classList.add('is-open');
+  const main = $('#main-content');
+  if (main) main.classList.add('blur-background');
+}
+
+function closeModal(id) {
+  const modal = document.getElementById(id);
+  if (!modal) return;
+  modal.classList.remove('is-open');
+  const main = $('#main-content');
+  if (main) main.classList.remove('blur-background');
+}
+
+window.openModal  = openModal;
+window.closeModal = closeModal;
+window.WASABI_SIM_CONTACT = function () { openModal('contactModal'); };
+
 function openSimulator(trigger) {
   if (typeof window.openWasabiSimulator === 'function') {
     window.openWasabiSimulator(currentLang, trigger);
@@ -169,213 +197,199 @@ function openSimulator(trigger) {
   }
 }
 
-/* Un seul gestionnaire pour les CTA, réutilisé par les deux conteneurs. */
-function handleSolutionClick(e) {
-  const sim = e.target.closest('[data-open-simulator]');
-  if (sim) { openSimulator(sim); return true; }
-
-  if (e.target.closest('[data-open-contact]')) { openModal('contactModal'); return true; }
-
-  return false;
-}
-
-document.getElementById('sol-nav')?.addEventListener('click', e => {
-  if (handleSolutionClick(e)) return;
-  const item = e.target.closest('.sol-item');
-  if (item) selectSolution(item.dataset.solId);
-});
-
-document.getElementById('sol-detail-pane')?.addEventListener('click', handleSolutionClick);
-
-/* Au changement de format, on garde une solution ouverte sur desktop */
-function handleBreakpoint() {
-  if (mqDesktop.matches && !activeSolutionId && window.SOLUTIONS?.length) {
-    activeSolutionId = window.SOLUTIONS[0].id;
-  }
-  renderSolutions();
-}
-mqDesktop.addEventListener('change', handleBreakpoint);
-
 /* ============================================================
-   MENU / PANNEAUX
+   ÉVÉNEMENTS
    ============================================================ */
-const menuButtons = document.querySelectorAll('.menu button');
-const panels      = document.querySelectorAll('.panel');
+document.addEventListener('click', function (e) {
+  const t = e.target;
 
-function openPanel(panelId) {
-  panels.forEach(p => p.classList.toggle('is-open', p.id === panelId));
-  menuButtons.forEach(b => {
-    const isTarget = b.id === 'menu-' + panelId;
-    b.classList.toggle('active-menu', isTarget);
-    b.setAttribute('aria-expanded', String(isTarget));
-  });
-}
+  /* Liens externes : on laisse faire */
+  if (t.closest('a[href^="http"]')) return;
 
-function closePanels() {
-  panels.forEach(p => p.classList.remove('is-open'));
-  menuButtons.forEach(b => {
-    b.classList.remove('active-menu');
-    b.setAttribute('aria-expanded', 'false');
-  });
-}
+  /* Fermetures */
+  if (t.closest('[data-close-sheet]') || t.id === 'sheetWrap') { closeSheet(); return; }
+  if (t.id === 'drawerWrap' || t.closest('#drawer-close'))     { closeDrawer(); return; }
 
-menuButtons.forEach(btn => {
-  const panelId = btn.id.replace('menu-', '');
-  const panel   = document.getElementById(panelId);
-  if (!panel) return;
+  const closeBtn = t.closest('[data-close-modal]');
+  if (closeBtn) { closeModal(closeBtn.dataset.closeModal); return; }
+  if (t.classList && t.classList.contains('modal')) { closeModal(t.id); return; }
 
-  /* Le survol n'ouvre les panneaux que sur un vrai pointeur */
-  if (mqHover.matches) {
-    btn.addEventListener('mouseenter', () => openPanel(panelId));
+  /* Ouvertures */
+  if (t.closest('#burger')) { openDrawer(); return; }
+
+  const openBtn = t.closest('[data-open-modal]');
+  if (openBtn) { openModal(openBtn.dataset.openModal); return; }
+
+  if (t.closest('[data-open-contact]'))   { openModal('contactModal'); return; }
+  if (t.closest('[data-open-simulator]')) { openSimulator(t); return; }
+
+  /* Filtres */
+  const chip = t.closest('.chip');
+  if (chip) {
+    currentCat = chip.dataset.cat;
+    $$('.chip').forEach(function (c) { c.classList.toggle('is-on', c === chip); });
+    renderWorks();
+    return;
   }
 
-  btn.addEventListener('click', e => {
-    e.preventDefault();
-    if (panel.classList.contains('is-open')) closePanels();
-    else openPanel(panelId);
-  });
+  /* Navigation */
+  const navBtn = t.closest('[data-view]');
+  if (navBtn) { showView(navBtn.dataset.view); return; }
+
+  /* Carte → fiche */
+  const card = t.closest('.card');
+  if (card) openSheet(card.dataset.id);
 });
 
-/* ============================================================
-   MODALES
-   ============================================================ */
-function openModal(id) {
-  const modal = document.getElementById(id);
-  if (!modal) return;
-  modal.classList.add('is-open');
-  document.body.style.overflow = 'hidden';
-  document.getElementById('main-content')?.classList.add('blur-background');
-}
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape') {
+    $$('.modal.is-open').forEach(function (m) { closeModal(m.id); });
+    closeSheet();
+    closeDrawer();
+    return;
+  }
+  if (e.key !== 'Enter' && e.key !== ' ') return;
 
-function closeModal(id) {
-  const modal = document.getElementById(id);
-  if (!modal) return;
-  modal.classList.remove('is-open');
-  document.body.style.overflow = '';
-  document.getElementById('main-content')?.classList.remove('blur-background');
-}
-
-window.openModal  = openModal;
-window.closeModal = closeModal;
-
-/* Passerelle utilisée par le bouton « Discuter de ces chiffres »
-   du simulateur. Sans elle, ce bouton n'est pas affiché. */
-window.WASABI_SIM_CONTACT = function () { openModal('contactModal'); };
-
-document.querySelectorAll('.modal').forEach(modal => {
-  modal.addEventListener('click', e => {
-    if (e.target === modal) closeModal(modal.id);
-  });
+  const card = e.target.closest && e.target.closest('.card');
+  if (card) { e.preventDefault(); openSheet(card.dataset.id); }
 });
 
-document.addEventListener('keydown', e => {
-  if (e.key !== 'Escape') return;
-  document.querySelectorAll('.modal.is-open').forEach(m => closeModal(m.id));
+mqDesktop.addEventListener('change', function () {
+  if (mqDesktop.matches) { closeSheet(); closeDrawer(); }
 });
 
 /* ============================================================
    EMAILJS — FORMULAIRE DE CONTACT
    ============================================================ */
 function initContactForm() {
-  const btn = document.getElementById('btn-send');
+  const btn = $('#btn-send');
   if (!btn || !window.emailjs) return;
 
   emailjs.init('Y9G1UYj9VZqrRmSG1');
 
   btn.addEventListener('click', function () {
-    const name    = document.getElementById('contact-name').value.trim();
-    const contact = document.getElementById('contact-info').value.trim();
-    const message = document.getElementById('contact-message').value.trim();
+    const name    = $('#contact-name').value.trim();
+    const contact = $('#contact-info').value.trim();
+    const message = $('#contact-message').value.trim();
 
     if (!name || !contact || !message) {
-      alert(currentLang === 'fr' ? 'Veuillez remplir tous les champs.' : 'Please fill in all fields.');
+      alert(L('fillAll'));
       return;
     }
 
-    const label = this.textContent;
-    this.disabled    = true;
-    this.textContent = currentLang === 'fr' ? 'Envoi…' : 'Sending…';
+    const label = btn.textContent;
+    btn.disabled    = true;
+    btn.textContent = L('sending');
 
     emailjs.send('service_41z5e5b', 'template_9s39ygw', {
-      name, contact, message, source: 'Vadilion Digital'
+      name: name, contact: contact, message: message, source: 'Vadilion Digital'
     })
-      .then(() => {
-        alert(currentLang === 'fr' ? 'Message envoyé ✅' : 'Message sent ✅');
+      .then(function () {
+        alert(L('sent'));
         closeModal('contactModal');
-        document.getElementById('contact-name').value    = '';
-        document.getElementById('contact-info').value    = '';
-        document.getElementById('contact-message').value = '';
+        $('#contact-name').value    = '';
+        $('#contact-info').value    = '';
+        $('#contact-message').value = '';
       })
-      .catch(err => {
+      .catch(function (err) {
         console.error(err);
-        alert(currentLang === 'fr' ? "Erreur lors de l'envoi ❌" : 'Sending failed ❌');
+        alert(L('sendError'));
       })
-      .finally(() => {
-        this.disabled    = false;
-        this.textContent = label;
+      .finally(function () {
+        btn.disabled    = false;
+        btn.textContent = label;
       });
   });
 }
 
 /* ============================================================
-   TRADUCTIONS (hors solutions, gérées dans solutions.js)
+   TRADUCTIONS
+   ------------------------------------------------------------
+   Clés = id d'élément dans index.html.
+   Les chaînes générées par le JS sont dans STRINGS, lues par L().
    ============================================================ */
+const STRINGS = {
+  fr: { details: 'Détails →', close: 'Fermer', brick: 'Brique démontrée',
+        fillAll: 'Veuillez remplir tous les champs.', sending: 'Envoi…',
+        sent: 'Message envoyé ✅', sendError: "Erreur lors de l'envoi ❌" },
+  en: { details: 'Details →', close: 'Close', brick: 'Skill demonstrated',
+        fillAll: 'Please fill in all fields.', sending: 'Sending…',
+        sent: 'Message sent ✅', sendError: 'Sending failed ❌' }
+};
+
+function L(key) { return STRINGS[currentLang][key]; }
+
 const translations = {
   fr: {
-    'about-text':          'Nous développons des solutions digitales uniques, répondant à des besoins concrets, à partir de données à forte valeur ajoutée.',
-    'menu-about':          'À PROPOS',
-    'menu-solutions':      'SOLUTIONS',
-    'offices-link':        'Bureaux',
-    'contact-footer-link': 'Contact',
-     
-      /*
-    'media-link':          'Media',
-      */
-    'offices':             'Bureaux',
-    'office1-city':        'Bruxelles',
-     
-     /* 
-    'office2-city':        'Paris',
-    'office3-city':        'Monaco',
-    */
-     
-    'our-media':           'Nos réseaux',
-    'contact-text':        'Contactez-nous',
-    'contact-text2':       'Comment pouvons nous vous aider ?',
-    'btn-send':            'Envoyer',
-    'office-note':         '*Uniquement sur rendez-vous.'
+    'nav-home': 'Accueil', 'nav-solutions': 'Solutions', 'nav-works': 'Réalisations', 'nav-about': 'À propos',
+    'head-cta': 'Prendre rendez-vous',
+
+    'kicker-1': 'PME et indépendants',
+    'kicker-2': 'Belgique',
+    'hero-title': 'Le digital qui vous fait gagner du temps.',
+    'hero-lede': "Site web, application interne, automatisation, reporting. Et une lecture précise du quartier où vous travaillez, pour décider sur des données plutôt que sur une impression.",
+    'hero-cta1': 'Voir les solutions',
+    'hero-cta2': 'Nos réalisations',
+
+    'sol-title': 'Deux façons de travailler ensemble',
+    'sol-sub': "On installe ce qui vous manque, on ne vend pas ce qui ne vous servira pas.",
+    'sol-hint': "Faites glisser pour voir l'autre →",
+
+    'works-title': 'Ce que nous avons déjà construit',
+    'works-sub': 'Chaque réalisation correspond à une des briques que nous proposons.',
+    'works-hint': 'Faites glisser pour voir les autres →',
+
+    'about-title': 'À propos',
+    'about-text': "Vadilion Digital conçoit des outils digitaux pour des PME et des indépendants en Belgique. Nous travaillons sur rendez-vous, chez vous quand c'est utile, et nous commençons toujours par la brique qui vous coûte le plus de temps.",
+    'about-cta': 'Nous contacter',
+
+    'dnav-home': 'Accueil', 'dnav-solutions': 'Solutions', 'dnav-works': 'Réalisations',
+    'dnav-about': 'À propos', 'dnav-offices': 'Bureaux', 'dnav-cta': 'Prendre rendez-vous',
+
+    'offices-link': 'Bureaux', 'contact-footer-link': 'Contact',
+
+    'contact-text': 'Contactez-nous', 'contact-text2': 'Comment pouvons-nous vous aider ?', 'btn-send': 'Envoyer',
+    'offices': 'Bureaux', 'office1-city': 'Bruxelles',
+    'office-note': '*Uniquement sur rendez-vous. Nous privilégions le déplacement chez nos clients et le remote.'
   },
+
   en: {
-    'about-text':          'We turn high-value data into unique digital solutions that solve real challenges.',
-    'menu-about':          'ABOUT',
-    'menu-solutions':      'SOLUTIONS',
-    'offices-link':        'Offices',
-    'contact-footer-link': 'Contact',
+    'nav-home': 'Home', 'nav-solutions': 'Solutions', 'nav-works': 'Work', 'nav-about': 'About',
+    'head-cta': 'Book a meeting',
 
-      /*
-    'media-link':          'Media',
-      */
-    
-    'offices':             'Offices',
-    'office1-city':        'Brussels',     
-     
-     /* 
-    'office2-city':        'Paris',
-    'office3-city':        'Monaco',
-    */
-     
-    'our-media':           'Our media',
-    'contact-text':        'Contact us',
-    'contact-text2':       'How can we help you ?',
-    'btn-send':            'Send',
-    'office-note':         '*By appointment only.'
+    'kicker-1': 'Small businesses and independents',
+    'kicker-2': 'Belgium',
+    'hero-title': 'Digital work that gives you time back.',
+    'hero-lede': 'Website, internal app, automation, reporting. Plus a precise read of the area you work in, so you decide on data instead of impressions.',
+    'hero-cta1': 'See solutions',
+    'hero-cta2': 'Our work',
 
+    'sol-title': 'Two ways to work together',
+    'sol-sub': 'We install what you are missing, and we do not sell what will not serve you.',
+    'sol-hint': 'Swipe to see the other one →',
+
+    'works-title': 'What we have already built',
+    'works-sub': 'Each piece of work matches one of the building blocks we offer.',
+    'works-hint': 'Swipe to see the others →',
+
+    'about-title': 'About',
+    'about-text': 'Vadilion Digital builds digital tools for small businesses and independents in Belgium. We work by appointment, at your place when it helps, and we always start with the block that costs you the most time.',
+    'about-cta': 'Get in touch',
+
+    'dnav-home': 'Home', 'dnav-solutions': 'Solutions', 'dnav-works': 'Work',
+    'dnav-about': 'About', 'dnav-offices': 'Offices', 'dnav-cta': 'Book a meeting',
+
+    'offices-link': 'Offices', 'contact-footer-link': 'Contact',
+
+    'contact-text': 'Contact us', 'contact-text2': 'How can we help you?', 'btn-send': 'Send',
+    'offices': 'Offices', 'office1-city': 'Brussels',
+    'office-note': '*By appointment only. We prefer meeting at your place, or remote.'
   }
 };
 
 const placeholders = {
-  fr: { 'contact-name': 'Nom', 'contact-info': 'Coordonnées de contact', 'contact-message': 'Comment pouvons-nous vous aider ?' },
-  en: { 'contact-name': 'Name', 'contact-info': 'Contact details',       'contact-message': 'How can we help you?' }
+  fr: { 'contact-name': 'Nom',  'contact-info': 'Coordonnées de contact', 'contact-message': 'Comment pouvons-nous vous aider ?' },
+  en: { 'contact-name': 'Name', 'contact-info': 'Contact details',        'contact-message': 'How can we help you?' }
 };
 
 function setLanguage(lang) {
@@ -383,32 +397,45 @@ function setLanguage(lang) {
   if (!dict) return;
   currentLang = lang;
 
-  Object.entries(dict).forEach(([id, value]) => {
+  Object.keys(dict).forEach(function (id) {
     const el = document.getElementById(id);
-    if (el) el.textContent = value;
+    if (!el) return;
+    /* Boutons avec icône : on ne remplace que le premier nœud texte. */
+    const textNode = Array.prototype.find.call(el.childNodes, function (n) {
+      return n.nodeType === 3 && n.textContent.trim();
+    });
+    if (textNode) textNode.textContent = dict[id];
+    else el.textContent = dict[id];
   });
 
-  Object.entries(placeholders[lang]).forEach(([id, value]) => {
+  Object.keys(placeholders[lang]).forEach(function (id) {
     const el = document.getElementById(id);
-    if (el) el.placeholder = value;
+    if (el) el.placeholder = placeholders[lang][id];
   });
 
-  document.getElementById('fr-btn')?.classList.toggle('active', lang === 'fr');
-  document.getElementById('en-btn')?.classList.toggle('active', lang === 'en');
+  const fr = $('#fr-btn'), en = $('#en-btn');
+  if (fr) fr.classList.toggle('is-on', lang === 'fr');
+  if (en) en.classList.toggle('is-on', lang === 'en');
   document.documentElement.lang = lang;
 
-  /* Le simulateur ouvert suit la langue : on le referme pour éviter
-     une modale figée en FR pendant que le site passe en EN. */
   if (typeof window.closeWasabiSimulator === 'function') window.closeWasabiSimulator();
 
-  renderSolutions();
+  closeSheet();
+  renderAll();
 }
 
-document.getElementById('fr-btn')?.addEventListener('click', () => setLanguage('fr'));
-document.getElementById('en-btn')?.addEventListener('click', () => setLanguage('en'));
+['fr', 'en'].forEach(function (lang) {
+  const el = $('#' + lang + '-btn');
+  if (!el) return;
+  el.addEventListener('click', function () { setLanguage(lang); });
+  el.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setLanguage(lang); }
+  });
+});
 
 /* ============================================================
    INITIALISATION
    ============================================================ */
+renderAll();
 initContactForm();
-renderSolutions();
+showView('home');
