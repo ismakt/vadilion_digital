@@ -1,5 +1,21 @@
 'use strict';
 
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
+
+function resetPageScroll() {
+  window.scrollTo(0, 0);
+
+  document.querySelectorAll('.view').forEach(view => {
+    view.scrollTop = 0;
+    view.scrollLeft = 0;
+  });
+}
+
+window.addEventListener('load', resetPageScroll);
+window.addEventListener('pageshow', resetPageScroll);
+
 /* ============================================================
    ÉTAT GLOBAL
    ============================================================ */
