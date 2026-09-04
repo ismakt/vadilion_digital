@@ -669,7 +669,7 @@ footer button:hover { color: var(--muted); }
 
   .nav-d    { display: flex; }
   .burger   { display: none; }
-  .head-cta { display: inline-flex; }
+/*  .head-cta { display: inline-flex; } */
 
   .filters { justify-content: center; }
   .rail { gap: 18px; padding: 2px var(--gutter) 8px; }
