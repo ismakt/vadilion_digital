@@ -322,7 +322,6 @@ function L(key) { return STRINGS[currentLang][key]; }
 const translations = {
   fr: {
     'nav-home': 'Accueil', 'nav-solutions': 'Solutions', 'nav-works': 'Réalisations', 'nav-about': 'À propos',
-    'head-cta': 'Prendre rendez-vous',
 
     'kicker-1': 'PME et indépendants',
     'kicker-2': 'Belgique',
