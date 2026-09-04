@@ -158,7 +158,10 @@ main { flex: 1; min-height: 0; display: flex; flex-direction: column; }
   min-height: 0;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  /* "safe" : si le contenu déborde (typiquement sur petit écran mobile),
+     l'alignement retombe sur le haut au lieu de centrer le débordement,
+     ce qui masquerait le début du contenu au chargement. */
+  justify-content: safe center;
   padding: 18px 0;
   text-align: center;
   overflow-y: auto;
@@ -233,7 +236,6 @@ h1 {
   background: linear-gradient(150deg, #191410, #0b0b0b 55%, #0d0d0d);
 }
 
-.hero-art { flex: 0 0 440px; max-width: 440px; max-height: none; }
 /* ============================
    FILTRES & RAILS DE CARTES
    ============================ */
