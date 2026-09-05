@@ -48,8 +48,7 @@ const WORKS = [
       proof: 'Location intelligence',
       line: "Plateforme d'intelligence territoriale.",
       text: "Plus de 130 indicateurs par quartier, cartographie interactive et rapports générés automatiquement. Une lecture du terrain indépendante, fondée sur des données réelles plutôt que sur des impressions.",
-      tags: ['Python', 'PostGIS', 'QGIS', 'API', 'Data visualisation'],
-      urlLabel: 'Ouvrir Smart-In'
+      tags: ['Python', 'PostGIS', 'QGIS', 'API', 'Data visualisation']
     },
     en: {
       kind: 'Product', state: 'Live',
@@ -57,8 +56,7 @@ const WORKS = [
       proof: 'Location intelligence',
       line: 'Neighbourhood intelligence for the Brussels-Capital Region.',
       text: 'Over 130 indicators per neighbourhood, interactive mapping and automatically generated reports. A read of the ground based on real data rather than impressions. European expansion planned.',
-      tags: ['Python', 'PostGIS', 'QGIS', 'API', 'Data visualisation'],
-      urlLabel: 'Open Smart-In'
+      tags: ['Python', 'PostGIS', 'QGIS', 'API', 'Data visualisation']
     }
   },
 
