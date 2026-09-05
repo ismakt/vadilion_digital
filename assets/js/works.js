@@ -48,8 +48,7 @@ const WORKS = [
       proof: 'Location intelligence',
       line: 'Plateforme - Intelligence territoriale.',
       text: "Lecture du terrain indépendante et transparente pour une meilleure prise de décision basée sur les données réelles et non biaisées.",
-      tags: ['Python', 'PostGIS', 'QGIS', 'API', 'Data visualisation'],
-      urlLabel: 'Ouvrir Smart-In'
+      tags: ['Python', 'PostGIS', 'QGIS', 'API', 'Data visualisation']
     },
     en: {
       kind: 'Product', state: 'Live',
