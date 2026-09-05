@@ -38,10 +38,10 @@ const SOLUTIONS = [
       proof: 'Site, app, automatisation, reporting',
       line: "Les outils de base d'une activité qui tourne.",
       items: [
-        ['Site web', 'Votre vitrine en ligne : professionnelle et unique.'],
-        ['Application interne', 'Application developpée sur mesure pour répondre aux besoins concrets de votre équipe.'],
-        ['Automatisation', 'Simplification et gain de temps sur les tâches répétitives.'],
-        ['Analyse et reporting', 'Analyse de données de votre activité, réunis au même endroit, lisibles rapidement, pour décider sur des faits.']
+        ['Site web', 'Votre vitrine en ligne : professionnelle, rapide et à votre image.'],
+        ['Application interne', 'Application développée sur mesure, pensée pour le travail réel de votre équipe.'],
+        ['Automatisation', 'Devis, factures, relances, encodages : les tâches répétitives tournent sans vous.'],
+        ['Analyse et reporting', "Les chiffres de votre activité réunis au même endroit et lisibles en un coup d'œil, pour décider sur des faits."]
       ],
       note: "<b>On commence par une seule brique</b> : celle dont vous avez le plus besoin aujourd'hui.",
       cta: 'Prendre rendez-vous'
@@ -52,12 +52,12 @@ const SOLUTIONS = [
       state: '4 building blocks',
       name: 'Business essentials',
       proof: 'Site, app, automation, reporting',
-      line: 'The basic tools of a business that runs.',
+      line: 'The essentials of a business that runs properly.',
       items: [
-        ['Website', 'A clear, fast storefront that gets you found on Google and makes people want to call.'],
-        ['Internal app', 'Orders, stock, clients, scheduling. Built for your trade, not a generic tool to work around.'],
-        ['Automation', 'Repetitive work — quotes, invoices, reminders, data entry — running on its own.'],
-        ['Analytics and reporting', 'Your numbers in one place, readable in a minute, so you decide on facts.']
+        ['Website', 'A clear, fast storefront that gets you found and makes people want to call.'],
+        ['Internal app', 'Built around how your team actually works, not a generic tool to work around.'],
+        ['Automation', 'Quotes, invoices, reminders, data entry: repetitive work running on its own.'],
+        ['Analytics and reporting', 'Your numbers in one place, readable at a glance, so you decide on facts.']
       ],
       note: '<b>We start with one block</b>: whichever one costs you the most time today.',
       cta: 'Book a meeting'
@@ -68,20 +68,20 @@ const SOLUTIONS = [
     id: 'location-intelligence',
     art: 'locality',
     action: 'contact',
-    action2: 'contact',
 
     fr: {
       kind: 'Offre',
-      state: '',
+      state: 'Sur votre adresse',
       name: 'Location intelligence',
       proof: 'Clients, concurrence, tendances',
       line: 'Connaître le quartier où vous travaillez.',
       items: [
-        ['Clients', 'Profil socio-économique, publicité ciblée.'],
-        ['Concurrence', "Qui est déjà là, ce qu'il couvre, ce qui manque, où vous ajuster."],
-        ['Tendances', 'Projets immobiliers et de développement urbain.']
+        ['Clients', 'Qui habite, travaille et passe devant chez vous : âges, revenus, ménages, flux.'],
+        ['Concurrence', "Qui est déjà là, ce qu'il couvre, ce qui manque, et où vous positionner."],
+        ['Publicité ciblée', 'Où et à qui dépenser votre budget, rue par rue.'],
+        ['Tendances', 'Projets immobiliers et urbains à venir, pour anticiper plutôt que subir.']
       ],
-      note: "<b>Pertinent si</b> vous ouvrez venez d'ouvrir ou ouvrez bientôt.<br>.",
+      note: "<b>Pertinent si</b> vous ouvrez bientôt, venez d'ouvrir, ou êtes installé dans un quartier qui a changé. Également pour les events et boutiques éphémères.<br><br><b>Pas pour vous si</b> votre clientèle n'est pas locale — nous vous le dirons.",
       cta: 'Demander une analyse'
     },
 
@@ -92,14 +92,13 @@ const SOLUTIONS = [
       proof: 'Customers, competition, trends',
       line: 'Know the area you work in.',
       items: [
-        ['Who your customers are', 'Who lives, works and walks past: ages, incomes, households, footfall.'],
-        ['Competition', 'Who is already there, what they cover, what is missing, where to adjust.'],
+        ['Customers', 'Who lives, works and walks past: ages, incomes, households, footfall.'],
+        ['Competition', 'Who is already there, what they cover, what is missing, where to position yourself.'],
         ['Targeted advertising', 'Where and to whom to spend your budget, street by street.'],
-        ['Local trends', 'What is shifting, what is coming, so you anticipate instead of react.']
+        ['Local trends', 'Property and urban projects ahead, so you anticipate instead of react.']
       ],
       note: '<b>Relevant if</b> you are about to open, just opened, or have been in a neighbourhood that has changed. Also for events and pop-up shops.<br><br><b>Not for you if</b> your customers are not local — we will tell you.',
-      cta: 'Request an analysis',
-      cta2: 'See an example'
+      cta: 'Request an analysis'
     }
   }
 ];
