@@ -1,7 +1,5 @@
 'use strict';
 
-'use strict';
-
 /* Empêche les navigateurs mobiles de restaurer eux-mêmes la position de
    scroll d'une visite précédente (retour arrière, onglet remis au premier
    plan, etc.). Sans ça, le navigateur peut réappliquer sa propre position
@@ -49,8 +47,7 @@ const $$ = function (sel) { return Array.prototype.slice.call(document.querySele
    ============================================================ */
 const ICO = {
   arrow: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h13m-5-6 6 6-6 6"/></svg>',
-  close: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>',
-  cap:   '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 9 12 5 2 9l10 4 10-4z"/><path d="M6 11v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></svg>'
+  close: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>'
 };
 
 function art(key) { return window.getArt ? window.getArt(key) : ''; }
@@ -104,23 +101,11 @@ function renderWorks() {
   rail.scrollLeft = 0;
 }
 
-function renderCredentials() {
-  const wrap = $('#creds');
-  if (!wrap || !window.CREDENTIALS) return;
-  wrap.innerHTML = window.CREDENTIALS.map(function (c) {
-    const t = c[currentLang];
-    return '<div class="cred"><span class="cred-ic">' + ICO.cap + '</span>'
-         + '<div><b>' + t[0] + '</b><span>' + t[1] + '</span></div>'
-         + '<span class="yr">' + c.year + '</span></div>';
-  }).join('');
-}
-
 function renderAll() {
   renderHeroArt();
   renderSolutions();
   renderFilters();
   renderWorks();
-  renderCredentials();
 }
 
 /* ============================================================
@@ -344,7 +329,7 @@ const STRINGS = {
   fr: { details: 'Détails →', close: 'Fermer', brick: 'Brique démontrée',
         fillAll: 'Veuillez remplir tous les champs.', sending: 'Envoi…',
         sent: 'Message envoyé ✅', sendError: "Erreur lors de l'envoi ❌" },
-  en: { details: 'Details →', close: 'Close', brick: 'Skill demonstrated',
+  en: { details: 'Details →', close: 'Close', brick: 'Building block demonstrated',
         fillAll: 'Please fill in all fields.', sending: 'Sending…',
         sent: 'Message sent ✅', sendError: 'Sending failed ❌' }
 };
@@ -362,16 +347,16 @@ const translations = {
     'hero-cta1': 'Voir les solutions',
     'hero-cta2': 'Nos réalisations',
 
-    'sol-title': 'Deux façons de travailler ensemble',
-    'sol-sub': "On installe ce qui vous manque, on ne vend pas ce qui ne vous servira pas.",
-    'sol-hint': "Faites glisser pour voir l'autre →",
+    'sol-title': 'Nos solutions',
+    'sol-sub': "On installe ce qui vous manque, pas ce qui ne vous servira pas.",
+    'sol-hint': "Glissez pour voir l'autre offre →",
 
     'works-title': 'Ce que nous avons déjà construit',
     'works-sub': 'Chaque réalisation correspond à une des briques que nous proposons.',
-    'works-hint': 'Faites glisser pour voir les autres →',
+    'works-hint': 'Glissez pour voir les autres →',
 
     'about-title': 'À propos',
-    'about-text': "Vadilion Digital conçoit des outils digitaux pour des PME et des indépendants en Belgique. Nous travaillons sur rendez-vous, chez vous quand c'est utile, et nous commençons toujours par la brique qui vous coûte le plus de temps.",
+    'about-text': "Vadilion Digital conçoit des outils digitaux pour les PME et les indépendants en Belgique. Nous travaillons sur rendez-vous, chez vous quand c'est utile, et nous commençons toujours par la brique qui vous coûte le plus de temps.",
     'about-cta': 'Nous contacter',
 
     'dnav-home': 'Accueil', 'dnav-solutions': 'Solutions', 'dnav-works': 'Réalisations',
@@ -379,14 +364,13 @@ const translations = {
 
     'offices-link': 'Bureaux', 'contact-footer-link': 'Contact',
 
-    'contact-text': 'Contactez-nous', 'contact-text2': 'Comment pouvons-nous vous aider ?', 'btn-send': 'Envoyer',
+    'contact-text': 'Contactez-nous', 'contact-text2': 'Décrivez votre besoin, nous revenons vers vous rapidement.', 'btn-send': 'Envoyer',
     'offices': 'Bureaux', 'office1-city': 'Bruxelles',
-    'office-note': '*Uniquement sur rendez-vous. Nous privilégions le déplacement chez nos clients et le remote.'
+    'office-note': '*Uniquement sur rendez-vous. Nous privilégions les rendez-vous chez nos clients, ou à distance.'
   },
 
   en: {
     'nav-home': 'Home', 'nav-solutions': 'Solutions', 'nav-works': 'Work', 'nav-about': 'About',
-    'head-cta': 'Book a meeting',
 
     'kicker-1': 'Small businesses and independents',
     'kicker-2': 'Belgium',
@@ -395,9 +379,9 @@ const translations = {
     'hero-cta1': 'See solutions',
     'hero-cta2': 'Our work',
 
-    'sol-title': 'Two ways to work together',
-    'sol-sub': 'We install what you are missing, and we do not sell what will not serve you.',
-    'sol-hint': 'Swipe to see the other one →',
+    'sol-title': 'Our solutions',
+    'sol-sub': 'We install what you are missing, not what will not serve you.',
+    'sol-hint': 'Swipe to see the other offer →',
 
     'works-title': 'What we have already built',
     'works-sub': 'Each piece of work matches one of the building blocks we offer.',
@@ -412,15 +396,15 @@ const translations = {
 
     'offices-link': 'Offices', 'contact-footer-link': 'Contact',
 
-    'contact-text': 'Contact us', 'contact-text2': 'How can we help you?', 'btn-send': 'Send',
+    'contact-text': 'Contact us', 'contact-text2': 'Tell us what you need and we will get back to you quickly.', 'btn-send': 'Send',
     'offices': 'Offices', 'office1-city': 'Brussels',
     'office-note': '*By appointment only. We prefer meeting at your place, or remote.'
   }
 };
 
 const placeholders = {
-  fr: { 'contact-name': 'Nom',  'contact-info': 'Coordonnées de contact', 'contact-message': 'Comment pouvons-nous vous aider ?' },
-  en: { 'contact-name': 'Name', 'contact-info': 'Contact details',        'contact-message': 'How can we help you?' }
+  fr: { 'contact-name': 'Nom',  'contact-info': 'E-mail ou téléphone', 'contact-message': 'Comment pouvons-nous vous aider ?' },
+  en: { 'contact-name': 'Name', 'contact-info': 'Email or phone',      'contact-message': 'How can we help you?' }
 };
 
 function setLanguage(lang) {
@@ -466,7 +450,11 @@ function setLanguage(lang) {
 
 /* ============================================================
    INITIALISATION
+   ------------------------------------------------------------
+   setLanguage('fr') applique les traductions dès le premier
+   chargement : le HTML statique et translations.fr ne peuvent
+   plus diverger.
    ============================================================ */
-renderAll();
+setLanguage('fr');
 initContactForm();
 showView('home');
