@@ -38,12 +38,12 @@ const SOLUTIONS = [
       proof: 'Site, app, automatisation, reporting',
       line: "Les outils de base d'une activité qui tourne.",
       items: [
-        ['Site web', 'Une vitrine claire, rapide, qui vous trouve sur Google et donne envie de vous appeler.'],
-        ['Application interne', 'Commandes, stocks, clients, planning. Fait pour votre métier, pas un logiciel générique à contourner.'],
-        ['Automatisation', 'Les tâches répétitives — devis, factures, relances, encodages — exécutées seules.'],
-        ['Analyse et reporting', 'Vos chiffres réunis au même endroit, lisibles en une minute, pour décider sur des faits.']
+        ['Site web', 'Votre vitrine en ligne : professionnelle et unique.'],
+        ['Application interne', 'Application developpée sur mesure pour répondre aux besoins concrets de votre équipe.'],
+        ['Automatisation', 'Simplification et gain de temps sur les tâches répétitives.'],
+        ['Analyse et reporting', 'Analyse de données de votre activité, réunis au même endroit, lisibles rapidement, pour décider sur des faits.']
       ],
-      note: "<b>On commence par une seule brique</b> : celle qui vous coûte le plus de temps aujourd'hui.",
+      note: "<b>On commence par une seule brique</b> : celle dont vous avez le plus besoin aujourd'hui.",
       cta: 'Prendre rendez-vous'
     },
 
@@ -72,19 +72,17 @@ const SOLUTIONS = [
 
     fr: {
       kind: 'Offre',
-      state: 'Sur votre adresse',
+      state: '',
       name: 'Location intelligence',
       proof: 'Clients, concurrence, tendances',
       line: 'Connaître le quartier où vous travaillez.',
       items: [
-        ['Profil des clients autour de vous', 'Qui habite, qui travaille, qui passe : âges, revenus, ménages, flux.'],
+        ['Clients', 'Profil socio-économique, publicité ciblée.'],
         ['Concurrence', "Qui est déjà là, ce qu'il couvre, ce qui manque, où vous ajuster."],
-        ['Publicité ciblée', 'Où et à qui dépenser votre budget, rue par rue.'],
-        ['Tendances du quartier', 'Ce qui bouge, ce qui arrive, pour anticiper au lieu de subir.']
+        ['Tendances', 'Projets immobiliers et de développement urbain.']
       ],
-      note: "<b>Pertinent si</b> vous ouvrez bientôt, venez d'ouvrir, ou êtes installé depuis longtemps dans un quartier qui a changé. Aussi pour un événement ou une boutique éphémère.<br><br><b>Inutile si</b> votre clientèle n'est pas locale — nous vous le dirons.",
-      cta: 'Demander une analyse',
-      cta2: 'Voir un exemple'
+      note: "<b>Pertinent si</b> vous ouvrez venez d'ouvrir ou ouvrez bientôt.<br>.",
+      cta: 'Demander une analyse'
     },
 
     en: {
