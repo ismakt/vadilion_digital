@@ -46,8 +46,8 @@ const WORKS = [
       kind: 'Produit', state: 'En ligne',
       name: 'Smart-In',
       proof: 'Location intelligence',
-      line: 'Intelligence territoriale sur la Région de Bruxelles-Capitale.',
-      text: "Plus de 130 indicateurs par quartier, cartographie interactive et rapports générés automatiquement. Une lecture du terrain qui ne dépend de l'avis de personne. Extension européenne prévue.",
+      line: 'Plateforme - Intelligence territoriale.',
+      text: "Lecture du terrain indépendante et transparente pour une meilleure prise de décision basée sur les données réelles et non biaisées.",
       tags: ['Python', 'PostGIS', 'QGIS', 'API', 'Data visualisation'],
       urlLabel: 'Ouvrir Smart-In'
     },
@@ -65,8 +65,7 @@ const WORKS = [
   {
     id: 'wasabi',
     art: 'order',
-    cat: 'app',
-    url: 'https://platform-for-restaurants-omega.vercel.app/restaurant1',
+    cat: 'app'
 
     fr: {
       kind: 'Produit', state: 'En développement',
@@ -74,8 +73,7 @@ const WORKS = [
       proof: 'Application interne',
       line: 'Commande en direct pour restaurants, sans commission de plateforme.',
       text: 'Ramener les clients fidèles vers la commande directe au lieu de payer des commissions aux grandes plateformes de livraison. Architecture multi-restaurants, temps réel, données cloisonnées par établissement.',
-      tags: ['Next.js', 'TypeScript', 'Supabase', 'Temps réel', 'Multi-tenant'],
-      urlLabel: 'Voir la démo'
+      tags: ['Next.js', 'TypeScript', 'Supabase', 'Temps réel', 'Multi-tenant']
     },
     en: {
       kind: 'Product', state: 'In development',
@@ -83,8 +81,7 @@ const WORKS = [
       proof: 'Internal app',
       line: 'Direct ordering for restaurants, without platform commission.',
       text: 'Bringing loyal customers back to direct ordering instead of paying commission to the large delivery platforms. Multi-restaurant architecture, realtime, data isolated per venue.',
-      tags: ['Next.js', 'TypeScript', 'Supabase', 'Realtime', 'Multi-tenant'],
-      urlLabel: 'See the demo'
+      tags: ['Next.js', 'TypeScript', 'Supabase', 'Realtime', 'Multi-tenant']
     }
   },
 
@@ -115,8 +112,7 @@ const WORKS = [
   {
     id: 'zus-coffee',
     art: 'dash',
-    cat: 'data',
-    url: 'https://1drv.ms/x/c/861184517cb479e2/IQRtCGqeBUKwR5LFpUUvo2vJAReeTMBciFiH89ED82bL-28',
+    cat: 'data'
 
     fr: {
       kind: 'Mission', state: 'Livré',
@@ -124,8 +120,7 @@ const WORKS = [
       proof: 'Analyse et reporting',
       line: 'Tableau de bord consolidant les ventes de plusieurs pays.',
       text: 'Meilleurs clients, produits les plus vendus, tendances de performance, mis à jour automatiquement. Un seul écran remplace la compilation manuelle de fichiers par pays.',
-      tags: ['Excel', 'Conception de tableaux de bord'],
-      urlLabel: 'Ouvrir le tableau de bord'
+      tags: ['Excel', 'Conception de tableaux de bord']
     },
     en: {
       kind: 'Project', state: 'Delivered',
@@ -133,44 +128,12 @@ const WORKS = [
       proof: 'Analytics and reporting',
       line: 'Dashboard consolidating sales across several countries.',
       text: 'Top clients, best-selling products and performance trends, updated automatically. One screen replaces the manual merging of country files.',
-      tags: ['Excel', 'Dashboard design'],
-      urlLabel: 'Open the dashboard'
-    }
-  },
-
-  {
-    id: 'revolut-churn',
-    art: 'churn',
-    cat: 'data',
-    url: 'https://ismakt.github.io/portfolio/assets/pdf/revolut_ismail_aktamirov_lewagon.pdf',
-
-    fr: {
-      kind: 'Mission', state: 'Livré',
-      name: 'Revolut — analyse de churn',
-      proof: 'Analyse et reporting',
-      line: 'Rétention, engagement et dépense par segment de clientèle.',
-      text: "Identification des facteurs de départ des clients et des segments à risque. Projet final évalué du bootcamp Data Analytics du Wagon, encadré par un responsable analytique senior de Microsoft.",
-      tags: ['SQL', 'BigQuery', 'Looker', 'Analyse de churn'],
-      urlLabel: 'Lire le rapport'
-    },
-    en: {
-      kind: 'Project', state: 'Delivered',
-      name: 'Revolut — churn analysis',
-      proof: 'Analytics and reporting',
-      line: 'Retention, engagement and spend by customer segment.',
-      text: 'Identifying churn drivers and at-risk segments. Final assessed project of Le Wagon\u2019s Data Analytics bootcamp, supervised by a senior analytical lead from Microsoft.',
-      tags: ['SQL', 'BigQuery', 'Looker', 'Churn analysis'],
-      urlLabel: 'Read the report'
+      tags: ['Excel', 'Dashboard design']
     }
   }
 ];
 
-/* Formations affichées dans la vue « À propos ». */
-const CREDENTIALS = [
-  { year: '2024', fr: ['Le Wagon — Data Analytics', 'Paris, sous encadrement Microsoft'], en: ['Le Wagon — Data Analytics', 'Paris, supervised by Microsoft'] },
-  { year: '2023', fr: ['Google — Advanced Data Analytics', 'Certificat professionnel'],    en: ['Google — Advanced Data Analytics', 'Professional certificate'] },
-  { year: '2023', fr: ['HECh — Immobilier et urbanisme', 'Marchés, territoire, développement'], en: ['HECh — Real estate and urban planning', 'Markets, territory, development'] }
-];
+
 
 /* Garde-fou. */
 (function validate() {
