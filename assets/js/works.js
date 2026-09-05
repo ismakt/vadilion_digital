@@ -28,11 +28,11 @@
    ============================================================ */
 
 const FILTERS = [
-  { id: 'all',  fr: 'Tout',        en: 'All' },
-  { id: 'local', fr: 'Local',      en: 'Local' },
-  { id: 'app',  fr: 'Applications', en: 'Apps' },
-  { id: 'data', fr: 'Données',     en: 'Data' },
-  { id: 'auto', fr: 'Automobile',  en: 'Automotive' }
+  { id: 'all',   fr: 'Tout',         en: 'All' },
+  { id: 'local', fr: 'Local',        en: 'Local' },
+  { id: 'app',   fr: 'Applications', en: 'Apps' },
+  { id: 'data',  fr: 'Données',      en: 'Data' },
+  { id: 'auto',  fr: 'Automobile',   en: 'Automotive' }
 ];
 
 const WORKS = [
@@ -46,16 +46,17 @@ const WORKS = [
       kind: 'Produit', state: 'En ligne',
       name: 'Smart-In',
       proof: 'Location intelligence',
-      line: 'Plateforme - Intelligence territoriale.',
-      text: "Lecture du terrain indépendante et transparente pour une meilleure prise de décision basée sur les données réelles et non biaisées.",
-      tags: ['Python', 'PostGIS', 'QGIS', 'API', 'Data visualisation']
+      line: "Plateforme d'intelligence territoriale.",
+      text: "Plus de 130 indicateurs par quartier, cartographie interactive et rapports générés automatiquement. Une lecture du terrain indépendante, fondée sur des données réelles plutôt que sur des impressions.",
+      tags: ['Python', 'PostGIS', 'QGIS', 'API', 'Data visualisation'],
+      urlLabel: 'Ouvrir Smart-In'
     },
     en: {
       kind: 'Product', state: 'Live',
       name: 'Smart-In',
       proof: 'Location intelligence',
       line: 'Neighbourhood intelligence for the Brussels-Capital Region.',
-      text: 'Over 130 indicators per neighbourhood, interactive mapping and automatically generated reports. A read of the ground that depends on nobody\u2019s opinion. European expansion planned.',
+      text: 'Over 130 indicators per neighbourhood, interactive mapping and automatically generated reports. A read of the ground based on real data rather than impressions. European expansion planned.',
       tags: ['Python', 'PostGIS', 'QGIS', 'API', 'Data visualisation'],
       urlLabel: 'Open Smart-In'
     }
@@ -64,14 +65,15 @@ const WORKS = [
   {
     id: 'wasabi',
     art: 'order',
-    cat: 'app'
+    cat: 'app',
+    url: null,
 
     fr: {
       kind: 'Produit', state: 'En développement',
       name: 'Wasabi',
       proof: 'Application interne',
       line: 'Commande en direct pour restaurants, sans commission de plateforme.',
-      text: 'Ramener les clients fidèles vers la commande directe au lieu de payer des commissions aux grandes plateformes de livraison. Architecture multi-restaurants, temps réel, données cloisonnées par établissement.',
+      text: 'Ramener les clients fidèles vers la commande directe, sans payer de commission aux grandes plateformes. Architecture multi-restaurants, temps réel, données cloisonnées par établissement.',
       tags: ['Next.js', 'TypeScript', 'Supabase', 'Temps réel', 'Multi-tenant']
     },
     en: {
@@ -79,7 +81,7 @@ const WORKS = [
       name: 'Wasabi',
       proof: 'Internal app',
       line: 'Direct ordering for restaurants, without platform commission.',
-      text: 'Bringing loyal customers back to direct ordering instead of paying commission to the large delivery platforms. Multi-restaurant architecture, realtime, data isolated per venue.',
+      text: 'Bringing loyal customers back to direct ordering, without paying commission to the large delivery platforms. Multi-restaurant architecture, realtime, data isolated per venue.',
       tags: ['Next.js', 'TypeScript', 'Supabase', 'Realtime', 'Multi-tenant']
     }
   },
@@ -95,7 +97,7 @@ const WORKS = [
       name: 'Auto-Perfs',
       proof: 'Automatisation',
       line: 'Veille automatisée du marché automobile pour les concessions.',
-      text: "Collecte automatique des annonces sur les grandes plateformes pour suivre les prix, les tendances et le stock qui ne tourne pas. Décider d'un achat sur des chiffres du jour plutôt qu'à l'intuition.",
+      text: "Collecte automatique des annonces sur les grandes plateformes pour suivre les prix, les tendances et le stock qui ne tourne pas. Acheter en s'appuyant sur les chiffres du jour plutôt que sur l'intuition.",
       tags: ['Python', 'Scraping automatisé', 'OSINT', 'Analyse de marché']
     },
     en: {
@@ -111,14 +113,15 @@ const WORKS = [
   {
     id: 'zus-coffee',
     art: 'dash',
-    cat: 'data'
+    cat: 'data',
+    url: null,
 
     fr: {
       kind: 'Mission', state: 'Livré',
       name: 'Zus Coffee — analyse des ventes',
       proof: 'Analyse et reporting',
       line: 'Tableau de bord consolidant les ventes de plusieurs pays.',
-      text: 'Meilleurs clients, produits les plus vendus, tendances de performance, mis à jour automatiquement. Un seul écran remplace la compilation manuelle de fichiers par pays.',
+      text: 'Meilleurs clients, produits les plus vendus, tendances de performance, mis à jour automatiquement. Un seul écran remplace la compilation manuelle des fichiers pays par pays.',
       tags: ['Excel', 'Conception de tableaux de bord']
     },
     en: {
@@ -131,8 +134,6 @@ const WORKS = [
     }
   }
 ];
-
-
 
 /* Garde-fou. */
 (function validate() {
@@ -158,4 +159,3 @@ const WORKS = [
 
 window.WORKS = Object.freeze(WORKS);
 window.WORK_FILTERS = Object.freeze(FILTERS);
-window.CREDENTIALS = Object.freeze(CREDENTIALS);
