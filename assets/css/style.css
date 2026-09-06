@@ -402,7 +402,12 @@ h1 {
   position: fixed;
   inset: 0;
   z-index: 900;
-  align-items: flex-end;
+  align-items: center;
+  justify-content: center;
+  padding:
+    max(14px, env(safe-area-inset-top))
+    14px
+    max(14px, env(safe-area-inset-bottom));
   background: rgba(0, 0, 0, 0.72);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
@@ -412,19 +417,21 @@ h1 {
 
 .sheet {
   width: 100%;
-  max-height: 88dvh;
+  max-height: 100%;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-  padding: 20px var(--gutter);
-  padding-bottom: max(20px, env(safe-area-inset-bottom));
-  border-top: 1px solid var(--border-2);
-  border-radius: 20px 20px 0 0;
+  padding: 20px 18px;
+  border: 1px solid var(--border-2);
+  border-radius: 20px;
   background: var(--surface);
   text-align: left;
   animation: sheet-up 0.22s ease-out;
 }
 
-@keyframes sheet-up { from { transform: translateY(14px); } to { transform: translateY(0); } }
+@keyframes sheet-up {
+  from { transform: translateY(10px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
 
 .sheet-head { display: flex; align-items: flex-start; gap: 12px; }
 .sheet h3 { font-size: 19px; font-weight: 700; letter-spacing: -0.02em; }
@@ -657,8 +664,8 @@ footer button:hover { color: var(--muted); }
 .brand img { height: 36px; }
    .modal { align-items: center; }
   .modal-content { padding: 26px; border-radius: 20px; }
-  .sheet-wrap { align-items: center; padding: var(--gutter); }
-  .sheet { max-width: 520px; border: 1px solid var(--border-2); border-radius: 18px; }
+  .sheet-wrap { padding: var(--gutter); }
+  .sheet { max-width: 520px; padding: 24px 26px; border-radius: 18px; }
   footer { gap: 24px; }
 }
 
