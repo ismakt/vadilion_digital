@@ -39,11 +39,10 @@ const SOLUTIONS = [
       line: "Les outils de base d'une activité qui tourne.",
       items: [
         ['Site web', 'Votre vitrine en ligne : professionnelle, rapide et à votre image.'],
-        ['Application interne', 'Application développée sur mesure, pensée pour le travail réel de votre équipe.'],
-        ['Automatisation', 'Devis, factures, relances, encodages : les tâches répétitives tournent sans vous.'],
+        ['Application', 'Développée sur mesure, pensée pour le travail réel de votre équipe.'],
+        ['Automatisation', 'Les tâches répétitives tournent sans vous.'],
         ['Analyse et reporting', "Les chiffres de votre activité réunis au même endroit et lisibles en un coup d'œil, pour décider sur des faits."]
       ],
-      note: "<b>On commence par une seule brique</b> : celle dont vous avez le plus besoin aujourd'hui.",
       cta: 'Prendre rendez-vous'
     },
 
@@ -59,7 +58,6 @@ const SOLUTIONS = [
         ['Automation', 'Quotes, invoices, reminders, data entry: repetitive work running on its own.'],
         ['Analytics and reporting', 'Your numbers in one place, readable at a glance, so you decide on facts.']
       ],
-      note: '<b>We start with one block</b>: whichever one costs you the most time today.',
       cta: 'Book a meeting'
     }
   },
@@ -71,17 +69,16 @@ const SOLUTIONS = [
 
     fr: {
       kind: 'Offre',
-      state: 'Sur votre adresse',
+      state: 'Sur adresse ou zone de votre choix',
       name: 'Location intelligence',
       proof: 'Clients, concurrence, tendances',
-      line: 'Connaître le quartier où vous travaillez.',
+      line: 'Connaître le présent et le futur du quartier où vous travaillez.',
       items: [
         ['Clients', 'Qui habite, travaille et passe devant chez vous : âges, revenus, ménages, flux.'],
         ['Concurrence', "Qui est déjà là, ce qu'il couvre, ce qui manque, et où vous positionner."],
         ['Publicité ciblée', 'Où et à qui dépenser votre budget, rue par rue.'],
         ['Tendances', 'Projets immobiliers et urbains à venir, pour anticiper plutôt que subir.']
       ],
-      note: "<b>Pertinent si</b> vous ouvrez bientôt, venez d'ouvrir, ou êtes installé dans un quartier qui a changé. Également pour les events et boutiques éphémères.<br><br><b>Pas pour vous si</b> votre clientèle n'est pas locale — nous vous le dirons.",
       cta: 'Demander une analyse'
     },
 
@@ -97,7 +94,6 @@ const SOLUTIONS = [
         ['Targeted advertising', 'Where and to whom to spend your budget, street by street.'],
         ['Local trends', 'Property and urban projects ahead, so you anticipate instead of react.']
       ],
-      note: '<b>Relevant if</b> you are about to open, just opened, or have been in a neighbourhood that has changed. Also for events and pop-up shops.<br><br><b>Not for you if</b> your customers are not local — we will tell you.',
       cta: 'Request an analysis'
     }
   }
@@ -106,7 +102,7 @@ const SOLUTIONS = [
 /* Garde-fou : signale en console les erreurs de saisie. */
 (function validate() {
   const seen = Object.create(null);
-  const required = ['kind', 'state', 'name', 'proof', 'line', 'items', 'note', 'cta'];
+  const required = ['kind', 'state', 'name', 'proof', 'line', 'items', 'cta'];
 
   SOLUTIONS.forEach(function (s) {
     if (seen[s.id]) console.warn('[solutions] id dupliqué :', s.id);
