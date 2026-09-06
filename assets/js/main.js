@@ -146,7 +146,6 @@ function openSheet(id) {
     + (t.text  ? '<p class="sheet-text">' + t.text + '</p>' : '')
     + (t.items ? '<ul class="items">' + t.items.map(function (i) { return '<li><b>' + i[0] + '</b>' + i[1] + '</li>'; }).join('') + '</ul>' : '')
     + (t.tags  ? '<div class="tags">' + t.tags.map(function (x) { return '<span class="tag">' + x + '</span>'; }).join('') + '</div>' : '')
-    + (t.proof && !t.items ? '<div class="note"><b>' + L('brick') + '</b> — ' + t.proof + '</div>' : '')
     + (ctas ? '<div class="sheet-ctas">' + ctas + '</div>' : '');
 
   $('#sheetWrap').classList.add('is-open');
@@ -354,9 +353,6 @@ const translations = {
     'works-sub': 'Chaque réalisation correspond à une des briques que nous proposons.',
     'works-hint': 'Glissez pour voir les autres →',
 
-    'about-title': 'À propos',
-    'about-text': "Vadilion Digital conçoit des outils digitaux pour les PME et les indépendants en Belgique. Nous travaillons sur rendez-vous, chez vous quand c'est utile, et nous commençons toujours par la brique qui vous coûte le plus de temps.",
-    'about-cta': 'Nous contacter',
 
     'dnav-home': 'Accueil', 'dnav-solutions': 'Solutions', 'dnav-works': 'Réalisations',
     'dnav-about': 'À propos', 'dnav-offices': 'Bureaux', 'dnav-cta': 'Prendre rendez-vous',
@@ -386,9 +382,7 @@ const translations = {
     'works-sub': 'Each piece of work matches one of the building blocks we offer.',
     'works-hint': 'Swipe to see the others →',
 
-    'about-title': 'About',
-    'about-text': 'Vadilion Digital builds digital tools for small businesses and independents in Belgium. We work by appointment, at your place when it helps, and we always start with the block that costs you the most time.',
-    'about-cta': 'Get in touch',
+
 
     'dnav-home': 'Home', 'dnav-solutions': 'Solutions', 'dnav-works': 'Work',
     'dnav-about': 'About', 'dnav-offices': 'Offices', 'dnav-cta': 'Book a meeting',
