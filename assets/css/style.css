@@ -682,8 +682,18 @@ footer button:hover { color: var(--muted); }
 /*  .head-cta { display: inline-flex; } */
 
   .filters { justify-content: center; }
-  .rail { gap: 18px; padding: 2px var(--gutter) 8px; }
-  .card { flex: 0 0 300px; }
+
+  /* Desktop : plus de défilement horizontal — les cartes se placent
+     au centre et passent à la ligne s'il n'y a pas la place. */
+  .rail {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 18px;
+    overflow-x: visible;
+    scroll-snap-type: none;
+    padding: 2px var(--gutter) 8px;
+  }
+  .card { flex: 0 0 300px; scroll-snap-align: none; }
   .card h3 { font-size: 16.5px; }
   .hint { display: none; }
 
