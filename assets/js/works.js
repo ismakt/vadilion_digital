@@ -46,8 +46,8 @@ const WORKS = [
       kind: 'Produit', state: 'En ligne',
       name: 'Smart-In',
       proof: 'Location intelligence',
-      line: "Plateforme d'intelligence territoriale.",
-      text: "Plus de 130 indicateurs par quartier, cartographie interactive et rapports générés automatiquement. Une lecture du terrain indépendante, fondée sur des données réelles plutôt que sur des impressions.",
+      line: "Plateforme d'intelligence territoriale pour due diligence avant d'investir.",
+      text: "Smart-In est une plateforme d'intelligence territoriale developpée pour fournir aux entrepreneurs une vision réelle  du marché et de l'emplacement avant d'investir du temps et du capital.<br>Avec plus de 130 indicateurs par quartier, cartographie interactive et rapports générés automatiquement. Une lecture du terrain indépendante, fondée sur des données réelles plutôt que sur des impressions.",
       tags: ['Python', 'PostGIS', 'QGIS', 'API', 'Data visualisation']
     },
     en: {
@@ -70,7 +70,7 @@ const WORKS = [
       kind: 'Produit', state: 'En développement',
       name: 'Wasabi',
       proof: 'Application interne',
-      line: 'Commande en direct pour restaurants, sans commission de plateforme.',
+      line: 'App de commande direct pour restaurants, sans commission de plateforme.',
       text: 'Ramener les clients fidèles vers la commande directe, sans payer de commission aux grandes plateformes. Architecture multi-restaurants, temps réel, données cloisonnées par établissement.',
       tags: ['Next.js', 'TypeScript', 'Supabase', 'Temps réel', 'Multi-tenant']
     },
@@ -95,7 +95,7 @@ const WORKS = [
       name: 'Auto-Perfs',
       proof: 'Automatisation',
       line: 'Veille automatisée du marché automobile pour les concessions.',
-      text: "Collecte automatique des annonces sur les grandes plateformes pour suivre les prix, les tendances et le stock qui ne tourne pas. Acheter en s'appuyant sur les chiffres du jour plutôt que sur l'intuition.",
+      text: "Collecte automatique des annonces automobiles sur les grandes plateformes pour suivre les prix, les tendances et le stock qui ne tourne pas. Acheter en s'appuyant sur les chiffres du jour plutôt que sur l'intuition.",
       tags: ['Python', 'Scraping automatisé', 'OSINT', 'Analyse de marché']
     },
     en: {
@@ -103,7 +103,7 @@ const WORKS = [
       name: 'Auto-Perfs',
       proof: 'Automation',
       line: 'Automated market monitoring for car dealerships.',
-      text: 'Automatic collection of listings across the major platforms to track prices, trends and stock that is not moving. Buying decisions made on current figures rather than instinct.',
+      text: 'Automatic collection of automobile listings across the major platforms to track prices, trends and stock that is not moving. Buying decisions made on current figures rather than instinct.',
       tags: ['Python', 'Automated scraping', 'OSINT', 'Market analysis']
     }
   },
@@ -118,7 +118,7 @@ const WORKS = [
       kind: 'Mission', state: 'Livré',
       name: 'Zus Coffee — analyse des ventes',
       proof: 'Analyse et reporting',
-      line: 'Tableau de bord consolidant les ventes de plusieurs pays.',
+      line: 'Analyse des données de vente pour une entreprise inernationale.',
       text: 'Meilleurs clients, produits les plus vendus, tendances de performance, mis à jour automatiquement. Un seul écran remplace la compilation manuelle des fichiers pays par pays.',
       tags: ['Excel', 'Conception de tableaux de bord']
     },
