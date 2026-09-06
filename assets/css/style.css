@@ -419,6 +419,7 @@ h1 {
   width: 100%;
   max-height: 100%;
   overflow-y: auto;
+  scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
   padding: 20px 18px;
   border: 1px solid var(--border-2);
@@ -432,6 +433,9 @@ h1 {
   from { transform: translateY(10px); opacity: 0; }
   to   { transform: translateY(0);    opacity: 1; }
 }
+
+.sheet::-webkit-scrollbar,
+.modal-content::-webkit-scrollbar { display: none; }
 
 .sheet-head { display: flex; align-items: flex-start; gap: 12px; }
 .sheet h3 { font-size: 19px; font-weight: 700; letter-spacing: -0.02em; }
@@ -572,6 +576,7 @@ footer button:hover { color: var(--muted); }
   max-width: 480px;
   max-height: 85dvh;
   overflow-y: auto;
+  scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
   padding: 22px 18px;
   padding-bottom: max(22px, env(safe-area-inset-bottom));
