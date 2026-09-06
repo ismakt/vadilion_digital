@@ -145,7 +145,6 @@ function openSheet(id) {
     + '<div class="thumb">' + art(o.art) + '</div>'
     + (t.text  ? '<p class="sheet-text">' + t.text + '</p>' : '')
     + (t.items ? '<ul class="items">' + t.items.map(function (i) { return '<li><b>' + i[0] + '</b>' + i[1] + '</li>'; }).join('') + '</ul>' : '')
-    + (t.note  ? '<div class="note">' + t.note + '</div>' : '')
     + (t.tags  ? '<div class="tags">' + t.tags.map(function (x) { return '<span class="tag">' + x + '</span>'; }).join('') + '</div>' : '')
     + (t.proof && !t.items ? '<div class="note"><b>' + L('brick') + '</b> — ' + t.proof + '</div>' : '')
     + (ctas ? '<div class="sheet-ctas">' + ctas + '</div>' : '');
