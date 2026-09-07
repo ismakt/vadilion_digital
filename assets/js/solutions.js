@@ -27,7 +27,7 @@
 
 const SOLUTIONS = [
   {
-    id: 'business-essentials',
+    id: 'appandsite',
     art: 'essentials',
     action: 'contact',
 
@@ -37,10 +37,7 @@ const SOLUTIONS = [
       name: 'Solutions sur mesure pour votre business',
       line: "Vous imaginez, nous developpons.",
       items: [
-        ['Applications et Site web', 'Développée sur mesure, pensée pour le travail réel de votre équipe et la facilité de vos clients.'],
-        ['Automatisation', 'Les tâches répétitives tournent sans vous.'],
-        ['Analyse et reporting', "Les chiffres de votre activité réunis au même endroit et lisibles en un coup d'œil, pour décider sur des faits."]
-      ],
+        ['Applications et Site web', 'Développée sur mesure, pensée pour le travail réel de votre équipe et la facilité de vos clients.']      ],
       cta: 'Prendre rendez-vous'
     },
 
@@ -57,7 +54,81 @@ const SOLUTIONS = [
       ],
       cta: 'Book a meeting'
     }
-  }
+  },
+
+
+
+
+{
+    id: 'automation',
+    art: 'essentials',
+    action: 'contact',
+
+    fr: {
+      kind: 'Offre',
+      state: '///',
+      name: 'Automatisation',
+      line: "Vous imaginez, nous developpons.",
+      items: [
+        ['Automatisation', 'Les tâches répétitives tournent sans vous.']      ],
+      cta: 'Prendre rendez-vous'
+    },
+
+    en: {
+      kind: 'Offer',
+      state: '///',
+      name: 'Business tailored solutions',
+      line: 'You imagine, we build',
+      items: [
+        ['App', 'A clear, fast storefront that gets you found and makes people want to call.'],
+        ['Internal app', 'Built around how your team actually works, not a generic tool to work around.'],
+        ['Automation', 'Quotes, invoices, reminders, data entry: repetitive work running on its own.'],
+        ['Analytics and reporting', 'Your numbers in one place, readable at a glance, so you decide on facts.']
+      ],
+      cta: 'Book a meeting'
+    }
+  },
+
+
+
+
+
+
+
+
+
+{
+    id: 'data',
+    art: 'essentials',
+    action: 'contact',
+
+    fr: {
+      kind: 'Offre',
+      state: '///',
+      name: 'Data Analysis and Reporting',
+      line: "Decisions claires.",
+      items: [
+        ['Analytics and reporting', 'Your numbers in one place, readable at a glance, so you decide on facts.']
+      cta: 'Prendre rendez-vous'
+    },
+
+    en: {
+      kind: 'Offer',
+      state: '///',
+      name: 'Data  Analysis and Reporting',
+      line: 'You imagine, we build',
+      items: [
+
+        ['Analytics and reporting', 'Your numbers in one place, readable at a glance, so you decide on facts.']
+      ],
+      cta: 'Book a meeting'
+    }
+  },
+
+
+
+
+   
    
 ];
 
