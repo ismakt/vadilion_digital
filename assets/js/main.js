@@ -340,8 +340,8 @@ const translations = {
 
     'kicker-1': 'PME et indépendants',
     'kicker-2': 'Belgique',
-    'hero-title': 'Le digital qui vous fait gagner du temps.',
-    'hero-lede': "Site web, application interne, automatisation, reporting. Et une lecture précise du quartier où vous travaillez, pour décider sur des données plutôt que sur une impression.",
+    'hero-title': 'Developement sur mesure pour répondre aux besoins de votre entreprise.',
+    'hero-lede': "Application, Site web, automatisation, reporting.",
     'hero-cta1': 'Voir les solutions',
     'hero-cta2': 'Nos réalisations',
 
