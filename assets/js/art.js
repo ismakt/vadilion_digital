@@ -119,6 +119,46 @@ const ART = {
     + '<rect x="186" y="126" width="26" height="48" rx="4" opacity=".4"/><rect x="224" y="112" width="26" height="62" rx="4" opacity=".55"/>'
     + '<rect x="262" y="146" width="26" height="28" rx="4" opacity=".25"/></g></svg>',
 
+  /* Bullet Train — course entre une boutique et un client */
+  delivery: '<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">'
+    + '<g stroke="#242019" stroke-width="1"><path d="M0 50h320M0 100h320M0 150h320M80 0v200M160 0v200M240 0v200"/></g>'
+    + '<path d="M84 140C126 140 134 96 178 92S246 66 272 60" fill="none" stroke="#4a4238" stroke-width="1.8" stroke-dasharray="6 6" stroke-linecap="round"/>'
+    + '<path d="M84 140C126 140 134 96 178 92" fill="none" stroke="#d9b56b" stroke-width="2.4" stroke-linecap="round"/>'
+    + '<g transform="translate(28 118)"><rect x="0" y="0" width="48" height="32" rx="4" fill="#111" stroke="#332c22"/>'
+    + '<path d="M-2 0h52l-7-13H5z" fill="#c9a24d" opacity=".8"/>'
+    + '<rect x="8" y="12" width="13" height="20" rx="2" fill="#171310" stroke="#3a3128"/>'
+    + '<rect x="28" y="12" width="12" height="9" rx="2" fill="#171310" stroke="#3a3128"/></g>'
+    + '<g transform="translate(210 120)"><rect x="0" y="0" width="30" height="26" rx="3" fill="#171310" stroke="#3a3128"/>'
+    + '<path d="M15 0v26M0 9h30" stroke="#c9a24d" stroke-width="1.6" opacity=".7"/></g>'
+    + '<circle cx="178" cy="92" r="6" fill="#0d0d0d" stroke="#d9b56b" stroke-width="2"/>'
+    + '<circle cx="178" cy="92" r="15" fill="none" stroke="#c9a24d" stroke-width="1" opacity=".35"/>'
+    + '<g transform="translate(272 60)"><path d="M0-18c-6 0-11 5-11 11 0 8 11 18 11 18s11-10 11-18c0-6-5-11-11-11z" fill="#0d0d0d" stroke="#d9b56b" stroke-width="1.6"/>'
+    + '<circle cy="-7" r="3.6" fill="#d9b56b"/></g></svg>',
+
+  /* Dolce — établissement et calendrier de réservation */
+  booking: '<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">'
+    + '<rect x="26" y="34" width="96" height="140" rx="8" fill="#111" stroke="#332c22"/>'
+    + '<g fill="#171310" stroke="#3a3128">'
+    + '<rect x="40" y="50" width="20" height="16" rx="2"/><rect x="70" y="50" width="20" height="16" rx="2"/>'
+    + '<rect x="40" y="78" width="20" height="16" rx="2"/>'
+    + '<rect x="40" y="106" width="20" height="16" rx="2"/><rect x="70" y="106" width="20" height="16" rx="2"/></g>'
+    + '<rect x="70" y="78" width="20" height="16" rx="2" fill="#c9a24d" opacity=".8"/>'
+    + '<rect x="58" y="140" width="32" height="34" rx="4" fill="#171310" stroke="#3a3128"/>'
+    + '<rect x="152" y="42" width="142" height="118" rx="10" fill="#111" stroke="#332c22"/>'
+    + '<rect x="152" y="42" width="142" height="20" rx="10" fill="#171310"/>'
+    + '<rect x="166" y="50" width="34" height="5" rx="2.5" fill="#3f382e"/>'
+    + '<g fill="#171310" stroke="#3a3128">'
+    + '<rect x="168" y="76" width="18" height="14" rx="3"/><rect x="192" y="76" width="18" height="14" rx="3"/>'
+    + '<rect x="216" y="76" width="18" height="14" rx="3"/><rect x="240" y="76" width="18" height="14" rx="3"/>'
+    + '<rect x="264" y="76" width="18" height="14" rx="3"/>'
+    + '<rect x="168" y="100" width="18" height="14" rx="3"/><rect x="192" y="100" width="18" height="14" rx="3"/>'
+    + '<rect x="240" y="100" width="18" height="14" rx="3"/><rect x="264" y="100" width="18" height="14" rx="3"/>'
+    + '<rect x="168" y="124" width="18" height="14" rx="3"/><rect x="192" y="124" width="18" height="14" rx="3"/>'
+    + '<rect x="216" y="124" width="18" height="14" rx="3"/><rect x="240" y="124" width="18" height="14" rx="3"/>'
+    + '<rect x="264" y="124" width="18" height="14" rx="3"/></g>'
+    + '<rect x="216" y="100" width="18" height="14" rx="3" fill="#c9a24d" opacity=".9"/>'
+    + '<circle cx="225" cy="107" r="14" fill="none" stroke="#c9a24d" stroke-width="1" opacity=".35"/></svg>',
+
   /* Revolut — courbe de rétention */
   churn: '<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">'
     + '<g stroke="#242019" stroke-width="1"><path d="M26 60h268M26 105h268M26 150h268"/></g>'
