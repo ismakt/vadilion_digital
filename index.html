@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="theme-color" content="#000000" />
 
-  <title>Vadilion Digital — Solutions digitales pour entreprises et indépendants</title>
-  <meta name="description" content="Sites web, applications internes, automatisation et analyse de données pour PME et indépendants en Belgique." />
+  <title>Vadilion Digital — Développement de solutions sur mesure</title>
+  <meta name="description" content="Applications, sites web, automatisations, analyse de données et reporting. Développement B2B sur mesure." />
 
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Vadilion Digital" />
-  <meta property="og:description" content="Sites web, applications internes, automatisation et analyse de données pour PME et indépendants en Belgique." />
+  <meta property="og:description" content="Applications, sites web, automatisations, analyse de données et reporting. Développement B2B sur mesure." />
   <meta property="og:url" content="https://vadiliondigital.be/" />
   <meta property="og:image" content="https://vadiliondigital.be/images/vadiliondigital_logo.png" />
 
@@ -32,8 +32,7 @@
 </a>
   <nav class="nav-d" aria-label="Sections">
     <button type="button" class="is-on" data-view="home" id="nav-home">Accueil</button>
-    <button type="button" data-view="solutions" id="nav-solutions">Solutions</button>
-    <button type="button" data-view="works"     id="nav-works">Réalisations</button>
+    <button type="button" data-view="works" id="nav-works">Solutions</button>
   </nav>
 
   <div class="head-right">
@@ -59,20 +58,18 @@
       <div class="hero-copy">
         <span class="kicker">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8.5 12 2.5 2.5 4.5-4.5"/></svg>
-          <b id="kicker-1">B2B — PME et indépendants</b>
-          <span class="sep" aria-hidden="true">·</span>
-          <span class="plain" id="kicker-2"></span>
+          <b id="kicker-1">B2B</b>
         </span>
 
-        <h1 id="hero-title">Solutions digitales pour répondre à vos besoins concrets.</h1>
+        <h1 id="hero-title">Développement de solutions sur mesure.</h1>
 
-        <p class="lede" id="hero-lede">Développement sur mesure — site web, applications, automatisation des tâches répétitives, analyse de données et reporting.</p>
+        <p class="lede" id="hero-lede">Applications, sites web, automatisations, analyse de données, reporting et plus encore.</p>
 
         <div class="ctas">
-          <button type="button" class="btn-solid" data-view="solutions" id="hero-cta1">Voir les solutions
+          <button type="button" class="btn-solid" data-view="works" id="hero-cta1">Voir nos solutions
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h13m-5-6 6 6-6 6"/></svg>
           </button>
-          <button type="button" class="btn-ghost" data-view="works" id="hero-cta2">Nos réalisations</button>
+          <button type="button" class="btn-ghost" data-open-contact id="hero-cta2">Prendre rendez-vous</button>
         </div>
       </div>
 
@@ -82,21 +79,10 @@
   </section>
 
   <!-- ─────── SOLUTIONS ─────── -->
-  <section class="view" id="v-solutions">
-    <div class="sec-head">
-      <h2 id="sol-title">Nos solutions</h2>
-      <p id="sol-sub">On répond à vos besoins concrets.</p>
-    </div>
-    <!-- Cartes injectées depuis assets/js/solutions.js -->
-    <div class="rail sol-rail" id="sol-rail"></div>
-    <p class="hint" id="sol-hint">Glissez pour voir l'autre offre →</p>
-  </section>
-
-  <!-- ─────── RÉALISATIONS ─────── -->
   <section class="view" id="v-works">
     <div class="sec-head">
-      <h2 id="works-title">Ce que nous avons déjà construit</h2>
-      <p id="works-sub">Chaque réalisation correspond à un des services que nous proposons.</p>
+      <h2 id="works-title">Nos solutions</h2>
+      <p id="works-sub">Ce que nous avons déjà construit, et ce que nous pouvons construire pour vous.</p>
     </div>
     <!-- Filtres et cartes injectés depuis assets/js/works.js -->
     <div class="filters" id="work-filters"></div>
@@ -126,8 +112,7 @@
       </button>
     </div>
     <button type="button" class="nav-link is-on" data-view="home"      id="dnav-home">Accueil</button>
-    <button type="button" class="nav-link" data-view="solutions"       id="dnav-solutions">Solutions</button>
-    <button type="button" class="nav-link" data-view="works"           id="dnav-works">Réalisations</button>
+    <button type="button" class="nav-link" data-view="works"           id="dnav-works">Solutions</button>
     <button type="button" class="nav-link" data-open-modal="officeModal" id="dnav-offices">Bureaux</button>
     <button type="button" class="btn-solid" data-open-contact          id="dnav-cta">Prendre rendez-vous</button>
   </aside>
@@ -170,10 +155,8 @@
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js" defer></script>
 <script src="assets/js/tracker.js"   defer></script>
 <script src="assets/js/art.js"       defer></script>
-<script src="assets/js/solutions.js" defer></script>
 <script src="assets/js/works.js"     defer></script>
-<!-- Simulateur Wasabi : conservé, non chargé. Décommenter pour réactiver
-     (et ajouter action: 'simulator' sur une solution dans solutions.js).
+<!-- Simulateur Wasabi : conservé, non chargé. Décommenter pour réactiver.
 <script src="assets/js/wasabi_simulator.js" defer></script>
 -->
 <script src="assets/js/main.js"      defer></script>
