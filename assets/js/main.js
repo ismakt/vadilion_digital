@@ -76,12 +76,6 @@ function renderHeroArt() {
   if (el) el.innerHTML = art('hero');
 }
 
-function renderSolutions() {
-  const rail = $('#sol-rail');
-  if (!rail || !window.SOLUTIONS) return;
-  rail.innerHTML = window.SOLUTIONS.map(function (s) { return cardHtml(s, true); }).join('');
-}
-
 function renderFilters() {
   const wrap = $('#work-filters');
   if (!wrap || !window.WORK_FILTERS) return;
@@ -103,7 +97,6 @@ function renderWorks() {
 
 function renderAll() {
   renderHeroArt();
-  renderSolutions();
   renderFilters();
   renderWorks();
 }
@@ -112,7 +105,7 @@ function renderAll() {
    FICHE (bottom sheet)
    ============================================================ */
 function findItem(id) {
-  const all = (window.SOLUTIONS || []).concat(window.WORKS || []);
+  const all = window.WORKS || [];
   return all.find(function (x) { return x.id === id; }) || null;
 }
 
@@ -336,26 +329,21 @@ function L(key) { return STRINGS[currentLang][key]; }
 
 const translations = {
   fr: {
-    'nav-home': 'Accueil', 'nav-solutions': 'Solutions', 'nav-works': 'Réalisations', 'nav-about': 'À propos',
+    'nav-home': 'Accueil', 'nav-works': 'Solutions',
 
-    'kicker-1': 'PME et indépendants',
-    'kicker-2': 'Belgique',
-    'hero-title': 'Developement sur mesure pour répondre aux besoins de votre entreprise.',
-    'hero-lede': "Application, Site web, automatisation, reporting.",
-    'hero-cta1': 'Voir les solutions',
-    'hero-cta2': 'Nos réalisations',
+    'kicker-1': 'B2B',
+    'hero-title': 'Développement de solutions sur mesure.',
+    'hero-lede': "Applications, sites web, automatisations, analyse de données, reporting et plus encore.",
+    'hero-cta1': 'Voir nos solutions',
+    'hero-cta2': 'Prendre rendez-vous',
 
-    'sol-title': 'Nos solutions',
-    'sol-sub': "On installe ce qui vous manque, pas ce qui ne vous servira pas.",
-    'sol-hint': "Glissez pour voir l'autre offre →",
-
-    'works-title': 'Ce que nous avons déjà construit',
-    'works-sub': 'Chaque réalisation correspond à une des briques que nous proposons.',
+    'works-title': 'Nos solutions',
+    'works-sub': 'Ce que nous avons déjà construit, et ce que nous pouvons construire pour vous.',
     'works-hint': 'Glissez pour voir les autres →',
 
 
-    'dnav-home': 'Accueil', 'dnav-solutions': 'Solutions', 'dnav-works': 'Réalisations',
-    'dnav-about': 'À propos', 'dnav-offices': 'Bureaux', 'dnav-cta': 'Prendre rendez-vous',
+    'dnav-home': 'Accueil', 'dnav-works': 'Solutions',
+    'dnav-offices': 'Bureaux', 'dnav-cta': 'Prendre rendez-vous',
 
     'offices-link': 'Bureaux', 'contact-footer-link': 'Contact',
 
@@ -365,27 +353,22 @@ const translations = {
   },
 
   en: {
-    'nav-home': 'Home', 'nav-solutions': 'Solutions', 'nav-works': 'Work', 'nav-about': 'About',
+    'nav-home': 'Home', 'nav-works': 'Solutions',
 
-    'kicker-1': 'Small businesses and independents',
-    'kicker-2': 'Belgium',
-    'hero-title': 'Digital work that gives you time back.',
-    'hero-lede': 'Website, internal app, automation, reporting. Plus a precise read of the area you work in, so you decide on data instead of impressions.',
-    'hero-cta1': 'See solutions',
-    'hero-cta2': 'Our work',
+    'kicker-1': 'B2B',
+    'hero-title': 'Custom-built digital solutions.',
+    'hero-lede': 'Apps, websites, automations, data analysis, reporting and more.',
+    'hero-cta1': 'See our solutions',
+    'hero-cta2': 'Book a meeting',
 
-    'sol-title': 'Our solutions',
-    'sol-sub': 'We install what you are missing, not what will not serve you.',
-    'sol-hint': 'Swipe to see the other offer →',
-
-    'works-title': 'What we have already built',
-    'works-sub': 'Each piece of work matches one of the building blocks we offer.',
+    'works-title': 'Our solutions',
+    'works-sub': 'What we have already built, and what we can build for you.',
     'works-hint': 'Swipe to see the others →',
 
 
 
-    'dnav-home': 'Home', 'dnav-solutions': 'Solutions', 'dnav-works': 'Work',
-    'dnav-about': 'About', 'dnav-offices': 'Offices', 'dnav-cta': 'Book a meeting',
+    'dnav-home': 'Home', 'dnav-works': 'Solutions',
+    'dnav-offices': 'Offices', 'dnav-cta': 'Book a meeting',
 
     'offices-link': 'Offices', 'contact-footer-link': 'Contact',
 
