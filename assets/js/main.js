@@ -61,6 +61,7 @@ function cardHtml(o, withBricks) {
     +     '<span class="sep" aria-hidden="true">·</span><span class="state">' + t.state + '</span></div>'
     +   '<h3>' + t.name + '</h3>'
     +   '<p class="line">' + t.line + '</p>'
+    +   (t.example ? '<div class="card-example"><b>' + L('example') + '</b><span>' + t.example + '</span></div>' : '')
     +   (withBricks
           ? '<ul class="bricks">' + t.items.map(function (i) { return '<li><b>' + i[0] + '</b></li>'; }).join('') + '</ul>'
           : '')
@@ -95,8 +96,16 @@ function renderWorks() {
   rail.scrollLeft = 0;
 }
 
+function renderSolutions() {
+  const rail = $('#solution-rail');
+  if (!rail || !window.SOLUTIONS) return;
+  rail.innerHTML = window.SOLUTIONS.map(function (o) { return cardHtml(o, true); }).join('');
+  rail.scrollLeft = 0;
+}
+
 function renderAll() {
   renderHeroArt();
+  renderSolutions();
   renderFilters();
   renderWorks();
 }
@@ -105,7 +114,7 @@ function renderAll() {
    FICHE (bottom sheet)
    ============================================================ */
 function findItem(id) {
-  const all = window.WORKS || [];
+  const all = (window.SOLUTIONS || []).concat(window.WORKS || []);
   return all.find(function (x) { return x.id === id; }) || null;
 }
 
@@ -137,6 +146,7 @@ function openSheet(id) {
     + '</div>'
     + '<div class="thumb">' + art(o.art) + '</div>'
     + (t.text  ? '<p class="sheet-text">' + t.text + '</p>' : '')
+    + (t.example ? '<div class="sheet-example"><b>' + L('example') + '</b>' + t.example + '</div>' : '')
     + (t.items ? '<ul class="items">' + t.items.map(function (i) { return '<li><b>' + i[0] + '</b>' + i[1] + '</li>'; }).join('') + '</ul>' : '')
     + (t.tags  ? '<div class="tags">' + t.tags.map(function (x) { return '<span class="tag">' + x + '</span>'; }).join('') + '</div>' : '')
     + (ctas ? '<div class="sheet-ctas">' + ctas + '</div>' : '');
@@ -317,10 +327,10 @@ function initContactForm() {
    Les chaînes générées par le JS sont dans STRINGS, lues par L().
    ============================================================ */
 const STRINGS = {
-  fr: { details: 'Détails →', close: 'Fermer', brick: 'Brique démontrée',
+  fr: { details: 'Détails →', example: 'Exemple concret', close: 'Fermer', brick: 'Brique démontrée',
         fillAll: 'Veuillez remplir tous les champs.', sending: 'Envoi…',
         sent: 'Message envoyé ✅', sendError: "Erreur lors de l'envoi ❌" },
-  en: { details: 'Details →', close: 'Close', brick: 'Building block demonstrated',
+  en: { details: 'Details →', example: 'Real-life example', close: 'Close', brick: 'Building block demonstrated',
         fillAll: 'Please fill in all fields.', sending: 'Sending…',
         sent: 'Message sent ✅', sendError: 'Sending failed ❌' }
 };
@@ -329,51 +339,59 @@ function L(key) { return STRINGS[currentLang][key]; }
 
 const translations = {
   fr: {
-    'nav-home': 'Accueil', 'nav-works': 'Solutions',
+    'nav-home': 'Accueil', 'nav-solutions': 'Solutions', 'nav-works': 'Réalisations',
 
     'kicker-1': 'B2B',
-    'hero-title': 'Développement de solutions sur mesure.',
-    'hero-lede': "Applications, sites web, automatisations, analyse de données, reporting et plus encore.",
+    'hero-title': 'Solutions digitales sur mesure en B2B.',
+    'hero-lede': "Développement d'applications, sites web, automatisation des tâches chronophages, analyse de données, reporting et autres solutions sur mesure.",
     'hero-cta1': 'Voir nos solutions',
     'hero-cta2': 'Prendre rendez-vous',
 
-    'works-title': 'Nos solutions',
-    'works-sub': 'Ce que nous avons déjà construit, et ce que nous pouvons construire pour vous.',
+    'solutions-title': 'Nos solutions',
+    'solutions-sub': 'Ce que nous mettons en place pour nos clients.',
+    'solutions-hint': 'Glissez pour voir les autres →',
+
+    'works-title': 'Réalisations',
+    'works-sub': 'Ce que nous avons déjà construit.',
     'works-hint': 'Glissez pour voir les autres →',
 
 
-    'dnav-home': 'Accueil', 'dnav-works': 'Solutions',
+    'dnav-home': 'Accueil', 'dnav-solutions': 'Solutions', 'dnav-works': 'Réalisations',
     'dnav-offices': 'Bureaux', 'dnav-cta': 'Prendre rendez-vous',
 
     'offices-link': 'Bureaux', 'contact-footer-link': 'Contact',
 
     'contact-text': 'Contactez-nous', 'contact-text2': 'Décrivez votre besoin, nous revenons vers vous rapidement.', 'btn-send': 'Envoyer',
-    'offices': 'Bureaux', 'office1-city': 'Bruxelles',
+    'offices': 'Bureaux', 'office1-city': 'Bruxelles', 'office2-city': 'Liège', 'office3-city': 'Paris', 'office4-city': 'Monaco',
     'office-note': '*Uniquement sur rendez-vous. Nous privilégions les rendez-vous chez nos clients, ou à distance.'
   },
 
   en: {
-    'nav-home': 'Home', 'nav-works': 'Solutions',
+    'nav-home': 'Home', 'nav-solutions': 'Solutions', 'nav-works': 'Our work',
 
     'kicker-1': 'B2B',
-    'hero-title': 'Custom-built digital solutions.',
-    'hero-lede': 'Apps, websites, automations, data analysis, reporting and more.',
+    'hero-title': 'Custom B2B digital solutions.',
+    'hero-lede': 'Development of apps, websites, automation of time-consuming tasks, data analysis, reporting and other custom solutions.',
     'hero-cta1': 'See our solutions',
     'hero-cta2': 'Book a meeting',
 
-    'works-title': 'Our solutions',
-    'works-sub': 'What we have already built, and what we can build for you.',
+    'solutions-title': 'Our solutions',
+    'solutions-sub': 'What we set up for our clients.',
+    'solutions-hint': 'Swipe to see the others →',
+
+    'works-title': 'Our work',
+    'works-sub': 'What we have already built.',
     'works-hint': 'Swipe to see the others →',
 
 
 
-    'dnav-home': 'Home', 'dnav-works': 'Solutions',
+    'dnav-home': 'Home', 'dnav-solutions': 'Solutions', 'dnav-works': 'Our work',
     'dnav-offices': 'Offices', 'dnav-cta': 'Book a meeting',
 
     'offices-link': 'Offices', 'contact-footer-link': 'Contact',
 
     'contact-text': 'Contact us', 'contact-text2': 'Tell us what you need and we will get back to you quickly.', 'btn-send': 'Send',
-    'offices': 'Offices', 'office1-city': 'Brussels',
+    'offices': 'Offices', 'office1-city': 'Brussels', 'office2-city': 'Liège', 'office3-city': 'Paris', 'office4-city': 'Monaco',
     'office-note': '*By appointment only. We prefer meeting at your place, or remote.'
   }
 };
