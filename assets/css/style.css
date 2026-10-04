@@ -719,3 +719,69 @@ footer button:hover { color: var(--muted); }
   .cred  { flex: 1; flex-direction: column; align-items: flex-start; gap: 8px; }
   .cred .yr { margin-left: 0; }
 }
+
+/* ============================
+   BUREAUX — icônes de ville
+   ============================ */
+.office-item { flex-direction: row; align-items: center; gap: 14px; text-align: left; }
+.office-ico {
+  flex: 0 0 40px; height: 40px;
+  display: grid; place-items: center;
+  border: 1px solid var(--gold-edge);
+  border-radius: 10px;
+  background: var(--gold-soft);
+  color: var(--gold-light);
+}
+.office-txt { display: flex; flex-direction: column; gap: 2px; }
+
+/* ============================
+   FICHE — exemple concret
+   ============================ */
+.sheet-example {
+  margin-top: 14px; padding: 12px 14px;
+  border-left: 2px solid var(--gold);
+  border-radius: 0 10px 10px 0;
+  background: var(--gold-soft);
+  font-size: 13px; line-height: 1.6; color: var(--text); text-align: left;
+}
+.sheet-example b {
+  display: block; margin-bottom: 4px;
+  font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--gold-light);
+}
+
+/* ============================
+   CARTES — exemple concret
+   ============================ */
+.card-example {
+  margin-top: 10px; padding: 9px 11px;
+  border-left: 2px solid var(--gold);
+  border-radius: 0 9px 9px 0;
+  background: var(--gold-soft);
+  font-size: 12px; line-height: 1.5; color: #cfc6b3;
+}
+.card-example span {
+  overflow: hidden; display: -webkit-box;
+  -webkit-line-clamp: 4; -webkit-box-orient: vertical;
+}
+.card-example b {
+  display: block; margin-bottom: 3px;
+  font-size: 10.5px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--gold-light);
+}
+@media (max-height: 620px) { .card-example span { -webkit-line-clamp: 2; } }
+@media (min-width: 860px)  { .card-example span { -webkit-line-clamp: unset; display: block; } }
+
+/* ============================
+   ILLUSTRATION ACCUEIL — animation
+   ============================ */
+.hero-art { background: radial-gradient(120% 90% at 70% 20%, #1d1710 0%, #0b0b0b 55%, #070707 100%); }
+.va-hero .va-fl  { animation: vaFloat 6s ease-in-out infinite; }
+.va-hero .va-fl2 { animation-delay: -1.5s; }
+.va-hero .va-fl3 { animation-delay: -3s; }
+.va-hero .va-fl4 { animation-delay: -4.5s; }
+.va-hero .va-orb { transform-origin: 160px 112px; animation: vaSpin 40s linear infinite; }
+.va-hero .va-pulse { animation: vaPulse 2.4s ease-in-out infinite; }
+@keyframes vaFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+@keyframes vaSpin  { to { transform: rotate(360deg); } }
+@keyframes vaPulse { 0%, 100% { opacity: .25; } 50% { opacity: .9; } }
