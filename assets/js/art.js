@@ -14,24 +14,30 @@
 
 const ART = {
 
-  /* Accueil — écran de données + application mobile + repère */
-  hero: '<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">'
-    + '<g stroke="#242019" stroke-width="1"><path d="M0 46h320M0 92h320M0 138h320M64 0v200M128 0v200M192 0v200M256 0v200"/></g>'
-    + '<rect x="18" y="26" width="150" height="96" rx="10" fill="#111" stroke="#332c22"/>'
-    + '<rect x="18" y="26" width="150" height="17" rx="10" fill="#171310"/>'
-    + '<g fill="#c9a24d"><rect x="30" y="86" width="16" height="24" rx="3" opacity=".35"/>'
-    + '<rect x="54" y="72" width="16" height="38" rx="3" opacity=".5"/>'
-    + '<rect x="78" y="60" width="16" height="50" rx="3" opacity=".85"/>'
-    + '<rect x="102" y="78" width="16" height="32" rx="3" opacity=".4"/>'
-    + '<rect x="126" y="66" width="16" height="44" rx="3" opacity=".6"/></g>'
-    + '<rect x="188" y="52" width="76" height="122" rx="13" fill="#111" stroke="#332c22"/>'
-    + '<rect x="198" y="70" width="56" height="26" rx="7" fill="#171310" stroke="#3a3128"/>'
-    + '<rect x="206" y="80" width="30" height="4" rx="2" fill="#4a4238"/>'
-    + '<rect x="198" y="104" width="56" height="26" rx="7" fill="#171310" stroke="#3a3128"/>'
-    + '<rect x="206" y="114" width="22" height="4" rx="2" fill="#4a4238"/>'
-    + '<rect x="198" y="138" width="56" height="22" rx="7" fill="#c9a24d" opacity=".85"/>'
-    + '<g transform="translate(276 140)"><path d="M0-16c-5 0-9 4-9 9 0 7 9 16 9 16s9-9 9-16c0-5-4-9-9-9z" fill="#0d0d0d" stroke="#d9b56b" stroke-width="1.5"/>'
-    + '<circle cy="-7" r="3" fill="#d9b56b"/></g></svg>',
+  /* Accueil — empilement isométrique des 4 offres : interface, automatisation, données, territoire */
+  hero: '<svg class="va-hero" viewBox="0 0 320 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">'
+    + '<defs><linearGradient id="vaPl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1f1a12"/><stop offset="1" stop-color="#0e0d0b"/></linearGradient>'
+    + '<linearGradient id="vaPg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d9b56b"/><stop offset="1" stop-color="#8a6b2c"/></linearGradient>'
+    + '<radialGradient id="vaGl"><stop offset="0" stop-color="#c9a24d" stop-opacity=".35"/><stop offset="1" stop-color="#c9a24d" stop-opacity="0"/></radialGradient></defs>'
+    + '<ellipse cx="160" cy="150" rx="130" ry="46" fill="url(#vaGl)"/>'
+    + '<g class="va-orb" fill="none" stroke="#c9a24d"><ellipse cx="160" cy="112" rx="138" ry="52" stroke-opacity=".18" stroke-dasharray="2 6"/>'
+    + '<circle cx="298" cy="112" r="2.5" fill="#d9b56b" stroke="none"/><circle cx="22" cy="112" r="1.8" fill="#d9b56b" stroke="none" opacity=".6"/></g>'
+    + '<g class="va-fl va-fl4"><path d="M160 150 248 172 160 194 72 172Z" fill="url(#vaPl)" stroke="#3a3128"/>'
+    + '<g stroke="#4a4238" stroke-width=".8"><path d="M116 161 204 183M138 155.5 226 177.5M138 188.5 226 166.5M116 183 204 161"/></g>'
+    + '<path d="M182 171c0-4-3-6-6-6s-6 2-6 6c0 5 6 10 6 10s6-5 6-10z" fill="#0d0d0d" stroke="#d9b56b" stroke-width="1.2"/></g>'
+    + '<g class="va-fl va-fl3"><path d="M160 118 248 140 160 162 72 140Z" fill="url(#vaPl)" stroke="#3a3128"/>'
+    + '<g fill="#c9a24d"><path d="M118 140v-8l8 2v8Z" opacity=".35"/><path d="M134 144v-16l8 2v16Z" opacity=".55"/><path d="M150 148v-24l8 2v24Z" opacity=".9"/><path d="M166 152v-14l8 2v14Z" opacity=".45"/></g>'
+    + '<polyline points="186,146 200,138 214,142 230,128" fill="none" stroke="#d9b56b" stroke-width="1.4" stroke-linecap="round"/></g>'
+    + '<g class="va-fl va-fl2"><path d="M160 86 248 108 160 130 72 108Z" fill="url(#vaPl)" stroke="#3a3128"/>'
+    + '<g fill="none" stroke="#d9b56b" stroke-width="1.2" opacity=".85"><circle cx="128" cy="108" r="7"/><circle cx="128" cy="108" r="2.5"/>'
+    + '<path d="M140 108h24l8-6h22" stroke-dasharray="3 3"/><circle cx="198" cy="102" r="3" fill="#d9b56b"/></g></g>'
+    + '<g class="va-fl va-fl1"><path d="M160 54 248 76 160 98 72 76Z" fill="url(#vaPl)" stroke="#c9a24d" stroke-opacity=".55"/>'
+    + '<path d="M118 76 160 65.5 202 76 160 86.5Z" fill="#111" stroke="#3a3128"/>'
+    + '<path d="M138 76 160 70.5 182 76 160 81.5Z" fill="url(#vaPg)" opacity=".85"/>'
+    + '<path d="M210 80 230 75" stroke="#4a4238" stroke-width="3" stroke-linecap="round"/></g>'
+    + '<g stroke="#c9a24d" stroke-width=".8" stroke-opacity=".35"><path d="M72 76v96M248 76v96"/></g>'
+    + '<circle class="va-pulse" cx="160" cy="40" r="3" fill="#d9b56b"/><path d="M160 43v11" stroke="#d9b56b" stroke-width=".8" opacity=".5"/>'
+    + '</svg>',
 
   /* Business essentials — site, application, automatisation, reporting */
   essentials: '<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">'
@@ -166,7 +172,51 @@ const ART = {
     + '<path d="M26 62 C70 66, 96 84, 130 92 S196 118, 230 140 294 166 294 166 L294 186 L26 186 Z" fill="#c9a24d" opacity=".08"/>'
     + '<path d="M26 84 C74 88, 110 96, 150 100 S230 108, 294 112" fill="none" stroke="#4a4238" stroke-width="1.8" stroke-dasharray="5 5"/>'
     + '<circle cx="230" cy="140" r="4.5" fill="#0d0d0d" stroke="#d9b56b" stroke-width="2"/>'
-    + '<circle cx="230" cy="140" r="12" fill="none" stroke="#c9a24d" stroke-width="1" opacity=".35"/></svg>'
+    + '<circle cx="230" cy="140" r="12" fill="none" stroke="#c9a24d" stroke-width="1" opacity=".35"/></svg>',
+
+  /* Solutions sur mesure — flux automatisé entre outils */
+  flow: '<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">'
+    + '<g fill="#111" stroke="#332c22"><rect x="30" y="60" width="70" height="80" rx="10"/><rect x="220" y="60" width="70" height="80" rx="10"/></g>'
+    + '<g fill="#4a4238"><rect x="42" y="76" width="44" height="5" rx="2.5"/><rect x="42" y="90" width="34" height="5" rx="2.5"/><rect x="42" y="104" width="40" height="5" rx="2.5"/><rect x="232" y="76" width="44" height="5" rx="2.5"/><rect x="232" y="90" width="30" height="5" rx="2.5"/></g>'
+    + '<rect x="232" y="112" width="46" height="16" rx="5" fill="#c9a24d" opacity=".85"/>'
+    + '<circle cx="160" cy="100" r="24" fill="#0d0d0d" stroke="#d9b56b" stroke-width="1.5"/>'
+    + '<path d="M152 100h16m-5-5 5 5-5 5" fill="none" stroke="#d9b56b" stroke-width="2" stroke-linecap="round"/>'
+    + '<path d="M100 100h36M184 100h36" stroke="#c9a24d" stroke-width="1.4" stroke-dasharray="4 4"/></svg>',
+
+  /* City Eats — plat fait maison + repère de quartier */
+  homefood: '<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">'
+    + '<g stroke="#242019"><path d="M0 60h320M0 140h320M90 0v200M230 0v200"/></g>'
+    + '<ellipse cx="160" cy="118" rx="70" ry="18" fill="#111" stroke="#332c22"/>'
+    + '<path d="M100 112a60 40 0 0 1 120 0z" fill="#171310" stroke="#d9b56b" stroke-width="1.4"/>'
+    + '<circle cx="160" cy="70" r="4" fill="#d9b56b"/>'
+    + '<path d="M140 52c4-8-4-12 0-20M160 46c4-8-4-12 0-20M180 52c4-8-4-12 0-20" fill="none" stroke="#4a4238" stroke-width="1.4" stroke-linecap="round"/>'
+    + '<g transform="translate(270 70)"><path d="M0-14c-5 0-9 4-9 9 0 6 9 14 9 14s9-8 9-14c0-5-4-9-9-9z" fill="#0d0d0d" stroke="#d9b56b" stroke-width="1.4"/><circle cy="-5" r="3" fill="#d9b56b"/></g></svg>',
+
+  /* 24/7 Shop — vitrine + horloge */
+  shop: '<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">'
+    + '<rect x="60" y="70" width="140" height="100" rx="8" fill="#111" stroke="#332c22"/>'
+    + '<path d="M54 70l14-28h124l14 28z" fill="#171310" stroke="#c9a24d" stroke-width="1.2"/>'
+    + '<rect x="78" y="96" width="44" height="74" rx="4" fill="#171310" stroke="#3a3128"/>'
+    + '<g fill="#4a4238"><rect x="138" y="96" width="44" height="6" rx="3"/><rect x="138" y="110" width="30" height="6" rx="3"/></g>'
+    + '<g transform="translate(244 90)"><circle r="30" fill="#0d0d0d" stroke="#d9b56b" stroke-width="1.5"/><path d="M0-18V0l12 8" fill="none" stroke="#d9b56b" stroke-width="2" stroke-linecap="round"/></g></svg>',
+
+  /* TuneYourCar — silhouette sportive */
+  car: '<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">'
+    + '<path d="M0 150h320" stroke="#242019"/>'
+    + '<path d="M48 136l10-24 46-10 34-22h62l40 24 30 6c8 2 12 8 12 16v10z" fill="#111" stroke="#d9b56b" stroke-width="1.4" stroke-linejoin="round"/>'
+    + '<path d="M144 86h52l28 18h-92z" fill="#171310" stroke="#3a3128"/>'
+    + '<g fill="#0d0d0d" stroke="#c9a24d" stroke-width="1.6"><circle cx="98" cy="138" r="17"/><circle cx="234" cy="138" r="17"/></g>'
+    + '<g fill="#4a4238"><circle cx="98" cy="138" r="6"/><circle cx="234" cy="138" r="6"/></g></svg>',
+
+  /* Pièces auto — demande + offres concurrentes */
+  parts: '<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">'
+    + '<g transform="translate(70 100)"><circle r="34" fill="#111" stroke="#332c22"/><circle r="22" fill="none" stroke="#d9b56b" stroke-width="1.4"/><circle r="7" fill="#c9a24d" opacity=".85"/>'
+    + '<g fill="#4a4238"><circle cx="0" cy="-14" r="2.5"/><circle cx="14" cy="0" r="2.5"/><circle cx="0" cy="14" r="2.5"/><circle cx="-14" cy="0" r="2.5"/></g></g>'
+    + '<g fill="#111" stroke="#332c22"><rect x="160" y="40" width="120" height="32" rx="8"/><rect x="160" y="84" width="120" height="32" rx="8" stroke="#d9b56b"/><rect x="160" y="128" width="120" height="32" rx="8"/></g>'
+    + '<g fill="#4a4238"><rect x="172" y="53" width="50" height="6" rx="3"/><rect x="172" y="141" width="44" height="6" rx="3"/></g>'
+    + '<rect x="172" y="97" width="56" height="6" rx="3" fill="#d9b56b"/>'
+    + '<path d="M108 100h46M108 90l50-34M108 110l50 34" stroke="#3a3128" stroke-dasharray="3 4"/></svg>',
+
 };
 
 /** Renvoie l'illustration demandée, ou celle de l'accueil en secours. */
