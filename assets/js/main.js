@@ -47,8 +47,7 @@ const $$ = function (sel) { return Array.prototype.slice.call(document.querySele
    ============================================================ */
 const ICO = {
   arrow: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h13m-5-6 6 6-6 6"/></svg>',
-  check: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>',
-  out:   '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>'
+  check: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>'
 };
 
 function art(key) { return window.getArt ? window.getArt(key) : ''; }
@@ -56,8 +55,6 @@ function art(key) { return window.getArt ? window.getArt(key) : ''; }
 /* Carte solution — tout le contenu est visible, pas de fiche à ouvrir. */
 function solutionCardHtml(o) {
   const t = o[currentLang];
-  const actions = (t.cta ? '<button type="button" class="card-cta" data-open-contact>' + t.cta + ICO.arrow + '</button>' : '')
-    + (o.url ? '<a class="card-link" href="' + o.url + '" target="_blank" rel="noopener noreferrer">' + t.urlLabel + ICO.out + '</a>' : '');
 
   return '<article class="card sol-card">'
     +   '<div class="thumb">' + art(o.art) + '</div>'
@@ -67,8 +64,6 @@ function solutionCardHtml(o) {
     +     '<ul class="offer-list">' + t.items.map(function (i) {
             return '<li>' + ICO.check + '<span><b>' + i[0] + '</b>' + (i[1] || '') + '</span></li>';
           }).join('') + '</ul>'
-    +     (t.example ? '<p class="card-example"><b>' + L('example') + '</b>' + t.example + '</p>' : '')
-    +     (actions ? '<div class="card-foot">' + actions + '</div>' : '')
     +   '</div>'
     + '</article>';
 }
@@ -284,11 +279,9 @@ function initContactForm() {
    Les chaînes générées par le JS sont dans STRINGS, lues par L().
    ============================================================ */
 const STRINGS = {
-  fr: { example: 'Exemple',
-        fillAll: 'Veuillez remplir tous les champs.', sending: 'Envoi…',
+  fr: { fillAll: 'Veuillez remplir tous les champs.', sending: 'Envoi…',
         sent: 'Message envoyé ✅', sendError: "Erreur lors de l'envoi ❌" },
-  en: { example: 'Example',
-        fillAll: 'Please fill in all fields.', sending: 'Sending…',
+  en: { fillAll: 'Please fill in all fields.', sending: 'Sending…',
         sent: 'Message sent ✅', sendError: 'Sending failed ❌' }
 };
 

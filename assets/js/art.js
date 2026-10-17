@@ -189,41 +189,29 @@ const ART = {
     + '<path d="M228 100l7 7 13-14" fill="none" stroke="#d9b56b" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>'
     + '</svg>',
 
-  /* City Eats — plat fait maison partagé entre voisins */
+  /* City Eats — le plat fait maison, livré dans le quartier */
   homefood: '<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">'
-    + '<g stroke="#242019"><path d="M0 60h320M0 158h320M20 0v200M300 0v200"/></g>'
-    + '<ellipse cx="160" cy="150" rx="96" ry="14" fill="#c9a24d" opacity=".07"/>'
-    + '<g transform="translate(30 104)"><path d="M0 22 22 4l22 18z" fill="#171310" stroke="#4a4238" stroke-linejoin="round"/>'
-    + '<rect x="4" y="22" width="36" height="32" fill="#111" stroke="#332c22"/><rect x="10" y="30" width="10" height="10" rx="1" fill="#c9a24d" opacity=".75"/>'
-    + '<rect x="26" y="38" width="8" height="16" fill="#171310" stroke="#3a3128"/></g>'
-    + '<g transform="translate(246 104)"><path d="M0 22 22 4l22 18z" fill="#171310" stroke="#4a4238" stroke-linejoin="round"/>'
-    + '<rect x="4" y="22" width="36" height="32" fill="#111" stroke="#332c22"/><rect x="24" y="30" width="10" height="10" rx="1" fill="#c9a24d" opacity=".4"/>'
-    + '<rect x="10" y="38" width="8" height="16" fill="#171310" stroke="#3a3128"/></g>'
-    + '<path d="M96 132H76M224 132h20" stroke="#c9a24d" stroke-opacity=".55" stroke-dasharray="3 4"/>'
-    + '<ellipse cx="160" cy="146" rx="66" ry="9" fill="#111" stroke="#332c22"/>'
-    + '<path d="M110 106h100v20a18 18 0 0 1-18 18h-64a18 18 0 0 1-18-18z" fill="#171310" stroke="#d9b56b" stroke-width="1.4"/>'
-    + '<path d="M118 106a42 18 0 0 1 84 0" fill="#111" stroke="#c9a24d" stroke-width="1.3"/>'
-    + '<path d="M104 106h112M110 116h-10M210 116h10" stroke="#d9b56b" stroke-width="2.4" stroke-linecap="round"/>'
-    + '<circle cx="160" cy="86" r="4" fill="#d9b56b"/>'
-    + '<path d="M146 74c-5-6 5-10 0-16s5-10 0-16M160 70c-5-6 5-10 0-16s5-10 0-16M174 74c-5-6 5-10 0-16s5-10 0-16" fill="none" stroke="#6a5f50" stroke-width="1.4" stroke-linecap="round"/>'
-    + '<g transform="translate(268 92)"><path d="M0 0s-10-9-10-17c0-6 4-10 10-10s10 4 10 10c0 8-10 17-10 17z" fill="#0d0d0d" stroke="#d9b56b" stroke-width="1.4"/><circle cy="-17" r="3.4" fill="#d9b56b"/></g>'
+    + '<defs><linearGradient id="ceG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e3c27e"/><stop offset="1" stop-color="#a9853a"/></linearGradient><radialGradient id="ceGGl"><stop offset="0" stop-color="#c9a24d" stop-opacity=".22"/><stop offset="1" stop-color="#c9a24d" stop-opacity="0"/></radialGradient></defs>'
+    + '<ellipse cx="160" cy="112" rx="110" ry="62" fill="url(#ceGGl)"/>'
+    + '<path d="M114 96v58h92V96" fill="#111" stroke="#3a3128"/>'
+    + '<path d="M104 104l56-44 56 44" fill="none" stroke="url(#ceG)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>'
+    + '<path d="M150 112c-4-5 4-8 0-13M160 109c-4-5 4-8 0-13M170 112c-4-5 4-8 0-13" fill="none" stroke="#d9b56b" stroke-opacity=".55" stroke-width="1.4" stroke-linecap="round"/>'
+    + '<path d="M132 120h56a28 24 0 0 1-56 0z" fill="url(#ceG)"/>'
+    + '<path d="M206 136c26 0 38-22 60-34" fill="none" stroke="#c9a24d" stroke-opacity=".6" stroke-width="1.3" stroke-dasharray="3 4"/>'
+    + '<g transform="translate(272 98)"><path d="M0 0s-12-11-12-20c0-7 5-12 12-12s12 5 12 12c0 9-12 20-12 20z" fill="#0d0d0d" stroke="#d9b56b" stroke-width="1.6"/><circle cy="-20" r="4" fill="#d9b56b"/></g>'
     + '</svg>',
 
 
-  /* TuneYourCar — coupé sportif, roue « compatible » ciblée */
+  /* TuneYourCar — silhouette épurée */
   car: '<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">'
-    + '<path d="M20 158h280" stroke="#2a2620"/>'
-    + '<ellipse cx="165" cy="159" rx="128" ry="6" fill="#c9a24d" opacity=".1"/>'
-    + '<path d="M296 96h18M300 108h14M294 120h20" stroke="#4a4238" stroke-width="1.4" stroke-linecap="round"/>'
-    + '<path d="M44 138l2-12q2-9 12-11l44-8q20-19 44-26l50-2q20 0 36 13l18 14 22 4q12 2 13 14l1 14h-24a26 26 0 0 0-52 0h-86a26 26 0 0 0-52 0z" fill="#111" stroke="#d9b56b" stroke-width="1.4" stroke-linejoin="round"/>'
-    + '<g fill="#171310" stroke="#3a3128"><path d="M110 106q16-13 38-19l20-1v20z"/><path d="M174 86h22q14 1 26 12l6 8h-54z"/></g>'
-    + '<path d="M60 121h216" stroke="#c9a24d" stroke-opacity=".45" stroke-width="1.2"/><path d="M171 108v28" stroke="#2f2a22"/>'
-    + '<path d="M47 120h12l-2 5H46z" fill="#d9b56b"/><rect x="277" y="114" width="8" height="6" rx="1.5" fill="#c9a24d" opacity=".8"/>'
-    + '<circle cx="236" cy="138" r="29" fill="none" stroke="#c9a24d" stroke-opacity=".45" stroke-dasharray="3 4"/>'
-    + '<g transform="translate(98 138)"><circle r="20" fill="#0d0d0d" stroke="#c9a24d" stroke-width="1.6"/><circle r="12" fill="none" stroke="#4a4238" stroke-width="1.2"/>'
-    + '<path d="M0-12V12M-12 0H12M-8.5-8.5 8.5 8.5M8.5-8.5-8.5 8.5" stroke="#3a3128"/><circle r="3.5" fill="#c9a24d"/></g>'
-    + '<g transform="translate(236 138)"><circle r="20" fill="#0d0d0d" stroke="#d9b56b" stroke-width="1.8"/><circle r="12" fill="none" stroke="#c9a24d" stroke-width="1.2" stroke-opacity=".7"/>'
-    + '<path d="M0-12V12M-12 0H12M-8.5-8.5 8.5 8.5M8.5-8.5-8.5 8.5" stroke="#4a4238"/><circle r="3.5" fill="#d9b56b"/></g>'
+    + '<defs><linearGradient id="tyG" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a9853a"/><stop offset=".5" stop-color="#e3c27e"/><stop offset="1" stop-color="#a9853a"/></linearGradient><radialGradient id="tyGl"><stop offset="0" stop-color="#c9a24d" stop-opacity=".25"/><stop offset="1" stop-color="#c9a24d" stop-opacity="0"/></radialGradient></defs>'
+    + '<ellipse cx="160" cy="124" rx="130" ry="56" fill="url(#tyGl)"/>'
+    + '<path d="M36 156h248" stroke="#2a2620"/>'
+    + '<path d="M44 138c0-11 6-17 18-19l40-7c17-15 34-25 62-27h30c19 0 34 11 50 24l26 7c12 3 17 10 17 22z" fill="#111" stroke="url(#tyG)" stroke-width="2" stroke-linejoin="round"/>'
+    + '<path d="M112 110c15-12 30-19 52-19h28c15 0 27 8 38 19z" fill="#171310" stroke="#3a3128"/>'
+    + '<path d="M48 126h10" stroke="#e3c27e" stroke-width="3" stroke-linecap="round"/>'
+    + '<g fill="#0d0d0d" stroke="url(#tyG)" stroke-width="2"><circle cx="94" cy="138" r="17"/><circle cx="234" cy="138" r="17"/></g>'
+    + '<g fill="#d9b56b"><circle cx="94" cy="138" r="4"/><circle cx="234" cy="138" r="4"/></g>'
     + '</svg>',
 
 

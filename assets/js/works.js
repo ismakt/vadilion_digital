@@ -9,11 +9,8 @@
 
    Tout est affiché directement sur la carte (pas de fiche).
 
-   SOLUTIONS — champs : id, art (clé art.js), action ('contact'),
-               url (lien public, optionnel)
-     Par langue : name, line, items ([titre, ' — détail'] ou [titre]),
-                  example (court, optionnel),
-                  cta (si action), urlLabel (si url)
+   SOLUTIONS — champs : id, art (clé art.js)
+     Par langue : name, line, items ([titre, ' — détail'] ou [titre])
 
    WORKS — champs : id, art, cat
      Par langue : kind, state, name, line, text (essence du
@@ -22,7 +19,7 @@
 
 const SOLUTIONS = [
   {
-    id: 'business-essentials', art: 'essentials', action: 'contact', url: null,
+    id: 'business-essentials', art: 'essentials',
     fr: {
       name: 'Business Essentials',
       line: 'Le package de solutions essentielles pour tout business.',
@@ -31,8 +28,7 @@ const SOLUTIONS = [
         ['Logo et cartes de visite'],
         ['Réseaux sociaux'],
         ['Fiche Google + cartes NFC']
-      ],
-      cta: 'Demander un devis'
+      ]
     },
     en: {
       name: 'Business Essentials',
@@ -42,12 +38,11 @@ const SOLUTIONS = [
         ['Logo and business cards'],
         ['Social media'],
         ['Google profile + NFC cards']
-      ],
-      cta: 'Request a quote'
+      ]
     }
   },
   {
-    id: 'sur-mesure', art: 'flow', action: 'contact', url: null,
+    id: 'sur-mesure', art: 'flow',
     fr: {
       name: 'Solutions sur mesure',
       line: 'Des outils internes conçus autour de vos besoins.',
@@ -55,8 +50,7 @@ const SOLUTIONS = [
         ['Applications internes', ' — planning, suivi, gestion de stock, outils métier.'],
         ['Automatisation', " — plus d'efficacité, sans tâches répétitives."],
         ['Sur mesure', ' — des solutions conçues pour répondre à vos besoins spécifiques.']
-      ],
-      cta: 'Parler de votre besoin'
+      ]
     },
     en: {
       name: 'Custom solutions',
@@ -65,12 +59,11 @@ const SOLUTIONS = [
         ['Internal apps', ' — scheduling, tracking, stock management, business tools.'],
         ['Automation', ' — more efficiency, no repetitive tasks.'],
         ['Tailor-made', ' — solutions designed around your specific needs.']
-      ],
-      cta: 'Discuss your needs'
+      ]
     }
   },
   {
-    id: 'analyse-donnees', art: 'dash', action: 'contact', url: null,
+    id: 'analyse-donnees', art: 'dash',
     fr: {
       name: 'Analyse des données',
       line: 'Visualiser, suivre et comprendre votre activité.',
@@ -78,8 +71,7 @@ const SOLUTIONS = [
         ['Organisation des données', ' — vos fichiers et outils centralisés et fiabilisés.'],
         ['Tableaux de bord', ' — suivi de vos indicateurs en temps réel.'],
         ['Analyse', ' — ce qui marche, ce qui ne marche pas, et pourquoi.']
-      ],
-      cta: 'Demander un audit'
+      ]
     },
     en: {
       name: 'Data analysis',
@@ -88,35 +80,28 @@ const SOLUTIONS = [
         ['Data organisation', ' — your files and tools centralised and made reliable.'],
         ['Dashboards', ' — your indicators tracked in real time.'],
         ['Analysis', ' — what works, what does not, and why.']
-      ],
-      cta: 'Request an audit'
+      ]
     }
   },
   {
-    id: 'etude-emplacement', art: 'locality', action: 'contact', url: 'https://smartinapp.eu',
+    id: 'etude-emplacement', art: 'locality',
     fr: {
       name: "Étude d'emplacement",
       line: 'Intelligence territoriale et géomarketing.',
-      example: "Deux adresses en balance : l'étude montre que le loyer le plus bas coûterait bien plus en chiffre d'affaires.",
       items: [
         ['Ouverture / expansion', ' — premier point de vente ou nouveau site.'],
         ['Clientèle et localité', " — qui vit, passe et consomme autour de l'adresse."],
         ['Immobilier / déménagement', ' — le quartier vu sans filtre commercial.']
-      ],
-      cta: 'Demander une étude',
-      urlLabel: 'Smart-In, notre outil'
+      ]
     },
     en: {
       name: 'Location study',
       line: 'Location intelligence and geomarketing.',
-      example: 'Two addresses on the table: the study shows the cheaper rent would cost far more in revenue.',
       items: [
         ['Opening / expansion', ' — first store or a new site.'],
         ['Customers and area', ' — who lives, passes by and spends around the address.'],
         ['Property / relocation', ' — the neighbourhood without a sales filter.']
-      ],
-      cta: 'Request a study',
-      urlLabel: 'Smart-In, our tool'
+      ]
     }
   }
 ];
@@ -134,10 +119,10 @@ const WORKS = [
     id: 'bullet-train', art: 'delivery', cat: 'platform',
     fr: { kind: 'Plateforme', state: 'Livraison locale', name: 'Bullet Train',
       line: 'App de livraison locale.',
-      text: "Commandez une course à tout moment pour livrer un colis ou un document. Les boutiques l'utilisent pour livrer leurs clients, et chacun peut commander auprès des boutiques partenaires pour être livré dans l'heure, 24h/24 et 7j/7." },
+      text: "Les boutiques l'utilisent pour livrer leurs clients, les particuliers pour envoyer et recevoir des colis. Livraison dans l'heure." },
     en: { kind: 'Platform', state: 'Local delivery', name: 'Bullet Train',
       line: 'Local delivery app.',
-      text: 'Book a courier at any time to deliver a parcel or a document. Shops use it to deliver their customers, and anyone can order from partner shops and get it within the hour, 24/7.' }
+      text: 'Shops use it to deliver their customers, individuals to send and receive parcels. Delivery within the hour.' }
   },
   {
     id: 'dolce', art: 'booking', cat: 'saas',
@@ -160,10 +145,10 @@ const WORKS = [
   {
     id: 'city-eats', art: 'homefood', cat: 'platform',
     fr: { kind: 'Plateforme', state: 'Cuisine maison', name: 'City Eats',
-      line: "Liège Eats : l'Uber de la cuisine faite maison.",
+      line: 'App de livraison de la cuisine faite maison.',
       text: "Les bons cuisiniers du quartier publient leur plat du jour, les voisins commandent puis récupèrent ou se font livrer." },
     en: { kind: 'Platform', state: 'Home cooking', name: 'City Eats',
-      line: 'Liège Eats: Uber for home-made food.',
+      line: 'Home-made food delivery app.',
       text: 'Good home cooks nearby list their dish of the day, neighbours order then pick up or get it delivered.' }
   },
   {
