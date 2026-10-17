@@ -115,7 +115,7 @@ const FILTERS = [
 
 const WORKS = [
   {
-    id: 'bullet-train', art: 'delivery', cat: 'platform', url: null,
+    id: 'bullet-train', art: 'delivery', cat: 'platform', url: 'https://bullet-train-xi.vercel.app/',
     fr: { kind: 'Plateforme', state: 'Livraison locale', name: 'Bullet Train',
       line: 'App de livraison locale.',
       text: "Les boutiques l'utilisent pour livrer leurs clients, les particuliers pour envoyer et recevoir des colis. Livraison dans l'heure." },
@@ -133,7 +133,7 @@ const WORKS = [
       text: 'One address is enough to analyse the neighbourhood: who lives there, who passes by, who spends there, and what competition is already present.' }
   },
   {
-    id: 'wasabi', art: 'order', cat: 'saas', url: null,
+    id: 'wasabi', art: 'order', cat: 'saas', url: 'https://platform-for-restaurants-omega.vercel.app/',
     fr: { kind: 'Application', state: 'Restauration', name: 'Wasabi',
       line: 'La commande directe pour restaurants.',
       text: "Plateforme indépendante vers laquelle le restaurant dirige ses clients réguliers : de meilleurs prix pour eux, et moins de commissions versées aux grandes plateformes." },

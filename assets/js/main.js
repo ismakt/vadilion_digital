@@ -81,7 +81,7 @@ function workCardHtml(w) {
     +     '<p class="line">' + t.line + '</p>'
     +     '<p class="desc">' + t.text + '</p>'
     +     (w.url ? '<a class="card-link" href="' + w.url + '" target="_blank" rel="noopener noreferrer">'
-    +         w.url.replace(/^https?:\/\//, '') + ICO.out + '</a>' : '')
+    +         L('visit') + ICO.out + '</a>' : '')
     +   '</div>'
     + '</article>';
 }
@@ -282,9 +282,9 @@ function initContactForm() {
    Les chaînes générées par le JS sont dans STRINGS, lues par L().
    ============================================================ */
 const STRINGS = {
-  fr: { fillAll: 'Veuillez remplir tous les champs.', sending: 'Envoi…',
+  fr: { visit: 'Voir le projet', fillAll: 'Veuillez remplir tous les champs.', sending: 'Envoi…',
         sent: 'Message envoyé ✅', sendError: "Erreur lors de l'envoi ❌" },
-  en: { fillAll: 'Please fill in all fields.', sending: 'Sending…',
+  en: { visit: 'View project', fillAll: 'Please fill in all fields.', sending: 'Sending…',
         sent: 'Message sent ✅', sendError: 'Sending failed ❌' }
 };
 
