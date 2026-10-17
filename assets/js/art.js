@@ -71,7 +71,7 @@ const ART = {
     + '<g fill="#4a4238"><circle cx="102" cy="76" r="3"/><circle cx="240" cy="72" r="3"/>'
     + '<circle cx="214" cy="164" r="3"/><circle cx="96" cy="150" r="3"/></g></svg>',
 
-  /* Smart-In — carte choroplèthe */
+  /* Smart-In (réalisations) — carte choroplèthe */
   map: '<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">'
     + '<g stroke="#2a2620" stroke-width="1" fill="none"><path d="M0 60h320M0 110h320M0 155h320M70 0v200M145 0v200M215 0v200M270 0v200"/></g>'
     + '<rect x="70" y="60" width="75" height="50" fill="#c9a24d" opacity=".42"/>'

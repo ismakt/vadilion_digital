@@ -125,13 +125,13 @@ const WORKS = [
       text: 'Shops use it to deliver their customers, individuals to send and receive parcels. Delivery within the hour.' }
   },
   {
-    id: 'dolce', art: 'booking', cat: 'saas',
-    fr: { kind: 'Application', state: 'Hôtellerie', name: 'Dolce',
-      line: 'La réservation directe pour hôtels.',
-      text: "Plateforme indépendante vers laquelle l'hôtel dirige ses clients réguliers : de meilleurs prix pour eux, et moins de commissions versées aux grandes plateformes." },
-    en: { kind: 'App', state: 'Hospitality', name: 'Dolce',
-      line: 'Direct booking for hotels.',
-      text: 'An independent platform where the hotel sends its regular guests: better prices for them, and less commission paid to the big platforms.' }
+    id: 'smart-in', art: 'map', cat: 'data',
+    fr: { kind: 'Application', state: 'Géomarketing', name: 'Smart-In',
+      line: "L'outil d'intelligence territoriale.",
+      text: "Une adresse suffit pour analyser le quartier : qui y vit, qui y passe, qui y consomme, et quelle concurrence est déjà présente." },
+    en: { kind: 'App', state: 'Geomarketing', name: 'Smart-In',
+      line: 'The location intelligence tool.',
+      text: 'One address is enough to analyse the neighbourhood: who lives there, who passes by, who spends there, and what competition is already present.' }
   },
   {
     id: 'wasabi', art: 'order', cat: 'saas',
