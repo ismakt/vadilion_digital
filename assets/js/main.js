@@ -47,25 +47,46 @@ const $$ = function (sel) { return Array.prototype.slice.call(document.querySele
    ============================================================ */
 const ICO = {
   arrow: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h13m-5-6 6 6-6 6"/></svg>',
-  close: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>'
+  check: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>',
+  out:   '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>'
 };
 
 function art(key) { return window.getArt ? window.getArt(key) : ''; }
 
-/* Carte illustrée — utilisée par les solutions et les réalisations. */
-function cardHtml(o, withBricks) {
+/* Carte solution — tout le contenu est visible, pas de fiche à ouvrir. */
+function solutionCardHtml(o) {
   const t = o[currentLang];
-  return '<article class="card" data-id="' + o.id + '" role="button" tabindex="0">'
+  const actions = (t.cta ? '<button type="button" class="card-cta" data-open-contact>' + t.cta + ICO.arrow + '</button>' : '')
+    + (o.url ? '<a class="card-link" href="' + o.url + '" target="_blank" rel="noopener noreferrer">' + t.urlLabel + ICO.out + '</a>' : '');
+
+  return '<article class="card sol-card">'
     +   '<div class="thumb">' + art(o.art) + '</div>'
-    +   '<div class="meta"><span class="kind">' + t.kind + '</span>'
-    +     '<span class="sep" aria-hidden="true">·</span><span class="state">' + t.state + '</span></div>'
-    +   '<h3>' + t.name + '</h3>'
-    +   '<p class="line">' + t.line + '</p>'
-    +   (t.example ? '<div class="card-example"><b>' + L('example') + '</b><span>' + t.example + '</span></div>' : '')
-    +   (withBricks
-          ? '<ul class="bricks">' + t.items.map(function (i) { return '<li><b>' + i[0] + '</b></li>'; }).join('') + '</ul>'
-          : '')
-    +   '<div class="foot"><span class="proof">' + t.proof + '</span><span>' + L('details') + '</span></div>'
+    +   '<div class="card-body">'
+    +     '<span class="card-kicker">' + t.proof + '</span>'
+    +     '<h3>' + t.name + '</h3>'
+    +     '<p class="line">' + t.line + '</p>'
+    +     '<ul class="offer-list">' + t.items.map(function (i) {
+            return '<li>' + ICO.check + '<span><b>' + i[0] + '</b>' + i[1] + '</span></li>';
+          }).join('') + '</ul>'
+    +     (t.example ? '<p class="card-example"><b>' + L('example') + '</b>' + t.example + '</p>' : '')
+    +     (actions ? '<div class="card-foot">' + actions + '</div>' : '')
+    +   '</div>'
+    + '</article>';
+}
+
+/* Carte réalisation — l'essence du projet en deux phrases. */
+function workCardHtml(w) {
+  const t = w[currentLang];
+  return '<article class="card work-card">'
+    +   '<div class="thumb">' + art(w.art) + '</div>'
+    +   '<div class="card-body">'
+    +     '<div class="meta"><span class="kind">' + t.kind + '</span>'
+    +       '<span class="sep" aria-hidden="true">·</span><span class="state">' + t.state + '</span></div>'
+    +     '<h3>' + t.name + '</h3>'
+    +     '<p class="line">' + t.line + '</p>'
+    +     '<p class="desc">' + t.text + '</p>'
+    +     (t.tags ? '<div class="card-foot tags">' + t.tags.map(function (x) { return '<span class="tag">' + x + '</span>'; }).join('') + '</div>' : '')
+    +   '</div>'
     + '</article>';
 }
 
@@ -91,7 +112,7 @@ function renderWorks() {
   if (!rail || !window.WORKS) return;
   rail.innerHTML = window.WORKS
     .filter(function (w) { return currentCat === 'all' || w.cat === currentCat; })
-    .map(function (w) { return cardHtml(w, false); })
+    .map(workCardHtml)
     .join('');
   rail.scrollLeft = 0;
 }
@@ -99,7 +120,7 @@ function renderWorks() {
 function renderSolutions() {
   const rail = $('#solution-rail');
   if (!rail || !window.SOLUTIONS) return;
-  rail.innerHTML = window.SOLUTIONS.map(function (o) { return cardHtml(o, true); }).join('');
+  rail.innerHTML = window.SOLUTIONS.map(solutionCardHtml).join('');
   rail.scrollLeft = 0;
 }
 
@@ -108,56 +129,6 @@ function renderAll() {
   renderSolutions();
   renderFilters();
   renderWorks();
-}
-
-/* ============================================================
-   FICHE (bottom sheet)
-   ============================================================ */
-function findItem(id) {
-  const all = (window.SOLUTIONS || []).concat(window.WORKS || []);
-  return all.find(function (x) { return x.id === id; }) || null;
-}
-
-function buildCta(action, url, label, variant) {
-  if (!label) return '';
-  const cls = variant === 'secondary' ? 'btn-ghost' : 'btn-solid';
-  if (url) {
-    return '<a class="' + cls + '" href="' + url + '" target="_blank" rel="noopener noreferrer">' + label + '</a>';
-  }
-  const attr = action === 'simulator' ? 'data-open-simulator' : 'data-open-contact';
-  return '<button type="button" class="' + cls + '" ' + attr + '>' + label + ICO.arrow + '</button>';
-}
-
-function openSheet(id) {
-  const o = findItem(id);
-  if (!o) return;
-  const t = o[currentLang];
-
-  const ctas = [
-    buildCta(o.action,  null, t.cta,  'primary'),
-    buildCta(o.action2, null, t.cta2, 'secondary'),
-    o.url ? '<a class="btn-ghost" href="' + o.url + '" target="_blank" rel="noopener noreferrer">' + t.urlLabel + '</a>' : ''
-  ].filter(Boolean).join('');
-
-  $('#sheetBody').innerHTML =
-      '<div class="sheet-head">'
-    +   '<div><h3>' + t.name + '</h3><div class="status">' + t.kind + ' · ' + t.state + '</div></div>'
-    +   '<button type="button" class="icon-btn" data-close-sheet aria-label="' + L('close') + '">' + ICO.close + '</button>'
-    + '</div>'
-    + '<div class="thumb">' + art(o.art) + '</div>'
-    + (t.text  ? '<p class="sheet-text">' + t.text + '</p>' : '')
-    + (t.example ? '<div class="sheet-example"><b>' + L('example') + '</b>' + t.example + '</div>' : '')
-    + (t.items ? '<ul class="items">' + t.items.map(function (i) { return '<li><b>' + i[0] + '</b>' + i[1] + '</li>'; }).join('') + '</ul>' : '')
-    + (t.tags  ? '<div class="tags">' + t.tags.map(function (x) { return '<span class="tag">' + x + '</span>'; }).join('') + '</div>' : '')
-    + (ctas ? '<div class="sheet-ctas">' + ctas + '</div>' : '');
-
-  $('#sheetWrap').classList.add('is-open');
-  $('#sheetWrap').setAttribute('aria-hidden', 'false');
-}
-
-function closeSheet() {
-  $('#sheetWrap').classList.remove('is-open');
-  $('#sheetWrap').setAttribute('aria-hidden', 'true');
 }
 
 /* ============================================================
@@ -187,7 +158,6 @@ function closeDrawer() {
 function openModal(id) {
   const modal = document.getElementById(id);
   if (!modal) return;
-  closeSheet();
   closeDrawer();
   modal.classList.add('is-open');
   const main = $('#main-content');
@@ -225,7 +195,6 @@ document.addEventListener('click', function (e) {
   if (t.closest('a[href^="http"]')) return;
 
   /* Fermetures */
-  if (t.closest('[data-close-sheet]') || t.id === 'sheetWrap') { closeSheet(); return; }
   if (t.id === 'drawerWrap' || t.closest('#drawer-close'))     { closeDrawer(); return; }
 
   const closeBtn = t.closest('[data-close-modal]');
@@ -252,28 +221,18 @@ document.addEventListener('click', function (e) {
 
   /* Navigation */
   const navBtn = t.closest('[data-view]');
-  if (navBtn) { showView(navBtn.dataset.view); return; }
-
-  /* Carte → fiche */
-  const card = t.closest('.card');
-  if (card) openSheet(card.dataset.id);
+  if (navBtn) showView(navBtn.dataset.view);
 });
 
 document.addEventListener('keydown', function (e) {
   if (e.key === 'Escape') {
     $$('.modal.is-open').forEach(function (m) { closeModal(m.id); });
-    closeSheet();
     closeDrawer();
-    return;
   }
-  if (e.key !== 'Enter' && e.key !== ' ') return;
-
-  const card = e.target.closest && e.target.closest('.card');
-  if (card) { e.preventDefault(); openSheet(card.dataset.id); }
 });
 
 mqDesktop.addEventListener('change', function () {
-  if (mqDesktop.matches) { closeSheet(); closeDrawer(); }
+  if (mqDesktop.matches) closeDrawer();
 });
 
 /* ============================================================
@@ -327,10 +286,10 @@ function initContactForm() {
    Les chaînes générées par le JS sont dans STRINGS, lues par L().
    ============================================================ */
 const STRINGS = {
-  fr: { details: 'Détails →', example: 'Exemple concret', close: 'Fermer', brick: 'Brique démontrée',
+  fr: { example: 'Exemple',
         fillAll: 'Veuillez remplir tous les champs.', sending: 'Envoi…',
         sent: 'Message envoyé ✅', sendError: "Erreur lors de l'envoi ❌" },
-  en: { details: 'Details →', example: 'Real-life example', close: 'Close', brick: 'Building block demonstrated',
+  en: { example: 'Example',
         fillAll: 'Please fill in all fields.', sending: 'Sending…',
         sent: 'Message sent ✅', sendError: 'Sending failed ❌' }
 };
@@ -342,8 +301,8 @@ const translations = {
     'nav-home': 'Accueil', 'nav-solutions': 'Solutions', 'nav-works': 'Réalisations',
 
     'kicker-1': 'B2B',
-    'hero-title': 'Solutions digitales sur mesure en B2B.',
-    'hero-lede': "Développement d'applications, sites web, automatisation des tâches chronophages, analyse de données, reporting et autres solutions sur mesure.",
+    'hero-title': 'Des solutions digitales sur mesure pour les entreprises.',
+    'hero-lede': 'Applications, sites web, automatisation et analyse de données : nous concevons des solutions adaptées à vos besoins.',
     'hero-cta1': 'Voir nos solutions',
     'hero-cta2': 'Prendre rendez-vous',
 
@@ -352,7 +311,7 @@ const translations = {
     'solutions-hint': 'Glissez pour voir les autres →',
 
     'works-title': 'Réalisations',
-    'works-sub': 'Ce que nous avons déjà construit.',
+    'works-sub': 'Quelques-uns de nos projets.',
     'works-hint': 'Glissez pour voir les autres →',
 
 
@@ -363,15 +322,15 @@ const translations = {
 
     'contact-text': 'Contactez-nous', 'contact-text2': 'Décrivez votre besoin, nous revenons vers vous rapidement.', 'btn-send': 'Envoyer',
     'offices': 'Bureaux', 'office1-city': 'Bruxelles', 'office2-city': 'Liège', 'office3-city': 'Paris', 'office4-city': 'Monaco',
-    'office-note': '*Uniquement sur rendez-vous. Nous privilégions les rendez-vous chez nos clients, ou à distance.'
+    'office-note': '*Uniquement sur rendez-vous.'
   },
 
   en: {
     'nav-home': 'Home', 'nav-solutions': 'Solutions', 'nav-works': 'Our work',
 
     'kicker-1': 'B2B',
-    'hero-title': 'Custom B2B digital solutions.',
-    'hero-lede': 'Development of apps, websites, automation of time-consuming tasks, data analysis, reporting and other custom solutions.',
+    'hero-title': 'Custom digital solutions for businesses.',
+    'hero-lede': 'Apps, websites, automation and data analysis: we design solutions tailored to your needs.',
     'hero-cta1': 'See our solutions',
     'hero-cta2': 'Book a meeting',
 
@@ -380,7 +339,7 @@ const translations = {
     'solutions-hint': 'Swipe to see the others →',
 
     'works-title': 'Our work',
-    'works-sub': 'What we have already built.',
+    'works-sub': 'A few of our projects.',
     'works-hint': 'Swipe to see the others →',
 
 
@@ -392,7 +351,7 @@ const translations = {
 
     'contact-text': 'Contact us', 'contact-text2': 'Tell us what you need and we will get back to you quickly.', 'btn-send': 'Send',
     'offices': 'Offices', 'office1-city': 'Brussels', 'office2-city': 'Liège', 'office3-city': 'Paris', 'office4-city': 'Monaco',
-    'office-note': '*By appointment only. We prefer meeting at your place, or remote.'
+    'office-note': '*By appointment only.'
   }
 };
 
@@ -429,7 +388,6 @@ function setLanguage(lang) {
 
   if (typeof window.closeWasabiSimulator === 'function') window.closeWasabiSimulator();
 
-  closeSheet();
   renderAll();
 }
 
