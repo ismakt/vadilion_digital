@@ -47,7 +47,8 @@ const $$ = function (sel) { return Array.prototype.slice.call(document.querySele
    ============================================================ */
 const ICO = {
   arrow: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h13m-5-6 6 6-6 6"/></svg>',
-  check: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>'
+  check: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>',
+  out:   '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>'
 };
 
 function art(key) { return window.getArt ? window.getArt(key) : ''; }
@@ -79,6 +80,8 @@ function workCardHtml(w) {
     +     '<h3>' + t.name + '</h3>'
     +     '<p class="line">' + t.line + '</p>'
     +     '<p class="desc">' + t.text + '</p>'
+    +     (w.url ? '<a class="card-link" href="' + w.url + '" target="_blank" rel="noopener noreferrer">'
+    +         w.url.replace(/^https?:\/\//, '') + ICO.out + '</a>' : '')
     +   '</div>'
     + '</article>';
 }
