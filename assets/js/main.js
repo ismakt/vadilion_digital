@@ -62,11 +62,10 @@ function solutionCardHtml(o) {
   return '<article class="card sol-card">'
     +   '<div class="thumb">' + art(o.art) + '</div>'
     +   '<div class="card-body">'
-    +     '<span class="card-kicker">' + t.proof + '</span>'
     +     '<h3>' + t.name + '</h3>'
     +     '<p class="line">' + t.line + '</p>'
     +     '<ul class="offer-list">' + t.items.map(function (i) {
-            return '<li>' + ICO.check + '<span><b>' + i[0] + '</b>' + i[1] + '</span></li>';
+            return '<li>' + ICO.check + '<span><b>' + i[0] + '</b>' + (i[1] || '') + '</span></li>';
           }).join('') + '</ul>'
     +     (t.example ? '<p class="card-example"><b>' + L('example') + '</b>' + t.example + '</p>' : '')
     +     (actions ? '<div class="card-foot">' + actions + '</div>' : '')
@@ -85,7 +84,6 @@ function workCardHtml(w) {
     +     '<h3>' + t.name + '</h3>'
     +     '<p class="line">' + t.line + '</p>'
     +     '<p class="desc">' + t.text + '</p>'
-    +     (t.tags ? '<div class="card-foot tags">' + t.tags.map(function (x) { return '<span class="tag">' + x + '</span>'; }).join('') + '</div>' : '')
     +   '</div>'
     + '</article>';
 }
