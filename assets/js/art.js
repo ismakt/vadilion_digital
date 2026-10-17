@@ -71,7 +71,7 @@ const ART = {
     + '<g fill="#4a4238"><circle cx="102" cy="76" r="3"/><circle cx="240" cy="72" r="3"/>'
     + '<circle cx="214" cy="164" r="3"/><circle cx="96" cy="150" r="3"/></g></svg>',
 
-  /* Smart-In — carte choroplèthe */
+  /* Smart-In (réalisations) — carte choroplèthe */
   map: '<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">'
     + '<g stroke="#2a2620" stroke-width="1" fill="none"><path d="M0 60h320M0 110h320M0 155h320M70 0v200M145 0v200M215 0v200M270 0v200"/></g>'
     + '<rect x="70" y="60" width="75" height="50" fill="#c9a24d" opacity=".42"/>'
@@ -104,16 +104,6 @@ const ART = {
     + '<circle cx="284" cy="50" r="8" fill="#d9b56b"/><path d="M280.5 50l2.5 2.5 4.5-5" fill="none" stroke="#100c04" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>'
     + '</svg>',
 
-  /* Auto-Perfs — annonces suivies et courbe de prix */
-  auto: '<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">'
-    + '<g fill="#171310" stroke="#2f2a22"><rect x="28" y="40" width="150" height="26" rx="6"/><rect x="28" y="76" width="150" height="26" rx="6"/>'
-    + '<rect x="28" y="112" width="150" height="26" rx="6"/><rect x="28" y="148" width="150" height="26" rx="6"/></g>'
-    + '<g fill="#3f382e"><rect x="38" y="50" width="70" height="5" rx="2.5"/><rect x="38" y="86" width="88" height="5" rx="2.5"/>'
-    + '<rect x="38" y="122" width="60" height="5" rx="2.5"/><rect x="38" y="158" width="80" height="5" rx="2.5"/></g>'
-    + '<g fill="#c9a24d" opacity=".8"><rect x="140" y="48" width="28" height="10" rx="5"/><rect x="140" y="84" width="28" height="10" rx="5"/>'
-    + '<rect x="140" y="120" width="28" height="10" rx="5"/><rect x="140" y="156" width="28" height="10" rx="5"/></g>'
-    + '<polyline points="205,150 232,128 258,136 286,74" fill="none" stroke="#d9b56b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>'
-    + '<g fill="#d9b56b"><circle cx="205" cy="150" r="3"/><circle cx="232" cy="128" r="3"/><circle cx="258" cy="136" r="3"/><circle cx="286" cy="74" r="4"/></g></svg>',
 
   /* Analyse des données — un indicateur qui ressort */
   dash: '<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">'
@@ -189,30 +179,8 @@ const ART = {
     + '<path d="M228 100l7 7 13-14" fill="none" stroke="#d9b56b" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>'
     + '</svg>',
 
-  /* City Eats — le plat fait maison, livré dans le quartier */
-  homefood: '<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">'
-    + '<defs><linearGradient id="ceG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e3c27e"/><stop offset="1" stop-color="#a9853a"/></linearGradient><radialGradient id="ceGGl"><stop offset="0" stop-color="#c9a24d" stop-opacity=".22"/><stop offset="1" stop-color="#c9a24d" stop-opacity="0"/></radialGradient></defs>'
-    + '<ellipse cx="160" cy="112" rx="110" ry="62" fill="url(#ceGGl)"/>'
-    + '<path d="M114 96v58h92V96" fill="#111" stroke="#3a3128"/>'
-    + '<path d="M104 104l56-44 56 44" fill="none" stroke="url(#ceG)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>'
-    + '<path d="M150 112c-4-5 4-8 0-13M160 109c-4-5 4-8 0-13M170 112c-4-5 4-8 0-13" fill="none" stroke="#d9b56b" stroke-opacity=".55" stroke-width="1.4" stroke-linecap="round"/>'
-    + '<path d="M132 120h56a28 24 0 0 1-56 0z" fill="url(#ceG)"/>'
-    + '<path d="M206 136c26 0 38-22 60-34" fill="none" stroke="#c9a24d" stroke-opacity=".6" stroke-width="1.3" stroke-dasharray="3 4"/>'
-    + '<g transform="translate(272 98)"><path d="M0 0s-12-11-12-20c0-7 5-12 12-12s12 5 12 12c0 9-12 20-12 20z" fill="#0d0d0d" stroke="#d9b56b" stroke-width="1.6"/><circle cy="-20" r="4" fill="#d9b56b"/></g>'
-    + '</svg>',
 
 
-  /* TuneYourCar — silhouette épurée */
-  car: '<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">'
-    + '<defs><linearGradient id="tyG" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a9853a"/><stop offset=".5" stop-color="#e3c27e"/><stop offset="1" stop-color="#a9853a"/></linearGradient><radialGradient id="tyGl"><stop offset="0" stop-color="#c9a24d" stop-opacity=".25"/><stop offset="1" stop-color="#c9a24d" stop-opacity="0"/></radialGradient></defs>'
-    + '<ellipse cx="160" cy="124" rx="130" ry="56" fill="url(#tyGl)"/>'
-    + '<path d="M36 156h248" stroke="#2a2620"/>'
-    + '<path d="M44 138c0-11 6-17 18-19l40-7c17-15 34-25 62-27h30c19 0 34 11 50 24l26 7c12 3 17 10 17 22z" fill="#111" stroke="url(#tyG)" stroke-width="2" stroke-linejoin="round"/>'
-    + '<path d="M112 110c15-12 30-19 52-19h28c15 0 27 8 38 19z" fill="#171310" stroke="#3a3128"/>'
-    + '<path d="M48 126h10" stroke="#e3c27e" stroke-width="3" stroke-linecap="round"/>'
-    + '<g fill="#0d0d0d" stroke="url(#tyG)" stroke-width="2"><circle cx="94" cy="138" r="17"/><circle cx="234" cy="138" r="17"/></g>'
-    + '<g fill="#d9b56b"><circle cx="94" cy="138" r="4"/><circle cx="234" cy="138" r="4"/></g>'
-    + '</svg>',
 
 
 };

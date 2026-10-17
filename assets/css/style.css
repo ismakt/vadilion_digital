@@ -386,6 +386,22 @@ h1 {
 
 .offer-list b { color: var(--text); font-weight: 600; }
 
+/* Réalisations — lien public, calé en bas de la carte */
+.card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  align-self: flex-start;
+  margin-top: auto;
+  padding-top: 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gold);
+  transition: color 0.18s;
+}
+
+.card-link:hover { color: var(--gold-light); }
+
 .hint { margin-top: 12px; font-size: 11px; color: var(--muted-2); }
 
 /* ============================

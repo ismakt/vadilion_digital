@@ -12,7 +12,7 @@
    SOLUTIONS — champs : id, art (clé art.js)
      Par langue : name, line, items ([titre, ' — détail'] ou [titre])
 
-   WORKS — champs : id, art, cat
+   WORKS — champs : id, art, cat, url (lien public, optionnel)
      Par langue : kind, state, name, line, text (essence du
                   projet, 2 phrases max)
    ============================================================ */
@@ -110,13 +110,12 @@ const FILTERS = [
   { id: 'all',      fr: 'Tout',         en: 'All' },
   { id: 'platform', fr: 'Plateformes',  en: 'Platforms' },
   { id: 'saas',     fr: 'Applications', en: 'Apps' },
-  { id: 'commerce', fr: 'E-commerce',   en: 'E-commerce' },
   { id: 'data',     fr: 'Données',      en: 'Data' }
 ];
 
 const WORKS = [
   {
-    id: 'bullet-train', art: 'delivery', cat: 'platform',
+    id: 'bullet-train', art: 'delivery', cat: 'platform', url: 'https://bullet-train-xi.vercel.app/',
     fr: { kind: 'Plateforme', state: 'Livraison locale', name: 'Bullet Train',
       line: 'App de livraison locale.',
       text: "Les boutiques l'utilisent pour livrer leurs clients, les particuliers pour envoyer et recevoir des colis. Livraison dans l'heure." },
@@ -125,16 +124,16 @@ const WORKS = [
       text: 'Shops use it to deliver their customers, individuals to send and receive parcels. Delivery within the hour.' }
   },
   {
-    id: 'dolce', art: 'booking', cat: 'saas',
-    fr: { kind: 'Application', state: 'Hôtellerie', name: 'Dolce',
-      line: 'La réservation directe pour hôtels.',
-      text: "Plateforme indépendante vers laquelle l'hôtel dirige ses clients réguliers : de meilleurs prix pour eux, et moins de commissions versées aux grandes plateformes." },
-    en: { kind: 'App', state: 'Hospitality', name: 'Dolce',
-      line: 'Direct booking for hotels.',
-      text: 'An independent platform where the hotel sends its regular guests: better prices for them, and less commission paid to the big platforms.' }
+    id: 'smart-in', art: 'map', cat: 'data', url: 'https://smartinapp.eu',
+    fr: { kind: 'Application', state: 'Géomarketing', name: 'Smart-In',
+      line: "L'outil d'intelligence territoriale.",
+      text: "Une adresse suffit pour analyser le quartier : qui y vit, qui y passe, qui y consomme, et quelle concurrence est déjà présente." },
+    en: { kind: 'App', state: 'Geomarketing', name: 'Smart-In',
+      line: 'The location intelligence tool.',
+      text: 'One address is enough to analyse the neighbourhood: who lives there, who passes by, who spends there, and what competition is already present.' }
   },
   {
-    id: 'wasabi', art: 'order', cat: 'saas',
+    id: 'wasabi', art: 'order', cat: 'saas', url: 'https://platform-for-restaurants-omega.vercel.app/',
     fr: { kind: 'Application', state: 'Restauration', name: 'Wasabi',
       line: 'La commande directe pour restaurants.',
       text: "Plateforme indépendante vers laquelle le restaurant dirige ses clients réguliers : de meilleurs prix pour eux, et moins de commissions versées aux grandes plateformes." },
@@ -142,33 +141,9 @@ const WORKS = [
       line: 'Direct ordering for restaurants.',
       text: 'An independent platform where the restaurant sends its regular customers: better prices for them, and less commission paid to the big platforms.' }
   },
-  {
-    id: 'city-eats', art: 'homefood', cat: 'platform',
-    fr: { kind: 'Plateforme', state: 'Cuisine maison', name: 'City Eats',
-      line: 'App de livraison de la cuisine faite maison.',
-      text: "Les bons cuisiniers du quartier publient leur plat du jour, les voisins commandent puis récupèrent ou se font livrer." },
-    en: { kind: 'Platform', state: 'Home cooking', name: 'City Eats',
-      line: 'Home-made food delivery app.',
-      text: 'Good home cooks nearby list their dish of the day, neighbours order then pick up or get it delivered.' }
-  },
-  {
-    id: 'tuneyourcar', art: 'car', cat: 'commerce',
-    fr: { kind: 'E-commerce', state: 'Automobile', name: 'TuneYourCar',
-      line: "Boutique en ligne d'accessoires automobiles.",
-      text: "Le client choisit son véhicule, voit les pièces compatibles et passe commande en ligne." },
-    en: { kind: 'E-commerce', state: 'Automotive', name: 'TuneYourCar',
-      line: 'Online car accessories store.',
-      text: 'The customer picks their car, sees the compatible parts and orders online.' }
-  },
-  {
-    id: 'auto-perfs', art: 'auto', cat: 'data',
-    fr: { kind: 'Mission', state: 'Automobile', name: 'Auto-Perfs',
-      line: 'La veille automatisée du marché automobile pour les concessions.',
-      text: "Les annonces des grandes plateformes sont collectées automatiquement. Chaque matin, la concession voit quels modèles partent sous le prix du marché, et lesquels de son stock sont affichés trop cher." },
-    en: { kind: 'Project', state: 'Automotive', name: 'Auto-Perfs',
-      line: 'Automated car market monitoring for dealerships.',
-      text: 'Listings from the major platforms are collected automatically. Every morning the dealer sees which models sell below market price, and which cars in its own stock are listed too high.' }
-  }
+
+
+
 ];
 
 (function validate() {
