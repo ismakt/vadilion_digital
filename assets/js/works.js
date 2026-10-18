@@ -19,6 +19,27 @@
 
 const SOLUTIONS = [
   {
+    id: 'sur-mesure', art: 'flow',
+    fr: {
+      name: 'Solutions sur mesure',
+      line: 'Des outils internes conçus autour de vos besoins.',
+      items: [
+        ['Applications internes', ' — planning, suivi, gestion de stock, outils métier.'],
+        ['Automatisation', " — plus d'efficacité, sans tâches répétitives."],
+        ['Sur mesure', ' — des solutions conçues pour répondre à vos besoins spécifiques.']
+      ]
+    },
+    en: {
+      name: 'Custom solutions',
+      line: 'Internal tools built around your needs.',
+      items: [
+        ['Internal apps', ' — scheduling, tracking, stock management, business tools.'],
+        ['Automation', ' — more efficiency, no repetitive tasks.'],
+        ['Tailor-made', ' — solutions designed around your specific needs.']
+      ]
+    }
+  },
+  {
     id: 'business-essentials', art: 'essentials',
     fr: {
       name: 'Business Essentials',
@@ -38,27 +59,6 @@ const SOLUTIONS = [
         ['Logo and business cards'],
         ['Social media'],
         ['Google profile + NFC cards']
-      ]
-    }
-  },
-  {
-    id: 'sur-mesure', art: 'flow',
-    fr: {
-      name: 'Solutions sur mesure',
-      line: 'Des outils internes conçus autour de vos besoins.',
-      items: [
-        ['Applications internes', ' — planning, suivi, gestion de stock, outils métier.'],
-        ['Automatisation', " — plus d'efficacité, sans tâches répétitives."],
-        ['Sur mesure', ' — des solutions conçues pour répondre à vos besoins spécifiques.']
-      ]
-    },
-    en: {
-      name: 'Custom solutions',
-      line: 'Internal tools built around your needs.',
-      items: [
-        ['Internal apps', ' — scheduling, tracking, stock management, business tools.'],
-        ['Automation', ' — more efficiency, no repetitive tasks.'],
-        ['Tailor-made', ' — solutions designed around your specific needs.']
       ]
     }
   },
