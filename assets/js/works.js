@@ -12,9 +12,6 @@
    SOLUTIONS — champs : id, art (clé art.js)
      Par langue : name, text
 
-   STEPS — déroulé d'un projet, dans l'ordre (numérotés 1, 2, 3)
-     Par langue : name, text
-
    WORKS — champs : id, art, cat, url (lien public, optionnel)
      Par langue : kind, state, name, line, text (essence du
                   projet, 2 phrases max)
@@ -40,21 +37,6 @@ const SOLUTIONS = [
     id: 'tableaux-de-bord', art: 'dash',
     fr: { name: 'Tableaux de bord', text: 'Vos données centralisées, vos indicateurs suivis en temps réel.' },
     en: { name: 'Dashboards',       text: 'Your data in one place, your indicators tracked in real time.' }
-  }
-];
-
-const STEPS = [
-  {
-    fr: { name: 'Rendez-vous gratuit', text: 'Pour comprendre votre besoin.<br>Gratuit et sans engagement.' },
-    en: { name: 'Free meeting',        text: 'To understand your needs.<br>Free and with no commitment.' }
-  },
-  {
-    fr: { name: 'Devis rapide', text: 'Un prix et un délai clairs.<br>Validés avant de commencer.' },
-    en: { name: 'Quick quote',  text: 'A clear price and timeline.<br>Agreed before we start.' }
-  },
-  {
-    fr: { name: 'Livraison et suivi',   text: 'Mise en ligne, prise en main par votre équipe, évolutions si besoin.' },
-    en: { name: 'Delivery and support', text: 'Launch, onboarding for your team, improvements when needed.' }
   }
 ];
 
@@ -100,7 +82,7 @@ const WORKS = [
 
 (function validate() {
   const cats = FILTERS.map(function (f) { return f.id; });
-  SOLUTIONS.concat(STEPS, WORKS).forEach(function (w) {
+  SOLUTIONS.concat(WORKS).forEach(function (w) {
     if (w.cat && cats.indexOf(w.cat) === -1) console.warn('[works] catégorie inconnue :', w.cat, '→', w.id);
     if (w.art && window.ART && !window.ART[w.art]) console.warn('[works] illustration manquante :', w.art, '→', w.id);
     ['fr', 'en'].forEach(function (l) {
@@ -110,6 +92,5 @@ const WORKS = [
 })();
 
 window.SOLUTIONS    = Object.freeze(SOLUTIONS);
-window.STEPS        = Object.freeze(STEPS);
 window.WORKS        = Object.freeze(WORKS);
 window.WORK_FILTERS = Object.freeze(FILTERS);

@@ -64,16 +64,6 @@ function solutionCardHtml(o) {
     + '</article>';
 }
 
-/* Étape du déroulé — pastille numérotée, titre, détail. */
-function stepHtml(s, i) {
-  const t = s[currentLang];
-  return '<li class="step">'
-    +   '<span class="step-num" aria-hidden="true">' + (i + 1) + '</span>'
-    +   '<h3>' + t.name + '</h3>'
-    +   '<p>' + t.text + '</p>'
-    + '</li>';
-}
-
 /* Carte réalisation — l'essence du projet en deux phrases. */
 function workCardHtml(w) {
   const t = w[currentLang];
@@ -121,9 +111,6 @@ function renderWorks() {
 function renderSolutions() {
   const grid = $('#solution-grid');
   if (grid && window.SOLUTIONS) grid.innerHTML = window.SOLUTIONS.map(solutionCardHtml).join('');
-
-  const steps = $('#steps-list');
-  if (steps && window.STEPS) steps.innerHTML = window.STEPS.map(stepHtml).join('');
 }
 
 function renderAll() {
@@ -309,7 +296,6 @@ const translations = {
     'solutions-kicker': 'Nos solutions',
     'solutions-title': 'Développement sur mesure.',
     'solutions-sub': "Un seul interlocuteur, de l'idée à la mise en ligne.",
-    'steps-title': 'Comment ça se passe',
     'cta-btn': 'Contactez-nous',
     'cta-text': 'Un projet en tête ? Réponse rapide, sans engagement.',
 
@@ -340,7 +326,6 @@ const translations = {
     'solutions-kicker': 'Our solutions',
     'solutions-title': 'Custom development.',
     'solutions-sub': 'One point of contact, from idea to launch.',
-    'steps-title': 'How it works',
     'cta-btn': 'Contact us',
     'cta-text': 'Have a project in mind? Quick reply, no commitment.',
 
