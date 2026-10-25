@@ -25,7 +25,7 @@ const SOLUTIONS = [
   },
   {
     id: 'outils-internes', art: 'tools',
-    fr: { name: 'Outils internes', text: 'Des outils métier adaptés à vos process : planning, suivi, gestion.' },
+    fr: { name: 'Outils internes', text: 'Des outils métier adaptés à vos process\u00a0: planning, suivi, gestion.' },
     en: { name: 'Internal tools',  text: 'Business tools built around your processes: scheduling, tracking, management.' }
   },
   {
@@ -61,7 +61,7 @@ const WORKS = [
     id: 'smart-in', art: 'map', cat: 'data', url: 'https://smartinapp.eu',
     fr: { kind: 'Application', state: 'Géomarketing', name: 'Smart-In',
       line: "L'outil d'intelligence territoriale.",
-      text: "Une adresse suffit pour analyser le quartier : qui y vit, qui y passe, qui y consomme, et quelle concurrence est déjà présente." },
+      text: "Une adresse suffit pour analyser le quartier\u00a0: qui y vit, qui y passe, qui y consomme, et quelle concurrence est déjà présente." },
     en: { kind: 'App', state: 'Geomarketing', name: 'Smart-In',
       line: 'The location intelligence tool.',
       text: 'One address is enough to analyse the neighbourhood: who lives there, who passes by, who spends there, and what competition is already present.' }
@@ -70,7 +70,7 @@ const WORKS = [
     id: 'wasabi', art: 'order', cat: 'saas', url: 'https://platform-for-restaurants-omega.vercel.app/',
     fr: { kind: 'Application', state: 'Restauration', name: 'Wasabi',
       line: 'La commande directe pour restaurants.',
-      text: "Plateforme indépendante vers laquelle le restaurant dirige ses clients réguliers : de meilleurs prix pour eux, et moins de commissions versées aux grandes plateformes." },
+      text: "Plateforme indépendante vers laquelle le restaurant dirige ses clients réguliers\u00a0: de meilleurs prix pour eux, et moins de commissions versées aux grandes plateformes." },
     en: { kind: 'App', state: 'Restaurants', name: 'Wasabi',
       line: 'Direct ordering for restaurants.',
       text: 'An independent platform where the restaurant sends its regular customers: better prices for them, and less commission paid to the big platforms.' }

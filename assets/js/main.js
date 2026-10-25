@@ -105,7 +105,6 @@ function renderWorks() {
     .filter(function (w) { return currentCat === 'all' || w.cat === currentCat; })
     .map(workCardHtml)
     .join('');
-  rail.scrollLeft = 0;
 }
 
 function renderSolutions() {
@@ -127,6 +126,7 @@ function showView(view) {
   if (!$('#v-' + view)) return;
   currentView = view;
   $$('.view').forEach(function (v) { v.classList.toggle('is-on', v.id === 'v-' + view); });
+  $('#v-' + view).scrollTop = 0;
   $$('.nav-d button').forEach(function (b) { b.classList.toggle('is-on', b.dataset.view === view); });
   $$('.drawer .nav-link').forEach(function (b) { b.classList.toggle('is-on', b.dataset.view === view); });
   closeDrawer();
@@ -289,7 +289,7 @@ const translations = {
 
     'kicker-1': 'B2B',
     'hero-title': 'Des solutions digitales sur mesure pour les entreprises.',
-    'hero-lede': 'Applications, sites web, automatisation et analyse de données : nous concevons des solutions adaptées à vos besoins.',
+    'hero-lede': 'Applications, sites web, automatisation et analyse de données\u00a0: nous concevons des solutions adaptées à vos besoins.',
     'hero-cta1': 'Voir nos solutions',
     'hero-cta2': 'Prendre rendez-vous',
 
@@ -297,11 +297,10 @@ const translations = {
     'solutions-title': 'Développement sur mesure.',
     'solutions-sub': "Un seul interlocuteur, de l'idée à la mise en ligne.",
     'cta-btn': 'Contactez-nous',
-    'cta-text': 'Un projet en tête ? Réponse rapide, sans engagement.',
+    'cta-text': 'Un projet en tête\u00a0? Réponse rapide, sans engagement.',
 
     'works-title': 'Réalisations',
     'works-sub': 'Quelques-uns de nos projets.',
-    'works-hint': 'Glissez pour voir les autres →',
 
 
     'dnav-home': 'Accueil', 'dnav-solutions': 'Solutions', 'dnav-works': 'Réalisations',
@@ -331,7 +330,6 @@ const translations = {
 
     'works-title': 'Our work',
     'works-sub': 'A few of our projects.',
-    'works-hint': 'Swipe to see the others →',
 
 
 
@@ -347,7 +345,7 @@ const translations = {
 };
 
 const placeholders = {
-  fr: { 'contact-name': 'Nom',  'contact-info': 'E-mail ou téléphone', 'contact-message': 'Comment pouvons-nous vous aider ?' },
+  fr: { 'contact-name': 'Nom',  'contact-info': 'E-mail ou téléphone', 'contact-message': 'Comment pouvons-nous vous aider\u00a0?' },
   en: { 'contact-name': 'Name', 'contact-info': 'Email or phone',      'contact-message': 'How can we help you?' }
 };
 

@@ -34,7 +34,7 @@
    ============================ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { -webkit-text-size-adjust: 100%; height: 100%; }
+html { -webkit-text-size-adjust: 100%; height: 100%; -webkit-tap-highlight-color: transparent; }
 
 body {
   height: 100dvh;
@@ -89,6 +89,8 @@ header {
 
 .lang { display: inline-flex; align-items: center; gap: 7px; font-size: 12px; color: var(--muted-2); }
 .lang span { cursor: pointer; transition: color 0.2s; }
+/* Zone de tap agrandie sans déplacer le texte */
+.lang span:not(.sep) { padding: 13px 6px; margin: -13px -6px; }
 .lang span:hover { color: var(--text); }
 .lang .is-on { color: var(--gold); font-weight: 600; }
 .lang .sep { color: var(--border-2); cursor: default; }
@@ -132,6 +134,7 @@ header {
 .btn-block { width: 100%; }
 
 .icon-btn {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -145,6 +148,9 @@ header {
 }
 
 .icon-btn:hover { background: rgba(255, 255, 255, 0.08); color: var(--text); }
+
+/* Zone de tap portée à 44px sans changer le visuel */
+.icon-btn::after { content: ''; position: absolute; inset: -5px; }
 
 .ctas { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 20px; }
 
@@ -207,6 +213,16 @@ main { flex: 1; min-height: 0; display: flex; flex-direction: column; }
 
 .hero-copy { max-width: 560px; }
 
+/* Mobile : lignes équilibrées, boutons pleine largeur l'un sous l'autre */
+.hero-copy h1,
+.hero-copy .lede { text-wrap: balance; }
+
+.hero-copy .ctas {
+  flex-direction: column;
+  max-width: 340px;
+  margin-inline: auto;
+}
+
 .kicker {
   display: inline-flex;
   align-items: center;
@@ -234,6 +250,7 @@ h1 {
   position: relative;
   width: 100%;
   max-width: 420px;
+  max-height: 26dvh; /* petits téléphones : l'illustration se réduit au lieu d'être coupée */
   aspect-ratio: 16 / 10;
   border: 1px solid var(--border);
   border-radius: 14px;
@@ -246,7 +263,8 @@ h1 {
    ============================ */
 .filters {
   display: flex;
-  gap: 7px;
+  justify-content: safe center;
+  gap: 6px;
   width: 100%;
   overflow-x: auto;
   scrollbar-width: none;
@@ -258,7 +276,7 @@ h1 {
 
 .chip {
   flex-shrink: 0;
-  padding: 7px 14px;
+  padding: 9px 12px;
   border: 1px solid var(--border);
   border-radius: 999px;
   font-size: 12px;
@@ -271,29 +289,24 @@ h1 {
 .chip:hover { color: var(--text); border-color: var(--border-2); }
 .chip.is-on { background: var(--gold); border-color: var(--gold); color: #100c04; font-weight: 600; }
 
+/* Mobile : liste verticale (pas de carrousel) ; grille dès la tablette */
 .rail {
-  display: flex;
+  display: grid;
   gap: 12px;
   width: 100%;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
+  max-width: calc(420px + 2 * var(--gutter));
+  margin: 0 auto;
   padding: 2px var(--gutter) 6px;
 }
-
-.rail::-webkit-scrollbar { display: none; }
 
 /* Carte : panneau lisible, tout le contenu est visible (pas de fiche). */
 .card {
   display: flex;
   flex-direction: column;
-  flex: 0 0 84%;
-  max-width: 340px;
   overflow: hidden;
   border: 1px solid var(--border);
   border-radius: 16px;
   background: var(--surface);
-  scroll-snap-align: center;
   text-align: left;
   transition: border-color 0.2s;
 }
@@ -310,6 +323,8 @@ h1 {
 }
 
 .thumb svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.work-card .thumb { aspect-ratio: 5 / 2; } /* mobile : bandeau moins haut */
 
 .thumb::after {
   content: '';
@@ -355,6 +370,7 @@ h1 {
 
 /* Réalisations — lien public, calé en bas de la carte */
 .card-link {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 5px;
@@ -369,7 +385,8 @@ h1 {
 
 .card-link:hover { color: var(--gold-light); }
 
-.hint { margin-top: 12px; font-size: 11px; color: var(--muted-2); }
+/* Zone de tap agrandie sans changer le visuel */
+.card-link::after { content: ''; position: absolute; inset: 0 -10px -12px; }
 
 /* ============================
    SOLUTIONS
@@ -436,7 +453,6 @@ h1 {
 .sol-card {
   flex-direction: row;
   align-items: center;
-  max-width: none;
   padding: 10px;
 }
 
@@ -518,19 +534,20 @@ h1 {
 
 @keyframes drawer-in { from { transform: translateX(16px); opacity: 0.6; } to { transform: none; opacity: 1; } }
 
-.drawer-top { display: flex; justify-content: flex-end; margin-bottom: 14px; }
+.drawer-top { display: flex; justify-content: flex-end; margin-bottom: 8px; }
 .drawer .nav-link {
-  padding: 14px 4px;
+  padding: 16px 4px;
   border-bottom: 1px solid var(--border);
   text-align: left;
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 500;
+  letter-spacing: -0.01em;
   color: var(--muted);
   transition: color 0.18s;
 }
 
-.drawer .nav-link:hover,
-.drawer .nav-link.is-on { color: var(--text); }
+.drawer .nav-link:hover { color: var(--text); }
+.drawer .nav-link.is-on { color: var(--gold); }
 
 .drawer .btn-solid { margin-top: 20px; }
 
@@ -542,13 +559,13 @@ footer {
   display: flex;
   justify-content: center;
   gap: 6px;
-  padding: 6px 8px;
-  padding-bottom: max(6px, env(safe-area-inset-bottom));
+  padding: 3px 8px;
+  padding-bottom: max(3px, env(safe-area-inset-bottom));
   border-top: 1px solid var(--border);
 }
 
 footer button {
-  min-height: 38px;
+  min-height: var(--tap);
   padding: 8px 14px;
   font-size: 12px;
   color: var(--muted-2);
@@ -565,7 +582,7 @@ footer button:hover { color: var(--muted); }
   position: fixed;
   inset: 0;
   z-index: 9999;
-  padding: var(--gutter);
+  padding: 0;
   align-items: flex-end;
   justify-content: center;
   background: rgba(0, 0, 0, 0.72);
@@ -586,9 +603,13 @@ footer button:hover { color: var(--muted); }
   padding: 22px 18px;
   padding-bottom: max(22px, env(safe-area-inset-bottom));
   border: 1px solid var(--border-2);
-  border-radius: 18px;
+  border-bottom: 0;
+  border-radius: 18px 18px 0 0; /* mobile : panneau collé en bas de l'écran */
   background: var(--surface);
+  animation: sheet-in 0.24s ease-out;
 }
+
+@keyframes sheet-in { from { transform: translateY(24px); opacity: 0.6; } to { transform: none; opacity: 1; } }
 
 .modal-content h4 {
   margin-bottom: 10px;
@@ -661,7 +682,13 @@ footer button:hover { color: var(--muted); }
 @media (max-height: 620px) {
   .sec-head p { display: none; }
   .hero-art { display: none; }
-  .hint { display: none; }
+}
+
+/* Téléphone à l'horizontale : titre d'accueil ramené à une taille lisible,
+   bouton contact des solutions dans le flux */
+@media (max-height: 500px) {
+  h1 { font-size: clamp(24px, 4.6vw, 34px); }
+  .sol-cta { position: static; }
 }
 
 /* ============================================================
@@ -671,8 +698,19 @@ footer button:hover { color: var(--muted); }
   :root { --gutter: 28px; }
 
 .brand img { height: 36px; }
-   .modal { align-items: center; }
-  .modal-content { padding: 26px; border-radius: 20px; }
+   .modal { align-items: center; padding: var(--gutter); }
+  .modal-content {
+    padding: 26px;
+    border-bottom: 1px solid var(--border-2);
+    border-radius: 20px;
+    animation: none;
+  }
+
+  .rail {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    max-width: calc(696px + 2 * var(--gutter));
+  }
 
   .sol-cards {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -705,16 +743,14 @@ footer button:hover { color: var(--muted); }
   .burger   { display: none; }
 /*  .head-cta { display: inline-flex; } */
 
-  .filters { justify-content: center; }
+  .filters { justify-content: center; gap: 7px; }
+  .chip { padding: 7px 14px; }
 
-  /* Desktop : plus de défilement horizontal — grille centrée. */
+  /* Desktop : grille centrée. */
   .rail {
-    display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 290px));
     justify-content: center;
     gap: 16px;
-    overflow-x: visible;
-    scroll-snap-type: none;
     padding: 2px var(--gutter) 8px;
   }
   /* Réalisations : 3 colonnes maximum */
@@ -723,8 +759,7 @@ footer button:hover { color: var(--muted); }
     max-width: calc(3 * 340px + 2 * 16px + 2 * var(--gutter));
     margin: 0 auto;
   }
-  .card { max-width: none; scroll-snap-align: none; }
-  .hint { display: none; }
+  .work-card .thumb { aspect-ratio: 2 / 1; }
 
   /* Solutions : contact dans le flux */
   .sol-cta {
@@ -739,8 +774,10 @@ footer button:hover { color: var(--muted); }
   /* Accueil : texte à gauche, illustration à droite */
   .hero { flex-direction: row; align-items: center; justify-content: center; gap: 48px; text-align: left; }
   .hero-copy { flex: 0 1 500px; }
-  .hero-copy .ctas { justify-content: flex-start; }
-  .hero-art { flex: 0 0 440px; max-width: 440px; }
+  .hero-copy h1,
+  .hero-copy .lede { text-wrap: wrap; }
+  .hero-copy .ctas { flex-direction: row; justify-content: flex-start; max-width: none; margin-inline: 0; }
+  .hero-art { flex: 0 0 440px; max-width: 440px; max-height: none; }
 
   /* À propos : formations en colonnes */
   .about { max-width: 860px; }
@@ -767,6 +804,8 @@ footer button:hover { color: var(--muted); }
    ILLUSTRATION ACCUEIL — animation
    ============================ */
 .hero-art { background: radial-gradient(120% 90% at 70% 20%, #1d1710 0%, #0b0b0b 55%, #070707 100%); }
+.hero-art svg { width: 100%; height: 100%; } /* mobile : le dessin entier tient dans le cadre */
+@media (min-width: 860px) { .hero-art svg { height: auto; } }
 .va-hero .va-fl  { animation: vaFloat 6s ease-in-out infinite; }
 .va-hero .va-fl2 { animation-delay: -1.5s; }
 .va-hero .va-fl3 { animation-delay: -3s; }
