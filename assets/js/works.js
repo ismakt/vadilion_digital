@@ -9,8 +9,11 @@
 
    Tout est affiché directement sur la carte (pas de fiche).
 
-   SOLUTIONS — champs : id, art (clé art.js)
-     Par langue : name, line, items ([titre, ' — détail'] ou [titre])
+   SOLUTIONS — champs : id, icon (clé ICO dans main.js)
+     Par langue : name, text
+
+   STEPS — déroulé d'un projet, dans l'ordre (numérotés 01, 02…)
+     Par langue : name, text
 
    WORKS — champs : id, art, cat, url (lien public, optionnel)
      Par langue : kind, state, name, line, text (essence du
@@ -19,90 +22,39 @@
 
 const SOLUTIONS = [
   {
-    id: 'sur-mesure', art: 'flow',
-    fr: {
-      name: 'Solutions sur mesure',
-      line: 'Des outils internes conçus autour de vos besoins.',
-      items: [
-        ['Applications internes', ' — planning, suivi, gestion de stock, outils métier.'],
-        ['Automatisation', " — plus d'efficacité, sans tâches répétitives."],
-        ['Sur mesure', ' — des solutions conçues pour répondre à vos besoins spécifiques.']
-      ]
-    },
-    en: {
-      name: 'Custom solutions',
-      line: 'Internal tools built around your needs.',
-      items: [
-        ['Internal apps', ' — scheduling, tracking, stock management, business tools.'],
-        ['Automation', ' — more efficiency, no repetitive tasks.'],
-        ['Tailor-made', ' — solutions designed around your specific needs.']
-      ]
-    }
+    id: 'applications-sites', icon: 'screen',
+    fr: { name: 'Applications & sites', text: 'Applications web et mobiles, sites vitrines, espaces clients.' },
+    en: { name: 'Apps & websites',      text: 'Web and mobile apps, showcase websites, customer portals.' }
   },
   {
-    id: 'business-essentials', art: 'essentials',
-    fr: {
-      name: 'Business Essentials',
-      line: 'Le package de solutions essentielles pour tout business.',
-      items: [
-        ['Site web et/ou application'],
-        ['Logo et cartes de visite'],
-        ['Réseaux sociaux'],
-        ['Fiche Google + cartes NFC']
-      ]
-    },
-    en: {
-      name: 'Business Essentials',
-      line: 'The essential solutions package for any business.',
-      items: [
-        ['Website and/or app'],
-        ['Logo and business cards'],
-        ['Social media'],
-        ['Google profile + NFC cards']
-      ]
-    }
+    id: 'outils-internes', icon: 'grid',
+    fr: { name: 'Outils internes', text: 'Des outils métier adaptés à vos process : planning, suivi, gestion.' },
+    en: { name: 'Internal tools',  text: 'Business tools built around your processes: scheduling, tracking, management.' }
   },
   {
-    id: 'analyse-donnees', art: 'dash',
-    fr: {
-      name: 'Analyse des données',
-      line: 'Visualiser, suivre et comprendre votre activité.',
-      items: [
-        ['Organisation des données', ' — vos fichiers et outils centralisés et fiabilisés.'],
-        ['Tableaux de bord', ' — suivi de vos indicateurs en temps réel.'],
-        ['Analyse', ' — ce qui marche, ce qui ne marche pas, et pourquoi.']
-      ]
-    },
-    en: {
-      name: 'Data analysis',
-      line: 'See, track and understand your business.',
-      items: [
-        ['Data organisation', ' — your files and tools centralised and made reliable.'],
-        ['Dashboards', ' — your indicators tracked in real time.'],
-        ['Analysis', ' — what works, what does not, and why.']
-      ]
-    }
+    id: 'automatisation', icon: 'sync',
+    fr: { name: 'Automatisation', text: "Gain de temps et de productivité.<br>Moins d'erreurs, plus de résultat." },
+    en: { name: 'Automation',     text: 'Save time, boost productivity.<br>Fewer errors, better results.' }
   },
   {
-    id: 'etude-emplacement', art: 'locality',
-    fr: {
-      name: "Étude d'emplacement",
-      line: 'Intelligence territoriale et géomarketing.',
-      items: [
-        ['Ouverture / expansion', ' — premier point de vente ou nouveau site.'],
-        ['Clientèle et localité', " — qui vit, passe et consomme autour de l'adresse."],
-        ['Immobilier / déménagement', ' — le quartier vu sans filtre commercial.']
-      ]
-    },
-    en: {
-      name: 'Location study',
-      line: 'Location intelligence and geomarketing.',
-      items: [
-        ['Opening / expansion', ' — first store or a new site.'],
-        ['Customers and area', ' — who lives, passes by and spends around the address.'],
-        ['Property / relocation', ' — the neighbourhood without a sales filter.']
-      ]
-    }
+    id: 'tableaux-de-bord', icon: 'chart',
+    fr: { name: 'Tableaux de bord', text: 'Vos données centralisées, vos indicateurs suivis en temps réel.' },
+    en: { name: 'Dashboards',       text: 'Your data in one place, your indicators tracked in real time.' }
+  }
+];
+
+const STEPS = [
+  {
+    fr: { name: 'Rendez-vous gratuit', text: 'Pour comprendre votre besoin.<br>Gratuit et sans engagement.' },
+    en: { name: 'Free meeting',        text: 'To understand your needs.<br>Free and with no commitment.' }
+  },
+  {
+    fr: { name: 'Devis rapide', text: 'Un prix et un délai clairs.<br>Validés avant de commencer.' },
+    en: { name: 'Quick quote',  text: 'A clear price and timeline.<br>Agreed before we start.' }
+  },
+  {
+    fr: { name: 'Livraison et suivi',   text: 'Mise en ligne, prise en main par votre équipe, évolutions si besoin.' },
+    en: { name: 'Delivery and support', text: 'Launch, onboarding for your team, improvements when needed.' }
   }
 ];
 
@@ -148,9 +100,9 @@ const WORKS = [
 
 (function validate() {
   const cats = FILTERS.map(function (f) { return f.id; });
-  SOLUTIONS.concat(WORKS).forEach(function (w) {
+  SOLUTIONS.concat(STEPS, WORKS).forEach(function (w) {
     if (w.cat && cats.indexOf(w.cat) === -1) console.warn('[works] catégorie inconnue :', w.cat, '→', w.id);
-    if (window.ART && !window.ART[w.art]) console.warn('[works] illustration manquante :', w.art, '→', w.id);
+    if (w.art && window.ART && !window.ART[w.art]) console.warn('[works] illustration manquante :', w.art, '→', w.id);
     ['fr', 'en'].forEach(function (l) {
       if (!w[l]) console.warn('[works] traduction manquante :', l, '→', w.id);
     });
@@ -158,5 +110,6 @@ const WORKS = [
 })();
 
 window.SOLUTIONS    = Object.freeze(SOLUTIONS);
+window.STEPS        = Object.freeze(STEPS);
 window.WORKS        = Object.freeze(WORKS);
 window.WORK_FILTERS = Object.freeze(FILTERS);
