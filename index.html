@@ -82,24 +82,35 @@
   <!-- ─────── SOLUTIONS ─────── -->
   <section class="view" id="v-solutions">
     <div class="sol">
-      <div class="sec-head sol-head">
-        <span class="eyebrow" id="solutions-kicker">Nos solutions</span>
-        <h2 id="solutions-title">Développement sur mesure</h2>
-        <p id="solutions-sub">Un seul interlocuteur, de l'idée à la mise en ligne.</p>
-      </div>
-      <!-- Cartes injectées depuis assets/js/works.js (SOLUTIONS) -->
-      <div class="sol-grid" id="solution-grid"></div>
-
-      <h2 class="sol-h2" id="steps-title">Comment ça se passe</h2>
-      <!-- Étapes injectées depuis assets/js/works.js (STEPS) -->
-      <ol class="steps" id="steps-list"></ol>
-
-      <div class="sol-cta">
-        <div>
-          <h2 id="cta-title">Un projet en tête ?</h2>
-          <p id="cta-text">Contactez-nous et obtenez une idée claire du prix et du délai.</p>
+      <!-- Desktop : colonne de gauche. Mobile : ses blocs s'intercalent autour des cartes. -->
+      <div class="sol-intro">
+        <div class="sol-head">
+          <span class="kicker">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 7-5 5 5 5M16 7l5 5-5 5M13.5 4l-3 16"/></svg>
+            <b id="solutions-kicker">Nos solutions</b>
+          </span>
+          <h2 id="solutions-title">Développement sur mesure.</h2>
+          <p class="lede" id="solutions-sub">Un seul interlocuteur, de l'idée à la mise en ligne.</p>
         </div>
-        <button type="button" class="btn-solid" data-open-contact id="cta-btn">Contactez-nous</button>
+
+        <div class="sol-steps">
+          <h3 class="sol-label" id="steps-title">Comment ça se passe</h3>
+          <!-- Étapes injectées depuis assets/js/works.js (STEPS) -->
+          <ol class="steps" id="steps-list"></ol>
+        </div>
+
+        <div class="sol-cta">
+          <button type="button" class="btn-solid" data-open-contact id="cta-btn">Contactez-nous
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h13m-5-6 6 6-6 6"/></svg>
+          </button>
+          <p id="cta-text">Un projet en tête ? Réponse rapide, sans engagement.</p>
+        </div>
+      </div>
+
+      <div class="sol-cards">
+        <!-- Cartes injectées depuis assets/js/works.js (SOLUTIONS) -->
+        <div class="rail work-rail" id="solution-rail"></div>
+        <p class="hint" id="solutions-hint">Glissez pour voir les autres →</p>
       </div>
     </div>
   </section>

@@ -9,10 +9,10 @@
 
    Tout est affiché directement sur la carte (pas de fiche).
 
-   SOLUTIONS — champs : id, icon (clé ICO dans main.js)
+   SOLUTIONS — champs : id, art (clé art.js)
      Par langue : name, text
 
-   STEPS — déroulé d'un projet, dans l'ordre (numérotés 01, 02…)
+   STEPS — déroulé d'un projet, dans l'ordre (numérotés 1, 2, 3)
      Par langue : name, text
 
    WORKS — champs : id, art, cat, url (lien public, optionnel)
@@ -22,22 +22,22 @@
 
 const SOLUTIONS = [
   {
-    id: 'applications-sites', icon: 'screen',
+    id: 'applications-sites', art: 'apps',
     fr: { name: 'Applications & sites', text: 'Applications web et mobiles, sites vitrines, espaces clients.' },
     en: { name: 'Apps & websites',      text: 'Web and mobile apps, showcase websites, customer portals.' }
   },
   {
-    id: 'outils-internes', icon: 'grid',
+    id: 'outils-internes', art: 'tools',
     fr: { name: 'Outils internes', text: 'Des outils métier adaptés à vos process : planning, suivi, gestion.' },
     en: { name: 'Internal tools',  text: 'Business tools built around your processes: scheduling, tracking, management.' }
   },
   {
-    id: 'automatisation', icon: 'sync',
+    id: 'automatisation', art: 'flow',
     fr: { name: 'Automatisation', text: "Gain de temps et de productivité.<br>Moins d'erreurs, plus de résultat." },
     en: { name: 'Automation',     text: 'Save time, boost productivity.<br>Fewer errors, better results.' }
   },
   {
-    id: 'tableaux-de-bord', icon: 'chart',
+    id: 'tableaux-de-bord', art: 'dash',
     fr: { name: 'Tableaux de bord', text: 'Vos données centralisées, vos indicateurs suivis en temps réel.' },
     en: { name: 'Dashboards',       text: 'Your data in one place, your indicators tracked in real time.' }
   }

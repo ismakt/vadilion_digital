@@ -4,7 +4,7 @@
    ILLUSTRATIONS — SVG inline, aucune image externe.
    ------------------------------------------------------------
    Chaque clé est référencée par le champ `art` d'une solution
-   (solutions.js) ou d'une réalisation (works.js).
+   ou d'une réalisation (works.js).
 
    Contraintes pour en ajouter une :
      - viewBox="0 0 320 200" et preserveAspectRatio="xMidYMid slice"
@@ -41,8 +41,8 @@ const ART = {
     + '<circle class="va-pulse" cx="160" cy="40" r="3" fill="#d9b56b"/><path d="M160 43v11" stroke="#d9b56b" stroke-width=".8" opacity=".5"/>'
     + '</svg>',
 
-  /* Business Essentials — site + mobile, une seule identité */
-  essentials: '<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">'
+  /* Applications & sites — site + mobile, une seule identité */
+  apps: '<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">'
     + '<defs><linearGradient id="esG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e3c27e"/><stop offset="1" stop-color="#a9853a"/></linearGradient><radialGradient id="esGGl"><stop offset="0" stop-color="#c9a24d" stop-opacity=".22"/><stop offset="1" stop-color="#c9a24d" stop-opacity="0"/></radialGradient></defs>'
     + '<ellipse cx="166" cy="104" rx="120" ry="64" fill="url(#esGGl)"/>'
     + '<rect x="70" y="50" width="150" height="96" rx="11" fill="#111" stroke="#3a3128"/>'
@@ -53,6 +53,25 @@ const ART = {
     + '<rect x="200" y="70" width="54" height="92" rx="11" fill="#0d0d0d" stroke="#c9a24d" stroke-opacity=".7"/>'
     + '<circle cx="227" cy="96" r="9" fill="url(#esG)"/>'
     + '<rect x="212" y="114" width="30" height="5" rx="2.5" fill="#4a4238"/><rect x="216" y="125" width="22" height="4" rx="2" fill="#2f2a22"/>'
+    + '</svg>',
+
+  /* Outils internes — tableau de planning, une tâche qui avance */
+  tools: '<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">'
+    + '<defs><linearGradient id="tlG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e3c27e"/><stop offset="1" stop-color="#a9853a"/></linearGradient><radialGradient id="tlGGl"><stop offset="0" stop-color="#c9a24d" stop-opacity=".22"/><stop offset="1" stop-color="#c9a24d" stop-opacity="0"/></radialGradient></defs>'
+    + '<ellipse cx="180" cy="110" rx="110" ry="56" fill="url(#tlGGl)"/>'
+    + '<rect x="56" y="46" width="208" height="112" rx="11" fill="#111" stroke="#3a3128"/>'
+    + '<path d="M56 57a11 11 0 0 1 11-11h186a11 11 0 0 1 11 11v5H56z" fill="#171310"/>'
+    + '<g fill="#3f382e"><circle cx="67" cy="54" r="2"/><circle cx="74" cy="54" r="2"/><circle cx="81" cy="54" r="2"/></g>'
+    + '<path d="M92 62v96" stroke="#2a2620"/>'
+    + '<rect x="66" y="74" width="16" height="4" rx="2" fill="#4a4238"/><rect x="66" y="85" width="12" height="4" rx="2" fill="#2f2a22"/><rect x="66" y="96" width="14" height="4" rx="2" fill="#2f2a22"/>'
+    + '<g fill="#4a4238"><rect x="102" y="72" width="26" height="4" rx="2"/><rect x="158" y="72" width="20" height="4" rx="2"/><rect x="214" y="72" width="24" height="4" rx="2"/></g>'
+    + '<g fill="#171310" stroke="#3a3128"><rect x="100" y="82" width="48" height="20" rx="4"/><rect x="100" y="108" width="48" height="20" rx="4"/><rect x="100" y="134" width="48" height="18" rx="4"/>'
+    + '<rect x="156" y="82" width="48" height="20" rx="4"/><rect x="212" y="82" width="48" height="20" rx="4"/><rect x="212" y="108" width="48" height="20" rx="4"/></g>'
+    + '<g fill="#3a332b"><rect x="106" y="90" width="26" height="3.5" rx="1.7"/><rect x="106" y="116" width="20" height="3.5" rx="1.7"/><rect x="106" y="141" width="24" height="3.5" rx="1.7"/>'
+    + '<rect x="162" y="90" width="22" height="3.5" rx="1.7"/><rect x="218" y="90" width="26" height="3.5" rx="1.7"/><rect x="218" y="116" width="18" height="3.5" rx="1.7"/></g>'
+    + '<rect x="156" y="108" width="48" height="20" rx="4" fill="none" stroke="#c9a24d" stroke-opacity=".55" stroke-dasharray="3 3"/>'
+    + '<g transform="rotate(-6 186 124)"><rect x="162" y="114" width="48" height="20" rx="4" fill="url(#tlG)"/><rect x="168" y="122" width="24" height="3.5" rx="1.7" fill="#100c04" opacity=".45"/></g>'
+    + '<circle cx="258" cy="84" r="6.5" fill="#d9b56b"/><path d="M255 84l2.2 2.2 4-4.4" fill="none" stroke="#100c04" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>'
     + '</svg>',
 
   /* Location intelligence — quartiers + rayons autour d'une adresse */
@@ -105,7 +124,7 @@ const ART = {
     + '</svg>',
 
 
-  /* Analyse des données — un indicateur qui ressort */
+  /* Tableaux de bord — un indicateur qui ressort */
   dash: '<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">'
     + '<defs><linearGradient id="dsG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e3c27e"/><stop offset="1" stop-color="#a9853a"/></linearGradient><radialGradient id="dsGGl"><stop offset="0" stop-color="#c9a24d" stop-opacity=".22"/><stop offset="1" stop-color="#c9a24d" stop-opacity="0"/></radialGradient></defs>'
     + '<ellipse cx="200" cy="120" rx="110" ry="50" fill="url(#dsGGl)"/>'
@@ -166,7 +185,7 @@ const ART = {
     + '<circle cx="230" cy="140" r="4.5" fill="#0d0d0d" stroke="#d9b56b" stroke-width="2"/>'
     + '<circle cx="230" cy="140" r="12" fill="none" stroke="#c9a24d" stroke-width="1" opacity=".35"/></svg>',
 
-  /* Solutions sur mesure — une saisie, une automatisation, un résultat */
+  /* Automatisation — une saisie, une automatisation, un résultat */
   flow: '<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">'
     + '<defs><linearGradient id="flG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e3c27e"/><stop offset="1" stop-color="#a9853a"/></linearGradient><radialGradient id="flGGl"><stop offset="0" stop-color="#c9a24d" stop-opacity=".22"/><stop offset="1" stop-color="#c9a24d" stop-opacity="0"/></radialGradient></defs>'
     + '<ellipse cx="160" cy="100" rx="90" ry="56" fill="url(#flGGl)"/>'

@@ -47,32 +47,28 @@ const $$ = function (sel) { return Array.prototype.slice.call(document.querySele
    ============================================================ */
 const ICO = {
   arrow: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h13m-5-6 6 6-6 6"/></svg>',
-  out:   '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>',
-
-  /* Icônes des solutions (clé `icon` dans works.js) */
-  screen: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>',
-  grid:   '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>',
-  sync:   '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a8 8 0 0 1 14-5.3M18 3v4h-4M20 12a8 8 0 0 1-14 5.3M6 21v-4h4"/></svg>',
-  chart:  '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>'
+  out:   '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>'
 };
 
 function art(key) { return window.getArt ? window.getArt(key) : ''; }
 
-/* Carte solution — icône, titre, une phrase. */
+/* Carte solution — même composant que les réalisations : illustration, nom, une phrase. */
 function solutionCardHtml(o) {
   const t = o[currentLang];
-  return '<article class="sol-card">'
-    +   (ICO[o.icon] || '')
-    +   '<h3>' + t.name + '</h3>'
-    +   '<p>' + t.text + '</p>'
+  return '<article class="card sol-card">'
+    +   '<div class="thumb">' + art(o.art) + '</div>'
+    +   '<div class="card-body">'
+    +     '<h3>' + t.name + '</h3>'
+    +     '<p class="line">' + t.text + '</p>'
+    +   '</div>'
     + '</article>';
 }
 
-/* Étape du déroulé — numérotée 01, 02… */
+/* Étape du déroulé — pastille numérotée, titre, détail. */
 function stepHtml(s, i) {
   const t = s[currentLang];
   return '<li class="step">'
-    +   '<span class="step-num">' + String(i + 1).padStart(2, '0') + '</span>'
+    +   '<span class="step-num" aria-hidden="true">' + (i + 1) + '</span>'
     +   '<h3>' + t.name + '</h3>'
     +   '<p>' + t.text + '</p>'
     + '</li>';
@@ -123,8 +119,11 @@ function renderWorks() {
 }
 
 function renderSolutions() {
-  const grid = $('#solution-grid');
-  if (grid && window.SOLUTIONS) grid.innerHTML = window.SOLUTIONS.map(solutionCardHtml).join('');
+  const rail = $('#solution-rail');
+  if (rail && window.SOLUTIONS) {
+    rail.innerHTML = window.SOLUTIONS.map(solutionCardHtml).join('');
+    rail.scrollLeft = 0;
+  }
 
   const steps = $('#steps-list');
   if (steps && window.STEPS) steps.innerHTML = window.STEPS.map(stepHtml).join('');
@@ -311,12 +310,12 @@ const translations = {
     'hero-cta2': 'Prendre rendez-vous',
 
     'solutions-kicker': 'Nos solutions',
-    'solutions-title': 'Développement sur mesure',
+    'solutions-title': 'Développement sur mesure.',
     'solutions-sub': "Un seul interlocuteur, de l'idée à la mise en ligne.",
+    'solutions-hint': 'Glissez pour voir les autres →',
     'steps-title': 'Comment ça se passe',
-    'cta-title': 'Un projet en tête ?',
-    'cta-text': 'Contactez-nous et obtenez une idée claire du prix et du délai.',
     'cta-btn': 'Contactez-nous',
+    'cta-text': 'Un projet en tête ? Réponse rapide, sans engagement.',
 
     'works-title': 'Réalisations',
     'works-sub': 'Quelques-uns de nos projets.',
@@ -343,12 +342,12 @@ const translations = {
     'hero-cta2': 'Book a meeting',
 
     'solutions-kicker': 'Our solutions',
-    'solutions-title': 'Custom development',
+    'solutions-title': 'Custom development.',
     'solutions-sub': 'One point of contact, from idea to launch.',
+    'solutions-hint': 'Swipe to see the others →',
     'steps-title': 'How it works',
-    'cta-title': 'Have a project in mind?',
-    'cta-text': 'Get in touch for a clear idea of price and timeline.',
     'cta-btn': 'Contact us',
+    'cta-text': 'Have a project in mind? Quick reply, no commitment.',
 
     'works-title': 'Our work',
     'works-sub': 'A few of our projects.',
