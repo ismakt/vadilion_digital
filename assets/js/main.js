@@ -119,11 +119,8 @@ function renderWorks() {
 }
 
 function renderSolutions() {
-  const rail = $('#solution-rail');
-  if (rail && window.SOLUTIONS) {
-    rail.innerHTML = window.SOLUTIONS.map(solutionCardHtml).join('');
-    rail.scrollLeft = 0;
-  }
+  const grid = $('#solution-grid');
+  if (grid && window.SOLUTIONS) grid.innerHTML = window.SOLUTIONS.map(solutionCardHtml).join('');
 
   const steps = $('#steps-list');
   if (steps && window.STEPS) steps.innerHTML = window.STEPS.map(stepHtml).join('');
@@ -312,7 +309,6 @@ const translations = {
     'solutions-kicker': 'Nos solutions',
     'solutions-title': 'Développement sur mesure.',
     'solutions-sub': "Un seul interlocuteur, de l'idée à la mise en ligne.",
-    'solutions-hint': 'Glissez pour voir les autres →',
     'steps-title': 'Comment ça se passe',
     'cta-btn': 'Contactez-nous',
     'cta-text': 'Un projet en tête ? Réponse rapide, sans engagement.',
@@ -344,7 +340,6 @@ const translations = {
     'solutions-kicker': 'Our solutions',
     'solutions-title': 'Custom development.',
     'solutions-sub': 'One point of contact, from idea to launch.',
-    'solutions-hint': 'Swipe to see the others →',
     'steps-title': 'How it works',
     'cta-btn': 'Contact us',
     'cta-text': 'Have a project in mind? Quick reply, no commitment.',

@@ -373,7 +373,7 @@ h1 {
 
 /* ============================
    SOLUTIONS
-   Mobile : titre, cartes en rail, déroulé, contact — la vue défile.
+   Mobile : titre, cartes empilées, déroulé, contact — la vue défile.
    ≥ 1100px : texte à gauche, cartes à droite, comme l'accueil ;
    la vue tient dans l'écran.
    ============================ */
@@ -471,7 +471,17 @@ h1 {
 
 .sol-cta p { font-size: 12.5px; line-height: 1.5; color: var(--muted-2); }
 
-/* Cartes : même composant que les réalisations */
+/* Cartes : même composant que les réalisations, en grille (pas de rail) */
+.sol-cards {
+  display: grid;
+  gap: 12px;
+  width: 100%;
+  max-width: calc(420px + 2 * var(--gutter));
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.sol-card { max-width: none; }
 .sol-card h3 { margin-top: 0; }
 .sol-card .thumb { aspect-ratio: 5 / 2; }
 .sol-card .thumb svg { transition: transform 0.5s ease; }
@@ -697,6 +707,12 @@ footer button:hover { color: var(--muted); }
 .brand img { height: 36px; }
    .modal { align-items: center; }
   .modal-content { padding: 26px; border-radius: 20px; }
+
+  .sol-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    max-width: calc(696px + 2 * var(--gutter));
+  }
   footer { gap: 24px; }
 }
 
@@ -732,9 +748,6 @@ footer button:hover { color: var(--muted); }
   }
   .card { max-width: none; scroll-snap-align: none; }
   .hint { display: none; }
-
-  /* Solutions : cartes en grille 2 × 2 */
-  #solution-rail { grid-template-columns: repeat(2, minmax(0, 340px)); }
 
   /* Accueil : texte à gauche, illustration à droite */
   .hero { flex-direction: row; align-items: center; justify-content: center; gap: 48px; text-align: left; }
@@ -804,8 +817,7 @@ footer button:hover { color: var(--muted); }
 
   .sol-cta { justify-content: flex-start; }
 
-  .sol-cards { flex: 0 1 724px; min-width: 0; }
-  #solution-rail { grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 0; }
+  .sol-cards { flex: 0 1 724px; min-width: 0; max-width: none; margin: 0; padding: 0; }
 }
 
 /* Écrans bas (petits portables) : on resserre pour rester sans scroll */
@@ -814,6 +826,6 @@ footer button:hover { color: var(--muted); }
   .sol-head h2 { font-size: 36px; }
   .steps { gap: 10px; }
   .step:not(:last-child)::after { bottom: -9px; }
-  #solution-rail { gap: 12px; }
+  .sol-cards { gap: 12px; }
   .sol-card .thumb { aspect-ratio: 3 / 1; }
 }
