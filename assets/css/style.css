@@ -373,7 +373,9 @@ h1 {
 
 /* ============================
    SOLUTIONS
-   Mobile : titre, cartes empilées, contact — la vue défile.
+   Mobile : titre, cartes en ligne (illustration à gauche), bouton
+   contact collé en bas de l'écran tant que la liste défile.
+   Tablette : cartes verticales sur 2 colonnes.
    ≥ 1100px : texte à gauche, cartes à droite, comme l'accueil ;
    la vue tient dans l'écran.
    ============================ */
@@ -392,28 +394,33 @@ h1 {
 
 .sol-head h2 {
   margin-top: 10px;
-  font-size: clamp(26px, 6.6vw, 42px);
+  font-size: clamp(24px, 6.4vw, 42px);
   line-height: 1.08;
   font-weight: 700;
   letter-spacing: -0.035em;
   text-wrap: balance;
 }
 
-.sol-head .lede { margin-top: 10px; }
+.sol-head .lede { margin-top: 10px; text-wrap: balance; }
 
 .sol-cta {
+  position: sticky;
+  bottom: -18px; /* compense le padding bas de .view */
+  z-index: 1;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 10px 16px;
+  gap: 8px 16px;
   width: 100%;
   max-width: calc(420px + 2 * var(--gutter));
-  margin: 0 auto;
-  padding: 0 var(--gutter);
+  margin: -6px auto 0;
+  padding: 20px var(--gutter) 14px;
+  background: linear-gradient(to bottom, transparent, var(--bg) 20px);
 }
 
-.sol-cta p { font-size: 12.5px; line-height: 1.5; color: var(--muted-2); }
+.sol-cta .btn-solid { width: 100%; }
+.sol-cta p { font-size: 12.5px; line-height: 1.5; color: var(--muted-2); text-wrap: balance; }
 
 /* Cartes : même composant que les réalisations, en grille (pas de rail) */
 .sol-cards {
@@ -425,9 +432,24 @@ h1 {
   padding: 0 var(--gutter);
 }
 
-.sol-card { max-width: none; }
+/* Mobile : carte en ligne, l'illustration devient une vignette à gauche */
+.sol-card {
+  flex-direction: row;
+  align-items: center;
+  max-width: none;
+  padding: 10px;
+}
+
 .sol-card h3 { margin-top: 0; }
-.sol-card .thumb { aspect-ratio: 5 / 2; }
+
+.sol-card .thumb {
+  flex: 0 0 96px;
+  aspect-ratio: 6 / 5;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.sol-card .card-body { padding: 2px 6px 2px 14px; }
 .sol-card .thumb svg { transition: transform 0.5s ease; }
 .sol-card:hover .thumb svg { transform: scale(1.04); }
 
@@ -657,6 +679,17 @@ footer button:hover { color: var(--muted); }
     gap: 16px;
     max-width: calc(696px + 2 * var(--gutter));
   }
+
+  /* Solutions : carte verticale, illustration en bandeau */
+  .sol-card { flex-direction: column; align-items: stretch; padding: 0; }
+  .sol-card .thumb {
+    flex: none;
+    aspect-ratio: 5 / 2;
+    border: 0;
+    border-bottom: 1px solid var(--border);
+    border-radius: 0;
+  }
+  .sol-card .card-body { padding: 14px 16px 16px; }
   footer { gap: 24px; }
 }
 
@@ -692,6 +725,16 @@ footer button:hover { color: var(--muted); }
   }
   .card { max-width: none; scroll-snap-align: none; }
   .hint { display: none; }
+
+  /* Solutions : contact dans le flux */
+  .sol-cta {
+    position: static;
+    gap: 10px 16px;
+    margin-top: 0;
+    padding: 0 var(--gutter);
+    background: none;
+  }
+  .sol-cta .btn-solid { width: auto; }
 
   /* Accueil : texte à gauche, illustration à droite */
   .hero { flex-direction: row; align-items: center; justify-content: center; gap: 48px; text-align: left; }
