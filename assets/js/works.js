@@ -67,7 +67,7 @@ const WORKS = [
       text: 'One address is enough to analyse the neighbourhood: who lives there, who passes by, who spends there, and what competition is already present.' }
   },
   {
-    id: 'prospection-tool', art: 'route', cat: 'saas',
+    id: 'prospection-tool', art: 'route', cat: 'saas', url: 'https://demo.vadiliondigital.be/af-prospection',
     fr: { kind: 'Application', state: 'Prospection terrain', name: 'Prospection Tool',
       line: "L'outil des tournées commerciales.",
       text: "Les visites sont classées dans l'ordre de la route, lancées dans Waze et suivies jusqu'à la relance. Chaque commercial retrouve sa progression sur tous ses appareils." },
