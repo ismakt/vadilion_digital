@@ -124,6 +124,29 @@ const ART = {
     + '</svg>',
 
 
+  /* Prospection Tool — tournée ordonnée par la route, visites faites, prochain arrêt, app sur mobile */
+  route: '<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">'
+    + '<g stroke="#242019" stroke-width="1"><path d="M0 50h320M0 100h320M0 150h320M80 0v200M160 0v200M240 0v200"/></g>'
+    + '<path d="M150 98 186 128 206 66" fill="none" stroke="#4a4238" stroke-width="1.8" stroke-dasharray="6 6" stroke-linecap="round" stroke-linejoin="round"/>'
+    + '<path d="M50 150 84 112 118 146 150 98" fill="none" stroke="#d9b56b" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>'
+    + '<g transform="translate(36 140)"><path d="M0 8 14 -2 28 8v16H0z" fill="#111" stroke="#c9a24d" stroke-opacity=".8" stroke-linejoin="round"/>'
+    + '<rect x="10" y="13" width="8" height="11" rx="1.5" fill="#c9a24d" opacity=".8"/></g>'
+    + '<g fill="#c9a24d"><circle cx="84" cy="112" r="7"/><circle cx="118" cy="146" r="7"/></g>'
+    + '<g fill="none" stroke="#100c04" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M80.5 112l2.5 2.5 4.5-5"/><path d="M114.5 146l2.5 2.5 4.5-5"/></g>'
+    + '<circle cx="150" cy="98" r="15" fill="none" stroke="#c9a24d" stroke-width="1" opacity=".35"/>'
+    + '<circle cx="150" cy="98" r="6.5" fill="#0d0d0d" stroke="#d9b56b" stroke-width="2"/>'
+    + '<g fill="#171310" stroke="#4a4238" stroke-width="1.4"><circle cx="186" cy="128" r="5.5"/><circle cx="206" cy="66" r="5.5"/></g>'
+    + '<rect x="234" y="36" width="60" height="128" rx="12" fill="#111" stroke="#c9a24d" stroke-opacity=".7"/>'
+    + '<rect x="254" y="42" width="20" height="3.5" rx="1.7" fill="#2a2620"/>'
+    + '<g fill="#171310" stroke="#3a3128"><rect x="241" y="54" width="46" height="18" rx="5"/><rect x="241" y="78" width="46" height="18" rx="5"/><rect x="241" y="102" width="46" height="18" rx="5"/></g>'
+    + '<g fill="#4a4238"><rect x="256" y="59" width="22" height="4" rx="2"/><rect x="256" y="83" width="18" height="4" rx="2"/><rect x="256" y="107" width="22" height="4" rx="2"/></g>'
+    + '<g fill="#3a332b"><rect x="256" y="65" width="14" height="3" rx="1.5"/><rect x="256" y="89" width="16" height="3" rx="1.5"/><rect x="256" y="113" width="12" height="3" rx="1.5"/></g>'
+    + '<g fill="#c9a24d"><circle cx="249" cy="63" r="3.2"/><circle cx="249" cy="87" r="3.2"/></g>'
+    + '<circle cx="249" cy="111" r="3.2" fill="none" stroke="#d9b56b" stroke-width="1.4"/>'
+    + '<rect x="241" y="132" width="46" height="18" rx="6" fill="#c9a24d" opacity=".9"/>'
+    + '<path d="M264 135.5l5.5 11-5.5-3-5.5 3z" fill="#100c04" stroke="#100c04" stroke-width=".8" stroke-linejoin="round"/>'
+    + '</svg>',
+
   /* Tableaux de bord — un indicateur qui ressort */
   dash: '<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">'
     + '<defs><linearGradient id="dsG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e3c27e"/><stop offset="1" stop-color="#a9853a"/></linearGradient><radialGradient id="dsGGl"><stop offset="0" stop-color="#c9a24d" stop-opacity=".22"/><stop offset="1" stop-color="#c9a24d" stop-opacity="0"/></radialGradient></defs>'

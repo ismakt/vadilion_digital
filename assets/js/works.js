@@ -67,13 +67,13 @@ const WORKS = [
       text: 'One address is enough to analyse the neighbourhood: who lives there, who passes by, who spends there, and what competition is already present.' }
   },
   {
-    id: 'wasabi', art: 'order', cat: 'saas', url: 'https://platform-for-restaurants-omega.vercel.app/',
-    fr: { kind: 'Application', state: 'Restauration', name: 'Wasabi',
-      line: 'La commande directe pour restaurants.',
-      text: "Plateforme indépendante vers laquelle le restaurant dirige ses clients réguliers\u00a0: de meilleurs prix pour eux, et moins de commissions versées aux grandes plateformes." },
-    en: { kind: 'App', state: 'Restaurants', name: 'Wasabi',
-      line: 'Direct ordering for restaurants.',
-      text: 'An independent platform where the restaurant sends its regular customers: better prices for them, and less commission paid to the big platforms.' }
+    id: 'prospection-tool', art: 'route', cat: 'saas',
+    fr: { kind: 'Application', state: 'Prospection terrain', name: 'Prospection Tool',
+      line: "L'outil des tournées commerciales.",
+      text: "Les visites sont classées dans l'ordre de la route, lancées dans Waze et suivies jusqu'à la relance. Chaque commercial retrouve sa progression sur tous ses appareils." },
+    en: { kind: 'App', state: 'Field sales', name: 'Prospection Tool',
+      line: 'The field sales round planner.',
+      text: 'Visits are sorted in road order, launched in Waze and tracked through to follow-up. Each sales rep picks up their progress on any device.' }
   },
 
 
