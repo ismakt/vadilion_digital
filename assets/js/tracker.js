@@ -11,7 +11,11 @@ const EXCLUDED_IPS = [
   // 'xx.xx.xx.xx', // ← remplace par ton IP publique (whatismyip.com)
 ];
 
+const PROD_HOSTS = ['vadiliondigital.be', 'www.vadiliondigital.be'];
+
 function isExcludedVisitor(ip) {
+  // Aperçus de test (Vercel, local) : jamais comptés
+  if (!PROD_HOSTS.includes(location.hostname)) return true;
   try {
     if (new URLSearchParams(location.search).get('notrack') === '1') {
       localStorage.setItem('_sin_notrack', '1');
