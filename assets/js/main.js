@@ -35,7 +35,6 @@ window.addEventListener('pageshow', function (e) {
    ============================================================ */
 let currentLang = 'fr';
 let currentView = 'home';
-let currentCat  = 'all';
 
 const mqDesktop = window.matchMedia('(min-width: 860px)');
 
@@ -45,14 +44,9 @@ const $$ = function (sel) { return Array.prototype.slice.call(document.querySele
 /* ============================================================
    FRAGMENTS RÉUTILISABLES
    ============================================================ */
-const ICO = {
-  arrow: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h13m-5-6 6 6-6 6"/></svg>',
-  out:   '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>'
-};
-
 function art(key) { return window.getArt ? window.getArt(key) : ''; }
 
-/* Carte solution — même composant que les réalisations : illustration, nom, une phrase. */
+/* Carte solution : illustration, nom, une phrase. */
 function solutionCardHtml(o) {
   const t = o[currentLang];
   return '<article class="card sol-card">'
@@ -60,23 +54,6 @@ function solutionCardHtml(o) {
     +   '<div class="card-body">'
     +     '<h3>' + t.name + '</h3>'
     +     '<p class="line">' + t.text + '</p>'
-    +   '</div>'
-    + '</article>';
-}
-
-/* Carte réalisation — l'essence du projet en deux phrases. */
-function workCardHtml(w) {
-  const t = w[currentLang];
-  return '<article class="card work-card">'
-    +   '<div class="thumb">' + art(w.art) + '</div>'
-    +   '<div class="card-body">'
-    +     '<div class="meta"><span class="kind">' + t.kind + '</span>'
-    +       '<span class="sep" aria-hidden="true">·</span><span class="state">' + t.state + '</span></div>'
-    +     '<h3>' + t.name + '</h3>'
-    +     '<p class="line">' + t.line + '</p>'
-    +     '<p class="desc">' + t.text + '</p>'
-    +     (w.url ? '<a class="card-link" href="' + w.url + '" target="_blank" rel="noopener noreferrer">'
-    +         L('visit') + ICO.out + '</a>' : '')
     +   '</div>'
     + '</article>';
 }
@@ -89,24 +66,6 @@ function renderHeroArt() {
   if (el) el.innerHTML = art('hero');
 }
 
-function renderFilters() {
-  const wrap = $('#work-filters');
-  if (!wrap || !window.WORK_FILTERS) return;
-  wrap.innerHTML = window.WORK_FILTERS.map(function (f) {
-    return '<button type="button" class="chip' + (f.id === currentCat ? ' is-on' : '') + '" data-cat="' + f.id + '">'
-         + f[currentLang] + '</button>';
-  }).join('');
-}
-
-function renderWorks() {
-  const rail = $('#work-rail');
-  if (!rail || !window.WORKS) return;
-  rail.innerHTML = window.WORKS
-    .filter(function (w) { return currentCat === 'all' || w.cat === currentCat; })
-    .map(workCardHtml)
-    .join('');
-}
-
 function renderSolutions() {
   const grid = $('#solution-grid');
   if (grid && window.SOLUTIONS) grid.innerHTML = window.SOLUTIONS.map(solutionCardHtml).join('');
@@ -115,8 +74,6 @@ function renderSolutions() {
 function renderAll() {
   renderHeroArt();
   renderSolutions();
-  renderFilters();
-  renderWorks();
 }
 
 /* ============================================================
@@ -199,15 +156,6 @@ document.addEventListener('click', function (e) {
   if (t.closest('[data-open-contact]'))   { openModal('contactModal'); return; }
   if (t.closest('[data-open-simulator]')) { openSimulator(t); return; }
 
-  /* Filtres */
-  const chip = t.closest('.chip');
-  if (chip) {
-    currentCat = chip.dataset.cat;
-    $$('.chip').forEach(function (c) { c.classList.toggle('is-on', c === chip); });
-    renderWorks();
-    return;
-  }
-
   /* Navigation */
   const navBtn = t.closest('[data-view]');
   if (navBtn) showView(navBtn.dataset.view);
@@ -275,9 +223,9 @@ function initContactForm() {
    Les chaînes générées par le JS sont dans STRINGS, lues par L().
    ============================================================ */
 const STRINGS = {
-  fr: { visit: 'Voir le projet', fillAll: 'Veuillez remplir tous les champs.', sending: 'Envoi…',
+  fr: { fillAll: 'Veuillez remplir tous les champs.', sending: 'Envoi…',
         sent: 'Message envoyé ✅', sendError: "Erreur lors de l'envoi ❌" },
-  en: { visit: 'View project', fillAll: 'Please fill in all fields.', sending: 'Sending…',
+  en: { fillAll: 'Please fill in all fields.', sending: 'Sending…',
         sent: 'Message sent ✅', sendError: 'Sending failed ❌' }
 };
 
@@ -285,13 +233,14 @@ function L(key) { return STRINGS[currentLang][key]; }
 
 const translations = {
   fr: {
-    'nav-home': 'Accueil', 'nav-solutions': 'Solutions', 'nav-works': 'Réalisations',
+    'nav-home': 'Accueil', 'nav-solutions': 'Solutions',
 
     'kicker-1': 'B2B',
     'hero-title': 'Des solutions digitales sur mesure pour les entreprises.',
     'hero-lede': 'Applications, sites web, automatisation et analyse de données\u00a0: nous concevons des solutions adaptées à vos besoins.',
     'hero-cta1': 'Voir nos solutions',
     'hero-cta2': 'Prendre rendez-vous',
+    'parent-text': 'Entreprise mère de la plateforme de livraison',
 
     'solutions-kicker': 'Nos solutions',
     'solutions-title': 'Développement sur mesure.',
@@ -299,11 +248,8 @@ const translations = {
     'cta-btn': 'Contactez-nous',
     'cta-text': 'Un projet en tête\u00a0? Réponse rapide, sans engagement.',
 
-    'works-title': 'Réalisations',
-    'works-sub': 'Quelques-uns de nos projets.',
 
-
-    'dnav-home': 'Accueil', 'dnav-solutions': 'Solutions', 'dnav-works': 'Réalisations',
+    'dnav-home': 'Accueil', 'dnav-solutions': 'Solutions',
     'dnav-offices': 'Bureaux', 'dnav-cta': 'Prendre rendez-vous',
 
     'offices-link': 'Bureaux', 'contact-footer-link': 'Contact',
@@ -314,13 +260,14 @@ const translations = {
   },
 
   en: {
-    'nav-home': 'Home', 'nav-solutions': 'Solutions', 'nav-works': 'Our work',
+    'nav-home': 'Home', 'nav-solutions': 'Solutions',
 
     'kicker-1': 'B2B',
     'hero-title': 'Custom digital solutions for businesses.',
     'hero-lede': 'Apps, websites, automation and data analysis: we design solutions tailored to your needs.',
     'hero-cta1': 'See our solutions',
     'hero-cta2': 'Book a meeting',
+    'parent-text': 'Parent company of the delivery platform',
 
     'solutions-kicker': 'Our solutions',
     'solutions-title': 'Custom development.',
@@ -328,12 +275,8 @@ const translations = {
     'cta-btn': 'Contact us',
     'cta-text': 'Have a project in mind? Quick reply, no commitment.',
 
-    'works-title': 'Our work',
-    'works-sub': 'A few of our projects.',
 
-
-
-    'dnav-home': 'Home', 'dnav-solutions': 'Solutions', 'dnav-works': 'Our work',
+    'dnav-home': 'Home', 'dnav-solutions': 'Solutions',
     'dnav-offices': 'Offices', 'dnav-cta': 'Book a meeting',
 
     'offices-link': 'Offices', 'contact-footer-link': 'Contact',
