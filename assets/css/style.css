@@ -268,41 +268,40 @@ h1 {
 }
 
 .ak-art {
-  flex: 0 0 50px;
-  height: 50px;
+  flex: 0 0 64px;
+  height: 64px;
+  overflow: hidden;
   border: 1px solid var(--gold-edge);
   border-radius: 12px;
-  background:
-    radial-gradient(circle at 75% 25%, rgba(201, 162, 77, 0.22), transparent 60%),
-    repeating-linear-gradient(0deg, transparent 0 9px, rgba(201, 162, 77, 0.06) 9px 10px),
-    repeating-linear-gradient(90deg, transparent 0 9px, rgba(201, 162, 77, 0.06) 9px 10px),
-    #0b0a08;
+  background: radial-gradient(circle at 70% 75%, rgba(201, 162, 77, 0.14), transparent 55%), #0b0c0d;
 }
 
-.ak-art svg { display: block; width: 100%; height: 100%; }
-.ak-road    { fill: none; stroke: var(--gold); stroke-width: 1.4; stroke-linecap: round; stroke-dasharray: 2.5 3.5; opacity: 0.55; }
-.ak-shop    { fill: #1a150d; stroke: var(--gold-light); stroke-width: 1.3; stroke-linejoin: round; }
-.ak-pin     { fill: var(--gold); }
-.ak-pin-dot { fill: #120d04; }
-.ak-dot     { fill: #f6e1a8; filter: drop-shadow(0 0 3px rgba(246, 225, 168, 0.9)); }
-
-.ak-txt { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
-
-/* Mobile : la phrase secondaire laisse la place au seul lien */
-#aktam-sub { display: none; }
-
-.ak-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 10px;
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--gold);
+/* Mini plan de ville : rues, rivière, maisons, commerces, trajet de livraison */
+.ak-art svg   { display: block; width: 100%; height: 100%; }
+.ak-river     { fill: none; stroke: #2c3640; stroke-width: 7; stroke-linecap: round; }
+.ak-street    { fill: none; stroke: #2a2b2e; stroke-width: 2.6; stroke-linecap: round; }
+.ak-house     { fill: none; stroke: #5d5d60; stroke-width: 1; stroke-linejoin: round; }
+.ak-poi rect  { fill: #0b0c0d; stroke: #5d5d60; stroke-width: 0.9; }
+.ak-poi path  { stroke: #5d5d60; stroke-width: 0.8; stroke-linecap: round; }
+.ak-shop rect { fill: var(--gold); }
+.ak-shop path { stroke: #120d04; stroke-width: 0.9; stroke-linecap: round; }
+.ak-route {
+  fill: none;
+  stroke: var(--gold-light);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  animation: akDraw 3.6s linear infinite;
 }
-.ak-eyebrow::before { content: ''; width: 14px; height: 1px; background: currentColor; }
+.ak-dest circle { fill: var(--gold); }
+.ak-dest .ak-halo { fill: rgba(201, 162, 77, 0.25); transform-box: fill-box; transform-origin: center; animation: akHalo 3.6s ease-out infinite; }
+.ak-dot { fill: #fff3d1; filter: drop-shadow(0 0 2px rgba(255, 236, 190, 0.95)); }
+
+@keyframes akDraw { 0% { stroke-dashoffset: 1; } 75%, 100% { stroke-dashoffset: 0; } }
+@keyframes akHalo { 0%, 70% { transform: scale(0.4); opacity: 0; } 80% { opacity: 1; } 100% { transform: scale(1.4); opacity: 0; } }
+
+.ak-txt { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+
 
 .ak-title {
   font-size: 15px;
@@ -346,7 +345,8 @@ h1 {
 
 /* Mouvement réduit : le point reste à destination */
 @media (prefers-reduced-motion: reduce) {
-  .ak-dot { display: none; }
+  .ak-dot, .ak-halo { display: none; }
+  .ak-route { animation: none; stroke-dashoffset: 0; }
 }
 
 .hero-art {
@@ -786,10 +786,9 @@ footer button:hover { color: var(--muted); }
   .hero-copy .ctas { flex-direction: row; justify-content: flex-start; max-width: none; margin-inline: 0; }
   .hero-art { flex: 0 0 440px; max-width: 440px; max-height: none; }
   .aktam    { gap: 16px; margin-top: 22px; padding: 12px 22px 12px 12px; }
-  .ak-art   { flex-basis: 66px; height: 66px; }
-  .ak-title { font-size: 18px; }
+  .ak-art   { flex-basis: 88px; height: 88px; border-radius: 14px; }
+  .ak-title { font-size: 19px; }
   .ak-sub   { font-size: 12.5px; }
-  #aktam-sub { display: inline; }
 
   /* À propos : formations en colonnes */
   .about { max-width: 860px; }
