@@ -240,7 +240,8 @@ const translations = {
     'hero-lede': 'Applications, sites web, automatisation et analyse de données\u00a0: nous concevons des solutions adaptées à vos besoins.',
     'hero-cta1': 'Voir nos solutions',
     'hero-cta2': 'Prendre rendez-vous',
-    'parent-text': 'Entreprise mère de', 'parent-desc': 'Plateforme de livraison',
+    'aktam-eyebrow': 'Maison mère', 'aktam-title-a': 'Derrière', 'aktam-title-b': ', il y a nous.',
+    'aktam-sub': 'La plateforme de livraison du groupe',
 
     'solutions-kicker': 'Nos solutions',
     'solutions-title': 'Développement sur mesure.',
@@ -267,7 +268,8 @@ const translations = {
     'hero-lede': 'Apps, websites, automation and data analysis: we design solutions tailored to your needs.',
     'hero-cta1': 'See our solutions',
     'hero-cta2': 'Book a meeting',
-    'parent-text': 'Parent company of', 'parent-desc': 'Delivery platform',
+    'aktam-eyebrow': 'Parent company', 'aktam-title-a': 'The company behind', 'aktam-title-b': '.',
+    'aktam-sub': "The group's delivery platform",
 
     'solutions-kicker': 'Our solutions',
     'solutions-title': 'Custom development.',

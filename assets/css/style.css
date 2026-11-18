@@ -229,110 +229,125 @@ h1 {
 
 .lede { margin-top: 14px; font-size: 14px; line-height: 1.65; color: var(--muted); }
 
-/* Encart AKTAM : lien en pilule, bordure dorée qui circule + reflet */
-.parent-badge {
+/* ============================
+   MAISON MÈRE — AKTAM
+   Carte-lien : trajet de livraison animé à gauche, accroche à droite.
+   ============================ */
+.aktam {
   position: relative;
   display: inline-flex;
-  margin-top: 16px;
-  padding: 1px;
-  border-radius: 999px;
-  background: linear-gradient(110deg, var(--gold-edge) 0%, var(--gold-edge) 35%, #f3d892 50%, var(--gold-edge) 65%, var(--gold-edge) 100%);
-  background-size: 250% 100%;
-  animation: pbBorder 5s linear infinite;
-  box-shadow: 0 8px 28px -12px rgba(201, 162, 77, 0.45);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.parent-badge:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 12px 34px -12px rgba(201, 162, 77, 0.7);
-}
-
-.pb-inner {
-  position: relative;
-  display: flex;
   align-items: center;
-  gap: 9px;
-  padding: 5px 6px 5px 5px;
+  gap: 12px;
+  max-width: 100%;
+  margin-top: 16px;
+  padding: 8px 16px 8px 8px;
   overflow: hidden;
-  border-radius: inherit;
+  border: 1px solid var(--border);
+  border-radius: 16px;
   background:
-    radial-gradient(120% 140% at 0% 0%, rgba(201, 162, 77, 0.16), transparent 55%),
-    linear-gradient(180deg, #120f0a, #090806);
+    radial-gradient(90% 140% at 0% 50%, rgba(201, 162, 77, 0.13), transparent 60%),
+    linear-gradient(180deg, #0f0d0a, #080706);
   text-align: left;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
 }
 
-/* Reflet qui balaie l'encart */
-.pb-inner::after {
+/* Filet doré en haut, qui s'estompe vers la droite */
+.aktam::before {
   content: '';
   position: absolute;
-  inset: 0;
-  background: linear-gradient(100deg, transparent 30%, rgba(255, 233, 180, 0.10) 50%, transparent 70%);
-  transform: translateX(-100%);
-  animation: pbShine 5s ease-in-out infinite;
-  pointer-events: none;
+  top: 0; left: 14px; right: 30%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold) 30%, transparent);
+  opacity: 0.8;
 }
 
-.pb-ico {
-  flex: 0 0 32px;
-  height: 32px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  background: linear-gradient(145deg, #e6c47a, var(--gold) 55%, #9c7a32);
-  color: #120d04;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 0 0 4px rgba(201, 162, 77, 0.08);
+.aktam:hover {
+  border-color: var(--gold-edge);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 36px -18px rgba(201, 162, 77, 0.55);
 }
 
-.pb-txt { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.ak-art {
+  flex: 0 0 50px;
+  height: 50px;
+  border: 1px solid var(--gold-edge);
+  border-radius: 12px;
+  background:
+    radial-gradient(circle at 75% 25%, rgba(201, 162, 77, 0.22), transparent 60%),
+    repeating-linear-gradient(0deg, transparent 0 9px, rgba(201, 162, 77, 0.06) 9px 10px),
+    repeating-linear-gradient(90deg, transparent 0 9px, rgba(201, 162, 77, 0.06) 9px 10px),
+    #0b0a08;
+}
 
-.pb-eyebrow {
-  font-size: 9.5px;
+.ak-art svg { display: block; width: 100%; height: 100%; }
+.ak-road    { fill: none; stroke: var(--gold); stroke-width: 1.4; stroke-linecap: round; stroke-dasharray: 2.5 3.5; opacity: 0.55; }
+.ak-shop    { fill: #1a150d; stroke: var(--gold-light); stroke-width: 1.3; stroke-linejoin: round; }
+.ak-pin     { fill: var(--gold); }
+.ak-pin-dot { fill: #120d04; }
+.ak-dot     { fill: #f6e1a8; filter: drop-shadow(0 0 3px rgba(246, 225, 168, 0.9)); }
+
+.ak-txt { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+
+/* Mobile : la phrase secondaire laisse la place au seul lien */
+#aktam-sub { display: none; }
+
+.ak-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
   font-weight: 600;
   line-height: 1;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--muted-2);
+  color: var(--gold);
+}
+.ak-eyebrow::before { content: ''; width: 14px; height: 1px; background: currentColor; }
+
+.ak-title {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  color: var(--text);
 }
 
-.pb-line { display: flex; align-items: center; gap: 7px; white-space: nowrap; }
-
-.pb-name {
-  font-size: 15px;
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: 0.16em;
-  background: linear-gradient(180deg, #f6e1a8, var(--gold) 70%);
+.ak-title b {
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  background: linear-gradient(180deg, #f6e1a8, var(--gold) 75%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
-.pb-sep { width: 1px; height: 12px; background: var(--border-2); }
+.ak-sub {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px 10px;
+  font-size: 12px;
+  line-height: 1.3;
+  color: var(--muted);
+}
 
-.pb-desc { font-size: 11.5px; font-weight: 500; line-height: 1; color: var(--muted-1); }
-
-.pb-go {
-  flex: 0 0 26px;
-  height: 26px;
-  display: grid;
-  place-items: center;
-  margin-left: 2px;
-  border: 1px solid var(--gold-edge);
-  border-radius: 50%;
+.ak-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-weight: 600;
   color: var(--gold-light);
-  transition: background 0.25s, color 0.25s, transform 0.25s;
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+  transition: background-size 0.3s;
 }
+.aktam:hover .ak-link { background-size: 100% 1px; }
+.ak-link svg { transition: transform 0.3s; }
+.aktam:hover .ak-link svg { transform: translate(2px, -2px); }
 
-.parent-badge:hover .pb-go { background: var(--gold); color: #120d04; transform: rotate(45deg); }
-
-/* Très petits écrans : on garde le nom, on retire la mention secondaire */
-@media (max-width: 340px) {
-  .pb-sep, .pb-desc { display: none; }
+/* Mouvement réduit : le point reste à destination */
+@media (prefers-reduced-motion: reduce) {
+  .ak-dot { display: none; }
 }
-
-@keyframes pbBorder { from { background-position: 100% 0; } to { background-position: -150% 0; } }
-@keyframes pbShine  { 0%, 55% { transform: translateX(-100%); } 85%, 100% { transform: translateX(100%); } }
 
 .hero-art {
   position: relative;
@@ -770,13 +785,11 @@ footer button:hover { color: var(--muted); }
   .hero-copy .lede { text-wrap: wrap; }
   .hero-copy .ctas { flex-direction: row; justify-content: flex-start; max-width: none; margin-inline: 0; }
   .hero-art { flex: 0 0 440px; max-width: 440px; max-height: none; }
-  .parent-badge { margin-top: 20px; }
-  .pb-inner { gap: 13px; padding: 7px 9px 7px 7px; }
-  .pb-ico   { flex-basis: 38px; height: 38px; }
-  .pb-name  { font-size: 18px; letter-spacing: 0.2em; }
-  .pb-line  { gap: 9px; }
-  .pb-go    { flex-basis: 30px; height: 30px; margin-left: 4px; }
-  .pb-desc  { font-size: 12.5px; }
+  .aktam    { gap: 16px; margin-top: 22px; padding: 12px 22px 12px 12px; }
+  .ak-art   { flex-basis: 66px; height: 66px; }
+  .ak-title { font-size: 18px; }
+  .ak-sub   { font-size: 12.5px; }
+  #aktam-sub { display: inline; }
 
   /* À propos : formations en colonnes */
   .about { max-width: 860px; }
