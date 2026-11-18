@@ -240,10 +240,10 @@ h1 {
   gap: 12px;
   max-width: 100%;
   margin-top: 16px;
-  padding: 8px 16px 8px 8px;
+  padding: 6px 14px 6px 6px;
   overflow: hidden;
   border: 1px solid var(--border);
-  border-radius: 16px;
+  border-radius: 13px;
   background:
     radial-gradient(90% 140% at 0% 50%, rgba(201, 162, 77, 0.13), transparent 60%),
     linear-gradient(180deg, #0f0d0a, #080706);
@@ -268,11 +268,11 @@ h1 {
 }
 
 .ak-art {
-  flex: 0 0 64px;
-  height: 64px;
+  flex: 0 0 52px;
+  height: 52px;
   overflow: hidden;
-  border: 1px solid var(--gold-edge);
-  border-radius: 12px;
+  border: 1px solid rgba(201, 162, 77, 0.2);
+  border-radius: 10px;
   background: radial-gradient(circle at 70% 75%, rgba(201, 162, 77, 0.14), transparent 55%), #0b0c0d;
 }
 
@@ -785,9 +785,9 @@ footer button:hover { color: var(--muted); }
   .hero-copy .lede { text-wrap: wrap; }
   .hero-copy .ctas { flex-direction: row; justify-content: flex-start; max-width: none; margin-inline: 0; }
   .hero-art { flex: 0 0 440px; max-width: 440px; max-height: none; }
-  .aktam    { gap: 16px; margin-top: 22px; padding: 12px 22px 12px 12px; }
-  .ak-art   { flex-basis: 88px; height: 88px; border-radius: 14px; }
-  .ak-title { font-size: 19px; }
+  .aktam    { gap: 14px; margin-top: 20px; padding: 7px 20px 7px 7px; }
+  .ak-art   { flex-basis: 64px; height: 64px; border-radius: 11px; }
+  .ak-title { font-size: 17px; }
   .ak-sub   { font-size: 12.5px; }
 
   /* À propos : formations en colonnes */
